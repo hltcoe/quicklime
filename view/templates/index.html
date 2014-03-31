@@ -2,9 +2,12 @@
 <html>
 <head>
   {% load staticfiles %}
+  <link rel="stylesheet" href="{% static "view/bootstrap/css/bootstrap.css" %}">
+  <link rel="stylesheet" href="{% static "view/bootstrap/css/bootstrap-theme.css" %}">
+  <script src="{% static "view/jquery-1.11.0.min.js" %}"></script>
+  <script src="{% static "view/bootstrap/js/bootstrap.js" %}"></script>
   <script src="{% static "view/d3/3.4.4/d3.js" %}"></script>
   <script src="{% static "view/dagre-d3/0.1.5/dagre-d3.js" %}"></script>
-  <script src="{% static "view/jquery-1.11.0.min.js" %}"></script>
   <style>
     g.type-TK > rect {
       fill: #00ffd0;
@@ -56,14 +59,18 @@
   </script>
 </head>
 <body>
-  <h1>Tree-tastic</h1>
+  <div class="container">
 
-  <div id="communication"></div>
+    <h1>Tree-tastic</h1>
 
-  <div id="attach">
-    <svg id="svg-canvas" width=800 height=600>
-      <g transform="translate(20, 20)"/>
-    </svg>
+    <div id="communication"></div>
+
+    <div id="attach">
+      <svg id="svg-canvas" width=800 height=600>
+        <g transform="translate(20, 20)"/>
+      </svg>
+    </div>
+
   </div>
 
   <script>
