@@ -4,10 +4,10 @@
   {% load staticfiles %}
   <script src="{% static "view/d3/3.4.4/d3.js" %}"></script>
   <script src="{% static "view/dagre-d3/0.1.5/dagre-d3.js" %}"></script>
-
+  <script src="{% static "view/jquery-1.11.0.min.js" %}"></script>
   <style>
     g.type-TK > rect {
-    fill: #00ffd0;
+      fill: #00ffd0;
     }
 
     svg {
@@ -37,9 +37,28 @@
       fill: none;
     }
   </style>
+
+  <script>
+   $(document).ready(function() {
+     $.getJSON("{% url 'as_json' %}", function(data) {
+       for (var sentence_index in data.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList) {
+         var sentence = data.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList[sentence_index];
+         var sentence_div = $('<div/>').addClass('sentence');
+         for (var token_index in sentence.tokenizationList[0].tokenList) {
+           var token = sentence.tokenizationList[0].tokenList[token_index];
+           var token_span = $('<span/>').addClass('token').html(" " + token.text + " ");
+           sentence_div.append(token_span);
+         }
+         $('#communication').append(sentence_div);
+       }
+     });
+   });
+  </script>
 </head>
 <body>
   <h1>Tree-tastic</h1>
+
+  <div id="communication"></div>
 
   <div id="attach">
     <svg id="svg-canvas" width=800 height=600>
@@ -85,7 +104,8 @@
     renderer.drawNodes(function(graph, root) {
       var svgNodes = oldDrawNodes(graph, root);
       svgNodes.each(function(u) {
-    d3.select(this).classed(graph.node(u).nodeclass, true); });
+        d3.select(this).classed(graph.node(u).nodeclass, true);
+      });
       return svgNodes;
     });
     var layout = renderer.run(g, d3.select("svg g"));
