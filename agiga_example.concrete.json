@@ -1,0 +1,2622 @@
+{
+  "entityMentionSets": [
+    {
+      "mentionSet": [
+        {
+          "confidence": 1.0,
+          "entityType": 24,
+          "phraseType": 1,
+          "text": "John Smith , manager of ACME INC ,",
+          "tokens": {
+            "anchorTokenIndex": -1,
+            "tokenIndexList": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7
+            ],
+            "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+          },
+          "uuid": "b3155840-dd51-4d94-833c-a9eeef8c4dec"
+        },
+        {
+          "confidence": 1.0,
+          "entityType": 24,
+          "phraseType": 1,
+          "text": "John Smith",
+          "tokens": {
+            "anchorTokenIndex": -1,
+            "tokenIndexList": [
+              0,
+              1
+            ],
+            "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+          },
+          "uuid": "cf6f4022-4cf6-4b44-bd89-e060d90317e5"
+        },
+        {
+          "confidence": 1.0,
+          "entityType": 24,
+          "phraseType": 1,
+          "text": "manager of ACME INC",
+          "tokens": {
+            "anchorTokenIndex": -1,
+            "tokenIndexList": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+          },
+          "uuid": "0bab823f-0aff-42dc-9974-6348346cb596"
+        },
+        {
+          "confidence": 1.0,
+          "entityType": 24,
+          "phraseType": 1,
+          "text": "He",
+          "tokens": {
+            "anchorTokenIndex": -1,
+            "tokenIndexList": [
+              0
+            ],
+            "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+          },
+          "uuid": "97b416c9-3d8f-496b-8fec-e16a649aaa62"
+        },
+        {
+          "confidence": 1.0,
+          "entityType": 24,
+          "phraseType": 1,
+          "text": "John 's",
+          "tokens": {
+            "anchorTokenIndex": -1,
+            "tokenIndexList": [
+              0,
+              1
+            ],
+            "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+          },
+          "uuid": "47027a9c-82f1-478b-8a6f-a831537818e6"
+        }
+      ],
+      "metadata": {
+        "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/pubs/conllst2011-coref.pdf"
+      },
+      "uuid": "40fc7b1a-efe9-4b21-bdd8-4cb1703c02e4"
+    }
+  ],
+  "entitySets": [
+    {
+      "entityList": [
+        {
+          "mentionIdList": [
+            "b3155840-dd51-4d94-833c-a9eeef8c4dec",
+            "cf6f4022-4cf6-4b44-bd89-e060d90317e5",
+            "0bab823f-0aff-42dc-9974-6348346cb596",
+            "97b416c9-3d8f-496b-8fec-e16a649aaa62",
+            "47027a9c-82f1-478b-8a6f-a831537818e6"
+          ],
+          "uuid": "9aa0e87c-b745-4e13-ad0d-a60efd0a73be"
+        }
+      ],
+      "metadata": {
+        "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/pubs/conllst2011-coref.pdf"
+      },
+      "uuid": "5ee044af-e078-430d-995e-6855c72830d0"
+    }
+  ],
+  "id": "agiga_dog-bites-man",
+  "sectionSegmentations": [
+    {
+      "metadata": {
+        "tool": "Annotated Gigaword Pipeline"
+      },
+      "sectionList": [
+        {
+          "kind": 1,
+          "sentenceSegmentation": [
+            {
+              "metadata": {
+                "tool": "Annotated Gigaword Pipeline Splitta http://www.aclweb.org/anthology-new/N/N09/N09-2061.pdf"
+              },
+              "sectionId": "01fe0f64-838e-4a01-b1eb-7aa509953b08",
+              "sentenceList": [
+                {
+                  "textSpan": {
+                    "ending": 74,
+                    "start": 0
+                  },
+                  "tokenizationList": [
+                    {
+                      "dependencyParseList": [
+                        {
+                          "dependencyList": [
+                            {
+                              "dep": 9,
+                              "edgeType": "root"
+                            },
+                            {
+                              "dep": 0,
+                              "edgeType": "nn",
+                              "gov": 1
+                            },
+                            {
+                              "dep": 1,
+                              "edgeType": "nsubj",
+                              "gov": 9
+                            },
+                            {
+                              "dep": 3,
+                              "edgeType": "appos",
+                              "gov": 1
+                            },
+                            {
+                              "dep": 4,
+                              "edgeType": "prep",
+                              "gov": 3
+                            },
+                            {
+                              "dep": 5,
+                              "edgeType": "nn",
+                              "gov": 6
+                            },
+                            {
+                              "dep": 6,
+                              "edgeType": "pobj",
+                              "gov": 4
+                            },
+                            {
+                              "dep": 8,
+                              "edgeType": "dep",
+                              "gov": 9
+                            },
+                            {
+                              "dep": 10,
+                              "edgeType": "prep",
+                              "gov": 9
+                            },
+                            {
+                              "dep": 11,
+                              "edgeType": "det",
+                              "gov": 12
+                            },
+                            {
+                              "dep": 12,
+                              "edgeType": "pobj",
+                              "gov": 10
+                            },
+                            {
+                              "dep": 13,
+                              "edgeType": "prep",
+                              "gov": 12
+                            },
+                            {
+                              "dep": 14,
+                              "edgeType": "pobj",
+                              "gov": 13
+                            },
+                            {
+                              "dep": 15,
+                              "edgeType": "num",
+                              "gov": 14
+                            },
+                            {
+                              "dep": 17,
+                              "edgeType": "num",
+                              "gov": 14
+                            }
+                          ],
+                          "metadata": {
+                            "tool": "Annotated Gigaword Pipeline basic-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
+                          },
+                          "uuid": "88d53d82-96af-4b73-9b23-4125268afa11"
+                        },
+                        {
+                          "dependencyList": [
+                            {
+                              "dep": 9,
+                              "edgeType": "root"
+                            },
+                            {
+                              "dep": 0,
+                              "edgeType": "nn",
+                              "gov": 1
+                            },
+                            {
+                              "dep": 1,
+                              "edgeType": "nsubj",
+                              "gov": 9
+                            },
+                            {
+                              "dep": 3,
+                              "edgeType": "appos",
+                              "gov": 1
+                            },
+                            {
+                              "dep": 5,
+                              "edgeType": "nn",
+                              "gov": 6
+                            },
+                            {
+                              "dep": 6,
+                              "edgeType": "prep_of",
+                              "gov": 3
+                            },
+                            {
+                              "dep": 8,
+                              "edgeType": "dep",
+                              "gov": 9
+                            },
+                            {
+                              "dep": 11,
+                              "edgeType": "det",
+                              "gov": 12
+                            },
+                            {
+                              "dep": 12,
+                              "edgeType": "prep_by",
+                              "gov": 9
+                            },
+                            {
+                              "dep": 14,
+                              "edgeType": "prep_on",
+                              "gov": 12
+                            },
+                            {
+                              "dep": 15,
+                              "edgeType": "num",
+                              "gov": 14
+                            },
+                            {
+                              "dep": 17,
+                              "edgeType": "num",
+                              "gov": 14
+                            }
+                          ],
+                          "metadata": {
+                            "tool": "Annotated Gigaword Pipeline col-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
+                          },
+                          "uuid": "97b7004c-d394-4616-8ad8-cb07c917eaea"
+                        },
+                        {
+                          "dependencyList": [
+                            {
+                              "dep": 9,
+                              "edgeType": "root"
+                            },
+                            {
+                              "dep": 0,
+                              "edgeType": "nn",
+                              "gov": 1
+                            },
+                            {
+                              "dep": 1,
+                              "edgeType": "nsubj",
+                              "gov": 9
+                            },
+                            {
+                              "dep": 3,
+                              "edgeType": "appos",
+                              "gov": 1
+                            },
+                            {
+                              "dep": 5,
+                              "edgeType": "nn",
+                              "gov": 6
+                            },
+                            {
+                              "dep": 6,
+                              "edgeType": "prep_of",
+                              "gov": 3
+                            },
+                            {
+                              "dep": 8,
+                              "edgeType": "dep",
+                              "gov": 9
+                            },
+                            {
+                              "dep": 11,
+                              "edgeType": "det",
+                              "gov": 12
+                            },
+                            {
+                              "dep": 12,
+                              "edgeType": "prep_by",
+                              "gov": 9
+                            },
+                            {
+                              "dep": 14,
+                              "edgeType": "prep_on",
+                              "gov": 12
+                            },
+                            {
+                              "dep": 15,
+                              "edgeType": "num",
+                              "gov": 14
+                            },
+                            {
+                              "dep": 17,
+                              "edgeType": "num",
+                              "gov": 14
+                            }
+                          ],
+                          "metadata": {
+                            "tool": "Annotated Gigaword Pipeline col-ccproc-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
+                          },
+                          "uuid": "7db9cca7-43e6-431e-929d-d6112aaa5500"
+                        }
+                      ],
+                      "kind": 1,
+                      "lemmaList": {
+                        "metadata": {
+                          "tool": "Annotated Gigaword Pipeline"
+                        },
+                        "taggedTokenList": [
+                          {
+                            "confidence": 1.0,
+                            "tag": "John",
+                            "tokenIndex": 0
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "Smith",
+                            "tokenIndex": 1
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": ",",
+                            "tokenIndex": 2
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "manager",
+                            "tokenIndex": 3
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "of",
+                            "tokenIndex": 4
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "ACME",
+                            "tokenIndex": 5
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "INC",
+                            "tokenIndex": 6
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": ",",
+                            "tokenIndex": 7
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "was",
+                            "tokenIndex": 8
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "bit",
+                            "tokenIndex": 9
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "by",
+                            "tokenIndex": 10
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "a",
+                            "tokenIndex": 11
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "dog",
+                            "tokenIndex": 12
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "on",
+                            "tokenIndex": 13
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "March",
+                            "tokenIndex": 14
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "10th",
+                            "tokenIndex": 15
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": ",",
+                            "tokenIndex": 16
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "2013",
+                            "tokenIndex": 17
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": ".",
+                            "tokenIndex": 18
+                          }
+                        ],
+                        "uuid": "cdb55715-c5e7-492d-96bf-4817366445cd"
+                      },
+                      "metadata": {
+                        "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/software/tokensregex.shtml"
+                      },
+                      "nerTagList": {
+                        "taggedTokenList": [
+                          {
+                            "confidence": 1.0,
+                            "tag": "PERSON",
+                            "tokenIndex": 0
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "PERSON",
+                            "tokenIndex": 1
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 2
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 3
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 4
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "ORGANIZATION",
+                            "tokenIndex": 5
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "ORGANIZATION",
+                            "tokenIndex": 6
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 7
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 8
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 9
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 10
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 11
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 12
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 13
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "DATE",
+                            "tokenIndex": 14
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "DATE",
+                            "tokenIndex": 15
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "DATE",
+                            "tokenIndex": 16
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "DATE",
+                            "tokenIndex": 17
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 18
+                          }
+                        ]
+                      },
+                      "parse": {
+                        "constituentList": [
+                          {
+                            "headChildIndex": -1,
+                            "id": 5,
+                            "tag": "John",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              5
+                            ],
+                            "headChildIndex": 0,
+                            "id": 4,
+                            "tag": "NNP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 7,
+                            "tag": "Smith",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                1
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              7
+                            ],
+                            "headChildIndex": 0,
+                            "id": 6,
+                            "tag": "NNP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                1
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              4,
+                              6
+                            ],
+                            "headChildIndex": 1,
+                            "id": 3,
+                            "tag": "NP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0,
+                                1
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 9,
+                            "tag": ",",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                2
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              9
+                            ],
+                            "headChildIndex": 0,
+                            "id": 8,
+                            "tag": ",",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                2
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 13,
+                            "tag": "manager",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                3
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              13
+                            ],
+                            "headChildIndex": 0,
+                            "id": 12,
+                            "tag": "NN",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                3
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              12
+                            ],
+                            "headChildIndex": 0,
+                            "id": 11,
+                            "tag": "NP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                3
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 16,
+                            "tag": "of",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                4
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              16
+                            ],
+                            "headChildIndex": 0,
+                            "id": 15,
+                            "tag": "IN",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                4
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 19,
+                            "tag": "ACME",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                5
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              19
+                            ],
+                            "headChildIndex": 0,
+                            "id": 18,
+                            "tag": "NNP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                5
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 21,
+                            "tag": "INC",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                6
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              21
+                            ],
+                            "headChildIndex": 0,
+                            "id": 20,
+                            "tag": "NNP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                6
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              18,
+                              20
+                            ],
+                            "headChildIndex": 1,
+                            "id": 17,
+                            "tag": "NP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                5,
+                                6
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              15,
+                              17
+                            ],
+                            "headChildIndex": 0,
+                            "id": 14,
+                            "tag": "PP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                4,
+                                5,
+                                6
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              11,
+                              14
+                            ],
+                            "headChildIndex": 0,
+                            "id": 10,
+                            "tag": "NP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                3,
+                                4,
+                                5,
+                                6
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 23,
+                            "tag": ",",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                7
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              23
+                            ],
+                            "headChildIndex": 0,
+                            "id": 22,
+                            "tag": ",",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                7
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              3,
+                              8,
+                              10,
+                              22
+                            ],
+                            "headChildIndex": 0,
+                            "id": 2,
+                            "tag": "NP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0,
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                                6,
+                                7
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 26,
+                            "tag": "was",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                8
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              26
+                            ],
+                            "headChildIndex": 0,
+                            "id": 25,
+                            "tag": "AUXD",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                8
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 30,
+                            "tag": "bit",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                9
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              30
+                            ],
+                            "headChildIndex": 0,
+                            "id": 29,
+                            "tag": "RB",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                9
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              29
+                            ],
+                            "headChildIndex": 0,
+                            "id": 28,
+                            "tag": "ADJP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                9
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 33,
+                            "tag": "by",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                10
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              33
+                            ],
+                            "headChildIndex": 0,
+                            "id": 32,
+                            "tag": "IN",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                10
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 37,
+                            "tag": "a",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                11
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              37
+                            ],
+                            "headChildIndex": 0,
+                            "id": 36,
+                            "tag": "DT",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                11
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 39,
+                            "tag": "dog",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                12
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              39
+                            ],
+                            "headChildIndex": 0,
+                            "id": 38,
+                            "tag": "NN",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                12
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              36,
+                              38
+                            ],
+                            "headChildIndex": 1,
+                            "id": 35,
+                            "tag": "NP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                11,
+                                12
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 42,
+                            "tag": "on",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                13
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              42
+                            ],
+                            "headChildIndex": 0,
+                            "id": 41,
+                            "tag": "IN",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                13
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 45,
+                            "tag": "March",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                14
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              45
+                            ],
+                            "headChildIndex": 0,
+                            "id": 44,
+                            "tag": "NNP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                14
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 47,
+                            "tag": "10th",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                15
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              47
+                            ],
+                            "headChildIndex": 0,
+                            "id": 46,
+                            "tag": "CD",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                15
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 49,
+                            "tag": ",",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                16
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              49
+                            ],
+                            "headChildIndex": 0,
+                            "id": 48,
+                            "tag": ",",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                16
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 51,
+                            "tag": "2013",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                17
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              51
+                            ],
+                            "headChildIndex": 0,
+                            "id": 50,
+                            "tag": "CD",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                17
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              44,
+                              46,
+                              48,
+                              50
+                            ],
+                            "headChildIndex": 0,
+                            "id": 43,
+                            "tag": "NP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                14,
+                                15,
+                                16,
+                                17
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              41,
+                              43
+                            ],
+                            "headChildIndex": 0,
+                            "id": 40,
+                            "tag": "PP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                13,
+                                14,
+                                15,
+                                16,
+                                17
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              35,
+                              40
+                            ],
+                            "headChildIndex": 0,
+                            "id": 34,
+                            "tag": "NP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                11,
+                                12,
+                                13,
+                                14,
+                                15,
+                                16,
+                                17
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              32,
+                              34
+                            ],
+                            "headChildIndex": 0,
+                            "id": 31,
+                            "tag": "PP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                10,
+                                11,
+                                12,
+                                13,
+                                14,
+                                15,
+                                16,
+                                17
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              28,
+                              31
+                            ],
+                            "headChildIndex": 0,
+                            "id": 27,
+                            "tag": "VP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                9,
+                                10,
+                                11,
+                                12,
+                                13,
+                                14,
+                                15,
+                                16,
+                                17
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              25,
+                              27
+                            ],
+                            "headChildIndex": 1,
+                            "id": 24,
+                            "tag": "VP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                8,
+                                9,
+                                10,
+                                11,
+                                12,
+                                13,
+                                14,
+                                15,
+                                16,
+                                17
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 53,
+                            "tag": ".",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                18
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              53
+                            ],
+                            "headChildIndex": 0,
+                            "id": 52,
+                            "tag": ".",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                18
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              2,
+                              24,
+                              52
+                            ],
+                            "headChildIndex": 1,
+                            "id": 1,
+                            "tag": "S",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0,
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                                6,
+                                7,
+                                8,
+                                9,
+                                10,
+                                11,
+                                12,
+                                13,
+                                14,
+                                15,
+                                16,
+                                17,
+                                18
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          },
+                          {
+                            "childList": [
+                              1
+                            ],
+                            "headChildIndex": 0,
+                            "id": 0,
+                            "tag": "ROOT",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0,
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                                6,
+                                7,
+                                8,
+                                9,
+                                10,
+                                11,
+                                12,
+                                13,
+                                14,
+                                15,
+                                16,
+                                17,
+                                18
+                              ],
+                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                            }
+                          }
+                        ],
+                        "metadata": {
+                          "tool": "Annotated Gigaword Pipeline http://www.aclweb.org/anthology-new/D/D10/D10-1002.pdf"
+                        },
+                        "uuid": "86a43b4a-25fa-4049-8e7d-6b5fcc631fb7"
+                      },
+                      "posTagList": {
+                        "taggedTokenList": [
+                          {
+                            "confidence": 1.0,
+                            "tag": "NNP",
+                            "tokenIndex": 0
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "NNP",
+                            "tokenIndex": 1
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": ",",
+                            "tokenIndex": 2
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "NN",
+                            "tokenIndex": 3
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "IN",
+                            "tokenIndex": 4
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "NNP",
+                            "tokenIndex": 5
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "NNP",
+                            "tokenIndex": 6
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": ",",
+                            "tokenIndex": 7
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "AUXD",
+                            "tokenIndex": 8
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "RB",
+                            "tokenIndex": 9
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "IN",
+                            "tokenIndex": 10
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "DT",
+                            "tokenIndex": 11
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "NN",
+                            "tokenIndex": 12
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "IN",
+                            "tokenIndex": 13
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "NNP",
+                            "tokenIndex": 14
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "CD",
+                            "tokenIndex": 15
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": ",",
+                            "tokenIndex": 16
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "CD",
+                            "tokenIndex": 17
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": ".",
+                            "tokenIndex": 18
+                          }
+                        ]
+                      },
+                      "tokenList": [
+                        {
+                          "text": "John",
+                          "textSpan": {
+                            "ending": 4,
+                            "start": 0
+                          },
+                          "tokenIndex": 0
+                        },
+                        {
+                          "text": "Smith",
+                          "textSpan": {
+                            "ending": 10,
+                            "start": 5
+                          },
+                          "tokenIndex": 1
+                        },
+                        {
+                          "text": ",",
+                          "textSpan": {
+                            "ending": 12,
+                            "start": 11
+                          },
+                          "tokenIndex": 2
+                        },
+                        {
+                          "text": "manager",
+                          "textSpan": {
+                            "ending": 20,
+                            "start": 13
+                          },
+                          "tokenIndex": 3
+                        },
+                        {
+                          "text": "of",
+                          "textSpan": {
+                            "ending": 23,
+                            "start": 21
+                          },
+                          "tokenIndex": 4
+                        },
+                        {
+                          "text": "ACME",
+                          "textSpan": {
+                            "ending": 28,
+                            "start": 24
+                          },
+                          "tokenIndex": 5
+                        },
+                        {
+                          "text": "INC",
+                          "textSpan": {
+                            "ending": 32,
+                            "start": 29
+                          },
+                          "tokenIndex": 6
+                        },
+                        {
+                          "text": ",",
+                          "textSpan": {
+                            "ending": 34,
+                            "start": 33
+                          },
+                          "tokenIndex": 7
+                        },
+                        {
+                          "text": "was",
+                          "textSpan": {
+                            "ending": 38,
+                            "start": 35
+                          },
+                          "tokenIndex": 8
+                        },
+                        {
+                          "text": "bit",
+                          "textSpan": {
+                            "ending": 42,
+                            "start": 39
+                          },
+                          "tokenIndex": 9
+                        },
+                        {
+                          "text": "by",
+                          "textSpan": {
+                            "ending": 45,
+                            "start": 43
+                          },
+                          "tokenIndex": 10
+                        },
+                        {
+                          "text": "a",
+                          "textSpan": {
+                            "ending": 47,
+                            "start": 46
+                          },
+                          "tokenIndex": 11
+                        },
+                        {
+                          "text": "dog",
+                          "textSpan": {
+                            "ending": 51,
+                            "start": 48
+                          },
+                          "tokenIndex": 12
+                        },
+                        {
+                          "text": "on",
+                          "textSpan": {
+                            "ending": 54,
+                            "start": 52
+                          },
+                          "tokenIndex": 13
+                        },
+                        {
+                          "text": "March",
+                          "textSpan": {
+                            "ending": 60,
+                            "start": 55
+                          },
+                          "tokenIndex": 14
+                        },
+                        {
+                          "text": "10th",
+                          "textSpan": {
+                            "ending": 65,
+                            "start": 61
+                          },
+                          "tokenIndex": 15
+                        },
+                        {
+                          "text": ",",
+                          "textSpan": {
+                            "ending": 67,
+                            "start": 66
+                          },
+                          "tokenIndex": 16
+                        },
+                        {
+                          "text": "2013",
+                          "textSpan": {
+                            "ending": 72,
+                            "start": 68
+                          },
+                          "tokenIndex": 17
+                        },
+                        {
+                          "text": ".",
+                          "textSpan": {
+                            "ending": 74,
+                            "start": 73
+                          },
+                          "tokenIndex": 18
+                        }
+                      ],
+                      "uuid": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                    }
+                  ],
+                  "uuid": "b0ee7467-65f7-406b-bbe4-c338f5cd18ba"
+                },
+                {
+                  "textSpan": {
+                    "ending": 84,
+                    "start": 75
+                  },
+                  "tokenizationList": [
+                    {
+                      "dependencyParseList": [
+                        {
+                          "dependencyList": [
+                            {
+                              "dep": 1,
+                              "edgeType": "root"
+                            },
+                            {
+                              "dep": 0,
+                              "edgeType": "nsubj",
+                              "gov": 1
+                            }
+                          ],
+                          "metadata": {
+                            "tool": "Annotated Gigaword Pipeline basic-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
+                          },
+                          "uuid": "2ab2b373-f9f3-4d02-8ca0-cb99088d430a"
+                        },
+                        {
+                          "dependencyList": [
+                            {
+                              "dep": 1,
+                              "edgeType": "root"
+                            },
+                            {
+                              "dep": 0,
+                              "edgeType": "nsubj",
+                              "gov": 1
+                            }
+                          ],
+                          "metadata": {
+                            "tool": "Annotated Gigaword Pipeline col-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
+                          },
+                          "uuid": "d4be6504-3538-4938-a455-1c76eb4045ca"
+                        },
+                        {
+                          "dependencyList": [
+                            {
+                              "dep": 1,
+                              "edgeType": "root"
+                            },
+                            {
+                              "dep": 0,
+                              "edgeType": "nsubj",
+                              "gov": 1
+                            }
+                          ],
+                          "metadata": {
+                            "tool": "Annotated Gigaword Pipeline col-ccproc-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
+                          },
+                          "uuid": "0adc4d8f-3c8a-42f3-a9eb-390945185c18"
+                        }
+                      ],
+                      "kind": 1,
+                      "lemmaList": {
+                        "metadata": {
+                          "tool": "Annotated Gigaword Pipeline"
+                        },
+                        "taggedTokenList": [
+                          {
+                            "confidence": 1.0,
+                            "tag": "he",
+                            "tokenIndex": 0
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "die",
+                            "tokenIndex": 1
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "!",
+                            "tokenIndex": 2
+                          }
+                        ],
+                        "uuid": "616c0f32-6119-4b32-be3d-3c7390d4c484"
+                      },
+                      "metadata": {
+                        "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/software/tokensregex.shtml"
+                      },
+                      "nerTagList": {
+                        "taggedTokenList": [
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 0
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 1
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 2
+                          }
+                        ]
+                      },
+                      "parse": {
+                        "constituentList": [
+                          {
+                            "headChildIndex": -1,
+                            "id": 4,
+                            "tag": "He",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0
+                              ],
+                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                            }
+                          },
+                          {
+                            "childList": [
+                              4
+                            ],
+                            "headChildIndex": 0,
+                            "id": 3,
+                            "tag": "PRP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0
+                              ],
+                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                            }
+                          },
+                          {
+                            "childList": [
+                              3
+                            ],
+                            "headChildIndex": 0,
+                            "id": 2,
+                            "tag": "NP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0
+                              ],
+                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 7,
+                            "tag": "died",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                1
+                              ],
+                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                            }
+                          },
+                          {
+                            "childList": [
+                              7
+                            ],
+                            "headChildIndex": 0,
+                            "id": 6,
+                            "tag": "VBD",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                1
+                              ],
+                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                            }
+                          },
+                          {
+                            "childList": [
+                              6
+                            ],
+                            "headChildIndex": 0,
+                            "id": 5,
+                            "tag": "VP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                1
+                              ],
+                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 9,
+                            "tag": "!",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                2
+                              ],
+                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                            }
+                          },
+                          {
+                            "childList": [
+                              9
+                            ],
+                            "headChildIndex": 0,
+                            "id": 8,
+                            "tag": ".",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                2
+                              ],
+                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                            }
+                          },
+                          {
+                            "childList": [
+                              2,
+                              5,
+                              8
+                            ],
+                            "headChildIndex": 1,
+                            "id": 1,
+                            "tag": "S",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0,
+                                1,
+                                2
+                              ],
+                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                            }
+                          },
+                          {
+                            "childList": [
+                              1
+                            ],
+                            "headChildIndex": 0,
+                            "id": 0,
+                            "tag": "ROOT",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0,
+                                1,
+                                2
+                              ],
+                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                            }
+                          }
+                        ],
+                        "metadata": {
+                          "tool": "Annotated Gigaword Pipeline http://www.aclweb.org/anthology-new/D/D10/D10-1002.pdf"
+                        },
+                        "uuid": "d9ebe988-5417-4ef2-9803-eb055036ea7a"
+                      },
+                      "posTagList": {
+                        "taggedTokenList": [
+                          {
+                            "confidence": 1.0,
+                            "tag": "PRP",
+                            "tokenIndex": 0
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "VBD",
+                            "tokenIndex": 1
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": ".",
+                            "tokenIndex": 2
+                          }
+                        ]
+                      },
+                      "tokenList": [
+                        {
+                          "text": "He",
+                          "textSpan": {
+                            "ending": 2,
+                            "start": 0
+                          },
+                          "tokenIndex": 0
+                        },
+                        {
+                          "text": "died",
+                          "textSpan": {
+                            "ending": 7,
+                            "start": 3
+                          },
+                          "tokenIndex": 1
+                        },
+                        {
+                          "text": "!",
+                          "textSpan": {
+                            "ending": 9,
+                            "start": 8
+                          },
+                          "tokenIndex": 2
+                        }
+                      ],
+                      "uuid": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                    }
+                  ],
+                  "uuid": "a5fa26af-707e-4b34-a42d-214e8b29a621"
+                },
+                {
+                  "textSpan": {
+                    "ending": 125,
+                    "start": 85
+                  },
+                  "tokenizationList": [
+                    {
+                      "dependencyParseList": [
+                        {
+                          "dependencyList": [
+                            {
+                              "dep": 4,
+                              "edgeType": "root"
+                            },
+                            {
+                              "dep": 0,
+                              "edgeType": "poss",
+                              "gov": 3
+                            },
+                            {
+                              "dep": 1,
+                              "edgeType": "possessive",
+                              "gov": 0
+                            },
+                            {
+                              "dep": 2,
+                              "edgeType": "nn",
+                              "gov": 3
+                            },
+                            {
+                              "dep": 3,
+                              "edgeType": "nsubj",
+                              "gov": 4
+                            },
+                            {
+                              "dep": 5,
+                              "edgeType": "dobj",
+                              "gov": 4
+                            }
+                          ],
+                          "metadata": {
+                            "tool": "Annotated Gigaword Pipeline basic-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
+                          },
+                          "uuid": "c2b60f8f-7dda-42e1-819c-6c97801b91d8"
+                        },
+                        {
+                          "dependencyList": [
+                            {
+                              "dep": 4,
+                              "edgeType": "root"
+                            },
+                            {
+                              "dep": 0,
+                              "edgeType": "poss",
+                              "gov": 3
+                            },
+                            {
+                              "dep": 2,
+                              "edgeType": "nn",
+                              "gov": 3
+                            },
+                            {
+                              "dep": 3,
+                              "edgeType": "nsubj",
+                              "gov": 4
+                            },
+                            {
+                              "dep": 5,
+                              "edgeType": "dobj",
+                              "gov": 4
+                            }
+                          ],
+                          "metadata": {
+                            "tool": "Annotated Gigaword Pipeline col-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
+                          },
+                          "uuid": "0d8d1ca8-847a-4c5b-8a2e-56b9120951b8"
+                        },
+                        {
+                          "dependencyList": [
+                            {
+                              "dep": 4,
+                              "edgeType": "root"
+                            },
+                            {
+                              "dep": 0,
+                              "edgeType": "poss",
+                              "gov": 3
+                            },
+                            {
+                              "dep": 2,
+                              "edgeType": "nn",
+                              "gov": 3
+                            },
+                            {
+                              "dep": 3,
+                              "edgeType": "nsubj",
+                              "gov": 4
+                            },
+                            {
+                              "dep": 5,
+                              "edgeType": "dobj",
+                              "gov": 4
+                            }
+                          ],
+                          "metadata": {
+                            "tool": "Annotated Gigaword Pipeline col-ccproc-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
+                          },
+                          "uuid": "247b0154-b1df-4390-9b2c-f9879e53ce08"
+                        }
+                      ],
+                      "kind": 1,
+                      "lemmaList": {
+                        "metadata": {
+                          "tool": "Annotated Gigaword Pipeline"
+                        },
+                        "taggedTokenList": [
+                          {
+                            "confidence": 1.0,
+                            "tag": "John",
+                            "tokenIndex": 0
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "'s",
+                            "tokenIndex": 1
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "daughter",
+                            "tokenIndex": 2
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "Mary",
+                            "tokenIndex": 3
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "express",
+                            "tokenIndex": 4
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "sorrow",
+                            "tokenIndex": 5
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": ".",
+                            "tokenIndex": 6
+                          }
+                        ],
+                        "uuid": "cfe9516e-a1fe-4e65-bd49-9740f4fb032a"
+                      },
+                      "metadata": {
+                        "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/software/tokensregex.shtml"
+                      },
+                      "nerTagList": {
+                        "taggedTokenList": [
+                          {
+                            "confidence": 1.0,
+                            "tag": "PERSON",
+                            "tokenIndex": 0
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 1
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 2
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "PERSON",
+                            "tokenIndex": 3
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 4
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 5
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "O",
+                            "tokenIndex": 6
+                          }
+                        ]
+                      },
+                      "parse": {
+                        "constituentList": [
+                          {
+                            "headChildIndex": -1,
+                            "id": 5,
+                            "tag": "John",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "childList": [
+                              5
+                            ],
+                            "headChildIndex": 0,
+                            "id": 4,
+                            "tag": "NNP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 7,
+                            "tag": "'s",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                1
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "childList": [
+                              7
+                            ],
+                            "headChildIndex": 0,
+                            "id": 6,
+                            "tag": "POS",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                1
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "childList": [
+                              4,
+                              6
+                            ],
+                            "headChildIndex": 0,
+                            "id": 3,
+                            "tag": "NP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0,
+                                1
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 9,
+                            "tag": "daughter",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                2
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "childList": [
+                              9
+                            ],
+                            "headChildIndex": 0,
+                            "id": 8,
+                            "tag": "NN",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                2
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 11,
+                            "tag": "Mary",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                3
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "childList": [
+                              11
+                            ],
+                            "headChildIndex": 0,
+                            "id": 10,
+                            "tag": "NNP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                3
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "childList": [
+                              3,
+                              8,
+                              10
+                            ],
+                            "headChildIndex": 2,
+                            "id": 2,
+                            "tag": "NP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0,
+                                1,
+                                2,
+                                3
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 14,
+                            "tag": "expressed",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                4
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "childList": [
+                              14
+                            ],
+                            "headChildIndex": 0,
+                            "id": 13,
+                            "tag": "VBD",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                4
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 17,
+                            "tag": "sorrow",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                5
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "childList": [
+                              17
+                            ],
+                            "headChildIndex": 0,
+                            "id": 16,
+                            "tag": "NN",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                5
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "childList": [
+                              16
+                            ],
+                            "headChildIndex": 0,
+                            "id": 15,
+                            "tag": "NP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                5
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "childList": [
+                              13,
+                              15
+                            ],
+                            "headChildIndex": 0,
+                            "id": 12,
+                            "tag": "VP",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                4,
+                                5
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "headChildIndex": -1,
+                            "id": 19,
+                            "tag": ".",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                6
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "childList": [
+                              19
+                            ],
+                            "headChildIndex": 0,
+                            "id": 18,
+                            "tag": ".",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                6
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "childList": [
+                              2,
+                              12,
+                              18
+                            ],
+                            "headChildIndex": 1,
+                            "id": 1,
+                            "tag": "S",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0,
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                                6
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          },
+                          {
+                            "childList": [
+                              1
+                            ],
+                            "headChildIndex": 0,
+                            "id": 0,
+                            "tag": "ROOT",
+                            "tokenSequence": {
+                              "anchorTokenIndex": -1,
+                              "tokenIndexList": [
+                                0,
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                                6
+                              ],
+                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                            }
+                          }
+                        ],
+                        "metadata": {
+                          "tool": "Annotated Gigaword Pipeline http://www.aclweb.org/anthology-new/D/D10/D10-1002.pdf"
+                        },
+                        "uuid": "86202305-305f-4178-9645-4e19fbf20ef7"
+                      },
+                      "posTagList": {
+                        "taggedTokenList": [
+                          {
+                            "confidence": 1.0,
+                            "tag": "NNP",
+                            "tokenIndex": 0
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "POS",
+                            "tokenIndex": 1
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "NN",
+                            "tokenIndex": 2
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "NNP",
+                            "tokenIndex": 3
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "VBD",
+                            "tokenIndex": 4
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": "NN",
+                            "tokenIndex": 5
+                          },
+                          {
+                            "confidence": 1.0,
+                            "tag": ".",
+                            "tokenIndex": 6
+                          }
+                        ]
+                      },
+                      "tokenList": [
+                        {
+                          "text": "John",
+                          "textSpan": {
+                            "ending": 4,
+                            "start": 0
+                          },
+                          "tokenIndex": 0
+                        },
+                        {
+                          "text": "'s",
+                          "textSpan": {
+                            "ending": 7,
+                            "start": 5
+                          },
+                          "tokenIndex": 1
+                        },
+                        {
+                          "text": "daughter",
+                          "textSpan": {
+                            "ending": 16,
+                            "start": 8
+                          },
+                          "tokenIndex": 2
+                        },
+                        {
+                          "text": "Mary",
+                          "textSpan": {
+                            "ending": 21,
+                            "start": 17
+                          },
+                          "tokenIndex": 3
+                        },
+                        {
+                          "text": "expressed",
+                          "textSpan": {
+                            "ending": 31,
+                            "start": 22
+                          },
+                          "tokenIndex": 4
+                        },
+                        {
+                          "text": "sorrow",
+                          "textSpan": {
+                            "ending": 38,
+                            "start": 32
+                          },
+                          "tokenIndex": 5
+                        },
+                        {
+                          "text": ".",
+                          "textSpan": {
+                            "ending": 40,
+                            "start": 39
+                          },
+                          "tokenIndex": 6
+                        }
+                      ],
+                      "uuid": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                    }
+                  ],
+                  "uuid": "6068c07e-080d-4a56-b379-9d4fe2499234"
+                }
+              ],
+              "uuid": "fd8eba36-1fed-4f75-b508-c0fae2d8c0e6"
+            }
+          ],
+          "textSpan": {
+            "ending": 126,
+            "start": 0
+          },
+          "uuid": "01fe0f64-838e-4a01-b1eb-7aa509953b08"
+        }
+      ],
+      "uuid": "a3c622db-8d0c-4a1c-9c18-ef391eaa6bd6"
+    }
+  ],
+  "text": "John Smith , manager of ACME INC , was bit by a dog on March 10th , 2013 .\nHe died !\nJohn 's daughter Mary expressed sorrow .\n",
+  "type": 2,
+  "uuid": "41018363-d167-4365-b7d9-c5f8dea3bb07"
+}
