@@ -51,12 +51,44 @@
   </style>
 
   <script>
-   function getTokensForMentionID(comm, mentionId) {
+   function getTokensForEntityMentionID(comm, mentionId) {
+     var entityMention = getEntityMentionWithUUID(comm, mentionId);
+     var tokenization = getTokenizationWithUUID(comm, entityMention.tokens.tokenizationId);
+
+     var tokens = new Array();
+
+     for (var tokenIndex in entityMention.tokens.tokenIndexList) {
+       tokens.push(tokenization.tokenList[entityMention.tokens.tokenIndexList[tokenIndex]].text);
+     }
+     return tokens;
+   }
+
+   function getEntityMentionWithUUID(comm, uuid) {
+     for (var entityMentionSetIndex in comm.entityMentionSets) {
+       for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
+         var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
+         if (entityMention.uuid == uuid) {
+           return entityMention;
+         }
+       }
+     }
+     // TODO: Error handling if no matching UUID could be found
    }
 
    function getTokenizationWithUUID(comm, uuid) {
-   }
+     for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
+       for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
+         var sentence = comm.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList[sentenceIndex];
 
+         for (var tokenizationListIndex in sentence.tokenizationList) {
+           if (sentence.tokenizationList[tokenizationListIndex].uuid == uuid) {
+             return sentence.tokenizationList[tokenizationListIndex];
+           }
+         }
+       }
+     }
+     // TODO: Error handling if no matching UUID could be found
+   }
 
    $(document).ready(function() {
      $.getJSON("{% url 'as_json' %}", function(comm) {
@@ -83,12 +115,12 @@
        // Add mentionId's to tokens
        for (var entityMentionSetIndex in comm.entityMentionSets) {
          for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-           var mentionSet = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
+           var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
 
-           for (tokenIndex in mentionSet.tokens.tokenIndexList) {
-             $('#tokenization_' + mentionSet.tokens.tokenizationId + '_' + mentionSet.tokens.tokenIndexList[tokenIndex])
+           for (tokenIndex in entityMention.tokens.tokenIndexList) {
+             $('#tokenization_' + entityMention.tokens.tokenizationId + '_' + entityMention.tokens.tokenIndexList[tokenIndex])
                                                .addClass('mention')
-                                               .addClass('mention_' + mentionSet.uuid);
+                                               .addClass('mention_' + entityMention.uuid);
            }
          }
        }
@@ -97,14 +129,14 @@
        for (var entityListIndex in comm.entitySets[0].entityList) {
          var entityList = comm.entitySets[0].entityList[entityListIndex];
          var entityList_div = $('<div/>')
-                              .html('<span class="entity entity_' + entityList.uuid + '"><b>Entity:</b> ' + entityList.uuid + '</span>')
+                              .html('<b>Entity:</b> <span class="entity entity_' + entityList.uuid + '">' + entityList.uuid + '</span>')
                               .attr('id', 'entity_' + entityList.uuid);
          var mentionId_ul = $('<ul/>');
 
          for (var mentionIdListIndex in entityList.mentionIdList) {
            var mentionId = entityList.mentionIdList[mentionIdListIndex];
            var mentionId_li = $('<li/>')
-                                     .html('<span class="mention_' + mentionId + '">' + mentionId + '</span>');
+                                     .html('<span class="mention_' + mentionId + '">' + getTokensForEntityMentionID(comm, mentionId).join(" ") + '</span>');
            mentionId_ul.append(mentionId_li);
 
            // Add 'entity_ENTITY_UUID' class to each mention of that entity
@@ -127,10 +159,10 @@
        // Add mouseover functions for all elements linked to a mention
        for (var entityMentionSetIndex in comm.entityMentionSets) {
          for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-           var mentionSet = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
-           $('.mention_' + mentionSet.uuid).mouseenter({ mention_selector: '.mention_'+mentionSet.uuid }, function(event) {
+           var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
+           $('.mention_' + entityMention.uuid).mouseenter({ mention_selector: '.mention_'+entityMention.uuid }, function(event) {
              $(event.data.mention_selector).addClass("highlighted_mention");
-           }).mouseleave({ mention_selector: '.mention_'+mentionSet.uuid }, function(event) {
+           }).mouseleave({ mention_selector: '.mention_'+entityMention.uuid }, function(event) {
              $(event.data.mention_selector).removeClass("highlighted_mention");
            });
          }
@@ -142,10 +174,10 @@
 <body>
   <div class="container">
 
-    <h1>Tree-tastic</h1>
-
+    <h2>Sentences</h2>
     <div id="communication"></div>
 
+    <h2>Entities</h2>
     <div id="entityList"></div>
 
     <div id="attach">
