@@ -129,8 +129,7 @@
        for (var entityListIndex in comm.entitySets[0].entityList) {
          var entityList = comm.entitySets[0].entityList[entityListIndex];
          var entityList_div = $('<div/>')
-                              .html('<b>Entity:</b> <span class="entity entity_' + entityList.uuid + '">' + entityList.uuid + '</span>')
-                              .attr('id', 'entity_' + entityList.uuid);
+                              .html('<b>Entity:</b> <span class="entity_' + entityList.uuid + '">' + entityList.uuid + '</span>');
          var mentionId_ul = $('<ul/>');
 
          for (var mentionIdListIndex in entityList.mentionIdList) {
@@ -149,9 +148,10 @@
 
        // Add mouseover functions for all elements linked to an entity
        for (var entityListIndex in comm.entitySets[0].entityList) {
-         $('.entity_' + entityList.uuid).mouseenter({ entity_selector: '.entity_' + entityList.uuid }, function(event) {
+         var entity = comm.entitySets[0].entityList[entityListIndex];
+         $('.entity_' + entity.uuid).mouseenter({ entity_selector: '.entity_' + entity.uuid }, function(event) {
            $(event.data.entity_selector).addClass("highlighted_entity");
-         }).mouseleave({ entity_selector: '.entity_' + entityList.uuid }, function(event) {
+         }).mouseleave({ entity_selector: '.entity_' + entity.uuid }, function(event) {
            $(event.data.entity_selector).removeClass("highlighted_entity");
          });
        }
