@@ -52,26 +52,32 @@
 
   <script>
    function getTokensForMentionID(comm, mentionId) {
-
    }
+
+   function getTokenizationWithUUID(comm, uuid) {
+   }
+
 
    $(document).ready(function() {
      $.getJSON("{% url 'as_json' %}", function(comm) {
        // Add tokens to DOM tree
-       for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList) {
-         var sentence = comm.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList[sentenceIndex];
-         var sentence_div = $('<div/>')
-                            .addClass('sentence')
-                            .attr('id', 'tokenization_' + sentence.uuid);
-         for (var tokenIndex in sentence.tokenizationList[0].tokenList) {
-           var token = sentence.tokenizationList[0].tokenList[tokenIndex];
-           var token_span = $('<span/>')
-                               .addClass('token')
-                               .html(" " + token.text + " ")
-                               .attr('id', 'tokenization_' + sentence.tokenizationList[0].uuid + "_" + token.tokenIndex);
-           sentence_div.append(token_span);
+       for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
+         for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
+
+           var sentence = comm.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList[sentenceIndex];
+           var sentence_div = $('<div/>')
+                              .addClass('sentence')
+                              .attr('id', 'tokenization_' + sentence.uuid);
+           for (var tokenIndex in sentence.tokenizationList[0].tokenList) {
+             var token = sentence.tokenizationList[0].tokenList[tokenIndex];
+             var token_span = $('<span/>')
+                                 .addClass('token')
+                                 .html(" " + token.text + " ")
+                                 .attr('id', 'tokenization_' + sentence.tokenizationList[0].uuid + "_" + token.tokenIndex);
+             sentence_div.append(token_span);
+           }
+           $('#communication').append(sentence_div);
          }
-         $('#communication').append(sentence_div);
        }
 
        // Add mentionId's to tokens
