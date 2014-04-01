@@ -41,18 +41,93 @@
     }
   </style>
 
+  <style>
+    .highlighted_entity {
+      background-color: pink;
+    }
+    .highlighted_mention {
+      background-color: yellow;
+    }
+  </style>
+
   <script>
+   function getTokensForMentionID(comm, mentionId) {
+
+   }
+
    $(document).ready(function() {
-     $.getJSON("{% url 'as_json' %}", function(data) {
-       for (var sentence_index in data.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList) {
-         var sentence = data.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList[sentence_index];
-         var sentence_div = $('<div/>').addClass('sentence');
-         for (var token_index in sentence.tokenizationList[0].tokenList) {
-           var token = sentence.tokenizationList[0].tokenList[token_index];
-           var token_span = $('<span/>').addClass('token').html(" " + token.text + " ");
+     $.getJSON("{% url 'as_json' %}", function(comm) {
+       // Add tokens to DOM tree
+       for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList) {
+         var sentence = comm.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList[sentenceIndex];
+         var sentence_div = $('<div/>')
+                            .addClass('sentence')
+                            .attr('id', 'tokenization_' + sentence.uuid);
+         for (var tokenIndex in sentence.tokenizationList[0].tokenList) {
+           var token = sentence.tokenizationList[0].tokenList[tokenIndex];
+           var token_span = $('<span/>')
+                               .addClass('token')
+                               .html(" " + token.text + " ")
+                               .attr('id', 'tokenization_' + sentence.tokenizationList[0].uuid + "_" + token.tokenIndex);
            sentence_div.append(token_span);
          }
          $('#communication').append(sentence_div);
+       }
+
+       // Add mentionId's to tokens
+       for (var entityMentionSetIndex in comm.entityMentionSets) {
+         for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
+           var mentionSet = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
+
+           for (tokenIndex in mentionSet.tokens.tokenIndexList) {
+             $('#tokenization_' + mentionSet.tokens.tokenizationId + '_' + mentionSet.tokens.tokenIndexList[tokenIndex])
+                                               .addClass('mention')
+                                               .addClass('mention_' + mentionSet.uuid);
+           }
+         }
+       }
+
+       // Add list of entities, and list of mentions for each entity, to the DOM
+       for (var entityListIndex in comm.entitySets[0].entityList) {
+         var entityList = comm.entitySets[0].entityList[entityListIndex];
+         var entityList_div = $('<div/>')
+                              .html('<span class="entity entity_' + entityList.uuid + '"><b>Entity:</b> ' + entityList.uuid + '</span>')
+                              .attr('id', 'entity_' + entityList.uuid);
+         var mentionId_ul = $('<ul/>');
+
+         for (var mentionIdListIndex in entityList.mentionIdList) {
+           var mentionId = entityList.mentionIdList[mentionIdListIndex];
+           var mentionId_li = $('<li/>')
+                                     .html('<span class="mention_' + mentionId + '">' + mentionId + '</span>');
+           mentionId_ul.append(mentionId_li);
+
+           // Add 'entity_ENTITY_UUID' class to each mention of that entity
+           $('.mention_' + mentionId).addClass('entity_' + entityList.uuid);
+         }
+         entityList_div.append(mentionId_ul);
+
+         $('#entityList').append(entityList_div);
+       }
+
+       // Add mouseover functions for all elements linked to an entity
+       for (var entityListIndex in comm.entitySets[0].entityList) {
+         $('.entity_' + entityList.uuid).mouseenter({ entity_selector: '.entity_' + entityList.uuid }, function(event) {
+           $(event.data.entity_selector).addClass("highlighted_entity");
+         }).mouseleave({ entity_selector: '.entity_' + entityList.uuid }, function(event) {
+           $(event.data.entity_selector).removeClass("highlighted_entity");
+         });
+       }
+
+       // Add mouseover functions for all elements linked to a mention
+       for (var entityMentionSetIndex in comm.entityMentionSets) {
+         for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
+           var mentionSet = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
+           $('.mention_' + mentionSet.uuid).mouseenter({ mention_selector: '.mention_'+mentionSet.uuid }, function(event) {
+             $(event.data.mention_selector).addClass("highlighted_mention");
+           }).mouseleave({ mention_selector: '.mention_'+mentionSet.uuid }, function(event) {
+             $(event.data.mention_selector).removeClass("highlighted_mention");
+           });
+         }
        }
      });
    });
@@ -64,6 +139,8 @@
     <h1>Tree-tastic</h1>
 
     <div id="communication"></div>
+
+    <div id="entityList"></div>
 
     <div id="attach">
       <svg id="svg-canvas" width=800 height=600>
