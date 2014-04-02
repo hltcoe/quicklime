@@ -64,11 +64,15 @@
    }
 
    function getEntityMentionWithUUID(comm, uuid) {
-     for (var entityMentionSetIndex in comm.entityMentionSets) {
-       for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-         var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
-         if (entityMention.uuid == uuid) {
-           return entityMention;
+     if (comm.entityMentionSets) {
+       for (var entityMentionSetIndex in comm.entityMentionSets) {
+         if (comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
+           for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
+             var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
+             if (entityMention.uuid == uuid) {
+               return entityMention;
+             }
+           }
          }
        }
      }
@@ -76,13 +80,16 @@
    }
 
    function getTokenizationWithUUID(comm, uuid) {
-     for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
-       for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
-         var sentence = comm.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList[sentenceIndex];
-
-         for (var tokenizationListIndex in sentence.tokenizationList) {
-           if (sentence.tokenizationList[tokenizationListIndex].uuid == uuid) {
-             return sentence.tokenizationList[tokenizationListIndex];
+     if (comm.sectionSegmentations[0].sectionList) {
+       for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
+         if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
+           for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
+             var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
+             for (var tokenizationListIndex in sentence.tokenizationList) {
+               if (sentence.tokenizationList[tokenizationListIndex].uuid == uuid) {
+                 return sentence.tokenizationList[tokenizationListIndex];
+               }
+             }
            }
          }
        }
@@ -94,33 +101,37 @@
      $.getJSON("{% url 'as_json' %}", function(comm) {
        // Add tokens to DOM tree
        for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
-         for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
-
-           var sentence = comm.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList[sentenceIndex];
-           var sentence_div = $('<div/>')
-                              .addClass('sentence')
-                              .attr('id', 'tokenization_' + sentence.uuid);
-           for (var tokenIndex in sentence.tokenizationList[0].tokenList) {
-             var token = sentence.tokenizationList[0].tokenList[tokenIndex];
-             var token_span = $('<span/>')
-                                 .addClass('token')
-                                 .html(" " + token.text + " ")
-                                 .attr('id', 'tokenization_' + sentence.tokenizationList[0].uuid + "_" + token.tokenIndex);
-             sentence_div.append(token_span);
+         if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
+           for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
+             var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
+             var sentence_div = $('<div/>')
+                                .addClass('sentence')
+                                .attr('id', 'tokenization_' + sentence.uuid);
+             for (var tokenIndex in sentence.tokenizationList[0].tokenList) {
+               var token = sentence.tokenizationList[0].tokenList[tokenIndex];
+               var token_span = $('<span/>')
+                                   .addClass('token')
+                                   .html(" " + token.text + " ")
+                                   .attr('id', 'tokenization_' + sentence.tokenizationList[0].uuid + "_" + token.tokenIndex);
+               sentence_div.append(token_span);
+             }
+             $('#communication').append(sentence_div);
            }
-           $('#communication').append(sentence_div);
          }
        }
 
        // Add mentionId's to tokens
        for (var entityMentionSetIndex in comm.entityMentionSets) {
-         for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-           var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
-
-           for (tokenIndex in entityMention.tokens.tokenIndexList) {
-             $('#tokenization_' + entityMention.tokens.tokenizationId + '_' + entityMention.tokens.tokenIndexList[tokenIndex])
-                                               .addClass('mention')
-                                               .addClass('mention_' + entityMention.uuid);
+         if (comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
+           for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
+             var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
+             if (entityMention.tokens.tokenIndexList) {
+               for (tokenIndex in entityMention.tokens.tokenIndexList) {
+                 $('#tokenization_' + entityMention.tokens.tokenizationId + '_' + entityMention.tokens.tokenIndexList[tokenIndex])
+                                                      .addClass('mention')
+                                                      .addClass('mention_' + entityMention.uuid);
+               }
+             }
            }
          }
        }
