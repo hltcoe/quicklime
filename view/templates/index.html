@@ -48,6 +48,23 @@
     .highlighted_mention {
       background-color: yellow;
     }
+   .highlighted_entity.highlighted_mention {
+     background-color: pink;
+   }
+   .mention {
+     border-bottom: 3px solid #DDDDDD;
+   }
+   .section {
+     border: 10px solid #DDDDFF;
+     padding: 1em;
+   }
+   .sentence {
+     background-color: white;
+     margin-top: 0.5em;
+     margin-bottom: 0.5em;
+   }
+   .token {
+   }
   </style>
 
   <script>
@@ -99,27 +116,56 @@
      console.log("ERROR: No Tokenization found with UUID " + uuid);
    }
 
+   function cleanedTokenText(tokenText) {
+     // Convert Penn Treebank-style symbols for brackets to bracket characters
+     //   http://www.cis.upenn.edu/~treebank/tokenization.html
+     switch(tokenText) {
+       case '-LRB-':
+         return '(';
+       case '-RRB-':
+         return ')';
+       case '-LSB-':
+         return '[';
+       case '-RSB-':
+         return ']';
+       case '-LCB-':
+         return '{';
+       case '-RCB-':
+         return '}';
+       default:
+         return tokenText;
+     }
+   }
+
    $(document).ready(function() {
      $.getJSON("{% url 'as_json' %}", function(comm) {
        // Add tokens to DOM tree
        for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
+         var section_div = $('<div>').addClass('section')
+                                        .attr('id', 'section_' + comm.sectionSegmentations[0].sectionList[sectionListIndex].uuid);
          if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
            for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
              var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
-             var sentence_div = $('<div/>')
+             var sentence_div = $('<div>')
                                 .addClass('sentence')
                                 .attr('id', 'tokenization_' + sentence.uuid);
              for (var tokenIndex in sentence.tokenizationList[0].tokenList) {
                var token = sentence.tokenizationList[0].tokenList[tokenIndex];
-               var token_span = $('<span/>')
+               var token_span = $('<span>')
                                    .addClass('token')
-                                   .html(" " + token.text + " ")
+                                   .html(cleanedTokenText(token.text))
                                    .attr('id', 'tokenization_' + sentence.tokenizationList[0].uuid + "_" + token.tokenIndex);
+               var token_padding_span = $('<span>')
+                                   .addClass('token_padding')
+                                   .html(" ")
+                                   .attr('id', 'tokenization_padding_' + sentence.tokenizationList[0].uuid + "_" + token.tokenIndex);
                sentence_div.append(token_span);
+               sentence_div.append(token_padding_span);
              }
-             $('#communication').append(sentence_div);
+             section_div.append(sentence_div);
            }
          }
+         $('#communication').append(section_div);
        }
 
        // Add mentionId's to tokens
@@ -128,10 +174,17 @@
            for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
              var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
              if (entityMention.tokens.tokenIndexList) {
+               var total_tokens = entityMention.tokens.tokenIndexList.length;
                for (tokenIndex in entityMention.tokens.tokenIndexList) {
                  $('#tokenization_' + entityMention.tokens.tokenizationId + '_' + entityMention.tokens.tokenIndexList[tokenIndex])
                                                       .addClass('mention')
                                                       .addClass('mention_' + entityMention.uuid);
+                 // For multi-word mentions, the spaces between tokens are treated as part of the mention
+                 if (tokenIndex < total_tokens-1) {
+                   $('#tokenization_padding_' + entityMention.tokens.tokenizationId + '_' + entityMention.tokens.tokenIndexList[tokenIndex])
+                                                                                          .addClass('mention')
+                                                                                          .addClass('mention_' + entityMention.uuid);
+                 }
                }
              }
            }
@@ -141,13 +194,13 @@
        // Add list of entities, and list of mentions for each entity, to the DOM
        for (var entityListIndex in comm.entitySets[0].entityList) {
          var entityList = comm.entitySets[0].entityList[entityListIndex];
-         var entityList_div = $('<div/>')
+         var entityList_div = $('<div>')
                               .html('<b>Entity:</b> <span class="entity_' + entityList.uuid + '">' + entityList.uuid + '</span>');
-         var mentionId_ul = $('<ul/>');
+         var mentionId_ul = $('<ul class="list-inline">');
 
          for (var mentionIdListIndex in entityList.mentionIdList) {
            var mentionId = entityList.mentionIdList[mentionIdListIndex];
-           var mentionId_li = $('<li/>')
+           var mentionId_li = $('<li>')
                                      .html('<span class="mention_' + mentionId + '">' + getTokensForEntityMentionID(comm, mentionId).join(" ") + '</span>');
            mentionId_ul.append(mentionId_li);
 
@@ -193,14 +246,17 @@
     <h2>Entities</h2>
     <div id="entityList"></div>
 
+<!--
     <div id="attach">
       <svg id="svg-canvas" width=800 height=600>
         <g transform="translate(20, 20)"/>
       </svg>
     </div>
+-->
 
   </div>
 
+<!--
   <script>
     var g = new dagreD3.Digraph();
     g.addNode(0,  { label: "TOP",       nodeclass: "type-TOP" });
@@ -248,6 +304,7 @@
       .attr("width", layout.graph().width + 40)
       .attr("height", layout.graph().height + 40);
   </script>
+-->
 
 </body>
 </html>
