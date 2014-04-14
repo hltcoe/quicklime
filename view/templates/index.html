@@ -77,13 +77,14 @@
        }
      }
      // TODO: Error handling if no matching UUID could be found
+     console.log("ERROR: No EntityMention found with UUID " + uuid);
    }
 
    function getTokenizationWithUUID(comm, uuid) {
      if (comm.sectionSegmentations[0].sectionList) {
        for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
          if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
-           for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
+           for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
              var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
              for (var tokenizationListIndex in sentence.tokenizationList) {
                if (sentence.tokenizationList[tokenizationListIndex].uuid == uuid) {
@@ -95,6 +96,7 @@
        }
      }
      // TODO: Error handling if no matching UUID could be found
+     console.log("ERROR: No Tokenization found with UUID " + uuid);
    }
 
    $(document).ready(function() {
