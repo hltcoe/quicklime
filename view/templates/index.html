@@ -68,6 +68,10 @@
   </style>
 
   <script>
+   // Hack: Use global variable to keep Communication around in memory
+   // TODO: Fix hack
+   var global_comm;
+
    function getTokensForEntityMentionID(comm, mentionId) {
      var entityMention = getEntityMentionWithUUID(comm, mentionId);
      var tokenization = getTokenizationWithUUID(comm, entityMention.tokens.tokenizationId);
@@ -177,12 +181,15 @@
        .attr("height", layout.graph().height + 40);
    }
 
-   function addSentenceParse(sentenceUUID, tokenization) {
+   function addSentenceParse(sentenceUUID, tokenizationUUID) {
+     var tokenization = getTokenizationWithUUID(global_comm, tokenizationUUID);
      drawSentenceParse("#sentence_parse_" + sentenceUUID, tokenization);
    }
 
    $(document).ready(function() {
      $.getJSON("{% url 'as_json' %}", function(comm) {
+       global_comm = comm;
+
        // Add tokens to DOM tree
        for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
          var section_div = $('<div>').addClass('section')
@@ -196,6 +203,9 @@
              sentence_div.append($('<button>')
                                  .attr('type', 'button')
                                  .addClass('btn btn-default btn-xs')
+                                 .click({ sentence_uuid: sentence.uuid, tokenization_uuid: sentence.tokenizationList[0].uuid}, function(event) {
+                                    addSentenceParse(event.data.sentence_uuid, event.data.tokenization_uuid);
+                                 })
                                  .css('margin-right', '1em')
                                  .html("Parse Tree"));
              for (var tokenIndex in sentence.tokenizationList[0].tokenList) {
@@ -216,16 +226,6 @@
            }
          }
          $('#communication').append(section_div);
-       }
-
-       // Add parse trees to DOM
-       for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
-         if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
-           for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
-             var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
-             addSentenceParse(sentence.uuid, sentence.tokenizationList[0]);
-           }
-         }
        }
 
        // Add mentionId's to tokens
