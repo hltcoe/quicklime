@@ -137,7 +137,7 @@
      }
    }
 
-   function drawSentenceParse(selectorString, tokenization) {
+   function drawSentenceParse(containerSelectorString, tokenization) {
      var g = new dagreD3.Digraph();
 
      for (var constituentIndex in tokenization.parse.constituentList) {
@@ -168,17 +168,21 @@
        });
        return svgNodes;
      });
-     var layout = renderer.run(g, d3.select("svg g"));
-     d3.select("svg")
+     d3.select(containerSelectorString)
+       .append("svg").attr("height", 800).attr("width", 600).attr("style", "background-color: white;")
+       .append("g").attr("transform", "translate(20, 20)");
+     var layout = renderer.run(g, d3.select(containerSelectorString).select("svg").select("g"));
+     d3.select(containerSelectorString).select("svg")
        .attr("width", layout.graph().width + 40)
        .attr("height", layout.graph().height + 40);
    }
 
+   function addSentenceParse(sentenceUUID, tokenization) {
+     drawSentenceParse("#sentence_parse_" + sentenceUUID, tokenization);
+   }
+
    $(document).ready(function() {
      $.getJSON("{% url 'as_json' %}", function(comm) {
-       var tokenization = comm.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList[0].tokenizationList[0];
-       drawSentenceParse('ignored', tokenization);
-
        // Add tokens to DOM tree
        for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
          var section_div = $('<div>').addClass('section')
@@ -188,24 +192,40 @@
              var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
              var sentence_div = $('<div>')
                                 .addClass('sentence')
-                                .attr('id', 'tokenization_' + sentence.uuid);
+                                .attr('id', 'sentence_' + sentence.uuid);
+             sentence_div.append($('<button>')
+                                 .attr('type', 'button')
+                                 .addClass('btn btn-default btn-xs')
+                                 .css('margin-right', '1em')
+                                 .html("Parse Tree"));
              for (var tokenIndex in sentence.tokenizationList[0].tokenList) {
                var token = sentence.tokenizationList[0].tokenList[tokenIndex];
                var token_span = $('<span>')
                                    .addClass('token')
-                                   .html(cleanedTokenText(token.text))
-                                   .attr('id', 'tokenization_' + sentence.tokenizationList[0].uuid + "_" + token.tokenIndex);
+                                   .attr('id', 'tokenization_' + sentence.tokenizationList[0].uuid + "_" + token.tokenIndex)
+                                   .html(cleanedTokenText(token.text));
                var token_padding_span = $('<span>')
                                    .addClass('token_padding')
-                                   .html(" ")
-                                   .attr('id', 'tokenization_padding_' + sentence.tokenizationList[0].uuid + "_" + token.tokenIndex);
+                                   .attr('id', 'tokenization_padding_' + sentence.tokenizationList[0].uuid + "_" + token.tokenIndex)
+                                   .html(" ");
                sentence_div.append(token_span);
                sentence_div.append(token_padding_span);
              }
+             sentence_div.append($('<div>').attr('id', 'sentence_parse_' + sentence.uuid));
              section_div.append(sentence_div);
            }
          }
          $('#communication').append(section_div);
+       }
+
+       // Add parse trees to DOM
+       for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
+         if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
+           for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
+             var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
+             addSentenceParse(sentence.uuid, sentence.tokenizationList[0]);
+           }
+         }
        }
 
        // Add mentionId's to tokens
@@ -285,16 +305,7 @@
 
     <h2>Entities</h2>
     <div id="entityList"></div>
-
-    <div id="attach">
-      <svg id="svg-canvas" width=800 height=600>
-        <g transform="translate(20, 20)"/>
-      </svg>
-    </div>
   </div>
-
-  <script>
-  </script>
 
 </body>
 </html>
