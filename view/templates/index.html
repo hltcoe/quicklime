@@ -9,7 +9,7 @@
   <script src="{% static "view/d3/3.4.4/d3.js" %}"></script>
   <script src="{% static "view/dagre-d3/0.1.5/dagre-d3.js" %}"></script>
   <style>
-    g.type-TK > rect {
+    g.type-TOKEN > rect {
       fill: #00ffd0;
     }
 
@@ -137,8 +137,48 @@
      }
    }
 
+   function drawSentenceParse(selectorString, tokenization) {
+     var g = new dagreD3.Digraph();
+
+     for (var constituentIndex in tokenization.parse.constituentList) {
+       var constituent = tokenization.parse.constituentList[constituentIndex];
+       if (constituent.headChildIndex == -1) {
+         g.addNode(constituent.id, { label: constituent.tag, nodeclass: "type-TOKEN" });
+       }
+       else {
+         g.addNode(constituent.id, { label: constituent.tag, nodeclass: "type-foo"});
+       }
+     }
+
+     for (var constituentIndex in tokenization.parse.constituentList) {
+       var constituent = tokenization.parse.constituentList[constituentIndex];
+       if (constituent.headChildIndex != -1) {
+         for (var childIndex in constituent.childList) {
+           g.addEdge(null, constituent.id, constituent.childList[childIndex]);
+         }
+       }
+     }
+
+     var renderer = new dagreD3.Renderer();
+     var oldDrawNodes = renderer.drawNodes();
+     renderer.drawNodes(function(graph, root) {
+       var svgNodes = oldDrawNodes(graph, root);
+       svgNodes.each(function(u) {
+         d3.select(this).classed(graph.node(u).nodeclass, true);
+       });
+       return svgNodes;
+     });
+     var layout = renderer.run(g, d3.select("svg g"));
+     d3.select("svg")
+       .attr("width", layout.graph().width + 40)
+       .attr("height", layout.graph().height + 40);
+   }
+
    $(document).ready(function() {
      $.getJSON("{% url 'as_json' %}", function(comm) {
+       var tokenization = comm.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList[0].tokenizationList[0];
+       drawSentenceParse('ignored', tokenization);
+
        // Add tokens to DOM tree
        for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
          var section_div = $('<div>').addClass('section')
@@ -246,65 +286,15 @@
     <h2>Entities</h2>
     <div id="entityList"></div>
 
-<!--
     <div id="attach">
       <svg id="svg-canvas" width=800 height=600>
         <g transform="translate(20, 20)"/>
       </svg>
     </div>
--->
-
   </div>
 
-<!--
   <script>
-    var g = new dagreD3.Digraph();
-    g.addNode(0,  { label: "TOP",       nodeclass: "type-TOP" });
-    g.addNode(1,  { label: "S",         nodeclass: "type-S" });
-    g.addNode(2,  { label: "NP",        nodeclass: "type-NP" });
-    g.addNode(3,  { label: "DT",        nodeclass: "type-DT" });
-    g.addNode(4,  { label: "This",      nodeclass: "type-TK" });
-    g.addNode(5,  { label: "VP",        nodeclass: "type-VP" });
-    g.addNode(6,  { label: "VBZ",       nodeclass: "type-VBZ" });
-    g.addNode(7,  { label: "is",        nodeclass: "type-TK" });
-    g.addNode(8,  { label: "NP",        nodeclass: "type-NP" });
-    g.addNode(9,  { label: "DT",        nodeclass: "type-DT" });
-    g.addNode(10, { label: "an",        nodeclass: "type-TK" });
-    g.addNode(11, { label: "NN",        nodeclass: "type-NN" });
-    g.addNode(12, { label: "example",   nodeclass: "type-TK" });
-    g.addNode(13, { label: ".",         nodeclass: "type-." });
-    g.addNode(14, { label: "sentence",  nodeclass: "type-TK" });
-
-    g.addEdge(null, 3, 4);
-    g.addEdge(null, 2, 3);
-    g.addEdge(null, 1, 2);
-    g.addEdge(null, 6, 7);
-    g.addEdge(null, 5, 6);
-    g.addEdge(null, 9, 10);
-    g.addEdge(null, 8, 9);
-    g.addEdge(null, 11,12);
-    g.addEdge(null, 8, 11);
-    g.addEdge(null, 5, 8);
-    g.addEdge(null, 1, 5);
-    g.addEdge(null, 13,14);
-    g.addEdge(null, 1, 13);
-    g.addEdge(null, 0, 1)
-
-    var renderer = new dagreD3.Renderer();
-    var oldDrawNodes = renderer.drawNodes();
-    renderer.drawNodes(function(graph, root) {
-      var svgNodes = oldDrawNodes(graph, root);
-      svgNodes.each(function(u) {
-        d3.select(this).classed(graph.node(u).nodeclass, true);
-      });
-      return svgNodes;
-    });
-    var layout = renderer.run(g, d3.select("svg g"));
-    d3.select("svg")
-      .attr("width", layout.graph().width + 40)
-      .attr("height", layout.graph().height + 40);
   </script>
--->
 
 </body>
 </html>
