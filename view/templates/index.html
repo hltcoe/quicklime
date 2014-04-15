@@ -501,12 +501,6 @@
    $(document).ready(function() {
      loadBRATLibraries();
 
-     $('#brat_test_button').click(function(event) {
-       var sentence = global_comm.sectionSegmentations[0].sectionList[0].sentenceSegmentation[0].sentenceList[0];
-       var tokenization = sentence.tokenizationList[0];
-       addPOSTags('brat_test', sentence.uuid, tokenization.uuid);
-     });
-
      $.getJSON("{% url 'as_json' %}", function(comm) {
        global_comm = comm;
 
@@ -660,13 +654,6 @@
 </head>
 <body>
   <div class="container">
-
-    <h2>BRAT test</h2>
-    <div>
-      <button id="brat_test_button" type="button" class="btn btn-primary btn-sm">Don't Press</button>
-    </div>
-    <div id="brat_test" class="brat_sentence"></div>
-
     <h2>Sentences</h2>
     <div id="communication"></div>
 
