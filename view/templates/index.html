@@ -95,15 +95,20 @@
   </style>
 
   <style>
-   .brat_sentence text {
-       font-size: 15px;
-   }
-   .brat_sentence .arcs text {
-     font-size: 9px;
-   }
-   .brat_sentence .span text {
-     font-size: 10px;
-   }
+    .brat_sentence text {
+      font-size: 15px;
+    }
+    .brat_sentence .arcs text {
+      font-size: 9px;
+    }
+    .brat_sentence .span text {
+      font-size: 10px;
+    }
+    /* BRAT adds the 'hasSVG' class to the <div> */
+    div .brat_sentence.hasSVG {
+      margin-top: 0.75em;
+      margin-bottom: 1.25em;
+    }
 
     .highlighted_entity {
       background-color: pink;
@@ -331,12 +336,25 @@
      }
    }
 
+   function hasPOSTags(sentenceUUID) {
+     if ($("#sentence_pos_" + sentenceUUID + " svg").length > 0) {
+       return true;
+     }
+     else {
+       return false;
+     }
+   }
+
    function toggleConstituentParse(sentenceUUID) {
      $("#constituent_parse_" + sentenceUUID).toggle('slow');
    }
 
    function toggleDependencyParse(sentenceUUID) {
      $("#dependency_parse_" + sentenceUUID).toggle('slow');
+   }
+
+   function togglePOSTags(sentenceUUID) {
+     $("#sentence_pos_" + sentenceUUID).toggle();
    }
 
    function loadBRATLibraries() {
@@ -363,17 +381,16 @@
      );
    }
 
-   function addPOSTags(containerSelectorString, sentenceUUID, tokenizationUUID) {
+   function addPOSTags(sentenceUUID, tokenizationUUID) {
      var sentence = getSentenceWithUUID(global_comm, sentenceUUID);
      var tokenization = getTokenizationWithUUID(global_comm, tokenizationUUID);
-
 
      var bratLocation = '{% static "view/brat" %}';
 
      var webFontURLs = [
-//         bratLocation + '/static/fonts/Astloch-Bold.ttf',
-//         bratLocation + '/static/fonts/PT_Sans-Caption-Web-Regular.ttf',
-//         bratLocation + '/static/fonts/Liberation_Sans-Regular.ttf'
+       bratLocation + '/static/fonts/Astloch-Bold.ttf',
+       bratLocation + '/static/fonts/PT_Sans-Caption-Web-Regular.ttf',
+       bratLocation + '/static/fonts/Liberation_Sans-Regular.ttf'
      ];
 
      // Tag names and colors are copied from the BRAT configuraiton file for
@@ -471,7 +488,7 @@
 
      Util.embed(
        // id of the div element where brat should embed the visualisations
-       'brat_test',
+       'sentence_pos_' + sentence.uuid,
        // object containing collection data
        collData,
        // object containing document data
@@ -531,6 +548,19 @@
                                  })
                                  .css('margin-right', '1em')
                                  .html("DP"));
+             sentence_div.append($('<button>')
+                                 .attr('type', 'button')
+                                 .addClass('btn btn-default btn-xs')
+                                 .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
+                                    if (hasPOSTags(event.data.sentence_uuid)) {
+                                      togglePOSTags(event.data.sentence_uuid);
+                                    }
+                                    else {
+                                      addPOSTags(event.data.sentence_uuid, event.data.tokenization_uuid);
+                                    }
+                                 })
+                                 .css('margin-right', '1em')
+                                 .html("POS"));
              for (var tokenIndex in tokenization.tokenList) {
                var token = tokenization.tokenList[tokenIndex];
                var token_span = $('<span>')
