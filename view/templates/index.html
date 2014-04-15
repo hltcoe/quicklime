@@ -141,6 +141,11 @@
      }
    }
 
+   function addSentenceParse(sentenceUUID, tokenizationUUID) {
+     var tokenization = getTokenizationWithUUID(global_comm, tokenizationUUID);
+     drawSentenceParse("#sentence_parse_" + sentenceUUID, tokenization);
+   }
+
    function drawSentenceParse(containerSelectorString, tokenization) {
      var g = new dagreD3.Digraph();
 
@@ -181,9 +186,17 @@
        .attr("height", layout.graph().height + 40);
    }
 
-   function addSentenceParse(sentenceUUID, tokenizationUUID) {
-     var tokenization = getTokenizationWithUUID(global_comm, tokenizationUUID);
-     drawSentenceParse("#sentence_parse_" + sentenceUUID, tokenization);
+   function hasSentenceParse(sentenceUUID) {
+     if ($("#sentence_parse_" + sentenceUUID + " svg").length > 0) {
+       return true;
+     }
+     else {
+       return false;
+     }
+   }
+
+   function toggleSentenceParse(sentenceUUID) {
+     $("#sentence_parse_" + sentenceUUID).toggle('slow');
    }
 
    $(document).ready(function() {
@@ -204,7 +217,12 @@
                                  .attr('type', 'button')
                                  .addClass('btn btn-default btn-xs')
                                  .click({ sentence_uuid: sentence.uuid, tokenization_uuid: sentence.tokenizationList[0].uuid}, function(event) {
-                                    addSentenceParse(event.data.sentence_uuid, event.data.tokenization_uuid);
+                                    if (hasSentenceParse(event.data.sentence_uuid)) {
+                                      toggleSentenceParse(event.data.sentence_uuid);
+                                    }
+                                    else {
+                                      addSentenceParse(event.data.sentence_uuid, event.data.tokenization_uuid);
+                                    }
                                  })
                                  .css('margin-right', '1em')
                                  .html("Parse Tree"));
