@@ -146,6 +146,11 @@
      drawConstituentParse("#constituent_parse_" + sentenceUUID, tokenization);
    }
 
+   function addDependencyParse(sentenceUUID, tokenizationUUID) {
+     var tokenization = getTokenizationWithUUID(global_comm, tokenizationUUID);
+     drawDependencyParse("#dependency_parse_" + sentenceUUID, tokenization);
+   }
+
    function drawConstituentParse(containerSelectorString, tokenization) {
      // Code adapted from dagre-d3 demo code:
      //   http://cpettitt.github.io/project/dagre-d3/latest/demo/sentence-tokenization.html
@@ -189,6 +194,60 @@
        .attr("height", layout.graph().height + 40);
    }
 
+   function drawDependencyParse(containerSelectorString, tokenization) {
+     // Code adapted from dagre-d3 demo code:
+     //   http://cpettitt.github.io/project/dagre-d3/latest/demo/sentence-tokenization.html
+
+     var g = new dagreD3.Digraph();
+
+     // TODO: Handle multiple dependency parses, instead of just picking the first
+     var dependencyParse = tokenization.dependencyParseList[0];
+
+     var nodeSet = {};
+
+
+     // Some tokens - such as punctuation marks - will not have nodes in the dependency parse
+     for (var i = 0; i < dependencyParse.dependencyList.length; i++) {
+       var dependency = dependencyParse.dependencyList[i];
+       nodeSet[dependency.dep] = true;
+       if (dependency.gov) {
+         nodeSet[dependency.gov] = true;
+       }
+     }
+
+     for (var i = 0; i < tokenization.tokenList.length; i++) {
+       var token = tokenization.tokenList[i];
+       if (token.tokenIndex in nodeSet) {
+         g.addNode(token.tokenIndex, { label: token.text, nodeclass: "type-UNKNOWN" });
+       }
+     }
+
+     for (var i = 0; i < dependencyParse.dependencyList.length; i++) {
+       var dependency = dependencyParse.dependencyList[i];
+       // The root edge will not have a 'gov'
+       if (typeof(dependency.gov) != 'undefined') {
+         g.addEdge(null, dependency.gov, dependency.dep, { label: dependency.edgeType });
+       }
+     }
+
+     var renderer = new dagreD3.Renderer();
+     var oldDrawNodes = renderer.drawNodes();
+     renderer.drawNodes(function(graph, root) {
+       var svgNodes = oldDrawNodes(graph, root);
+       svgNodes.each(function(u) {
+         d3.select(this).classed(graph.node(u).nodeclass, true);
+       });
+       return svgNodes;
+     });
+     d3.select(containerSelectorString)
+       .append("svg").attr("height", 800).attr("width", 600).attr("style", "background-color: white;")
+       .append("g").attr("transform", "translate(20, 20)");
+     var layout = renderer.run(g, d3.select(containerSelectorString).select("svg").select("g"));
+     d3.select(containerSelectorString).select("svg")
+       .attr("width", layout.graph().width + 40)
+       .attr("height", layout.graph().height + 40);
+   }
+
    function hasConstituentParse(sentenceUUID) {
      if ($("#constituent_parse_" + sentenceUUID + " svg").length > 0) {
        return true;
@@ -198,8 +257,21 @@
      }
    }
 
+   function hasDependencyParse(sentenceUUID) {
+     if ($("#dependency_parse_" + sentenceUUID + " svg").length > 0) {
+       return true;
+     }
+     else {
+       return false;
+     }
+   }
+
    function toggleConstituentParse(sentenceUUID) {
      $("#constituent_parse_" + sentenceUUID).toggle('slow');
+   }
+
+   function toggleDependencyParse(sentenceUUID) {
+     $("#dependency_parse_" + sentenceUUID).toggle('slow');
    }
 
    $(document).ready(function() {
@@ -213,13 +285,15 @@
          if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
            for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
              var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
+             var tokenization = sentence.tokenizationList[0];
+
              var sentence_div = $('<div>')
                                 .addClass('sentence')
                                 .attr('id', 'sentence_' + sentence.uuid);
              sentence_div.append($('<button>')
                                  .attr('type', 'button')
                                  .addClass('btn btn-default btn-xs')
-                                 .click({ sentence_uuid: sentence.uuid, tokenization_uuid: sentence.tokenizationList[0].uuid}, function(event) {
+                                 .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
                                     if (hasConstituentParse(event.data.sentence_uuid)) {
                                       toggleConstituentParse(event.data.sentence_uuid);
                                     }
@@ -228,21 +302,35 @@
                                     }
                                  })
                                  .css('margin-right', '1em')
-                                 .html("Parse Tree"));
-             for (var tokenIndex in sentence.tokenizationList[0].tokenList) {
-               var token = sentence.tokenizationList[0].tokenList[tokenIndex];
+                                 .html("Constituent Parse"));
+             sentence_div.append($('<button>')
+                                 .attr('type', 'button')
+                                 .addClass('btn btn-default btn-xs')
+                                 .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
+                                    if (hasDependencyParse(event.data.sentence_uuid)) {
+                                      toggleDependencyParse(event.data.sentence_uuid);
+                                    }
+                                    else {
+                                      addDependencyParse(event.data.sentence_uuid, event.data.tokenization_uuid);
+                                    }
+                                 })
+                                 .css('margin-right', '1em')
+                                 .html("Dependency Parse"));
+             for (var tokenIndex in tokenization.tokenList) {
+               var token = tokenization.tokenList[tokenIndex];
                var token_span = $('<span>')
                                    .addClass('token')
-                                   .attr('id', 'tokenization_' + sentence.tokenizationList[0].uuid + "_" + token.tokenIndex)
+                                   .attr('id', 'tokenization_' + tokenization.uuid + "_" + token.tokenIndex)
                                    .html(cleanedTokenText(token.text));
                var token_padding_span = $('<span>')
                                    .addClass('token_padding')
-                                   .attr('id', 'tokenization_padding_' + sentence.tokenizationList[0].uuid + "_" + token.tokenIndex)
+                                   .attr('id', 'tokenization_padding_' + tokenization.uuid + "_" + token.tokenIndex)
                                    .html(" ");
                sentence_div.append(token_span);
                sentence_div.append(token_padding_span);
              }
              sentence_div.append($('<div>').attr('id', 'constituent_parse_' + sentence.uuid));
+             sentence_div.append($('<div>').attr('id', 'dependency_parse_' + sentence.uuid));
              section_div.append(sentence_div);
            }
          }
