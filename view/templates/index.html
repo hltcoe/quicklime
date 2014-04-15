@@ -141,12 +141,15 @@
      }
    }
 
-   function addSentenceParse(sentenceUUID, tokenizationUUID) {
+   function addConstituentParse(sentenceUUID, tokenizationUUID) {
      var tokenization = getTokenizationWithUUID(global_comm, tokenizationUUID);
-     drawSentenceParse("#sentence_parse_" + sentenceUUID, tokenization);
+     drawConstituentParse("#constituent_parse_" + sentenceUUID, tokenization);
    }
 
-   function drawSentenceParse(containerSelectorString, tokenization) {
+   function drawConstituentParse(containerSelectorString, tokenization) {
+     // Code adapted from dagre-d3 demo code:
+     //   http://cpettitt.github.io/project/dagre-d3/latest/demo/sentence-tokenization.html
+
      var g = new dagreD3.Digraph();
 
      for (var constituentIndex in tokenization.parse.constituentList) {
@@ -186,8 +189,8 @@
        .attr("height", layout.graph().height + 40);
    }
 
-   function hasSentenceParse(sentenceUUID) {
-     if ($("#sentence_parse_" + sentenceUUID + " svg").length > 0) {
+   function hasConstituentParse(sentenceUUID) {
+     if ($("#constituent_parse_" + sentenceUUID + " svg").length > 0) {
        return true;
      }
      else {
@@ -195,8 +198,8 @@
      }
    }
 
-   function toggleSentenceParse(sentenceUUID) {
-     $("#sentence_parse_" + sentenceUUID).toggle('slow');
+   function toggleConstituentParse(sentenceUUID) {
+     $("#constituent_parse_" + sentenceUUID).toggle('slow');
    }
 
    $(document).ready(function() {
@@ -217,11 +220,11 @@
                                  .attr('type', 'button')
                                  .addClass('btn btn-default btn-xs')
                                  .click({ sentence_uuid: sentence.uuid, tokenization_uuid: sentence.tokenizationList[0].uuid}, function(event) {
-                                    if (hasSentenceParse(event.data.sentence_uuid)) {
-                                      toggleSentenceParse(event.data.sentence_uuid);
+                                    if (hasConstituentParse(event.data.sentence_uuid)) {
+                                      toggleConstituentParse(event.data.sentence_uuid);
                                     }
                                     else {
-                                      addSentenceParse(event.data.sentence_uuid, event.data.tokenization_uuid);
+                                      addConstituentParse(event.data.sentence_uuid, event.data.tokenization_uuid);
                                     }
                                  })
                                  .css('margin-right', '1em')
@@ -239,7 +242,7 @@
                sentence_div.append(token_span);
                sentence_div.append(token_padding_span);
              }
-             sentence_div.append($('<div>').attr('id', 'sentence_parse_' + sentence.uuid));
+             sentence_div.append($('<div>').attr('id', 'constituent_parse_' + sentence.uuid));
              section_div.append(sentence_div);
            }
          }
