@@ -176,22 +176,7 @@
        }
      }
 
-     var renderer = new dagreD3.Renderer();
-     var oldDrawNodes = renderer.drawNodes();
-     renderer.drawNodes(function(graph, root) {
-       var svgNodes = oldDrawNodes(graph, root);
-       svgNodes.each(function(u) {
-         d3.select(this).classed(graph.node(u).nodeclass, true);
-       });
-       return svgNodes;
-     });
-     d3.select(containerSelectorString)
-       .append("svg").attr("height", 800).attr("width", 600).attr("style", "background-color: white;")
-       .append("g").attr("transform", "translate(20, 20)");
-     var layout = renderer.run(g, d3.select(containerSelectorString).select("svg").select("g"));
-     d3.select(containerSelectorString).select("svg")
-       .attr("width", layout.graph().width + 40)
-       .attr("height", layout.graph().height + 40);
+     drawParse(containerSelectorString, g);
    }
 
    function drawDependencyParse(containerSelectorString, tokenization) {
@@ -230,6 +215,10 @@
        }
      }
 
+     drawParse(containerSelectorString, g);
+   }
+
+   function drawParse(containerSelectorString, digraph) {
      var renderer = new dagreD3.Renderer();
      var oldDrawNodes = renderer.drawNodes();
      renderer.drawNodes(function(graph, root) {
@@ -242,7 +231,7 @@
      d3.select(containerSelectorString)
        .append("svg").attr("height", 800).attr("width", 600).attr("style", "background-color: white;")
        .append("g").attr("transform", "translate(20, 20)");
-     var layout = renderer.run(g, d3.select(containerSelectorString).select("svg").select("g"));
+     var layout = renderer.run(digraph, d3.select(containerSelectorString).select("svg").select("g"));
      d3.select(containerSelectorString).select("svg")
        .attr("width", layout.graph().width + 40)
        .attr("height", layout.graph().height + 40);
