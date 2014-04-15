@@ -2,39 +2,49 @@
 <html>
 <head>
   {% load staticfiles %}
-  <link rel="stylesheet" href="{% static "view/bootstrap/css/bootstrap.css" %}">
-  <link rel="stylesheet" href="{% static "view/bootstrap/css/bootstrap-theme.css" %}">
+  <link rel="stylesheet" href="{% static "view/bootstrap/css/bootstrap.css" %}"/>
+  <link rel="stylesheet" href="{% static "view/bootstrap/css/bootstrap-theme.css" %}"/>
+  <link rel="stylesheet" href="{% static "view/brat/style-vis.css" %}"/>
+
   <script src="{% static "view/jquery-1.11.0.min.js" %}"></script>
   <script src="{% static "view/bootstrap/js/bootstrap.js" %}"></script>
   <script src="{% static "view/d3/3.4.4/d3.js" %}"></script>
   <script src="{% static "view/dagre-d3/0.1.5/dagre-d3.js" %}"></script>
+  <script src="{% static "view/brat/client/lib/head.load.min.js" %}">script></script>
+
   <style>
-    g.type-TOKEN > rect {
+    /* CSS rules for parse trees drawn using 'dagre-d3'.
+
+       The BRAT CSS rules give all SVG elements a height of 1px (among
+       other issues), so we override the BRAT defaults here.
+     */
+    .dagre_parse g.type-TOKEN > rect {
       fill: #00ffd0;
     }
 
-    svg {
+    .dagre_parse svg {
       border: 1px solid #999;
       overflow: hidden;
+      height: auto;
     }
 
-    text {
+    .dagre_parse text {
       font-weight: 300;
       font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
       font-size: 14px;
     }
 
-    .node rect {
+    .dagre_parse .node rect {
       stroke: #999;
       stroke-width: 1px;
       fill: #fff;
     }
 
-    .edgeLabel rect {
+    .dagre_parse .edgeLabel rect {
       fill: #fff;
     }
 
-    .edgePath path {
+    .dagre_parse .edgePath path {
       stroke: #333;
       stroke-width: 1.5px;
       fill: none;
@@ -318,8 +328,12 @@
                sentence_div.append(token_span);
                sentence_div.append(token_padding_span);
              }
-             sentence_div.append($('<div>').attr('id', 'constituent_parse_' + sentence.uuid));
-             sentence_div.append($('<div>').attr('id', 'dependency_parse_' + sentence.uuid));
+             sentence_div.append($('<div>')
+                           .addClass('dagre_parse')
+                           .attr('id', 'constituent_parse_' + sentence.uuid));
+             sentence_div.append($('<div>')
+                           .addClass('dagre_parse')
+                           .attr('id', 'dependency_parse_' + sentence.uuid));
              section_div.append(sentence_div);
            }
          }
