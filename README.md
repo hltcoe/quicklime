@@ -13,8 +13,6 @@ Installation
 Usage
 -----
 
-    showme.py <concrete_filename>
+    showme.py CONCRETE_FILENAME
 
-Then point your browser at -
-
-http://localhost:8080
+Then point your browser at http://localhost:8080
