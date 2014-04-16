@@ -19,9 +19,9 @@
               6,
               7
             ],
-            "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+            "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
           },
-          "uuid": "b3155840-dd51-4d94-833c-a9eeef8c4dec"
+          "uuid": "16664e68-d5b9-4c72-886e-736884a895ad"
         },
         {
           "confidence": 1.0,
@@ -34,9 +34,9 @@
               0,
               1
             ],
-            "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+            "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
           },
-          "uuid": "cf6f4022-4cf6-4b44-bd89-e060d90317e5"
+          "uuid": "08685565-a196-4faa-a89d-533dec0cdc0c"
         },
         {
           "confidence": 1.0,
@@ -51,9 +51,9 @@
               5,
               6
             ],
-            "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+            "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
           },
-          "uuid": "0bab823f-0aff-42dc-9974-6348346cb596"
+          "uuid": "bab276a5-cdfc-4521-8ad7-1d1d391c0f9b"
         },
         {
           "confidence": 1.0,
@@ -65,9 +65,9 @@
             "tokenIndexList": [
               0
             ],
-            "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+            "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
           },
-          "uuid": "97b416c9-3d8f-496b-8fec-e16a649aaa62"
+          "uuid": "760bd9a7-bf75-485f-abec-6bf31cd41399"
         },
         {
           "confidence": 1.0,
@@ -80,15 +80,15 @@
               0,
               1
             ],
-            "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+            "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
           },
-          "uuid": "47027a9c-82f1-478b-8a6f-a831537818e6"
+          "uuid": "9a8e196a-fd33-4f7f-bda3-1d00f9380f0e"
         }
       ],
       "metadata": {
         "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/pubs/conllst2011-coref.pdf"
       },
-      "uuid": "40fc7b1a-efe9-4b21-bdd8-4cb1703c02e4"
+      "uuid": "419048f9-0f3e-4f23-98cc-2535563dc9fe"
     }
   ],
   "entitySets": [
@@ -96,19 +96,20 @@
       "entityList": [
         {
           "mentionIdList": [
-            "b3155840-dd51-4d94-833c-a9eeef8c4dec",
-            "cf6f4022-4cf6-4b44-bd89-e060d90317e5",
-            "0bab823f-0aff-42dc-9974-6348346cb596",
-            "97b416c9-3d8f-496b-8fec-e16a649aaa62",
-            "47027a9c-82f1-478b-8a6f-a831537818e6"
+            "16664e68-d5b9-4c72-886e-736884a895ad",
+            "08685565-a196-4faa-a89d-533dec0cdc0c",
+            "bab276a5-cdfc-4521-8ad7-1d1d391c0f9b",
+            "760bd9a7-bf75-485f-abec-6bf31cd41399",
+            "9a8e196a-fd33-4f7f-bda3-1d00f9380f0e"
           ],
-          "uuid": "9aa0e87c-b745-4e13-ad0d-a60efd0a73be"
+          "type": 4,
+          "uuid": "658a7570-ea1d-4cd2-9ae3-b9ecbb730d93"
         }
       ],
       "metadata": {
         "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/pubs/conllst2011-coref.pdf"
       },
-      "uuid": "5ee044af-e078-430d-995e-6855c72830d0"
+      "uuid": "8e0b6f36-1d7e-431d-ad86-d2c885f1ce78"
     }
   ],
   "id": "agiga_dog-bites-man",
@@ -125,7 +126,7 @@
               "metadata": {
                 "tool": "Annotated Gigaword Pipeline Splitta http://www.aclweb.org/anthology-new/N/N09/N09-2061.pdf"
               },
-              "sectionId": "01fe0f64-838e-4a01-b1eb-7aa509953b08",
+              "sectionId": "c95e06ec-8395-4773-b4eb-2d97f585a959",
               "sentenceList": [
                 {
                   "textSpan": {
@@ -215,7 +216,7 @@
                           "metadata": {
                             "tool": "Annotated Gigaword Pipeline basic-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "88d53d82-96af-4b73-9b23-4125268afa11"
+                          "uuid": "d33ec550-6f84-483d-8f3b-98e1f5bd51e6"
                         },
                         {
                           "dependencyList": [
@@ -282,7 +283,7 @@
                           "metadata": {
                             "tool": "Annotated Gigaword Pipeline col-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "97b7004c-d394-4616-8ad8-cb07c917eaea"
+                          "uuid": "a688c6a3-31a7-4d97-889f-268eb2a30742"
                         },
                         {
                           "dependencyList": [
@@ -349,7 +350,7 @@
                           "metadata": {
                             "tool": "Annotated Gigaword Pipeline col-ccproc-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "7db9cca7-43e6-431e-929d-d6112aaa5500"
+                          "uuid": "b5db56f1-0ede-4376-8fc7-a6c93b3752b0"
                         }
                       ],
                       "kind": 1,
@@ -454,12 +455,15 @@
                             "tokenIndex": 18
                           }
                         ],
-                        "uuid": "cdb55715-c5e7-492d-96bf-4817366445cd"
+                        "uuid": "17364670-0250-482f-b462-7ff62c7f581a"
                       },
                       "metadata": {
                         "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/software/tokensregex.shtml"
                       },
                       "nerTagList": {
+                        "metadata": {
+                          "tool": "Annotated Gigaword Pipeline"
+                        },
                         "taggedTokenList": [
                           {
                             "confidence": 1.0,
@@ -556,11 +560,13 @@
                             "tag": "O",
                             "tokenIndex": 18
                           }
-                        ]
+                        ],
+                        "uuid": "9d2e6398-b7d2-43c7-bd33-684f790bc983"
                       },
                       "parse": {
                         "constituentList": [
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 5,
                             "tag": "John",
@@ -569,7 +575,7 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -584,10 +590,11 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 7,
                             "tag": "Smith",
@@ -596,7 +603,7 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -611,7 +618,7 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -628,10 +635,11 @@
                                 0,
                                 1
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 9,
                             "tag": ",",
@@ -640,7 +648,7 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -655,10 +663,11 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 13,
                             "tag": "manager",
@@ -667,7 +676,7 @@
                               "tokenIndexList": [
                                 3
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -682,7 +691,7 @@
                               "tokenIndexList": [
                                 3
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -697,10 +706,11 @@
                               "tokenIndexList": [
                                 3
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 16,
                             "tag": "of",
@@ -709,7 +719,7 @@
                               "tokenIndexList": [
                                 4
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -724,10 +734,11 @@
                               "tokenIndexList": [
                                 4
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 19,
                             "tag": "ACME",
@@ -736,7 +747,7 @@
                               "tokenIndexList": [
                                 5
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -751,10 +762,11 @@
                               "tokenIndexList": [
                                 5
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 21,
                             "tag": "INC",
@@ -763,7 +775,7 @@
                               "tokenIndexList": [
                                 6
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -778,7 +790,7 @@
                               "tokenIndexList": [
                                 6
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -795,7 +807,7 @@
                                 5,
                                 6
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -813,7 +825,7 @@
                                 5,
                                 6
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -832,10 +844,11 @@
                                 5,
                                 6
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 23,
                             "tag": ",",
@@ -844,7 +857,7 @@
                               "tokenIndexList": [
                                 7
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -859,7 +872,7 @@
                               "tokenIndexList": [
                                 7
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -884,10 +897,11 @@
                                 6,
                                 7
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 26,
                             "tag": "was",
@@ -896,7 +910,7 @@
                               "tokenIndexList": [
                                 8
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -911,10 +925,11 @@
                               "tokenIndexList": [
                                 8
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 30,
                             "tag": "bit",
@@ -923,7 +938,7 @@
                               "tokenIndexList": [
                                 9
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -938,7 +953,7 @@
                               "tokenIndexList": [
                                 9
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -953,10 +968,11 @@
                               "tokenIndexList": [
                                 9
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 33,
                             "tag": "by",
@@ -965,7 +981,7 @@
                               "tokenIndexList": [
                                 10
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -980,10 +996,11 @@
                               "tokenIndexList": [
                                 10
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 37,
                             "tag": "a",
@@ -992,7 +1009,7 @@
                               "tokenIndexList": [
                                 11
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1007,10 +1024,11 @@
                               "tokenIndexList": [
                                 11
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 39,
                             "tag": "dog",
@@ -1019,7 +1037,7 @@
                               "tokenIndexList": [
                                 12
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1034,7 +1052,7 @@
                               "tokenIndexList": [
                                 12
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1051,10 +1069,11 @@
                                 11,
                                 12
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 42,
                             "tag": "on",
@@ -1063,7 +1082,7 @@
                               "tokenIndexList": [
                                 13
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1078,10 +1097,11 @@
                               "tokenIndexList": [
                                 13
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 45,
                             "tag": "March",
@@ -1090,7 +1110,7 @@
                               "tokenIndexList": [
                                 14
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1105,10 +1125,11 @@
                               "tokenIndexList": [
                                 14
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 47,
                             "tag": "10th",
@@ -1117,7 +1138,7 @@
                               "tokenIndexList": [
                                 15
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1132,10 +1153,11 @@
                               "tokenIndexList": [
                                 15
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 49,
                             "tag": ",",
@@ -1144,7 +1166,7 @@
                               "tokenIndexList": [
                                 16
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1159,10 +1181,11 @@
                               "tokenIndexList": [
                                 16
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 51,
                             "tag": "2013",
@@ -1171,7 +1194,7 @@
                               "tokenIndexList": [
                                 17
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1186,7 +1209,7 @@
                               "tokenIndexList": [
                                 17
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1207,7 +1230,7 @@
                                 16,
                                 17
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1227,7 +1250,7 @@
                                 16,
                                 17
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1249,7 +1272,7 @@
                                 16,
                                 17
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1272,7 +1295,7 @@
                                 16,
                                 17
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1296,7 +1319,7 @@
                                 16,
                                 17
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1321,10 +1344,11 @@
                                 16,
                                 17
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 53,
                             "tag": ".",
@@ -1333,7 +1357,7 @@
                               "tokenIndexList": [
                                 18
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1348,7 +1372,7 @@
                               "tokenIndexList": [
                                 18
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1383,7 +1407,7 @@
                                 17,
                                 18
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           },
                           {
@@ -1416,16 +1440,19 @@
                                 17,
                                 18
                               ],
-                              "tokenizationId": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                             }
                           }
                         ],
                         "metadata": {
                           "tool": "Annotated Gigaword Pipeline http://www.aclweb.org/anthology-new/D/D10/D10-1002.pdf"
                         },
-                        "uuid": "86a43b4a-25fa-4049-8e7d-6b5fcc631fb7"
+                        "uuid": "24040a2f-bd76-4dfb-afe0-3eadc703a1ca"
                       },
                       "posTagList": {
+                        "metadata": {
+                          "tool": "Annotated Gigaword Pipeline"
+                        },
                         "taggedTokenList": [
                           {
                             "confidence": 1.0,
@@ -1522,7 +1549,8 @@
                             "tag": ".",
                             "tokenIndex": 18
                           }
-                        ]
+                        ],
+                        "uuid": "8746fe51-72b4-4035-8c7c-4efa356154da"
                       },
                       "tokenList": [
                         {
@@ -1678,10 +1706,10 @@
                           "tokenIndex": 18
                         }
                       ],
-                      "uuid": "a16ac35a-5c60-4c3d-9d79-1828562d6fb1"
+                      "uuid": "d566f969-6829-4fe6-a9a4-afb6702c7408"
                     }
                   ],
-                  "uuid": "b0ee7467-65f7-406b-bbe4-c338f5cd18ba"
+                  "uuid": "5b42569a-baf6-40f5-97ff-9d03edd9975d"
                 },
                 {
                   "textSpan": {
@@ -1706,7 +1734,7 @@
                           "metadata": {
                             "tool": "Annotated Gigaword Pipeline basic-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "2ab2b373-f9f3-4d02-8ca0-cb99088d430a"
+                          "uuid": "c10d2512-30ec-4da8-992b-cf63f02c9f3e"
                         },
                         {
                           "dependencyList": [
@@ -1723,7 +1751,7 @@
                           "metadata": {
                             "tool": "Annotated Gigaword Pipeline col-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "d4be6504-3538-4938-a455-1c76eb4045ca"
+                          "uuid": "2385c1ed-8dc3-4f7e-a730-429a96e55afe"
                         },
                         {
                           "dependencyList": [
@@ -1740,7 +1768,7 @@
                           "metadata": {
                             "tool": "Annotated Gigaword Pipeline col-ccproc-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "0adc4d8f-3c8a-42f3-a9eb-390945185c18"
+                          "uuid": "6b9129b2-9723-4b8c-ba29-341d37eb6bcb"
                         }
                       ],
                       "kind": 1,
@@ -1765,12 +1793,15 @@
                             "tokenIndex": 2
                           }
                         ],
-                        "uuid": "616c0f32-6119-4b32-be3d-3c7390d4c484"
+                        "uuid": "d7e6dfe1-645b-4bc8-ab6d-1a7cc5f818f9"
                       },
                       "metadata": {
                         "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/software/tokensregex.shtml"
                       },
                       "nerTagList": {
+                        "metadata": {
+                          "tool": "Annotated Gigaword Pipeline"
+                        },
                         "taggedTokenList": [
                           {
                             "confidence": 1.0,
@@ -1787,11 +1818,13 @@
                             "tag": "O",
                             "tokenIndex": 2
                           }
-                        ]
+                        ],
+                        "uuid": "9724bc0a-e766-43f8-ada2-85d3eeba14f2"
                       },
                       "parse": {
                         "constituentList": [
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 4,
                             "tag": "He",
@@ -1800,7 +1833,7 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
                             }
                           },
                           {
@@ -1815,7 +1848,7 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
                             }
                           },
                           {
@@ -1830,10 +1863,11 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 7,
                             "tag": "died",
@@ -1842,7 +1876,7 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
                             }
                           },
                           {
@@ -1857,7 +1891,7 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
                             }
                           },
                           {
@@ -1872,10 +1906,11 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 9,
                             "tag": "!",
@@ -1884,7 +1919,7 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
                             }
                           },
                           {
@@ -1899,7 +1934,7 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
                             }
                           },
                           {
@@ -1918,7 +1953,7 @@
                                 1,
                                 2
                               ],
-                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
                             }
                           },
                           {
@@ -1935,16 +1970,19 @@
                                 1,
                                 2
                               ],
-                              "tokenizationId": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
                             }
                           }
                         ],
                         "metadata": {
                           "tool": "Annotated Gigaword Pipeline http://www.aclweb.org/anthology-new/D/D10/D10-1002.pdf"
                         },
-                        "uuid": "d9ebe988-5417-4ef2-9803-eb055036ea7a"
+                        "uuid": "74f69ba9-be9d-46ac-92a8-7540a9bcd913"
                       },
                       "posTagList": {
+                        "metadata": {
+                          "tool": "Annotated Gigaword Pipeline"
+                        },
                         "taggedTokenList": [
                           {
                             "confidence": 1.0,
@@ -1961,7 +1999,8 @@
                             "tag": ".",
                             "tokenIndex": 2
                           }
-                        ]
+                        ],
+                        "uuid": "1a0acec4-fb92-495a-86ae-d743d61028ed"
                       },
                       "tokenList": [
                         {
@@ -1989,10 +2028,10 @@
                           "tokenIndex": 2
                         }
                       ],
-                      "uuid": "c0cd685d-14e2-4d7d-93a8-87ac8cac1725"
+                      "uuid": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
                     }
                   ],
-                  "uuid": "a5fa26af-707e-4b34-a42d-214e8b29a621"
+                  "uuid": "d2aa37f3-9e85-4a2d-8e38-ce851e4d7a52"
                 },
                 {
                   "textSpan": {
@@ -2037,7 +2076,7 @@
                           "metadata": {
                             "tool": "Annotated Gigaword Pipeline basic-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "c2b60f8f-7dda-42e1-819c-6c97801b91d8"
+                          "uuid": "028bf77e-3d75-4937-a047-8203a08e81a5"
                         },
                         {
                           "dependencyList": [
@@ -2069,7 +2108,7 @@
                           "metadata": {
                             "tool": "Annotated Gigaword Pipeline col-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "0d8d1ca8-847a-4c5b-8a2e-56b9120951b8"
+                          "uuid": "fb4ba931-f07e-4680-9b00-7b53da306533"
                         },
                         {
                           "dependencyList": [
@@ -2101,7 +2140,7 @@
                           "metadata": {
                             "tool": "Annotated Gigaword Pipeline col-ccproc-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "247b0154-b1df-4390-9b2c-f9879e53ce08"
+                          "uuid": "36b63b1b-0437-4ede-aa8a-c78f7ef94da8"
                         }
                       ],
                       "kind": 1,
@@ -2146,12 +2185,15 @@
                             "tokenIndex": 6
                           }
                         ],
-                        "uuid": "cfe9516e-a1fe-4e65-bd49-9740f4fb032a"
+                        "uuid": "84f601cb-ec1b-43e8-80d0-f35e6a27c7d3"
                       },
                       "metadata": {
                         "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/software/tokensregex.shtml"
                       },
                       "nerTagList": {
+                        "metadata": {
+                          "tool": "Annotated Gigaword Pipeline"
+                        },
                         "taggedTokenList": [
                           {
                             "confidence": 1.0,
@@ -2188,11 +2230,13 @@
                             "tag": "O",
                             "tokenIndex": 6
                           }
-                        ]
+                        ],
+                        "uuid": "13287aff-8e1a-4775-8556-0bd2711e6a89"
                       },
                       "parse": {
                         "constituentList": [
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 5,
                             "tag": "John",
@@ -2201,7 +2245,7 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
@@ -2216,10 +2260,11 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 7,
                             "tag": "'s",
@@ -2228,7 +2273,7 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
@@ -2243,7 +2288,7 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
@@ -2260,10 +2305,11 @@
                                 0,
                                 1
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 9,
                             "tag": "daughter",
@@ -2272,7 +2318,7 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
@@ -2287,10 +2333,11 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 11,
                             "tag": "Mary",
@@ -2299,7 +2346,7 @@
                               "tokenIndexList": [
                                 3
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
@@ -2314,7 +2361,7 @@
                               "tokenIndexList": [
                                 3
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
@@ -2334,10 +2381,11 @@
                                 2,
                                 3
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 14,
                             "tag": "expressed",
@@ -2346,7 +2394,7 @@
                               "tokenIndexList": [
                                 4
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
@@ -2361,10 +2409,11 @@
                               "tokenIndexList": [
                                 4
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 17,
                             "tag": "sorrow",
@@ -2373,7 +2422,7 @@
                               "tokenIndexList": [
                                 5
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
@@ -2388,7 +2437,7 @@
                               "tokenIndexList": [
                                 5
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
@@ -2403,7 +2452,7 @@
                               "tokenIndexList": [
                                 5
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
@@ -2420,10 +2469,11 @@
                                 4,
                                 5
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
+                            "childList": [],
                             "headChildIndex": -1,
                             "id": 19,
                             "tag": ".",
@@ -2432,7 +2482,7 @@
                               "tokenIndexList": [
                                 6
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
@@ -2447,7 +2497,7 @@
                               "tokenIndexList": [
                                 6
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
@@ -2470,7 +2520,7 @@
                                 5,
                                 6
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           },
                           {
@@ -2491,16 +2541,19 @@
                                 5,
                                 6
                               ],
-                              "tokenizationId": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                             }
                           }
                         ],
                         "metadata": {
                           "tool": "Annotated Gigaword Pipeline http://www.aclweb.org/anthology-new/D/D10/D10-1002.pdf"
                         },
-                        "uuid": "86202305-305f-4178-9645-4e19fbf20ef7"
+                        "uuid": "51fcde85-67f1-4a52-a6c7-28ae91736217"
                       },
                       "posTagList": {
+                        "metadata": {
+                          "tool": "Annotated Gigaword Pipeline"
+                        },
                         "taggedTokenList": [
                           {
                             "confidence": 1.0,
@@ -2537,7 +2590,8 @@
                             "tag": ".",
                             "tokenIndex": 6
                           }
-                        ]
+                        ],
+                        "uuid": "1404516f-421e-4489-97dc-fc73713504b9"
                       },
                       "tokenList": [
                         {
@@ -2597,26 +2651,26 @@
                           "tokenIndex": 6
                         }
                       ],
-                      "uuid": "e98a20f9-e78b-4185-8f0d-ffa61a0a3113"
+                      "uuid": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
                     }
                   ],
-                  "uuid": "6068c07e-080d-4a56-b379-9d4fe2499234"
+                  "uuid": "b2f2d5af-9ea0-48d0-acc8-32635f7fda3f"
                 }
               ],
-              "uuid": "fd8eba36-1fed-4f75-b508-c0fae2d8c0e6"
+              "uuid": "93bcfbac-e096-4880-8569-ff0318a20cb8"
             }
           ],
           "textSpan": {
             "ending": 126,
             "start": 0
           },
-          "uuid": "01fe0f64-838e-4a01-b1eb-7aa509953b08"
+          "uuid": "c95e06ec-8395-4773-b4eb-2d97f585a959"
         }
       ],
-      "uuid": "a3c622db-8d0c-4a1c-9c18-ef391eaa6bd6"
+      "uuid": "eafae779-de28-45a1-a52d-3d3a767ab595"
     }
   ],
   "text": "John Smith , manager of ACME INC , was bit by a dog on March 10th , 2013 .\nHe died !\nJohn 's daughter Mary expressed sorrow .\n",
   "type": 2,
-  "uuid": "41018363-d167-4365-b7d9-c5f8dea3bb07"
+  "uuid": "955b9a9a-af07-4ed0-85be-daca2ff82246"
 }
