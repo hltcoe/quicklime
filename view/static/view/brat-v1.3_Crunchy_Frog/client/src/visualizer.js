@@ -3125,7 +3125,12 @@ Util.profileStart('before render');
           on('mouseout', onMouseOut);
     };
 
-    Visualizer.areFontsLoaded = false;
+    // [CTH]  Setting areFontsLoaded to true here prevents
+    //        BRAT from trying to load the TTF font files
+    //        that are included with BRAT.
+//    Visualizer.areFontsLoaded = false;
+    Visualizer.areFontsLoaded = true;
+    // [/CTH]
 
     var proceedWithFonts = function() {
       Visualizer.areFontsLoaded = true;
