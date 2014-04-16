@@ -76,7 +76,7 @@
 
   <script>
    $(document).ready(function() {
-     $.getJSON('{% url "as_json" %}',function(comm) {
+     $.getJSON('view/as_json',function(comm) {
        addCommunication('communication_one', comm);
        addSentenceParseControls(comm);
        addSentenceBRATControls(comm);
