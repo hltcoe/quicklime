@@ -63,7 +63,6 @@
   <script src="{% static "view/brat/client/src/configuration.js" %}">script></script>
   <script src="{% static "view/brat/client/src/util.js" %}">script></script>
   <script src="{% static "view/brat/client/src/annotation_log.js" %}">script></script>
-  <script src="{% static "view/brat/client/lib/webfont.js" %}">script></script>
 
   <!-- BRAT modules -->
   <script src="{% static "view/brat/client/src/dispatcher.js" %}">script></script>
@@ -386,13 +385,7 @@
      var sentence = getSentenceWithUUID(comm, sentenceUUID);
      var tokenization = getTokenizationWithUUID(comm, tokenizationUUID);
 
-     var bratLocation = '{% static "view/brat" %}';
-
-     var webFontURLs = [
-       bratLocation + '/static/fonts/Astloch-Bold.ttf',
-       bratLocation + '/static/fonts/PT_Sans-Caption-Web-Regular.ttf',
-       bratLocation + '/static/fonts/Liberation_Sans-Regular.ttf'
-     ];
+     var webFontURLs = [];
 
      // Tag names and colors are copied from the BRAT configuration file for
      // Stanford NLP:
