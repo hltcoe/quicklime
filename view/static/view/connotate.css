@@ -1,0 +1,91 @@
+
+/* ------------------------------------------------------
+   CSS rules for parse trees drawn using 'dagre-d3'.
+
+   The BRAT CSS rules give all SVG elements a height of 1px (among
+   other issues), so we override the BRAT defaults here.
+   */
+
+.dagre_parse g.type-TOKEN > rect {
+    fill: #00ffd0;
+}
+
+.dagre_parse svg {
+    border: 1px solid #999;
+    overflow: hidden;
+    height: auto;
+    width: auto;
+}
+
+.dagre_parse text {
+    font-weight: 300;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serf;
+    font-size: 14px;
+}
+
+.dagre_parse .node rect {
+    stroke: #999;
+    stroke-width: 1px;
+    fill: #fff;
+}
+
+.dagre_parse .edgeLabel rect {
+    fill: #fff;
+}
+
+.dagre_parse .edgePath path {
+    stroke: #333;
+    stroke-width: 1.5px;
+    fill: none;
+}
+
+
+
+/* ------------------------------------------------------
+   CSS rules for BRAT
+ */
+
+.brat_sentence text {
+    font-size: 15px;
+}
+.brat_sentence .arcs text {
+    font-size: 9px;
+}
+.brat_sentence .span text {
+    font-size: 10px;
+}
+/* BRAT adds the 'hasSVG' class to the <div> */
+div .brat_sentence.hasSVG {
+    margin-top: 0.75em;
+    margin-bottom: 1.25em;
+}
+
+
+
+/* ------------------------------------------------------
+   CSS rules for Connotate
+ */
+
+.highlighted_entity {
+    background-color: pink;
+}
+.highlighted_mention {
+    background-color: yellow;
+}
+.highlighted_entity.highlighted_mention {
+    background-color: pink;
+}
+.mention {
+    border-bottom: 3px solid #DDDDDD;
+}
+.section {
+    border: 10px solid #DDDDFF;
+    padding: 1em;
+}
+.sentence {
+    background-color: white;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+.token {
+}
