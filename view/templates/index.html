@@ -511,95 +511,90 @@
              <div class="dagre_parse" id="constituent_pare_[SENTENCE_UUID]">
              <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]">
    */
-   function addCommunication(elementID, communicationURL) {
-     $.getJSON(communicationURL, function(comm) {
-       global_comm = comm;
+   function addCommunication(commElementID, comm) {
+     global_comm = comm;
 
-       var document_div = $('#' + elementID);
-       // For now, we assume that there is only a single section segmentation
-       var section_segmentation_div = $('<div>').addClass('section_segmention')
-                                                .attr('id', 'section_segmentation_' + comm.sectionSegmentations[0].uuid);
+     var document_div = $('#' + commElementID);
 
-       for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
-         var section_div = $('<div>').addClass('section')
-                                        .attr('id', 'section_' + comm.sectionSegmentations[0].sectionList[sectionListIndex].uuid);
-         // For now, we assume that there is only a single sentence segmentation
-         var sentence_segmentation_div = $('<div>').addClass('sentence_segmentation')
-                                        .attr('id', 'sentence_segmentation_' + comm.sectionSegmentations[0].uuid);
-         if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
-           for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
-             var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
-             var tokenization = sentence.tokenizationList[0];
+     // For now, we assume that there is only a single section segmentation
+     var section_segmentation_div = $('<div>').addClass('section_segmention')
+       .attr('id', 'section_segmentation_' + comm.sectionSegmentations[0].uuid);
 
-             var sentence_div = $('<div>')
-                                .addClass('sentence')
-                                .attr('id', 'sentence_' + sentence.uuid);
-             var sentence_controls_div = $('<div>')
-                                .addClass('sentence_controls')
-                                .attr('id', 'sentence_controls_' + sentence.uuid);
+     for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
+       var section_div = $('<div>').addClass('section')
+         .attr('id', 'section_' + comm.sectionSegmentations[0].sectionList[sectionListIndex].uuid);
+       // For now, we assume that there is only a single sentence segmentation
+       var sentence_segmentation_div = $('<div>').addClass('sentence_segmentation')
+         .attr('id', 'sentence_segmentation_' + comm.sectionSegmentations[0].uuid);
+       if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
+         for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
+           var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
+           var tokenization = sentence.tokenizationList[0];
 
-             sentence_div.append(sentence_controls_div);
+           var sentence_div = $('<div>')
+             .addClass('sentence')
+             .attr('id', 'sentence_' + sentence.uuid);
+           var sentence_controls_div = $('<div>')
+             .addClass('sentence_controls')
+             .attr('id', 'sentence_controls_' + sentence.uuid);
 
-             var tokenization_div = $('<div>').addClass('tokenization').attr('id', 'tokenization_' + tokenization.uuid);
-             for (var tokenIndex in tokenization.tokenList) {
-               var token = tokenization.tokenList[tokenIndex];
-               var token_span = $('<span>')
-                                   .addClass('token')
-                                   .attr('id', 'tokenization_' + tokenization.uuid + "_" + token.tokenIndex)
-                                   .html(cleanedTokenText(token.text));
-               var token_padding_span = $('<span>')
-                                   .addClass('token_padding')
-                                   .attr('id', 'tokenization_padding_' + tokenization.uuid + "_" + token.tokenIndex)
-                                   .html(" ");
-               tokenization_div.append(token_span);
-               tokenization_div.append(token_padding_span);
-             }
-             sentence_div.append(tokenization_div);
-             sentence_div.append($('<div>')
-                           .addClass('brat_sentence')
-                           .attr('id', 'sentence_pos_' + sentence.uuid));
-             sentence_div.append($('<div>')
-                           .addClass('dagre_parse')
-                           .attr('id', 'constituent_parse_' + sentence.uuid));
-             sentence_div.append($('<div>')
-                           .addClass('dagre_parse')
-                           .attr('id', 'dependency_parse_' + sentence.uuid));
+           sentence_div.append(sentence_controls_div);
 
-             sentence_segmentation_div.append(sentence_div);
+           var tokenization_div = $('<div>').addClass('tokenization').attr('id', 'tokenization_' + tokenization.uuid);
+           for (var tokenIndex in tokenization.tokenList) {
+             var token = tokenization.tokenList[tokenIndex];
+             var token_span = $('<span>')
+               .addClass('token')
+               .attr('id', 'tokenization_' + tokenization.uuid + "_" + token.tokenIndex)
+                 .html(cleanedTokenText(token.text));
+             var token_padding_span = $('<span>')
+               .addClass('token_padding')
+               .attr('id', 'tokenization_padding_' + tokenization.uuid + "_" + token.tokenIndex)
+               .html(" ");
+             tokenization_div.append(token_span);
+             tokenization_div.append(token_padding_span);
            }
-           section_div.append(sentence_segmentation_div);
-         }
-         section_segmentation_div.append(section_div);
-       }
-       document_div.append(section_segmentation_div);
+           sentence_div.append(tokenization_div);
+           sentence_div.append($('<div>')
+             .addClass('brat_sentence')
+             .attr('id', 'sentence_pos_' + sentence.uuid));
+           sentence_div.append($('<div>')
+             .addClass('dagre_parse')
+             .attr('id', 'constituent_parse_' + sentence.uuid));
+           sentence_div.append($('<div>')
+             .addClass('dagre_parse')
+             .attr('id', 'dependency_parse_' + sentence.uuid));
 
-       // Add mentionId's to tokens
-       for (var entityMentionSetIndex in comm.entityMentionSets) {
-         if (comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-           for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-             var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
-             if (entityMention.tokens.tokenIndexList) {
-               var total_tokens = entityMention.tokens.tokenIndexList.length;
-               for (tokenIndex in entityMention.tokens.tokenIndexList) {
-                 $('#tokenization_' + entityMention.tokens.tokenizationId + '_' + entityMention.tokens.tokenIndexList[tokenIndex])
-                                                      .addClass('mention')
-                                                      .addClass('mention_' + entityMention.uuid);
-                 // For multi-word mentions, the spaces between tokens are treated as part of the mention
-                 if (tokenIndex < total_tokens-1) {
-                   $('#tokenization_padding_' + entityMention.tokens.tokenizationId + '_' + entityMention.tokens.tokenIndexList[tokenIndex])
-                                                                                          .addClass('mention')
-                                                                                          .addClass('mention_' + entityMention.uuid);
-                 }
+           sentence_segmentation_div.append(sentence_div);
+         }
+         section_div.append(sentence_segmentation_div);
+       }
+       section_segmentation_div.append(section_div);
+     }
+     document_div.append(section_segmentation_div);
+
+     // Add mentionId's to tokens
+     for (var entityMentionSetIndex in comm.entityMentionSets) {
+       if (comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
+         for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
+           var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
+           if (entityMention.tokens.tokenIndexList) {
+             var total_tokens = entityMention.tokens.tokenIndexList.length;
+             for (tokenIndex in entityMention.tokens.tokenIndexList) {
+               $('#tokenization_' + entityMention.tokens.tokenizationId + '_' + entityMention.tokens.tokenIndexList[tokenIndex])
+                 .addClass('mention')
+                 .addClass('mention_' + entityMention.uuid);
+               // For multi-word mentions, the spaces between tokens are treated as part of the mention
+               if (tokenIndex < total_tokens-1) {
+                 $('#tokenization_padding_' + entityMention.tokens.tokenizationId + '_' + entityMention.tokens.tokenIndexList[tokenIndex])
+                   .addClass('mention')
+                   .addClass('mention_' + entityMention.uuid);
                }
              }
            }
          }
        }
-
-       addSentenceControls(comm);
-       addEntityList(comm);
-       addEntityMouseoverHighlighting(comm);
-     });
+     }
    }
 
    function addEntityList(comm) {
@@ -607,13 +602,13 @@
      for (var entityListIndex in comm.entitySets[0].entityList) {
        var entityList = comm.entitySets[0].entityList[entityListIndex];
        var entityList_div = $('<div>')
-           .html('<b>Entity:</b> <span class="entity_' + entityList.uuid + '">' + entityList.uuid + '</span>');
+         .html('<b>Entity:</b> <span class="entity_' + entityList.uuid + '">' + entityList.uuid + '</span>');
        var mentionId_ul = $('<ul class="list-inline">');
 
        for (var mentionIdListIndex in entityList.mentionIdList) {
          var mentionId = entityList.mentionIdList[mentionIdListIndex];
          var mentionId_li = $('<li>')
-             .html('<span class="mention_' + mentionId + '">' + getTokensForEntityMentionID(comm, mentionId).join(" ") + '</span>');
+           .html('<span class="mention_' + mentionId + '">' + getTokensForEntityMentionID(comm, mentionId).join(" ") + '</span>');
          mentionId_ul.append(mentionId_li);
 
          // Add 'entity_ENTITY_UUID' class to each mention of that entity
@@ -649,6 +644,14 @@
      }
    }
 
+   /*
+   Add buttons to sentence_control <div>'s:
+
+       <div class="sentence_controls" id="sentence_controls_[SENTENCE_UUID]">
+   +     <button>
+   +     <button>
+   +     ...
+    */
    function addSentenceControls(comm) {
      for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
        if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
@@ -659,51 +662,57 @@
            sentence_controls_div = $('#sentence_controls_' + sentence.uuid);
 
            sentence_controls_div.append($('<button>')
-               .attr('type', 'button')
-               .addClass('btn btn-default btn-xs')
-               .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-                 if (hasConstituentParse(event.data.sentence_uuid)) {
-                   toggleConstituentParse(event.data.sentence_uuid);
-                 }
-                 else {
-                   addConstituentParse(event.data.sentence_uuid, event.data.tokenization_uuid);
-                 }
-               })
-               .css('margin-right', '1em')
-               .html("CP"));
+             .attr('type', 'button')
+             .addClass('btn btn-default btn-xs')
+             .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
+               if (hasConstituentParse(event.data.sentence_uuid)) {
+                 toggleConstituentParse(event.data.sentence_uuid);
+               }
+               else {
+                 addConstituentParse(event.data.sentence_uuid, event.data.tokenization_uuid);
+               }
+             })
+             .css('margin-right', '1em')
+             .html("CP"));
           sentence_controls_div.append($('<button>')
-               .attr('type', 'button')
-               .addClass('btn btn-default btn-xs')
-               .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-                 if (hasDependencyParse(event.data.sentence_uuid)) {
-                   toggleDependencyParse(event.data.sentence_uuid);
-                 }
-                 else {
-                   addDependencyParse(event.data.sentence_uuid, event.data.tokenization_uuid);
-                 }
-               })
-               .css('margin-right', '1em')
-               .html("DP"));
+             .attr('type', 'button')
+             .addClass('btn btn-default btn-xs')
+             .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
+               if (hasDependencyParse(event.data.sentence_uuid)) {
+                 toggleDependencyParse(event.data.sentence_uuid);
+               }
+               else {
+                 addDependencyParse(event.data.sentence_uuid, event.data.tokenization_uuid);
+               }
+             })
+             .css('margin-right', '1em')
+             .html("DP"));
           sentence_controls_div.append($('<button>')
-               .attr('type', 'button')
-               .addClass('btn btn-default btn-xs')
-               .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-                 if (hasPOSTags(event.data.sentence_uuid)) {
-                   togglePOSTags(event.data.sentence_uuid);
-                 }
-                 else {
-                   addPOSTags(event.data.sentence_uuid, event.data.tokenization_uuid);
-                 }
-               })
-               .css('margin-right', '1em')
-               .html("POS"));
+             .attr('type', 'button')
+             .addClass('btn btn-default btn-xs')
+             .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
+               if (hasPOSTags(event.data.sentence_uuid)) {
+                 togglePOSTags(event.data.sentence_uuid);
+               }
+               else {
+                 addPOSTags(event.data.sentence_uuid, event.data.tokenization_uuid);
+               }
+             })
+             .css('margin-right', '1em')
+             .html("POS"));
          }
        }
      }
    }
 
    $(document).ready(function() {
-     addCommunication('communication', '{% url "as_json" %}');
+
+     $.getJSON('{% url "as_json" %}',function(comm) {
+       addCommunication('communication_one', comm);
+       addSentenceControls(comm);
+       addEntityList(comm);
+       addEntityMouseoverHighlighting(comm);
+     });
    });
 
   </script>
@@ -711,7 +720,7 @@
 <body>
   <div class="container">
     <h2>Sentences</h2>
-    <div id="communication"></div>
+    <div id="communication_one"></div>
 
     <h2>Entities</h2>
     <div id="entityList"></div>
