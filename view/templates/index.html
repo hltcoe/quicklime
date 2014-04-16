@@ -157,16 +157,9 @@
    // TODO: Fix hack
    var global_comm;
 
-   function getTokensForEntityMentionID(comm, mentionId) {
-     var entityMention = getEntityMentionWithUUID(comm, mentionId);
-     var tokenization = getTokenizationWithUUID(comm, entityMention.tokens.tokenizationId);
-
-     var tokens = new Array();
-
-     for (var tokenIndex in entityMention.tokens.tokenIndexList) {
-       tokens.push(tokenization.tokenList[entityMention.tokens.tokenIndexList[tokenIndex]].text);
-     }
-     return tokens;
+   function getCommunicationWithUUID(uuid) {
+     // TODO: Replace this stub with actual code
+     return global_comm;
    }
 
    function getEntityMentionWithUUID(comm, uuid) {
@@ -222,6 +215,18 @@
      console.log("ERROR: No Tokenization found with UUID " + uuid);
    }
 
+   function getTokensForEntityMentionID(comm, mentionId) {
+     var entityMention = getEntityMentionWithUUID(comm, mentionId);
+     var tokenization = getTokenizationWithUUID(comm, entityMention.tokens.tokenizationId);
+
+     var tokens = new Array();
+
+     for (var tokenIndex in entityMention.tokens.tokenIndexList) {
+       tokens.push(tokenization.tokenList[entityMention.tokens.tokenIndexList[tokenIndex]].text);
+     }
+     return tokens;
+   }
+
    function cleanedTokenText(tokenText) {
      // Convert Penn Treebank-style symbols for brackets to bracket characters
      //   http://www.cis.upenn.edu/~treebank/tokenization.html
@@ -243,13 +248,15 @@
      }
    }
 
-   function addConstituentParse(sentenceUUID, tokenizationUUID) {
-     var tokenization = getTokenizationWithUUID(global_comm, tokenizationUUID);
+   function addConstituentParse(communicationUUID, sentenceUUID, tokenizationUUID) {
+     var comm = getCommunicationWithUUID(comm);
+     var tokenization = getTokenizationWithUUID(comm, tokenizationUUID);
      drawConstituentParse("#constituent_parse_" + sentenceUUID, tokenization);
    }
 
-   function addDependencyParse(sentenceUUID, tokenizationUUID) {
-     var tokenization = getTokenizationWithUUID(global_comm, tokenizationUUID);
+   function addDependencyParse(communicationUUID, sentenceUUID, tokenizationUUID) {
+     var comm = getCommunicationWithUUID(comm);
+     var tokenization = getTokenizationWithUUID(comm, tokenizationUUID);
      drawDependencyParse("#dependency_parse_" + sentenceUUID, tokenization);
    }
 
@@ -374,9 +381,10 @@
      $("#sentence_pos_" + sentenceUUID).toggle();
    }
 
-   function addPOSTags(sentenceUUID, tokenizationUUID) {
-     var sentence = getSentenceWithUUID(global_comm, sentenceUUID);
-     var tokenization = getTokenizationWithUUID(global_comm, tokenizationUUID);
+   function addPOSTags(communicationUUID, sentenceUUID, tokenizationUUID) {
+     var comm = getCommunicationWithUUID(communicationUUID);
+     var sentence = getSentenceWithUUID(comm, sentenceUUID);
+     var tokenization = getTokenizationWithUUID(comm, tokenizationUUID);
 
      var bratLocation = '{% static "view/brat" %}';
 
@@ -386,7 +394,7 @@
        bratLocation + '/static/fonts/Liberation_Sans-Regular.ttf'
      ];
 
-     // Tag names and colors are copied from the BRAT configuraiton file for
+     // Tag names and colors are copied from the BRAT configuration file for
      // Stanford NLP:
      //   brat-v1.3_Crunchy_Frog/configurations/Stanford-CoreNLP/visual.conf
      var collData = {
@@ -462,7 +470,8 @@
        ]
      };
 
-     var sentence_text = global_comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
+     var comm = getCommunicationWithUUID(communicationUUID);
+     var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
      var pos_tag_labels = [];
 
      for (var i = 0; i < tokenization.posTagList.taggedTokenList.length; i++) {
@@ -492,7 +501,7 @@
    }
 
    /*
-   <div class="communication">
+   <div class="communication" id="communication_UUID">>
      <div class="section_segmentation" id="section_segmentation_UUID">
        <div class="section" id="section_UUID">
          <div class="sentence_segmentation" id="sentence_segmentation_UUID">
@@ -511,10 +520,12 @@
              <div class="dagre_parse" id="constituent_pare_[SENTENCE_UUID]">
              <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]">
    */
-   function addCommunication(commElementID, comm) {
+   function addCommunication(parentElementID, comm) {
      global_comm = comm;
 
-     var document_div = $('#' + commElementID);
+     var parent_element = $('#' + parentElementID);
+     var document_div = $('<div>').addClass('communication').attr('id', 'communication_' + comm.uuid);
+     parent_element.append(document_div);
 
      // For now, we assume that there is only a single section segmentation
      var section_segmentation_div = $('<div>').addClass('section_segmention')
@@ -664,12 +675,12 @@
            sentence_controls_div.append($('<button>')
              .attr('type', 'button')
              .addClass('btn btn-default btn-xs')
-             .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
+             .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
                if (hasConstituentParse(event.data.sentence_uuid)) {
                  toggleConstituentParse(event.data.sentence_uuid);
                }
                else {
-                 addConstituentParse(event.data.sentence_uuid, event.data.tokenization_uuid);
+                 addConstituentParse(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
                }
              })
              .css('margin-right', '1em')
@@ -677,12 +688,12 @@
           sentence_controls_div.append($('<button>')
              .attr('type', 'button')
              .addClass('btn btn-default btn-xs')
-             .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
+             .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
                if (hasDependencyParse(event.data.sentence_uuid)) {
                  toggleDependencyParse(event.data.sentence_uuid);
                }
                else {
-                 addDependencyParse(event.data.sentence_uuid, event.data.tokenization_uuid);
+                 addDependencyParse(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
                }
              })
              .css('margin-right', '1em')
@@ -690,12 +701,12 @@
           sentence_controls_div.append($('<button>')
              .attr('type', 'button')
              .addClass('btn btn-default btn-xs')
-             .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
+             .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
                if (hasPOSTags(event.data.sentence_uuid)) {
                  togglePOSTags(event.data.sentence_uuid);
                }
                else {
-                 addPOSTags(event.data.sentence_uuid, event.data.tokenization_uuid);
+                 addPOSTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
                }
              })
              .css('margin-right', '1em')
@@ -706,7 +717,6 @@
    }
 
    $(document).ready(function() {
-
      $.getJSON('{% url "as_json" %}',function(comm) {
        addCommunication('communication_one', comm);
        addSentenceControls(comm);
