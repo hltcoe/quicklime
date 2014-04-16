@@ -13,6 +13,8 @@ Installation
 Usage
 -----
 
+Run the script using:
+
     showme.py CONCRETE_FILENAME
 
-Then point your browser at http://localhost:8080
+then point your browser at http://localhost:8080
