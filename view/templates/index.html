@@ -538,45 +538,6 @@
                                 .addClass('sentence_controls')
                                 .attr('id', 'sentence_controls_' + sentence.uuid);
 
-             sentence_controls_div.append($('<button>')
-                                 .attr('type', 'button')
-                                 .addClass('btn btn-default btn-xs')
-                                 .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-                                    if (hasConstituentParse(event.data.sentence_uuid)) {
-                                      toggleConstituentParse(event.data.sentence_uuid);
-                                    }
-                                    else {
-                                      addConstituentParse(event.data.sentence_uuid, event.data.tokenization_uuid);
-                                    }
-                                 })
-                                 .css('margin-right', '1em')
-                                 .html("CP"));
-             sentence_controls_div.append($('<button>')
-                                 .attr('type', 'button')
-                                 .addClass('btn btn-default btn-xs')
-                                 .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-                                    if (hasDependencyParse(event.data.sentence_uuid)) {
-                                      toggleDependencyParse(event.data.sentence_uuid);
-                                    }
-                                    else {
-                                      addDependencyParse(event.data.sentence_uuid, event.data.tokenization_uuid);
-                                    }
-                                 })
-                                 .css('margin-right', '1em')
-                                 .html("DP"));
-             sentence_controls_div.append($('<button>')
-                                 .attr('type', 'button')
-                                 .addClass('btn btn-default btn-xs')
-                                 .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-                                    if (hasPOSTags(event.data.sentence_uuid)) {
-                                      togglePOSTags(event.data.sentence_uuid);
-                                    }
-                                    else {
-                                      addPOSTags(event.data.sentence_uuid, event.data.tokenization_uuid);
-                                    }
-                                 })
-                                 .css('margin-right', '1em')
-                                 .html("POS"));
              sentence_div.append(sentence_controls_div);
 
              var tokenization_div = $('<div>').addClass('tokenization').attr('id', 'tokenization_' + tokenization.uuid);
@@ -603,6 +564,7 @@
              sentence_div.append($('<div>')
                            .addClass('dagre_parse')
                            .attr('id', 'dependency_parse_' + sentence.uuid));
+
              sentence_segmentation_div.append(sentence_div);
            }
            section_div.append(sentence_segmentation_div);
@@ -634,49 +596,110 @@
          }
        }
 
-       // Add list of entities, and list of mentions for each entity, to the DOM
-       for (var entityListIndex in comm.entitySets[0].entityList) {
-         var entityList = comm.entitySets[0].entityList[entityListIndex];
-         var entityList_div = $('<div>')
-                              .html('<b>Entity:</b> <span class="entity_' + entityList.uuid + '">' + entityList.uuid + '</span>');
-         var mentionId_ul = $('<ul class="list-inline">');
+       addSentenceControls(comm);
+       addEntityList(comm);
+       addEntityMouseoverHighlighting(comm);
+     });
+   }
 
-         for (var mentionIdListIndex in entityList.mentionIdList) {
-           var mentionId = entityList.mentionIdList[mentionIdListIndex];
-           var mentionId_li = $('<li>')
-                                     .html('<span class="mention_' + mentionId + '">' + getTokensForEntityMentionID(comm, mentionId).join(" ") + '</span>');
-           mentionId_ul.append(mentionId_li);
+   function addEntityList(comm) {
+     // Add list of entities, and list of mentions for each entity, to the DOM
+     for (var entityListIndex in comm.entitySets[0].entityList) {
+       var entityList = comm.entitySets[0].entityList[entityListIndex];
+       var entityList_div = $('<div>')
+           .html('<b>Entity:</b> <span class="entity_' + entityList.uuid + '">' + entityList.uuid + '</span>');
+       var mentionId_ul = $('<ul class="list-inline">');
 
-           // Add 'entity_ENTITY_UUID' class to each mention of that entity
-           $('.mention_' + mentionId).addClass('entity_' + entityList.uuid);
-         }
-         entityList_div.append(mentionId_ul);
+       for (var mentionIdListIndex in entityList.mentionIdList) {
+         var mentionId = entityList.mentionIdList[mentionIdListIndex];
+         var mentionId_li = $('<li>')
+             .html('<span class="mention_' + mentionId + '">' + getTokensForEntityMentionID(comm, mentionId).join(" ") + '</span>');
+         mentionId_ul.append(mentionId_li);
 
-         $('#entityList').append(entityList_div);
+         // Add 'entity_ENTITY_UUID' class to each mention of that entity
+         $('.mention_' + mentionId).addClass('entity_' + entityList.uuid);
        }
+       entityList_div.append(mentionId_ul);
 
-       // Add mouseover functions for all elements linked to an entity
-       for (var entityListIndex in comm.entitySets[0].entityList) {
-         var entity = comm.entitySets[0].entityList[entityListIndex];
-         $('.entity_' + entity.uuid).mouseenter({ entity_selector: '.entity_' + entity.uuid }, function(event) {
-           $(event.data.entity_selector).addClass("highlighted_entity");
-         }).mouseleave({ entity_selector: '.entity_' + entity.uuid }, function(event) {
-           $(event.data.entity_selector).removeClass("highlighted_entity");
+       $('#entityList').append(entityList_div);
+     }
+   }
+
+   function addEntityMouseoverHighlighting(comm) {
+     // Add mouseover functions for all elements linked to an entity
+     for (var entityListIndex in comm.entitySets[0].entityList) {
+       var entity = comm.entitySets[0].entityList[entityListIndex];
+       $('.entity_' + entity.uuid).mouseenter({ entity_selector: '.entity_' + entity.uuid }, function(event) {
+         $(event.data.entity_selector).addClass("highlighted_entity");
+       }).mouseleave({ entity_selector: '.entity_' + entity.uuid }, function(event) {
+         $(event.data.entity_selector).removeClass("highlighted_entity");
+       });
+     }
+
+     // Add mouseover functions for all elements linked to a mention
+     for (var entityMentionSetIndex in comm.entityMentionSets) {
+       for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
+         var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
+         $('.mention_' + entityMention.uuid).mouseenter({ mention_selector: '.mention_'+entityMention.uuid }, function(event) {
+           $(event.data.mention_selector).addClass("highlighted_mention");
+         }).mouseleave({ mention_selector: '.mention_'+entityMention.uuid }, function(event) {
+           $(event.data.mention_selector).removeClass("highlighted_mention");
          });
        }
+     }
+   }
 
-       // Add mouseover functions for all elements linked to a mention
-       for (var entityMentionSetIndex in comm.entityMentionSets) {
-         for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-           var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
-           $('.mention_' + entityMention.uuid).mouseenter({ mention_selector: '.mention_'+entityMention.uuid }, function(event) {
-             $(event.data.mention_selector).addClass("highlighted_mention");
-           }).mouseleave({ mention_selector: '.mention_'+entityMention.uuid }, function(event) {
-             $(event.data.mention_selector).removeClass("highlighted_mention");
-           });
+   function addSentenceControls(comm) {
+     for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
+       if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
+         for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
+           var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
+           var tokenization = sentence.tokenizationList[0];
+
+           sentence_controls_div = $('#sentence_controls_' + sentence.uuid);
+
+           sentence_controls_div.append($('<button>')
+               .attr('type', 'button')
+               .addClass('btn btn-default btn-xs')
+               .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
+                 if (hasConstituentParse(event.data.sentence_uuid)) {
+                   toggleConstituentParse(event.data.sentence_uuid);
+                 }
+                 else {
+                   addConstituentParse(event.data.sentence_uuid, event.data.tokenization_uuid);
+                 }
+               })
+               .css('margin-right', '1em')
+               .html("CP"));
+          sentence_controls_div.append($('<button>')
+               .attr('type', 'button')
+               .addClass('btn btn-default btn-xs')
+               .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
+                 if (hasDependencyParse(event.data.sentence_uuid)) {
+                   toggleDependencyParse(event.data.sentence_uuid);
+                 }
+                 else {
+                   addDependencyParse(event.data.sentence_uuid, event.data.tokenization_uuid);
+                 }
+               })
+               .css('margin-right', '1em')
+               .html("DP"));
+          sentence_controls_div.append($('<button>')
+               .attr('type', 'button')
+               .addClass('btn btn-default btn-xs')
+               .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
+                 if (hasPOSTags(event.data.sentence_uuid)) {
+                   togglePOSTags(event.data.sentence_uuid);
+                 }
+                 else {
+                   addPOSTags(event.data.sentence_uuid, event.data.tokenization_uuid);
+                 }
+               })
+               .css('margin-right', '1em')
+               .html("POS"));
          }
        }
-     });
+     }
    }
 
    $(document).ready(function() {
