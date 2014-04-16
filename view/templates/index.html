@@ -491,14 +491,41 @@
      );
    }
 
-   $(document).ready(function() {
-     $.getJSON("{% url 'as_json' %}", function(comm) {
+   /*
+   <div class="communication">
+     <div class="section_segmentation" id="section_segmentation_UUID">
+       <div class="section" id="section_UUID">
+         <div class="sentence_segmentation" id="sentence_segmentation_UUID">
+           <div class="sentence" id="sentence_UUID">>
+             <div class="sentence_controls" id="sentence_controls_[SENTENCE_UUID]">
+               <button>
+               <button>
+               ...
+             <div class="tokenization" id="tokenization_UUID">
+               <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
+               <span class="token_padding"id=" tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
+               <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
+               <span class="token_padding"id=" tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
+             ...
+             <div class="brat_sentence" id="sentence_pos_[SENTENCE_UUID]">
+             <div class="dagre_parse" id="constituent_pare_[SENTENCE_UUID]">
+             <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]">
+   */
+   function addCommunication(elementID, communicationURL) {
+     $.getJSON(communicationURL, function(comm) {
        global_comm = comm;
 
-       // Add tokens to DOM tree
+       var document_div = $('#' + elementID);
+       // For now, we assume that there is only a single section segmentation
+       var section_segmentation_div = $('<div>').addClass('section_segmention')
+                                                .attr('id', 'section_segmentation_' + comm.sectionSegmentations[0].uuid);
+
        for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
          var section_div = $('<div>').addClass('section')
                                         .attr('id', 'section_' + comm.sectionSegmentations[0].sectionList[sectionListIndex].uuid);
+         // For now, we assume that there is only a single sentence segmentation
+         var sentence_segmentation_div = $('<div>').addClass('sentence_segmentation')
+                                        .attr('id', 'sentence_segmentation_' + comm.sectionSegmentations[0].uuid);
          if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
            for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
              var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
@@ -507,7 +534,11 @@
              var sentence_div = $('<div>')
                                 .addClass('sentence')
                                 .attr('id', 'sentence_' + sentence.uuid);
-             sentence_div.append($('<button>')
+             var sentence_controls_div = $('<div>')
+                                .addClass('sentence_controls')
+                                .attr('id', 'sentence_controls_' + sentence.uuid);
+
+             sentence_controls_div.append($('<button>')
                                  .attr('type', 'button')
                                  .addClass('btn btn-default btn-xs')
                                  .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
@@ -520,7 +551,7 @@
                                  })
                                  .css('margin-right', '1em')
                                  .html("CP"));
-             sentence_div.append($('<button>')
+             sentence_controls_div.append($('<button>')
                                  .attr('type', 'button')
                                  .addClass('btn btn-default btn-xs')
                                  .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
@@ -533,7 +564,7 @@
                                  })
                                  .css('margin-right', '1em')
                                  .html("DP"));
-             sentence_div.append($('<button>')
+             sentence_controls_div.append($('<button>')
                                  .attr('type', 'button')
                                  .addClass('btn btn-default btn-xs')
                                  .click({ sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
@@ -546,6 +577,9 @@
                                  })
                                  .css('margin-right', '1em')
                                  .html("POS"));
+             sentence_div.append(sentence_controls_div);
+
+             var tokenization_div = $('<div>').addClass('tokenization').attr('id', 'tokenization_' + tokenization.uuid);
              for (var tokenIndex in tokenization.tokenList) {
                var token = tokenization.tokenList[tokenIndex];
                var token_span = $('<span>')
@@ -556,9 +590,10 @@
                                    .addClass('token_padding')
                                    .attr('id', 'tokenization_padding_' + tokenization.uuid + "_" + token.tokenIndex)
                                    .html(" ");
-               sentence_div.append(token_span);
-               sentence_div.append(token_padding_span);
+               tokenization_div.append(token_span);
+               tokenization_div.append(token_padding_span);
              }
+             sentence_div.append(tokenization_div);
              sentence_div.append($('<div>')
                            .addClass('brat_sentence')
                            .attr('id', 'sentence_pos_' + sentence.uuid));
@@ -568,11 +603,13 @@
              sentence_div.append($('<div>')
                            .addClass('dagre_parse')
                            .attr('id', 'dependency_parse_' + sentence.uuid));
-             section_div.append(sentence_div);
+             sentence_segmentation_div.append(sentence_div);
            }
+           section_div.append(sentence_segmentation_div);
          }
-         $('#communication').append(section_div);
+         section_segmentation_div.append(section_div);
        }
+       document_div.append(section_segmentation_div);
 
        // Add mentionId's to tokens
        for (var entityMentionSetIndex in comm.entityMentionSets) {
@@ -640,7 +677,12 @@
          }
        }
      });
+   }
+
+   $(document).ready(function() {
+     addCommunication('communication', '{% url "as_json" %}');
    });
+
   </script>
 </head>
 <body>
