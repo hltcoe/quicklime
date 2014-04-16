@@ -1,3 +1,5 @@
+bottle
 concrete>=2.0.5pre
-Django>=1.6.1
-django-extensions
+
+#Django>=1.6.1
+#django-extensions
