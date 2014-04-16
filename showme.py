@@ -2,6 +2,8 @@
 
 import argparse
 import json
+import os.path
+import sys
 
 from bottle import route, run, static_file
 from thrift import TSerialization
@@ -36,7 +38,12 @@ def server_static(filepath):
 
 parser = argparse.ArgumentParser(description="")
 parser.add_argument("communication_file")
+parser.add_argument("-p", "--port", default=8080)
 args = parser.parse_args()
 communication_filename = args.communication_file
 
-run(host='localhost', port=8080)
+if not os.path.isfile(communication_filename):
+    print "ERROR: Could not find Communication file '%s'" % communication_filename
+    sys.exit()
+
+run(host='localhost', port=args.port)
