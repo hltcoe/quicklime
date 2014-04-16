@@ -10,6 +10,7 @@ from thrift import TSerialization
 from thrift.protocol import TJSONProtocol
 
 from concrete.util import read_communication_from_file
+from concrete.validate import validate_communication
 
 
 # HACKY global variable used to save command-line argument
@@ -45,5 +46,10 @@ communication_filename = args.communication_file
 if not os.path.isfile(communication_filename):
     print "ERROR: Could not find Communication file '%s'" % communication_filename
     sys.exit()
+
+comm = read_communication_from_file(communication_filename)
+
+# Log validation errors to console, but ignore return value
+validate_communication(comm)
 
 run(host='localhost', port=args.port)
