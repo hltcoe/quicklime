@@ -72,12 +72,15 @@
   <!-- === /BRAT SCRIPTS === -->
 
   <script src="{% static "view/connotate.js" %}"></script>
+  <script src="{% static "view/connotate.brat.js" %}"></script>
+  <script src="{% static "view/connotate.parse.js" %}"></script>
 
   <script>
    $(document).ready(function() {
      $.getJSON('{% url "as_json" %}',function(comm) {
        addCommunication('communication_one', comm);
-       addSentenceControls(comm);
+       addSentenceParseControls(comm);
+       addSentenceBRATControls(comm);
        addEntityList(comm);
        addEntityMouseoverHighlighting(comm);
      });
