@@ -6,6 +6,8 @@ Communication.
 Installation
 ------------
 
+Install dependencies using pip:
+
     pip install bottle
     pip install git+https://github.com/charman/concrete-python.git#egg=concrete
 
