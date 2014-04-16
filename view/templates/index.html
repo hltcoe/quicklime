@@ -53,7 +53,23 @@
   -->
   <script src="{% static "view/d3/3.4.4/d3.js" %}"></script>
   <script src="{% static "view/dagre-d3/0.1.5/dagre-d3.js" %}"></script>
-  <script src="{% static "view/brat/client/lib/head.load.min.js" %}">script></script>
+
+  <!-- === BRAT SCRIPTS === -->
+  <!-- SVG for jQuery v1.4.3.  http://keith-wood.name/svg.html -->
+  <script src="{% static "view/brat/client/lib/jquery.svg.min.js" %}">script></script>
+  <script src="{% static "view/brat/client/lib/jquery.svgdom.min.js" %}">script></script>
+
+  <!-- BRAT helper modules -->
+  <script src="{% static "view/brat/client/src/configuration.js" %}">script></script>
+  <script src="{% static "view/brat/client/src/util.js" %}">script></script>
+  <script src="{% static "view/brat/client/src/annotation_log.js" %}">script></script>
+  <script src="{% static "view/brat/client/lib/webfont.js" %}">script></script>
+
+  <!-- BRAT modules -->
+  <script src="{% static "view/brat/client/src/dispatcher.js" %}">script></script>
+  <script src="{% static "view/brat/client/src/url_monitor.js" %}">script></script>
+  <script src="{% static "view/brat/client/src/visualizer.js" %}">script></script>
+  <!-- === /BRAT SCRIPTS === -->
 
   <style>
     /* CSS rules for parse trees drawn using 'dagre-d3'.
@@ -358,30 +374,6 @@
      $("#sentence_pos_" + sentenceUUID).toggle();
    }
 
-   function loadBRATLibraries() {
-     var bratLocation = '{% static "view/brat" %}';
-
-     head.js(
-       // External libraries
-//       bratLocation + '/client/lib/jquery.min.js',
-
-       // SVG for jQuery v1.4.3.  http://keith-wood.name/svg.html
-       bratLocation + '/client/lib/jquery.svg.min.js',
-       bratLocation + '/client/lib/jquery.svgdom.min.js',
-
-       // brat helper modules
-       bratLocation + '/client/src/configuration.js',
-       bratLocation + '/client/src/util.js',
-       bratLocation + '/client/src/annotation_log.js',
-       bratLocation + '/client/lib/webfont.js',
-
-       // brat modules
-       bratLocation + '/client/src/dispatcher.js',
-       bratLocation + '/client/src/url_monitor.js',
-       bratLocation + '/client/src/visualizer.js'
-     );
-   }
-
    function addPOSTags(sentenceUUID, tokenizationUUID) {
      var sentence = getSentenceWithUUID(global_comm, sentenceUUID);
      var tokenization = getTokenizationWithUUID(global_comm, tokenizationUUID);
@@ -500,8 +492,6 @@
    }
 
    $(document).ready(function() {
-     loadBRATLibraries();
-
      $.getJSON("{% url 'as_json' %}", function(comm) {
        global_comm = comm;
 
