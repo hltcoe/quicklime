@@ -171,9 +171,9 @@ function addSentenceBRATControls(comm) {
         var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
         var tokenization = sentence.tokenizationList[0];
 
-        sentence_controls_div = $('#sentence_controls_' + sentence.uuid);
+        var sentence_controls_div = $('#sentence_controls_' + sentence.uuid);
 
-        sentence_controls_div.append($('<button>')
+	var ner_tag_button = $('<button>')
           .attr('type', 'button')
           .addClass('btn btn-default btn-xs')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
@@ -185,8 +185,13 @@ function addSentenceBRATControls(comm) {
             }
           })
           .css('margin-right', '1em')
-          .html("NER"));
-        sentence_controls_div.append($('<button>')
+          .html("NER");
+	if (!tokenization.nerTagList) {
+	  ner_tag_button.attr('disabled', 'disabled');
+	}
+	sentence_controls_div.append(ner_tag_button);
+
+	var pos_tag_button = $('<button>')
           .attr('type', 'button')
           .addClass('btn btn-default btn-xs')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
@@ -198,7 +203,11 @@ function addSentenceBRATControls(comm) {
             }
           })
           .css('margin-right', '1em')
-          .html("POS"));
+          .html("POS");
+	if (!tokenization.posTagList) {
+	  pos_tag_button.attr('disabled', 'disabled');
+	}
+	sentence_controls_div.append(pos_tag_button);
       }
     }
   }
