@@ -168,16 +168,6 @@ function hasDependencyParse(sentenceUUID) {
 }
 
 
-function hasPOSTags(sentenceUUID) {
-  if ($("#sentence_pos_" + sentenceUUID + " svg").length > 0) {
-    return true;
-  }
-  else {
-    return false;
-  }
-}
-
-
 function toggleConstituentParse(sentenceUUID) {
   $("#constituent_parse_" + sentenceUUID).toggle('slow');
 }

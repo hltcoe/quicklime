@@ -79,6 +79,9 @@ function addCommunication(parentElementID, comm) {
         sentence_div.append(tokenization_div);
         sentence_div.append($('<div>')
           .addClass('brat_sentence')
+          .attr('id', 'sentence_ner_' + sentence.uuid));
+        sentence_div.append($('<div>')
+          .addClass('brat_sentence')
           .attr('id', 'sentence_pos_' + sentence.uuid));
         sentence_div.append($('<div>')
           .addClass('dagre_parse')

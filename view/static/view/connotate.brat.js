@@ -1,3 +1,45 @@
+function addNERTags(communicationUUID, sentenceUUID, tokenizationUUID) {
+  var comm = getCommunicationWithUUID(communicationUUID);
+  var sentence = getSentenceWithUUID(comm, sentenceUUID);
+  var tokenization = getTokenizationWithUUID(comm, tokenizationUUID);
+
+  var webFontURLs = [];
+
+  // Tag names and colors are copied from the BRAT configuration file for
+  // Stanford NLP:
+  //   brat-v1.3_Crunchy_Frog/configurations/Stanford-CoreNLP/visual.conf
+  var collData = {
+    entity_types: [
+      { type: 'DATE', labels: ['Date', 'Date'], bgColor: '#9affe6' },
+      { type: 'DURATION', labels: ['Duration', 'Dur'], bgColor: '#9affe6' },
+      { type: 'LOCATION', labels: ['Location', 'Loc'], bgColor: '#95dfff' },
+      { type: 'MISC', labels: ['Misc', 'Misc'], bgColor: '#f1f447' },
+      { type: 'NUMBER', labels: ['Number', 'Num'], bgColor: '#df99ff' },
+      { type: 'ORGANIZATION', labels: ['Organization', 'Org'], bgColor: '#8fb2ff' },
+      { type: 'PERCENT', labels: ['Percent', 'Perc'], bgColor: '#ffa22b' },
+      { type: 'PERSON', labels: ['Person', 'Pers'], bgColor: '#ffccaa' },
+      { type: 'SET', labels: ['Set', 'Set'], bgColor: '#ff7c95' },
+      { type: 'TIME', labels: ['Time', 'Time'], bgColor: '#9affe6' },
+    ]
+  }
+
+  var comm = getCommunicationWithUUID(communicationUUID);
+  var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
+  var ner_tag_labels = [];
+
+  for (var i = 0; i < tokenization.nerTagList.taggedTokenList.length; i++) {
+    var nerTag = tokenization.nerTagList.taggedTokenList[i];
+    var token = tokenization.tokenList[nerTag.tokenIndex];
+    var entityID = "T" + (i+1);
+    if (nerTag.tag != "O") {
+      ner_tag_labels.push([entityID, nerTag.tag, [[token.textSpan.start, token.textSpan.ending]]]);
+    }
+  }
+
+  var docData = { text: sentence_text, entities: ner_tag_labels };
+
+  Util.embed('sentence_ner_' + sentence.uuid, collData, docData, webFontURLs);
+}
 
 
 function addPOSTags(communicationUUID, sentenceUUID, tokenizationUUID) {
@@ -135,6 +177,19 @@ function addSentenceBRATControls(comm) {
           .attr('type', 'button')
           .addClass('btn btn-default btn-xs')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
+            if (hasNERTags(event.data.sentence_uuid)) {
+              toggleNERTags(event.data.sentence_uuid);
+            }
+            else {
+              addNERTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+            }
+          })
+          .css('margin-right', '1em')
+          .html("NER"));
+        sentence_controls_div.append($('<button>')
+          .attr('type', 'button')
+          .addClass('btn btn-default btn-xs')
+          .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
             if (hasPOSTags(event.data.sentence_uuid)) {
               togglePOSTags(event.data.sentence_uuid);
             }
@@ -147,6 +202,31 @@ function addSentenceBRATControls(comm) {
       }
     }
   }
+}
+
+
+function hasNERTags(sentenceUUID) {
+  if ($("#sentence_ner_" + sentenceUUID + " svg").length > 0) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+
+function hasPOSTags(sentenceUUID) {
+  if ($("#sentence_pos_" + sentenceUUID + " svg").length > 0) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+
+function toggleNERTags(sentenceUUID) {
+  $("#sentence_ner_" + sentenceUUID).toggle();
 }
 
 
