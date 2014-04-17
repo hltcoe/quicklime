@@ -19,9 +19,9 @@ communication_filename = ''
 
 @route('/')
 def index():
-    return static_file("index.html", root="view/templates")
+    return static_file("index.html", root="quicklime/templates")
 
-@route('/view/as_json')
+@route('/quicklime/as_json')
 def as_json():
     comm = read_communication_from_file(communication_filename)
     comm_json_string = TSerialization.serialize(comm, TJSONProtocol.TSimpleJSONProtocolFactory())
@@ -32,9 +32,9 @@ def as_json():
 
     return comm_dict
 
-@route('/static/view/<filepath:path>')
+@route('/static/quicklime/<filepath:path>')
 def server_static(filepath):
-    return static_file(filepath, root='view/static/view')
+    return static_file(filepath, root='quicklime/static/quicklime')
 
 
 parser = argparse.ArgumentParser(description="")

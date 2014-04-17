@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="static/view/bootstrap/css/bootstrap.css" %}"/>
-  <link rel="stylesheet" href="static/view/bootstrap/css/bootstrap-theme.css" %}"/>
-  <link rel="stylesheet" href="static/view/brat/style-vis.css" %}"/>
-  <link rel="stylesheet" href="static/view/connotate.css" %}"/>
+  <link rel="stylesheet" href="static/quicklime/bootstrap/css/bootstrap.css" %}"/>
+  <link rel="stylesheet" href="static/quicklime/bootstrap/css/bootstrap-theme.css" %}"/>
+  <link rel="stylesheet" href="static/quicklime/brat/style-vis.css" %}"/>
+  <link rel="stylesheet" href="static/quicklime/quicklime.css" %}"/>
 
   <!--
   JavaScript library issues
@@ -45,38 +45,38 @@
     only using the Bootstrap CSS/images and not any JavaScript
   -->
 
-  <script src="static/view/brat/client/lib/jquery.min.js" %}"></script>
+  <script src="static/quicklime/brat/client/lib/jquery.min.js" %}"></script>
 
   <!--
-  <script src="static/view/jquery-1.11.0.min.js" %}"></script>
-  <script src="static/view/bootstrap/js/bootstrap.js" %}"></script>
+  <script src="static/quicklime/jquery-1.11.0.min.js" %}"></script>
+  <script src="static/quicklime/bootstrap/js/bootstrap.js" %}"></script>
   -->
-  <script src="static/view/d3/3.4.4/d3.js" %}"></script>
-  <script src="static/view/dagre-d3/0.1.5/dagre-d3.js" %}"></script>
+  <script src="static/quicklime/d3/3.4.4/d3.js" %}"></script>
+  <script src="static/quicklime/dagre-d3/0.1.5/dagre-d3.js" %}"></script>
 
   <!-- === BRAT SCRIPTS === -->
   <!-- SVG for jQuery v1.4.3.  http://keith-wood.name/svg.html -->
-  <script src="static/view/brat/client/lib/jquery.svg.min.js" %}"></script>
-  <script src="static/view/brat/client/lib/jquery.svgdom.min.js" %}"></script>
+  <script src="static/quicklime/brat/client/lib/jquery.svg.min.js" %}"></script>
+  <script src="static/quicklime/brat/client/lib/jquery.svgdom.min.js" %}"></script>
 
   <!-- BRAT helper modules -->
-  <script src="static/view/brat/client/src/configuration.js" %}"></script>
-  <script src="static/view/brat/client/src/util.js" %}"></script>
-  <script src="static/view/brat/client/src/annotation_log.js" %}"></script>
+  <script src="static/quicklime/brat/client/src/configuration.js" %}"></script>
+  <script src="static/quicklime/brat/client/src/util.js" %}"></script>
+  <script src="static/quicklime/brat/client/src/annotation_log.js" %}"></script>
 
   <!-- BRAT modules -->
-  <script src="static/view/brat/client/src/dispatcher.js" %}"></script>
-  <script src="static/view/brat/client/src/url_monitor.js" %}"></script>
-  <script src="static/view/brat/client/src/visualizer.js" %}"></script>
+  <script src="static/quicklime/brat/client/src/dispatcher.js" %}"></script>
+  <script src="static/quicklime/brat/client/src/url_monitor.js" %}"></script>
+  <script src="static/quicklime/brat/client/src/visualizer.js" %}"></script>
   <!-- === /BRAT SCRIPTS === -->
 
-  <script src="static/view/connotate.js" %}"></script>
-  <script src="static/view/connotate.brat.js" %}"></script>
-  <script src="static/view/connotate.parse.js" %}"></script>
+  <script src="static/quicklime/quicklime.js" %}"></script>
+  <script src="static/quicklime/quicklime.brat.js" %}"></script>
+  <script src="static/quicklime/quicklime.parse.js" %}"></script>
 
   <script>
    $(document).ready(function() {
-     $.getJSON('view/as_json',function(comm) {
+     $.getJSON('quicklime/as_json',function(comm) {
        addCommunication('communication_one', comm);
        addSentenceParseControls(comm);
        addSentenceBRATControls(comm);

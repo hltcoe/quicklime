@@ -5,10 +5,10 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'project.views.home', name='home'),
+    # url(r'^$', 'project.quicklimes.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^$', 'view.views.index', name='index'),
-    url(r'^view/', include('view.urls')),
+    url(r'^$', 'quicklime.views.index', name='index'),
+    url(r'^quicklime/', include('quicklime.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
