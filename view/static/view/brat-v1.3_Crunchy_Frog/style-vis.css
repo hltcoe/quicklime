@@ -477,13 +477,19 @@ fieldset legend {
   font-family: 'Liberation Sans';
   font-style: normal;
   font-weight: normal;
+  /* [CTH, 2014-04-17]  Disable custom font loading
   src: local('Liberation Sans'), local('Liberation-Sans'), url('static/fonts/Liberation_Sans-Regular.ttf') format('truetype');
+  [/CTH]
+  */
 }
 @font-face {
   font-family: 'PT Sans Caption';
   font-style: normal;
   font-weight: normal;
+  /* [CTH, 2014-04-17]  Disable custom font loading
   src: local('PT Sans Caption'), local('PTSans-Caption'), url('static/fonts/PT_Sans-Caption-Web-Regular.ttf') format('truetype');
+  [/CTH]
+  */
 }
 
 /* Apple iPad, iPhone, iPod */
