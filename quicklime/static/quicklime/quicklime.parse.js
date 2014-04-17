@@ -29,9 +29,9 @@ function addSentenceParseControls(comm) {
         var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
         var tokenization = sentence.tokenizationList[0];
 
-        sentence_controls_div = $('#sentence_controls_' + sentence.uuid);
+        var sentence_controls_div = $('#sentence_controls_' + sentence.uuid);
 
-        sentence_controls_div.append($('<button>')
+	var constituent_parse_button = $('<button>')
           .attr('type', 'button')
           .addClass('btn btn-default btn-xs')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
@@ -43,8 +43,13 @@ function addSentenceParseControls(comm) {
             }
           })
           .css('margin-right', '1em')
-          .html("CP"));
-       sentence_controls_div.append($('<button>')
+          .html("CP");
+	if (!tokenization.parse) {
+	  constituent_parse_button.attr('disabled', 'disabled');
+	}
+	sentence_controls_div.append(constituent_parse_button);
+
+	var dependency_parse_button = $('<button>')
           .attr('type', 'button')
           .addClass('btn btn-default btn-xs')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
@@ -56,7 +61,11 @@ function addSentenceParseControls(comm) {
             }
           })
           .css('margin-right', '1em')
-          .html("DP"));
+          .html("DP");
+	if (!tokenization.dependency_parse) {
+	  dependency_parse_button.attr('disabled', 'disabled');
+	}
+	sentence_controls_div.append(dependency_parse_button);
       }
     }
   }
