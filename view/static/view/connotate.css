@@ -87,5 +87,10 @@ div .brat_sentence.hasSVG {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
+.sentence_controls {
+    float: left;
+}
 .token {
+}
+.tokenization {
 }
