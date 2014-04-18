@@ -39,6 +39,8 @@ function addNERTags(communicationUUID, sentenceUUID, tokenizationUUID) {
   var docData = { text: sentence_text, entities: ner_tag_labels };
 
   Util.embed('sentence_ner_' + sentence.uuid, collData, docData, webFontURLs);
+
+  $('#sentence_ner_button_' + sentenceUUID).addClass('active');
 }
 
 
@@ -153,6 +155,8 @@ function addPOSTags(communicationUUID, sentenceUUID, tokenizationUUID) {
     // Array containing locations of the visualisation fonts
     webFontURLs
   );
+
+  $('#sentence_pos_button_' + sentenceUUID).addClass('active');
 }
 
 
@@ -174,8 +178,9 @@ function addSentenceBRATControls(comm) {
         var sentence_controls_div = $('#sentence_controls_' + sentence.uuid);
 
 	var ner_tag_button = $('<button>')
-          .attr('type', 'button')
           .addClass('btn btn-default btn-xs')
+          .attr('id', 'sentence_ner_button_' + sentence.uuid)
+          .attr('type', 'button')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
             if (hasNERTags(event.data.sentence_uuid)) {
               toggleNERTags(event.data.sentence_uuid);
@@ -192,8 +197,9 @@ function addSentenceBRATControls(comm) {
 	sentence_controls_div.append(ner_tag_button);
 
 	var pos_tag_button = $('<button>')
-          .attr('type', 'button')
           .addClass('btn btn-default btn-xs')
+          .attr('id', 'sentence_pos_button_' + sentence.uuid)
+          .attr('type', 'button')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
             if (hasPOSTags(event.data.sentence_uuid)) {
               togglePOSTags(event.data.sentence_uuid);
@@ -235,10 +241,24 @@ function hasPOSTags(sentenceUUID) {
 
 
 function toggleNERTags(sentenceUUID) {
-  $("#sentence_ner_" + sentenceUUID).toggle();
+  if ($("#sentence_ner_" + sentenceUUID).css('display') == 'none') {
+    $('#sentence_ner_button_' + sentenceUUID).addClass('active');
+    $("#sentence_ner_" + sentenceUUID).show();
+  }
+  else {
+    $('#sentence_ner_button_' + sentenceUUID).removeClass('active');
+    $("#sentence_ner_" + sentenceUUID).hide();
+  }
 }
 
 
 function togglePOSTags(sentenceUUID) {
-  $("#sentence_pos_" + sentenceUUID).toggle();
+  if ($("#sentence_pos_" + sentenceUUID).css('display') == 'none') {
+    $('#sentence_pos_button_' + sentenceUUID).addClass('active');
+    $("#sentence_pos_" + sentenceUUID).show();
+  }
+  else {
+    $('#sentence_pos_button_' + sentenceUUID).removeClass('active');
+    $("#sentence_pos_" + sentenceUUID).hide();
+  }
 }
