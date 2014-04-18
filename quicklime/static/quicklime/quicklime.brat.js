@@ -31,8 +31,13 @@ function addNERTags(communicationUUID, sentenceUUID, tokenizationUUID) {
     var nerTag = tokenization.nerTagList.taggedTokenList[i];
     var token = tokenization.tokenList[nerTag.tokenIndex];
     var entityID = "T" + (i+1);
-    if (nerTag.tag != "O") {
-      ner_tag_labels.push([entityID, nerTag.tag, [[token.textSpan.start, token.textSpan.ending]]]);
+    if (nerTag.tag != "O" &&       // Stanford tag
+        nerTag.tag != "OTHER" &&   // Serif tag
+        nerTag.tag != "NONE")      // Serif tag
+    {
+      var start = token.textSpan.start - sentence.textSpan.start;
+      var ending = token.textSpan.ending - sentence.textSpan.start;
+      ner_tag_labels.push([entityID, nerTag.tag, [[start, ending]]]);
     }
   }
 
@@ -135,7 +140,9 @@ function addPOSTags(communicationUUID, sentenceUUID, tokenizationUUID) {
     var posTag = tokenization.posTagList.taggedTokenList[i];
     var token = tokenization.tokenList[posTag.tokenIndex];
     var entityID = "T" + (i+1);
-    pos_tag_labels.push([entityID, posTag.tag, [[token.textSpan.start, token.textSpan.ending]]]);
+    var start = token.textSpan.start - sentence.textSpan.start;
+    var ending = token.textSpan.ending - sentence.textSpan.start;
+    pos_tag_labels.push([entityID, posTag.tag, [[start, ending]]]);
   }
 
   var docData = {
