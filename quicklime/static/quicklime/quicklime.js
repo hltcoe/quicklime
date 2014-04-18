@@ -120,6 +120,15 @@ function addCommunication(parentElementID, comm) {
       }
     }
   }
+
+  for (var entityListIndex in comm.entitySets[0].entityList) {
+    var entity = comm.entitySets[0].entityList[entityListIndex];
+    for (var i; i < entity.mentionIdList.length; i++) {
+      var entityMention = entity.mentionIdList[i];
+      $('#mention_' + entityMention.uuid).addClass('coref_mention');
+    }
+  }
+
 }
 
 
@@ -138,7 +147,7 @@ function addEntityList(comm) {
       mentionId_ul.append(mentionId_li);
 
       // Add 'entity_ENTITY_UUID' class to each mention of that entity
-      $('.mention_' + mentionId).addClass('entity_' + entityList.uuid);
+      $('.mention_' + mentionId).addClass('entity_' + entityList.uuid).addClass('coref_mention');
     }
     entityList_div.append(mentionId_ul);
 
@@ -156,15 +165,15 @@ function addEntityMouseoverHighlighting(comm) {
     }).mouseleave({ entity_selector: '.entity_' + entity.uuid }, function(event) {
       $(event.data.entity_selector).removeClass("highlighted_entity");
     });
-  }
 
-  // Add mouseover functions for all elements linked to a mention
-  for (var entityMentionSetIndex in comm.entityMentionSets) {
-    for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-      var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
-      $('.mention_' + entityMention.uuid).mouseenter({ mention_selector: '.mention_'+entityMention.uuid }, function(event) {
+    // Add mouseover functions for all elements linked to a mention of an entity in entitySet.
+    // Mouseover functions will not be added any mentions - such as value mentions - that are
+    // not linked to an entity in entitySet.
+    for (var i = 0; i < entity.mentionIdList.length; i++) {
+      var entityMentionId = entity.mentionIdList[i];
+      $('.mention_' + entityMentionId).mouseenter({ mention_selector: '.mention_'+entityMentionId }, function(event) {
         $(event.data.mention_selector).addClass("highlighted_mention");
-      }).mouseleave({ mention_selector: '.mention_'+entityMention.uuid }, function(event) {
+      }).mouseleave({ mention_selector: '.mention_'+entityMentionId }, function(event) {
         $(event.data.mention_selector).removeClass("highlighted_mention");
       });
     }

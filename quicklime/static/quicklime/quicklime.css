@@ -81,7 +81,7 @@ div .brat_sentence.hasSVG {
 .highlighted_entity.highlighted_mention {
     background-color: pink;
 }
-.mention {
+.coref_mention {
     border-bottom: 3px solid #DDDDDD;
 }
 .section {
