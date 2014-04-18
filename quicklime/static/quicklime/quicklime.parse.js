@@ -4,6 +4,7 @@ function addConstituentParse(communicationUUID, sentenceUUID, tokenizationUUID) 
   var comm = getCommunicationWithUUID(comm);
   var tokenization = getTokenizationWithUUID(comm, tokenizationUUID);
   drawConstituentParse("#constituent_parse_" + sentenceUUID, tokenization);
+  $('#constituent_parse_button_' + sentenceUUID).addClass('active');
 }
 
 
@@ -32,8 +33,9 @@ function addSentenceParseControls(comm) {
         var sentence_controls_div = $('#sentence_controls_' + sentence.uuid);
 
 	var constituent_parse_button = $('<button>')
-          .attr('type', 'button')
           .addClass('btn btn-default btn-xs')
+          .attr('id', 'constituent_parse_button_' + sentence.uuid)
+          .attr('type', 'button')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
             if (hasConstituentParse(event.data.sentence_uuid)) {
               toggleConstituentParse(event.data.sentence_uuid);
@@ -44,14 +46,15 @@ function addSentenceParseControls(comm) {
           })
           .css('margin-right', '1em')
           .html("CP");
-	if (!tokenization.parse) {
-	  constituent_parse_button.attr('disabled', 'disabled');
-	}
+        if (!tokenization.parse) {
+          constituent_parse_button.attr('disabled', 'disabled');
+        }
 	sentence_controls_div.append(constituent_parse_button);
 
 	var dependency_parse_button = $('<button>')
-          .attr('type', 'button')
           .addClass('btn btn-default btn-xs')
+          .attr('id', 'dependency_parse_button_' + sentence.uuid)
+          .attr('type', 'button')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
             if (hasDependencyParse(event.data.sentence_uuid)) {
               toggleDependencyParse(event.data.sentence_uuid);
@@ -62,7 +65,7 @@ function addSentenceParseControls(comm) {
           })
           .css('margin-right', '1em')
           .html("DP");
-	if (!tokenization.dependency_parse) {
+	if (!tokenization.dependencyParseList) {
 	  dependency_parse_button.attr('disabled', 'disabled');
 	}
 	sentence_controls_div.append(dependency_parse_button);
@@ -178,10 +181,24 @@ function hasDependencyParse(sentenceUUID) {
 
 
 function toggleConstituentParse(sentenceUUID) {
-  $("#constituent_parse_" + sentenceUUID).toggle('slow');
+  if ($("#constituent_parse_" + sentenceUUID).css('display') == 'none') {
+    $('#constituent_parse_button_' + sentenceUUID).addClass('active');
+    $("#constituent_parse_" + sentenceUUID).show();
+  }
+  else {
+    $('#constituent_parse_button_' + sentenceUUID).removeClass('active');
+    $("#constituent_parse_" + sentenceUUID).hide();
+  }
 }
 
 
 function toggleDependencyParse(sentenceUUID) {
-  $("#dependency_parse_" + sentenceUUID).toggle('slow');
+  if ($("#dependency_parse_" + sentenceUUID).css('display') == 'none') {
+    $('#dependency_parse_button_' + sentenceUUID).addClass('active');
+    $("#dependency_parse_" + sentenceUUID).show();
+  }
+  else {
+    $('#dependency_parse_button_' + sentenceUUID).removeClass('active');
+    $("#dependency_parse_" + sentenceUUID).hide();
+  }
 }

@@ -6,6 +6,12 @@
    other issues), so we override the BRAT defaults here.
    */
 
+div.dagre_parse {
+    clear: both;
+    margin-top: 0.5em;
+    overflow: visible;
+}
+
 .dagre_parse g.type-TOKEN > rect {
     fill: #00ffd0;
 }
