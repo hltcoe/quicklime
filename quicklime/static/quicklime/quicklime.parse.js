@@ -77,7 +77,7 @@ function drawConstituentParse(containerSelectorString, tokenization) {
 
   for (var constituentIndex in tokenization.parse.constituentList) {
     var constituent = tokenization.parse.constituentList[constituentIndex];
-    if (constituent.headChildIndex == -1) {
+    if (constituent.childList.length == 0) {
       g.addNode(constituent.id, { label: constituent.tag, nodeclass: "type-TOKEN" });
     }
     else {
@@ -87,7 +87,7 @@ function drawConstituentParse(containerSelectorString, tokenization) {
 
   for (var constituentIndex in tokenization.parse.constituentList) {
     var constituent = tokenization.parse.constituentList[constituentIndex];
-    if (constituent.headChildIndex != -1) {
+    if (constituent.childList.length > 0) {
       for (var childIndex in constituent.childList) {
         g.addEdge(null, constituent.id, constituent.childList[childIndex]);
       }
