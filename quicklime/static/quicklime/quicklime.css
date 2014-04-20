@@ -84,6 +84,17 @@ div .brat_sentence.hasSVG {
 .coref_mention {
     border-bottom: 3px solid #DDDDDD;
 }
+span.entity_counter {
+    font-weight: bold;
+}
+span.entity_total {
+    font-size: 0.8em;
+    margin-left: 0.5em;
+    margin-right: 1em;
+}
+ul.entity_list {
+    display: inline-block;
+}
 .section {
     border: 10px solid #DDDDFF;
     padding: 1em;

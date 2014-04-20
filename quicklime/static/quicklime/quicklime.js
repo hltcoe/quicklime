@@ -135,15 +135,33 @@ function addCommunication(parentElementID, comm) {
 function addEntityList(comm) {
   // Add list of entities, and list of mentions for each entity, to the DOM
   for (var entityListIndex in comm.entitySets[0].entityList) {
+    var counter = parseInt(entityListIndex) + 1;
     var entityList = comm.entitySets[0].entityList[entityListIndex];
-    var entityList_div = $('<div>')
-      .html('<b>Entity:</b> <span class="entity_' + entityList.uuid + '">' + entityList.uuid + '</span>');
-    var mentionId_ul = $('<ul class="list-inline">');
+    var entityList_div = $('<div>');
+    var entityCounter_span = $('<span>')
+      .addClass('entity_counter')
+      .addClass('entity_' + entityList.uuid)
+      /* Tooltips are part of Bootstrap, which is currently disabled because of jQuery conflict
+      .attr('data-placement', 'top')
+      .attr('data-toggle', 'tooltip')
+      .attr('title', 'UUID ' + entityList.uuid)
+      */
+      .html('Entity ' + counter);
+      /*
+      .tooltip();
+      */
+    entityList_div.append(entityCounter_span);
 
+    var entityTotal_span = $('<span>')
+      .addClass('entity_total')
+      .html('(x' + entityList.mentionIdList.length + ')');
+    entityList_div.append(entityTotal_span);
+
+    var mentionId_ul = $('<ul class="list-inline">').addClass('entity_list');
     for (var mentionIdListIndex in entityList.mentionIdList) {
       var mentionId = entityList.mentionIdList[mentionIdListIndex];
       var mentionId_li = $('<li>')
-        .html('<span class="mention_' + mentionId + '">' + getTokensForEntityMentionID(comm, mentionId).join(" ") + '</span>');
+        .html('<span class="coref_mention mention_' + mentionId + '">' + getTokensForEntityMentionID(comm, mentionId).join(" ") + '</span>');
       mentionId_ul.append(mentionId_li);
 
       // Add 'entity_ENTITY_UUID' class to each mention of that entity
