@@ -1,0 +1,2092 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<SerifXML version="18">
+
+  <Document docid="20140325124528-0" id="a1" is_downcased="TRUE" language="English" source_type="UNKNOWN">
+    <OriginalText char_offsets="0:2114" edt_offsets="0:2114" id="a2">
+      <Contents>DATE: 2010-03-18
+COUNTRY: SRI LANKA (LK)
+TOPIC: DISSENT; GOVERNMENT; POLITICS
+SUMMARY: ON MARCH 18, 2010 SRI LANKAN MEDIA GROUPS PROTESTED AGAINST THE ARREST OF A REPORTER CLOSE TO SARATH FONSEKA NAMED RUWAN WEERAKOON. SARATH FONSEKA'S TRIAL ALSO OCCURRED IN MARCH 2010.
+BODY: 1. ON MARCH 18, 2010 SRI LANKAN MEDIA GROUPS PROTESTED AGAINST THE ARREST OF A REPORTER CLOSE TO SARATH FONSEKA NAMED RUWAN WEERAKOON.
+A. RUWAN WEERAKOON IS A REPORTER WITH THE NATION NEWSPAPER.
+B. RUWAN WEERAKOON WAS ARRESTED THE WEEK OF MARCH 11, 2010.
+2. SARATH FONSEKA IS THE DETAINED EX-ARMY CHIEF WHO LOST TO MAHINA RAJAPAKSA IN THE SRI LANKAN PRESIDENTIAL ELECTION ON JANUARY 26, 2010.
+A. SARATH FONSEKA ALSO LED THE SRI LANKAN MILITARY DURING THE FINAL PHASE OF THE 2009 WAR AGAINST THE TAMIL TIGER REBELS.
+B. SARATH FONSEKA WAS AN ALLY OF PRESIDENT MAHINDA RAJAPAKSE WHEN THE TAMIL TIGERS WERE CRUSHED IN MAY 2009 BUT THE 2 MEN BECAME RIVALS AFTER CONTESTING THE PRESIDENCY IN THE ELECTION IN JANUARY 2010.
+C. SARATH FONSEKA IS A MEMBER OF THE DEMOCRATIC NATIONAL ALLIANCE PARTY.
+D. SARATH FONSEKA LOST THE PRESIDENTIAL ELECTION ON JANUARY 26, 2010 BY 1.8 MILLION VOTES.
+E. SARATH FONSEKA IS SRI LANKA’S FIRST 4 STAR GENERAL AND WAS IN THE ARMY FOR OVER 40 YEARS.
+3 . SARATH FONSEKA WAS ARRESTED ON FEBRUARY 8, 2010 ON THE CHARGE OF PLANNING A MILITARY COUP WHILE IN UNIFORM.
+A. SARATH FONSEKA APPEARED IN FRONT OF A COURT MARTIAL THE WEEK OF MARCH 18, 2010. THE CASE WAS ADJOURNED.
+B. SRI LANKAN RETIRED CHIEF JUSTICE SARATH SILVA CRITICIZED THE TREATMENT OF SARATH FONSEKA AND STATED THAT THERE IS NO DEMOCRACY IN SRI LANKA BECAUSE THERE IS NO ROOM FOR DISSENT.
+C. SOON AFTER SARATH FONSEKA’S ARREST 15 HIGH RANKING ARMY OFFICERS CONSIDERED TO SUPPORT SARATH FONSEKA WERE SENT ON COMPULSORY RETIREMENT.
+4. LOCAL AND INTERNATIONAL RIGHTS GROUPS HAVE ACCUSED MAHINDA RAJAPAKSE OF CRACKING DOWN ON DISSENT BUT THE SRI LANKAN GOVERNMENT DENIES THE ACCUSATION.
+5. THE TAMIL TIGERS ARE ALSO CALLED THE LIBERATION TIGERS OF TAMIL EELAM.
+A. THE TAMIL TIGERS HAVE FOUGHT FOR 37 YEARS IN A SEPARATIST STRUGGLE THAT LED TO 100000 DEATHS.
+</Contents>
+    </OriginalText>
+    <Regions>
+      <Region char_offsets="0:2114" edt_offsets="0:2114" id="a3" is_receiver="FALSE" is_speaker="FALSE" tag="TEXT">
+        <Contents>date: 2010-03-18
+country: sri lanka (lk)
+topic: dissent; government; politics
+summary: on march 18, 2010 sri lankan media groups protested against the arrest of a reporter close to sarath fonseka named ruwan weerakoon. sarath fonseka's trial also occurred in march 2010.
+body: 1. on march 18, 2010 sri lankan media groups protested against the arrest of a reporter close to sarath fonseka named ruwan weerakoon.
+a. ruwan weerakoon is a reporter with the nation newspaper.
+b. ruwan weerakoon was arrested the week of march 11, 2010.
+2. sarath fonseka is the detained ex-army chief who lost to mahina rajapaksa in the sri lankan presidential election on january 26, 2010.
+a. sarath fonseka also led the sri lankan military during the final phase of the 2009 war against the tamil tiger rebels.
+b. sarath fonseka was an ally of president mahinda rajapakse when the tamil tigers were crushed in may 2009 but the 2 men became rivals after contesting the presidency in the election in january 2010.
+c. sarath fonseka is a member of the democratic national alliance party.
+d. sarath fonseka lost the presidential election on january 26, 2010 by 1.8 million votes.
+e. sarath fonseka is sri lanka’s first 4 star general and was in the army for over 40 years.
+3 . sarath fonseka was arrested on february 8, 2010 on the charge of planning a military coup while in uniform.
+a. sarath fonseka appeared in front of a court martial the week of march 18, 2010. the case was adjourned.
+b. sri lankan retired chief justice sarath silva criticized the treatment of sarath fonseka and stated that there is no democracy in sri lanka because there is no room for dissent.
+c. soon after sarath fonseka’s arrest 15 high ranking army officers considered to support sarath fonseka were sent on compulsory retirement.
+4. local and international rights groups have accused mahinda rajapakse of cracking down on dissent but the sri lankan government denies the accusation.
+5. the tamil tigers are also called the liberation tigers of tamil eelam.
+a. the tamil tigers have fought for 37 years in a separatist struggle that led to 100000 deaths.
+</Contents>
+      </Region>
+    </Regions>
+    <Segments/>
+    <Metadata/>
+    <Sentences>
+      <Sentence char_offsets="0:4" edt_offsets="0:4" id="a4" is_annotated="TRUE" region_id="a3">
+        <Contents>date:</Contents>
+        <TokenSequence id="a5" score="0">
+          <Token char_offsets="0:3" edt_offsets="0:3" id="a6">date</Token>
+          <Token char_offsets="4:4" edt_offsets="4:4" id="a7">:</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a8" score="0" token_sequence_id="a5"/>
+        <NameTheory id="a9" score="0" token_sequence_id="a5"/>
+        <ValueMentionSet id="a10" score="0" token_sequence_id="a5"/>
+        <Parse id="a11" score="-23.8062153" token_sequence_id="a5">
+          <TreebankString node_id_method="DFS">(FRAG^ (NPA (NN^ date)) (:^ :))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="1" id="a12" name_score="0" parse_id="a11">
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a13" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a11.1"/>
+        </MentionSet>
+        <PropositionSet id="a14" mention_set_id="a12">
+          <Proposition head_id="a11.2" id="a15" type="noun">
+            <Argument mention_id="a13" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a16" score="0"/>
+        <EventMentionSet id="a17" score="0"/>
+        <SentenceTheory event_mention_set_id="a17" id="a18" mention_set_id="a12" name_theory_id="a9" parse_id="a11" part_of_speech_sequence_id="a8" primary_parse="full_parse" proposition_set_id="a14" rel_mention_set_id="a16" token_sequence_id="a5" value_mention_set_id="a10"/>
+      </Sentence>
+      <Sentence char_offsets="6:24" edt_offsets="6:24" id="a19" is_annotated="TRUE" region_id="a3">
+        <Contents>2010-03-18
+country:</Contents>
+        <TokenSequence id="a20" score="0">
+          <Token char_offsets="6:15" edt_offsets="6:15" id="a21">2010-03-18</Token>
+          <Token char_offsets="17:23" edt_offsets="17:23" id="a22">country</Token>
+          <Token char_offsets="24:24" edt_offsets="24:24" id="a23">:</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a24" score="0" token_sequence_id="a20"/>
+        <NameTheory id="a25" score="0" token_sequence_id="a20"/>
+        <ValueMentionSet id="a26" score="0" token_sequence_id="a20"/>
+        <Parse id="a27" score="-31.6249676" token_sequence_id="a20">
+          <TreebankString node_id_method="DFS">(NP^ (NPA^ (JJ 2010-03-18) (NN^ country)) (: :))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="2" id="a28" name_score="0" parse_id="a27">
+          <Mention entity_subtype="Nation" entity_type="GPE" id="a29" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="LOC" syn_node_id="a27.0"/>
+          <Mention entity_subtype="UNDET" entity_type="GPE" id="a30" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a27.1"/>
+        </MentionSet>
+        <PropositionSet id="a31" mention_set_id="a28">
+          <Proposition head_id="a27.2" id="a32" type="modifier">
+            <Argument mention_id="a29" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a27.4" id="a33" type="noun">
+            <Argument mention_id="a29" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a34" score="0"/>
+        <EventMentionSet id="a35" score="0"/>
+        <SentenceTheory event_mention_set_id="a35" id="a36" mention_set_id="a28" name_theory_id="a25" parse_id="a27" part_of_speech_sequence_id="a24" primary_parse="full_parse" proposition_set_id="a31" rel_mention_set_id="a34" token_sequence_id="a20" value_mention_set_id="a26"/>
+      </Sentence>
+      <Sentence char_offsets="26:46" edt_offsets="26:46" id="a37" is_annotated="TRUE" region_id="a3">
+        <Contents>sri lanka (lk)
+topic:</Contents>
+        <TokenSequence id="a38" score="0">
+          <Token char_offsets="26:28" edt_offsets="26:28" id="a39">sri</Token>
+          <Token char_offsets="30:34" edt_offsets="30:34" id="a40">lanka</Token>
+          <Token char_offsets="36:36" edt_offsets="36:36" id="a41">-LRB-</Token>
+          <Token char_offsets="37:38" edt_offsets="37:38" id="a42">lk</Token>
+          <Token char_offsets="39:39" edt_offsets="39:39" id="a43">-RRB-</Token>
+          <Token char_offsets="41:45" edt_offsets="41:45" id="a44">topic</Token>
+          <Token char_offsets="46:46" edt_offsets="46:46" id="a45">:</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a46" score="0" token_sequence_id="a38"/>
+        <NameTheory id="a47" score="0" token_sequence_id="a38">
+          <Name char_offsets="26:34" edt_offsets="26:34" end_token="a40" entity_type="GPE" id="a48" start_token="a39"/>
+        </NameTheory>
+        <ValueMentionSet id="a49" score="0" token_sequence_id="a38"/>
+        <Parse id="a50" score="-37.7051849" token_sequence_id="a38">
+          <TreebankString node_id_method="DFS">(NPA^ (NPP (NNP sri) (NNP^ lanka)) (PRN (-LRB-^ -lrb-) (NPA (NNP^ lk)) (-RRB- -rrb-)) (NN^ topic) (: :))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="2" id="a51" name_score="0" parse_id="a50">
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a52" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a50.0"/>
+          <Mention entity_subtype="Nation" entity_type="GPE" id="a53" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="GPE" syn_node_id="a50.1"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a54" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a50.9"/>
+        </MentionSet>
+        <PropositionSet id="a55" mention_set_id="a51">
+          <Proposition head_id="a50.10" id="a56" type="noun">
+            <Argument mention_id="a54" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a50.14" id="a57" type="noun">
+            <Argument mention_id="a52" role="&lt;ref>"/>
+            <Argument mention_id="a53" role="&lt;unknown>"/>
+          </Proposition>
+          <Proposition id="a58" type="name">
+            <Argument mention_id="a53" role="&lt;ref>"/>
+            <Argument syn_node_id="a50.1"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a59" score="0"/>
+        <EventMentionSet id="a60" score="0"/>
+        <SentenceTheory event_mention_set_id="a60" id="a61" mention_set_id="a51" name_theory_id="a47" parse_id="a50" part_of_speech_sequence_id="a46" primary_parse="full_parse" proposition_set_id="a55" rel_mention_set_id="a59" token_sequence_id="a38" value_mention_set_id="a49"/>
+      </Sentence>
+      <Sentence char_offsets="48:85" edt_offsets="48:85" id="a62" is_annotated="TRUE" region_id="a3">
+        <Contents>dissent; government; politics
+summary:</Contents>
+        <TokenSequence id="a63" score="0">
+          <Token char_offsets="48:54" edt_offsets="48:54" id="a64">dissent</Token>
+          <Token char_offsets="55:55" edt_offsets="55:55" id="a65">;</Token>
+          <Token char_offsets="57:66" edt_offsets="57:66" id="a66">government</Token>
+          <Token char_offsets="67:67" edt_offsets="67:67" id="a67">;</Token>
+          <Token char_offsets="69:76" edt_offsets="69:76" id="a68">politics</Token>
+          <Token char_offsets="78:84" edt_offsets="78:84" id="a69">summary</Token>
+          <Token char_offsets="85:85" edt_offsets="85:85" id="a70">:</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a71" score="0" token_sequence_id="a63"/>
+        <NameTheory id="a72" score="0" token_sequence_id="a63"/>
+        <ValueMentionSet id="a73" score="0" token_sequence_id="a63"/>
+        <Parse id="a74" score="-78.8221283" token_sequence_id="a63">
+          <TreebankString node_id_method="DFS">(NP^ (NP^ (NPA^ (NN^ dissent)) (: ;) (NPA (NN^ government))) (: ;) (NP (NPA^ (NNS politics) (NN^ summary)) (: :)))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="6" id="a75" name_score="0" parse_id="a74">
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a76" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a74.0"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a77" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a74.1"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a78" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a74.2"/>
+          <Mention entity_subtype="Nation" entity_type="GPE" id="a79" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.939748228" mention_type="desc" role_type="GPE" syn_node_id="a74.7"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a80" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a74.12"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a81" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a74.13"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a82" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a74.14"/>
+        </MentionSet>
+        <PropositionSet id="a83" mention_set_id="a75">
+          <Proposition head_id="a74.3" id="a84" type="noun">
+            <Argument mention_id="a76" role="&lt;ref>"/>
+            <Argument mention_id="a79" role="&lt;unknown>"/>
+            <Argument mention_id="a80" role="&lt;unknown>"/>
+          </Proposition>
+          <Proposition head_id="a74.8" id="a85" type="noun">
+            <Argument mention_id="a79" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a74.14" id="a86" type="modifier">
+            <Argument mention_id="a80" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a74.16" id="a87" type="noun">
+            <Argument mention_id="a80" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a88" score="0"/>
+        <EventMentionSet id="a89" score="0"/>
+        <SentenceTheory event_mention_set_id="a89" id="a90" mention_set_id="a75" name_theory_id="a72" parse_id="a74" part_of_speech_sequence_id="a71" primary_parse="full_parse" proposition_set_id="a83" rel_mention_set_id="a88" token_sequence_id="a63" value_mention_set_id="a73"/>
+      </Sentence>
+      <Sentence char_offsets="87:217" edt_offsets="87:217" id="a91" is_annotated="TRUE" region_id="a3">
+        <Contents>on march 18, 2010 sri lankan media groups protested against the arrest of a reporter close to sarath fonseka named ruwan weerakoon.</Contents>
+        <TokenSequence id="a92" score="0">
+          <Token char_offsets="87:88" edt_offsets="87:88" id="a93">on</Token>
+          <Token char_offsets="90:94" edt_offsets="90:94" id="a94">march</Token>
+          <Token char_offsets="96:97" edt_offsets="96:97" id="a95">18</Token>
+          <Token char_offsets="98:98" edt_offsets="98:98" id="a96">,</Token>
+          <Token char_offsets="100:103" edt_offsets="100:103" id="a97">2010</Token>
+          <Token char_offsets="105:107" edt_offsets="105:107" id="a98">sri</Token>
+          <Token char_offsets="109:114" edt_offsets="109:114" id="a99">lankan</Token>
+          <Token char_offsets="116:120" edt_offsets="116:120" id="a100">media</Token>
+          <Token char_offsets="122:127" edt_offsets="122:127" id="a101">groups</Token>
+          <Token char_offsets="129:137" edt_offsets="129:137" id="a102">protested</Token>
+          <Token char_offsets="139:145" edt_offsets="139:145" id="a103">against</Token>
+          <Token char_offsets="147:149" edt_offsets="147:149" id="a104">the</Token>
+          <Token char_offsets="151:156" edt_offsets="151:156" id="a105">arrest</Token>
+          <Token char_offsets="158:159" edt_offsets="158:159" id="a106">of</Token>
+          <Token char_offsets="161:161" edt_offsets="161:161" id="a107">a</Token>
+          <Token char_offsets="163:170" edt_offsets="163:170" id="a108">reporter</Token>
+          <Token char_offsets="172:176" edt_offsets="172:176" id="a109">close</Token>
+          <Token char_offsets="178:179" edt_offsets="178:179" id="a110">to</Token>
+          <Token char_offsets="181:186" edt_offsets="181:186" id="a111">sarath</Token>
+          <Token char_offsets="188:194" edt_offsets="188:194" id="a112">fonseka</Token>
+          <Token char_offsets="196:200" edt_offsets="196:200" id="a113">named</Token>
+          <Token char_offsets="202:206" edt_offsets="202:206" id="a114">ruwan</Token>
+          <Token char_offsets="208:216" edt_offsets="208:216" id="a115">weerakoon</Token>
+          <Token char_offsets="217:217" edt_offsets="217:217" id="a116">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a117" score="0" token_sequence_id="a92"/>
+        <NameTheory id="a118" score="0" token_sequence_id="a92">
+          <Name char_offsets="105:114" edt_offsets="105:114" end_token="a99" entity_type="GPE" id="a119" start_token="a98"/>
+          <Name char_offsets="181:194" edt_offsets="181:194" end_token="a112" entity_type="PER" id="a120" start_token="a111"/>
+          <Name char_offsets="202:216" edt_offsets="202:216" end_token="a115" entity_type="PER" id="a121" start_token="a114"/>
+        </NameTheory>
+        <ValueMentionSet id="a122" score="0" token_sequence_id="a92">
+          <ValueMention char_offsets="90:103" edt_offsets="90:103" end_token="a97" id="a123" start_token="a94" value_type="TIMEX2.TIME"/>
+        </ValueMentionSet>
+        <Parse id="a124" score="-139.231064" token_sequence_id="a92">
+          <TreebankString node_id_method="DFS">(S^ (PP (IN^ on) (DATE (DATE-NNP^ march) (CD 18))) (, ,) (NPA (CD 2010) (NPP (NNP sri) (NNP^ lankan)) (NNS media) (NNS^ groups)) (VP^ (VBD^ protested) (PP (IN^ against) (NP (NPA^ (DT the) (NN^ arrest)) (PP (IN^ of) (NPA (DT a) (NN^ reporter))))) (ADVP (RB^ close) (PP (TO^ to) (NPP (NNP sarath) (NNP^ fonseka)))) (VP (VBN^ named) (S (NPP^ (NNP ruwan) (NNP^ weerakoon))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="5" id="a125" name_score="0" parse_id="a124">
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a126" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a124.4"/>
+          <Mention entity_subtype="Non-Governmental" entity_type="ORG" id="a127" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a124.11"/>
+          <Mention entity_subtype="Nation" entity_type="GPE" id="a128" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="GPE" syn_node_id="a124.14"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a129" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a124.19"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a130" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a124.29"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a131" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a124.30"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a132" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.39522782" mention_type="desc" role_type="UNDET" syn_node_id="a124.38"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a133" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a124.49"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a134" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a124.58"/>
+        </MentionSet>
+        <PropositionSet id="a135" mention_set_id="a125">
+          <Proposition head_id="a124.12" id="a136" type="modifier">
+            <Argument mention_id="a127" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a124.19" id="a137" type="modifier">
+            <Argument mention_id="a127" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a124.21" id="a138" type="noun">
+            <Argument mention_id="a127" role="&lt;ref>"/>
+            <Argument mention_id="a128" role="&lt;unknown>"/>
+          </Proposition>
+          <Proposition id="a139" type="name">
+            <Argument mention_id="a128" role="&lt;ref>"/>
+            <Argument syn_node_id="a124.14"/>
+          </Proposition>
+          <Proposition head_id="a124.55" id="a140" type="verb">
+            <Argument mention_id="a127" role="&lt;sub>"/>
+            <Argument mention_id="a126" role="&lt;temp>"/>
+            <Argument mention_id="a133" role="to"/>
+            <Argument mention_id="a130" role="against"/>
+          </Proposition>
+          <Proposition head_id="a124.7" id="a141" type="modifier">
+            <Argument mention_id="a126" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition id="a142" type="name">
+            <Argument mention_id="a133" role="&lt;ref>"/>
+            <Argument syn_node_id="a124.49"/>
+          </Proposition>
+          <Proposition head_id="a124.33" id="a143" type="noun">
+            <Argument mention_id="a130" role="&lt;ref>"/>
+            <Argument mention_id="a132" role="of"/>
+          </Proposition>
+          <Proposition head_id="a124.41" id="a144" type="noun">
+            <Argument mention_id="a132" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition id="a145" type="name">
+            <Argument mention_id="a134" role="&lt;ref>"/>
+            <Argument syn_node_id="a124.58"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a146" score="0.773000002">
+          <RelMention id="a147" left_mention_id="a127" modality="Asserted" right_mention_id="a128" score="0.773000002" tense="Unspecified" type="GEN-AFF.Org-Location"/>
+        </RelMentionSet>
+        <EventMentionSet id="a148" score="-0.868844211">
+          <EventMention anchor_node_id="a124.24" event_type="Conflict.Demonstrate" genericity="Specific" id="a149" modality="Asserted" polarity="Positive" score="-0.588878751" tense="Unspecified">
+            <EventMentionArg role="Time-Within" score="0.648959398" value_mention_id="a123"/>
+          </EventMention>
+          <EventMention anchor_node_id="a124.33" anchor_prop_id="a143" event_type="Justice.Arrest-Jail" genericity="Specific" id="a150" modality="Asserted" polarity="Positive" score="-0.27996546" tense="Unspecified">
+            <EventMentionArg mention_id="a132" role="Person" score="0.990646839"/>
+          </EventMention>
+        </EventMentionSet>
+        <SentenceTheory event_mention_set_id="a148" id="a151" mention_set_id="a125" name_theory_id="a118" parse_id="a124" part_of_speech_sequence_id="a117" primary_parse="full_parse" proposition_set_id="a135" rel_mention_set_id="a146" token_sequence_id="a92" value_mention_set_id="a122"/>
+      </Sentence>
+      <Sentence char_offsets="219:269" edt_offsets="219:269" id="a152" is_annotated="TRUE" region_id="a3">
+        <Contents>sarath fonseka's trial also occurred in march 2010.</Contents>
+        <TokenSequence id="a153" score="0">
+          <Token char_offsets="219:224" edt_offsets="219:224" id="a154">sarath</Token>
+          <Token char_offsets="226:232" edt_offsets="226:232" id="a155">fonseka</Token>
+          <Token char_offsets="233:234" edt_offsets="233:234" id="a156">'s</Token>
+          <Token char_offsets="236:240" edt_offsets="236:240" id="a157">trial</Token>
+          <Token char_offsets="242:245" edt_offsets="242:245" id="a158">also</Token>
+          <Token char_offsets="247:254" edt_offsets="247:254" id="a159">occurred</Token>
+          <Token char_offsets="256:257" edt_offsets="256:257" id="a160">in</Token>
+          <Token char_offsets="259:263" edt_offsets="259:263" id="a161">march</Token>
+          <Token char_offsets="265:268" edt_offsets="265:268" id="a162">2010</Token>
+          <Token char_offsets="269:269" edt_offsets="269:269" id="a163">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a164" score="0" token_sequence_id="a153"/>
+        <NameTheory id="a165" score="0" token_sequence_id="a153">
+          <Name char_offsets="219:232" edt_offsets="219:232" end_token="a155" entity_type="PER" id="a166" start_token="a154"/>
+        </NameTheory>
+        <ValueMentionSet id="a167" score="0" token_sequence_id="a153">
+          <ValueMention char_offsets="259:268" edt_offsets="259:268" end_token="a162" id="a168" start_token="a161" value_type="TIMEX2.TIME"/>
+        </ValueMentionSet>
+        <Parse id="a169" score="-63.1162643" token_sequence_id="a153">
+          <TreebankString node_id_method="DFS">(S^ (NPA (NPPOS (NPP (NNP sarath) (NNP^ fonseka)) (POS^ 's)) (NN^ trial)) (ADVP (RB^ also)) (VP^ (VBD^ occurred) (PP (IN^ in) (DATE (DATE-NNP^ march) (CD 2010)))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="2" id="a170" name_score="0" parse_id="a169">
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a171" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a169.1"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a172" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a169.3"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a173" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a169.21"/>
+        </MentionSet>
+        <PropositionSet id="a174" mention_set_id="a170">
+          <Proposition head_id="a169.10" id="a175" type="noun">
+            <Argument mention_id="a171" role="&lt;ref>"/>
+            <Argument mention_id="a172" role="&lt;poss>"/>
+          </Proposition>
+          <Proposition id="a176" type="name">
+            <Argument mention_id="a172" role="&lt;ref>"/>
+            <Argument syn_node_id="a169.3"/>
+          </Proposition>
+          <Proposition head_id="a169.16" id="a177" type="verb">
+            <Argument mention_id="a171" role="&lt;sub>"/>
+            <Argument mention_id="a173" role="&lt;temp>"/>
+          </Proposition>
+          <Proposition head_id="a169.24" id="a178" type="modifier">
+            <Argument mention_id="a173" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a179" score="0"/>
+        <EventMentionSet id="a180" score="-0.129786789">
+          <EventMention anchor_node_id="a169.10" anchor_prop_id="a175" event_type="Justice.Trial-Hearing" genericity="Specific" id="a181" modality="Asserted" polarity="Positive" score="-0.129786789" tense="Unspecified">
+            <EventMentionArg mention_id="a172" role="Defendant" score="0.989266634"/>
+            <EventMentionArg role="Time-Within" score="0.990506232" value_mention_id="a168"/>
+          </EventMention>
+        </EventMentionSet>
+        <SentenceTheory event_mention_set_id="a180" id="a182" mention_set_id="a170" name_theory_id="a165" parse_id="a169" part_of_speech_sequence_id="a164" primary_parse="full_parse" proposition_set_id="a174" rel_mention_set_id="a179" token_sequence_id="a153" value_mention_set_id="a167"/>
+      </Sentence>
+      <Sentence char_offsets="271:278" edt_offsets="271:278" id="a183" is_annotated="TRUE" region_id="a3">
+        <Contents>body: 1.</Contents>
+        <TokenSequence id="a184" score="0">
+          <Token char_offsets="271:274" edt_offsets="271:274" id="a185">body</Token>
+          <Token char_offsets="275:275" edt_offsets="275:275" id="a186">:</Token>
+          <Token char_offsets="277:277" edt_offsets="277:277" id="a187">1</Token>
+          <Token char_offsets="278:278" edt_offsets="278:278" id="a188">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a189" score="0" token_sequence_id="a184"/>
+        <NameTheory id="a190" score="0" token_sequence_id="a184"/>
+        <ValueMentionSet id="a191" score="0" token_sequence_id="a184"/>
+        <Parse id="a192" score="-50.9589233" token_sequence_id="a184">
+          <TreebankString node_id_method="DFS">(NP^ (NPA^ (NNP^ body) (: :)) (NPA (CD^ 1)) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="3" id="a193" name_score="0" parse_id="a192">
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a194" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a192.0"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a195" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a192.1"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a196" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a192.6"/>
+        </MentionSet>
+        <PropositionSet id="a197" mention_set_id="a193">
+          <Proposition head_id="a192.2" id="a198" type="noun">
+            <Argument mention_id="a194" role="&lt;ref>"/>
+            <Argument mention_id="a196" role="&lt;unknown>"/>
+          </Proposition>
+          <Proposition head_id="a192.7" id="a199" type="modifier">
+            <Argument mention_id="a196" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a200" score="0"/>
+        <EventMentionSet id="a201" score="0"/>
+        <SentenceTheory event_mention_set_id="a201" id="a202" mention_set_id="a193" name_theory_id="a190" parse_id="a192" part_of_speech_sequence_id="a189" primary_parse="full_parse" proposition_set_id="a197" rel_mention_set_id="a200" token_sequence_id="a184" value_mention_set_id="a191"/>
+      </Sentence>
+      <Sentence char_offsets="280:410" edt_offsets="280:410" id="a203" is_annotated="TRUE" region_id="a3">
+        <Contents>on march 18, 2010 sri lankan media groups protested against the arrest of a reporter close to sarath fonseka named ruwan weerakoon.</Contents>
+        <TokenSequence id="a204" score="0">
+          <Token char_offsets="280:281" edt_offsets="280:281" id="a205">on</Token>
+          <Token char_offsets="283:287" edt_offsets="283:287" id="a206">march</Token>
+          <Token char_offsets="289:290" edt_offsets="289:290" id="a207">18</Token>
+          <Token char_offsets="291:291" edt_offsets="291:291" id="a208">,</Token>
+          <Token char_offsets="293:296" edt_offsets="293:296" id="a209">2010</Token>
+          <Token char_offsets="298:300" edt_offsets="298:300" id="a210">sri</Token>
+          <Token char_offsets="302:307" edt_offsets="302:307" id="a211">lankan</Token>
+          <Token char_offsets="309:313" edt_offsets="309:313" id="a212">media</Token>
+          <Token char_offsets="315:320" edt_offsets="315:320" id="a213">groups</Token>
+          <Token char_offsets="322:330" edt_offsets="322:330" id="a214">protested</Token>
+          <Token char_offsets="332:338" edt_offsets="332:338" id="a215">against</Token>
+          <Token char_offsets="340:342" edt_offsets="340:342" id="a216">the</Token>
+          <Token char_offsets="344:349" edt_offsets="344:349" id="a217">arrest</Token>
+          <Token char_offsets="351:352" edt_offsets="351:352" id="a218">of</Token>
+          <Token char_offsets="354:354" edt_offsets="354:354" id="a219">a</Token>
+          <Token char_offsets="356:363" edt_offsets="356:363" id="a220">reporter</Token>
+          <Token char_offsets="365:369" edt_offsets="365:369" id="a221">close</Token>
+          <Token char_offsets="371:372" edt_offsets="371:372" id="a222">to</Token>
+          <Token char_offsets="374:379" edt_offsets="374:379" id="a223">sarath</Token>
+          <Token char_offsets="381:387" edt_offsets="381:387" id="a224">fonseka</Token>
+          <Token char_offsets="389:393" edt_offsets="389:393" id="a225">named</Token>
+          <Token char_offsets="395:399" edt_offsets="395:399" id="a226">ruwan</Token>
+          <Token char_offsets="401:409" edt_offsets="401:409" id="a227">weerakoon</Token>
+          <Token char_offsets="410:410" edt_offsets="410:410" id="a228">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a229" score="0" token_sequence_id="a204"/>
+        <NameTheory id="a230" score="0" token_sequence_id="a204">
+          <Name char_offsets="298:307" edt_offsets="298:307" end_token="a211" entity_type="GPE" id="a231" start_token="a210"/>
+          <Name char_offsets="374:387" edt_offsets="374:387" end_token="a224" entity_type="PER" id="a232" start_token="a223"/>
+          <Name char_offsets="395:409" edt_offsets="395:409" end_token="a227" entity_type="PER" id="a233" start_token="a226"/>
+        </NameTheory>
+        <ValueMentionSet id="a234" score="0" token_sequence_id="a204">
+          <ValueMention char_offsets="283:296" edt_offsets="283:296" end_token="a209" id="a235" start_token="a206" value_type="TIMEX2.TIME"/>
+        </ValueMentionSet>
+        <Parse id="a236" score="-139.231064" token_sequence_id="a204">
+          <TreebankString node_id_method="DFS">(S^ (PP (IN^ on) (DATE (DATE-NNP^ march) (CD 18))) (, ,) (NPA (CD 2010) (NPP (NNP sri) (NNP^ lankan)) (NNS media) (NNS^ groups)) (VP^ (VBD^ protested) (PP (IN^ against) (NP (NPA^ (DT the) (NN^ arrest)) (PP (IN^ of) (NPA (DT a) (NN^ reporter))))) (ADVP (RB^ close) (PP (TO^ to) (NPP (NNP sarath) (NNP^ fonseka)))) (VP (VBN^ named) (S (NPP^ (NNP ruwan) (NNP^ weerakoon))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="5" id="a237" name_score="0" parse_id="a236">
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a238" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a236.4"/>
+          <Mention entity_subtype="Non-Governmental" entity_type="ORG" id="a239" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a236.11"/>
+          <Mention entity_subtype="Nation" entity_type="GPE" id="a240" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="GPE" syn_node_id="a236.14"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a241" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a236.19"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a242" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a236.29"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a243" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a236.30"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a244" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.984353483" mention_type="desc" role_type="UNDET" syn_node_id="a236.38"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a245" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a236.49"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a246" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a236.58"/>
+        </MentionSet>
+        <PropositionSet id="a247" mention_set_id="a237">
+          <Proposition head_id="a236.12" id="a248" type="modifier">
+            <Argument mention_id="a239" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a236.19" id="a249" type="modifier">
+            <Argument mention_id="a239" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a236.21" id="a250" type="noun">
+            <Argument mention_id="a239" role="&lt;ref>"/>
+            <Argument mention_id="a240" role="&lt;unknown>"/>
+          </Proposition>
+          <Proposition id="a251" type="name">
+            <Argument mention_id="a240" role="&lt;ref>"/>
+            <Argument syn_node_id="a236.14"/>
+          </Proposition>
+          <Proposition head_id="a236.55" id="a252" type="verb">
+            <Argument mention_id="a239" role="&lt;sub>"/>
+            <Argument mention_id="a238" role="&lt;temp>"/>
+            <Argument mention_id="a245" role="to"/>
+            <Argument mention_id="a242" role="against"/>
+          </Proposition>
+          <Proposition head_id="a236.7" id="a253" type="modifier">
+            <Argument mention_id="a238" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition id="a254" type="name">
+            <Argument mention_id="a245" role="&lt;ref>"/>
+            <Argument syn_node_id="a236.49"/>
+          </Proposition>
+          <Proposition head_id="a236.33" id="a255" type="noun">
+            <Argument mention_id="a242" role="&lt;ref>"/>
+            <Argument mention_id="a244" role="of"/>
+          </Proposition>
+          <Proposition head_id="a236.41" id="a256" type="noun">
+            <Argument mention_id="a244" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition id="a257" type="name">
+            <Argument mention_id="a246" role="&lt;ref>"/>
+            <Argument syn_node_id="a236.58"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a258" score="0.773000002">
+          <RelMention id="a259" left_mention_id="a239" modality="Asserted" right_mention_id="a240" score="0.773000002" tense="Unspecified" type="GEN-AFF.Org-Location"/>
+        </RelMentionSet>
+        <EventMentionSet id="a260" score="-0.868844211">
+          <EventMention anchor_node_id="a236.24" event_type="Conflict.Demonstrate" genericity="Specific" id="a261" modality="Asserted" polarity="Positive" score="-0.588878751" tense="Unspecified">
+            <EventMentionArg role="Time-Within" score="0.648959398" value_mention_id="a235"/>
+          </EventMention>
+          <EventMention anchor_node_id="a236.33" anchor_prop_id="a255" event_type="Justice.Arrest-Jail" genericity="Specific" id="a262" modality="Asserted" polarity="Positive" score="-0.27996546" tense="Unspecified">
+            <EventMentionArg mention_id="a244" role="Person" score="0.990646839"/>
+          </EventMention>
+        </EventMentionSet>
+        <SentenceTheory event_mention_set_id="a260" id="a263" mention_set_id="a237" name_theory_id="a230" parse_id="a236" part_of_speech_sequence_id="a229" primary_parse="full_parse" proposition_set_id="a247" rel_mention_set_id="a258" token_sequence_id="a204" value_mention_set_id="a234"/>
+      </Sentence>
+      <Sentence char_offsets="412:470" edt_offsets="412:470" id="a264" is_annotated="TRUE" region_id="a3">
+        <Contents>a. ruwan weerakoon is a reporter with the nation newspaper.</Contents>
+        <TokenSequence id="a265" score="0">
+          <Token char_offsets="412:413" edt_offsets="412:413" id="a266">a.</Token>
+          <Token char_offsets="415:419" edt_offsets="415:419" id="a267">ruwan</Token>
+          <Token char_offsets="421:429" edt_offsets="421:429" id="a268">weerakoon</Token>
+          <Token char_offsets="431:432" edt_offsets="431:432" id="a269">is</Token>
+          <Token char_offsets="434:434" edt_offsets="434:434" id="a270">a</Token>
+          <Token char_offsets="436:443" edt_offsets="436:443" id="a271">reporter</Token>
+          <Token char_offsets="445:448" edt_offsets="445:448" id="a272">with</Token>
+          <Token char_offsets="450:452" edt_offsets="450:452" id="a273">the</Token>
+          <Token char_offsets="454:459" edt_offsets="454:459" id="a274">nation</Token>
+          <Token char_offsets="461:469" edt_offsets="461:469" id="a275">newspaper</Token>
+          <Token char_offsets="470:470" edt_offsets="470:470" id="a276">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a277" score="0" token_sequence_id="a265"/>
+        <NameTheory id="a278" score="0" token_sequence_id="a265">
+          <Name char_offsets="412:429" edt_offsets="412:429" end_token="a268" entity_type="PER" id="a279" start_token="a266"/>
+        </NameTheory>
+        <ValueMentionSet id="a280" score="0" token_sequence_id="a265"/>
+        <Parse id="a281" score="-50.0505104" token_sequence_id="a265">
+          <TreebankString node_id_method="DFS">(S^ (NPP (NNP a.) (NNP ruwan) (NNP^ weerakoon)) (VP^ (VBZ^ is) (NP (NPA^ (DT a) (NN^ reporter)) (PP (IN^ with) (NPA (DT the) (NN nation) (NN^ newspaper))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="3" id="a282" name_score="0" parse_id="a281">
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a283" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a281.1"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a284" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a281.11"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a285" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a281.12"/>
+          <Mention entity_subtype="Media" entity_type="ORG" id="a286" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a281.20"/>
+          <Mention entity_subtype="Nation" entity_type="GPE" id="a287" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.947689295" mention_type="desc" role_type="UNDET" syn_node_id="a281.23"/>
+        </MentionSet>
+        <PropositionSet id="a288" mention_set_id="a282">
+          <Proposition id="a289" type="name">
+            <Argument mention_id="a283" role="&lt;ref>"/>
+            <Argument syn_node_id="a281.1"/>
+          </Proposition>
+          <Proposition head_id="a281.9" id="a290" type="copula">
+            <Argument mention_id="a283" role="&lt;sub>"/>
+            <Argument mention_id="a284" role="&lt;obj>"/>
+          </Proposition>
+          <Proposition head_id="a281.15" id="a291" type="noun">
+            <Argument mention_id="a284" role="&lt;ref>"/>
+            <Argument mention_id="a286" role="with"/>
+          </Proposition>
+          <Proposition head_id="a281.23" id="a292" type="modifier">
+            <Argument mention_id="a286" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a281.25" id="a293" type="noun">
+            <Argument mention_id="a286" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a294" score="1.04700005">
+          <RelMention id="a295" left_mention_id="a284" modality="Asserted" right_mention_id="a286" score="0.586000025" tense="Unspecified" type="ORG-AFF.Employment"/>
+          <RelMention id="a296" left_mention_id="a286" modality="Asserted" right_mention_id="a287" score="0.460999995" tense="Unspecified" type="PART-WHOLE.Subsidiary"/>
+        </RelMentionSet>
+        <EventMentionSet id="a297" score="0"/>
+        <SentenceTheory event_mention_set_id="a297" id="a298" mention_set_id="a282" name_theory_id="a278" parse_id="a281" part_of_speech_sequence_id="a277" primary_parse="full_parse" proposition_set_id="a288" rel_mention_set_id="a294" token_sequence_id="a265" value_mention_set_id="a280"/>
+      </Sentence>
+      <Sentence char_offsets="472:530" edt_offsets="472:530" id="a299" is_annotated="TRUE" region_id="a3">
+        <Contents>b. ruwan weerakoon was arrested the week of march 11, 2010.</Contents>
+        <TokenSequence id="a300" score="0">
+          <Token char_offsets="472:473" edt_offsets="472:473" id="a301">b.</Token>
+          <Token char_offsets="475:479" edt_offsets="475:479" id="a302">ruwan</Token>
+          <Token char_offsets="481:489" edt_offsets="481:489" id="a303">weerakoon</Token>
+          <Token char_offsets="491:493" edt_offsets="491:493" id="a304">was</Token>
+          <Token char_offsets="495:502" edt_offsets="495:502" id="a305">arrested</Token>
+          <Token char_offsets="504:506" edt_offsets="504:506" id="a306">the</Token>
+          <Token char_offsets="508:511" edt_offsets="508:511" id="a307">week</Token>
+          <Token char_offsets="513:514" edt_offsets="513:514" id="a308">of</Token>
+          <Token char_offsets="516:520" edt_offsets="516:520" id="a309">march</Token>
+          <Token char_offsets="522:523" edt_offsets="522:523" id="a310">11</Token>
+          <Token char_offsets="524:524" edt_offsets="524:524" id="a311">,</Token>
+          <Token char_offsets="526:529" edt_offsets="526:529" id="a312">2010</Token>
+          <Token char_offsets="530:530" edt_offsets="530:530" id="a313">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a314" score="0" token_sequence_id="a300"/>
+        <NameTheory id="a315" score="0" token_sequence_id="a300">
+          <Name char_offsets="472:489" edt_offsets="472:489" end_token="a303" entity_type="PER" id="a316" start_token="a301"/>
+        </NameTheory>
+        <ValueMentionSet id="a317" score="0" token_sequence_id="a300">
+          <ValueMention char_offsets="504:529" edt_offsets="504:529" end_token="a312" id="a318" start_token="a306" value_type="TIMEX2.TIME"/>
+        </ValueMentionSet>
+        <Parse id="a319" score="-67.0807266" token_sequence_id="a300">
+          <TreebankString node_id_method="DFS">(S^ (NPP (NNP b.) (NNP ruwan) (NNP^ weerakoon)) (VP^ (VBD^ was) (VP (VBN^ arrested) (NP (NPA^ (DT the) (NN^ week)) (PP (IN^ of) (DATE (DATE-NNP^ march) (CD 11) (, ,) (CD 2010)))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="3" id="a320" name_score="0" parse_id="a319">
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a321" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a319.1"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a322" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a319.14"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a323" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a319.15"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a324" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a319.23"/>
+        </MentionSet>
+        <PropositionSet id="a325" mention_set_id="a320">
+          <Proposition id="a326" type="name">
+            <Argument mention_id="a321" role="&lt;ref>"/>
+            <Argument syn_node_id="a319.1"/>
+          </Proposition>
+          <Proposition head_id="a319.12" id="a327" type="verb">
+            <Argument mention_id="a321" role="&lt;obj>"/>
+            <Argument mention_id="a322" role="&lt;temp>"/>
+          </Proposition>
+          <Proposition head_id="a319.18" id="a328" type="noun">
+            <Argument mention_id="a322" role="&lt;ref>"/>
+            <Argument mention_id="a324" role="&lt;temp>"/>
+          </Proposition>
+          <Proposition head_id="a319.26" id="a329" type="modifier">
+            <Argument mention_id="a324" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a319.30" id="a330" type="modifier">
+            <Argument mention_id="a324" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a331" score="0"/>
+        <EventMentionSet id="a332" score="-0.137405083">
+          <EventMention anchor_node_id="a319.12" anchor_prop_id="a327" event_type="Justice.Arrest-Jail" genericity="Specific" id="a333" modality="Asserted" polarity="Positive" score="-0.137405083" tense="Unspecified">
+            <EventMentionArg mention_id="a321" role="Person" score="0.996498585"/>
+            <EventMentionArg role="Time-Within" score="0.999770403" value_mention_id="a318"/>
+          </EventMention>
+        </EventMentionSet>
+        <SentenceTheory event_mention_set_id="a332" id="a334" mention_set_id="a320" name_theory_id="a315" parse_id="a319" part_of_speech_sequence_id="a314" primary_parse="full_parse" proposition_set_id="a325" rel_mention_set_id="a331" token_sequence_id="a300" value_mention_set_id="a317"/>
+      </Sentence>
+      <Sentence char_offsets="532:533" edt_offsets="532:533" id="a335" is_annotated="TRUE" region_id="a3">
+        <TokenSequence id="a336" score="0">
+          <Token char_offsets="532:532" edt_offsets="532:532" id="a337">2</Token>
+          <Token char_offsets="533:533" edt_offsets="533:533" id="a338">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a339" score="0" token_sequence_id="a336"/>
+        <NameTheory id="a340" score="0" token_sequence_id="a336"/>
+        <ValueMentionSet id="a341" score="0" token_sequence_id="a336"/>
+        <Parse id="a342" score="-21.1104527" token_sequence_id="a336">
+          <TreebankString node_id_method="DFS">(NPA^ (CD^ 2) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="1" id="a343" name_score="0" parse_id="a342">
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a344" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a342.0"/>
+        </MentionSet>
+        <PropositionSet id="a345" mention_set_id="a343">
+          <Proposition head_id="a342.1" id="a346" type="modifier">
+            <Argument mention_id="a344" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a347" score="0"/>
+        <EventMentionSet id="a348" score="0"/>
+        <SentenceTheory event_mention_set_id="a348" id="a349" mention_set_id="a343" name_theory_id="a340" parse_id="a342" part_of_speech_sequence_id="a339" primary_parse="full_parse" proposition_set_id="a345" rel_mention_set_id="a347" token_sequence_id="a336" value_mention_set_id="a341"/>
+      </Sentence>
+      <Sentence char_offsets="535:668" edt_offsets="535:668" id="a350" is_annotated="TRUE" region_id="a3">
+        <Contents>sarath fonseka is the detained ex-army chief who lost to mahina rajapaksa in the sri lankan presidential election on january 26, 2010.</Contents>
+        <TokenSequence id="a351" score="0">
+          <Token char_offsets="535:540" edt_offsets="535:540" id="a352">sarath</Token>
+          <Token char_offsets="542:548" edt_offsets="542:548" id="a353">fonseka</Token>
+          <Token char_offsets="550:551" edt_offsets="550:551" id="a354">is</Token>
+          <Token char_offsets="553:555" edt_offsets="553:555" id="a355">the</Token>
+          <Token char_offsets="557:564" edt_offsets="557:564" id="a356">detained</Token>
+          <Token char_offsets="566:572" edt_offsets="566:572" id="a357">ex-army</Token>
+          <Token char_offsets="574:578" edt_offsets="574:578" id="a358">chief</Token>
+          <Token char_offsets="580:582" edt_offsets="580:582" id="a359">who</Token>
+          <Token char_offsets="584:587" edt_offsets="584:587" id="a360">lost</Token>
+          <Token char_offsets="589:590" edt_offsets="589:590" id="a361">to</Token>
+          <Token char_offsets="592:597" edt_offsets="592:597" id="a362">mahina</Token>
+          <Token char_offsets="599:607" edt_offsets="599:607" id="a363">rajapaksa</Token>
+          <Token char_offsets="609:610" edt_offsets="609:610" id="a364">in</Token>
+          <Token char_offsets="612:614" edt_offsets="612:614" id="a365">the</Token>
+          <Token char_offsets="616:618" edt_offsets="616:618" id="a366">sri</Token>
+          <Token char_offsets="620:625" edt_offsets="620:625" id="a367">lankan</Token>
+          <Token char_offsets="627:638" edt_offsets="627:638" id="a368">presidential</Token>
+          <Token char_offsets="640:647" edt_offsets="640:647" id="a369">election</Token>
+          <Token char_offsets="649:650" edt_offsets="649:650" id="a370">on</Token>
+          <Token char_offsets="652:658" edt_offsets="652:658" id="a371">january</Token>
+          <Token char_offsets="660:661" edt_offsets="660:661" id="a372">26</Token>
+          <Token char_offsets="662:662" edt_offsets="662:662" id="a373">,</Token>
+          <Token char_offsets="664:667" edt_offsets="664:667" id="a374">2010</Token>
+          <Token char_offsets="668:668" edt_offsets="668:668" id="a375">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a376" score="0" token_sequence_id="a351"/>
+        <NameTheory id="a377" score="0" token_sequence_id="a351">
+          <Name char_offsets="535:548" edt_offsets="535:548" end_token="a353" entity_type="PER" id="a378" start_token="a352"/>
+          <Name char_offsets="616:625" edt_offsets="616:625" end_token="a367" entity_type="GPE" id="a379" start_token="a366"/>
+        </NameTheory>
+        <ValueMentionSet id="a380" score="0" token_sequence_id="a351">
+          <ValueMention char_offsets="652:667" edt_offsets="652:667" end_token="a374" id="a381" start_token="a371" value_type="TIMEX2.TIME"/>
+        </ValueMentionSet>
+        <Parse id="a382" score="-123.567909" token_sequence_id="a351">
+          <TreebankString node_id_method="DFS">(S^ (NPP (NNP sarath) (NNP^ fonseka)) (VP^ (VBZ^ is) (NP (NPA^ (DT the) (JJ detained) (NN ex-army) (NN^ chief)) (SBAR (WHNP^ (WP^ who)) (S (VP^ (VBD^ lost) (PP (TO^ to) (NPA (NNP mahina) (NNP^ rajapaksa))) (PP (IN^ in) (NPA (DT the) (NPP (NNP sri) (NNP^ lankan)) (JJ presidential) (NN^ election))) (PP (IN^ on) (DATE (DATE-NNP^ january) (CD 26) (, ,) (CD 2010)))))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="5" id="a383" name_score="0" parse_id="a382">
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a384" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a382.1"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a385" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a382.9"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a386" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a382.10"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a387" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a382.15"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a388" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.999814332" mention_type="pron" role_type="UNDET" syn_node_id="a382.20"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a389" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a382.30"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a390" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a382.31"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a391" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a382.38"/>
+          <Mention entity_subtype="Nation" entity_type="GPE" id="a392" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="GPE" syn_node_id="a382.41"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a393" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a382.53"/>
+        </MentionSet>
+        <PropositionSet id="a394" mention_set_id="a383">
+          <Proposition id="a395" type="name">
+            <Argument mention_id="a384" role="&lt;ref>"/>
+            <Argument syn_node_id="a382.1"/>
+          </Proposition>
+          <Proposition head_id="a382.7" id="a396" type="copula">
+            <Argument mention_id="a384" role="&lt;sub>"/>
+            <Argument mention_id="a385" role="&lt;obj>"/>
+          </Proposition>
+          <Proposition head_id="a382.13" id="a397" type="modifier">
+            <Argument mention_id="a385" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a382.15" id="a398" type="modifier">
+            <Argument mention_id="a385" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a382.17" id="a399" type="noun">
+            <Argument mention_id="a385" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a382.20" id="a400" type="pronoun">
+            <Argument mention_id="a388" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a382.25" id="a401" type="verb">
+            <Argument mention_id="a388" role="&lt;sub>"/>
+            <Argument mention_id="a389" role="to"/>
+            <Argument mention_id="a391" role="in"/>
+            <Argument mention_id="a393" role="&lt;temp>"/>
+          </Proposition>
+          <Proposition head_id="a382.31" id="a402" type="modifier">
+            <Argument mention_id="a389" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a382.33" id="a403" type="noun">
+            <Argument mention_id="a389" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a382.46" id="a404" type="modifier">
+            <Argument mention_id="a391" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a382.48" id="a405" type="noun">
+            <Argument mention_id="a391" role="&lt;ref>"/>
+            <Argument mention_id="a392" role="&lt;unknown>"/>
+          </Proposition>
+          <Proposition id="a406" type="name">
+            <Argument mention_id="a392" role="&lt;ref>"/>
+            <Argument syn_node_id="a382.41"/>
+          </Proposition>
+          <Proposition head_id="a382.56" id="a407" type="modifier">
+            <Argument mention_id="a393" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a382.60" id="a408" type="modifier">
+            <Argument mention_id="a393" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a409" score="0"/>
+        <EventMentionSet id="a410" score="-0.323392451">
+          <EventMention anchor_node_id="a382.48" anchor_prop_id="a405" event_type="Personnel.Elect" genericity="Specific" id="a411" modality="Asserted" polarity="Positive" score="-0.323392451" tense="Unspecified">
+            <EventMentionArg mention_id="a392" role="Place" score="0.993471682"/>
+            <EventMentionArg role="Time-Within" score="0.873919785" value_mention_id="a381"/>
+          </EventMention>
+        </EventMentionSet>
+        <SentenceTheory event_mention_set_id="a410" id="a412" mention_set_id="a383" name_theory_id="a377" parse_id="a382" part_of_speech_sequence_id="a376" primary_parse="full_parse" proposition_set_id="a394" rel_mention_set_id="a409" token_sequence_id="a351" value_mention_set_id="a380"/>
+      </Sentence>
+      <Sentence char_offsets="670:790" edt_offsets="670:790" id="a413" is_annotated="TRUE" region_id="a3">
+        <Contents>a. sarath fonseka also led the sri lankan military during the final phase of the 2009 war against the tamil tiger rebels.</Contents>
+        <TokenSequence id="a414" score="0">
+          <Token char_offsets="670:671" edt_offsets="670:671" id="a415">a.</Token>
+          <Token char_offsets="673:678" edt_offsets="673:678" id="a416">sarath</Token>
+          <Token char_offsets="680:686" edt_offsets="680:686" id="a417">fonseka</Token>
+          <Token char_offsets="688:691" edt_offsets="688:691" id="a418">also</Token>
+          <Token char_offsets="693:695" edt_offsets="693:695" id="a419">led</Token>
+          <Token char_offsets="697:699" edt_offsets="697:699" id="a420">the</Token>
+          <Token char_offsets="701:703" edt_offsets="701:703" id="a421">sri</Token>
+          <Token char_offsets="705:710" edt_offsets="705:710" id="a422">lankan</Token>
+          <Token char_offsets="712:719" edt_offsets="712:719" id="a423">military</Token>
+          <Token char_offsets="721:726" edt_offsets="721:726" id="a424">during</Token>
+          <Token char_offsets="728:730" edt_offsets="728:730" id="a425">the</Token>
+          <Token char_offsets="732:736" edt_offsets="732:736" id="a426">final</Token>
+          <Token char_offsets="738:742" edt_offsets="738:742" id="a427">phase</Token>
+          <Token char_offsets="744:745" edt_offsets="744:745" id="a428">of</Token>
+          <Token char_offsets="747:749" edt_offsets="747:749" id="a429">the</Token>
+          <Token char_offsets="751:754" edt_offsets="751:754" id="a430">2009</Token>
+          <Token char_offsets="756:758" edt_offsets="756:758" id="a431">war</Token>
+          <Token char_offsets="760:766" edt_offsets="760:766" id="a432">against</Token>
+          <Token char_offsets="768:770" edt_offsets="768:770" id="a433">the</Token>
+          <Token char_offsets="772:776" edt_offsets="772:776" id="a434">tamil</Token>
+          <Token char_offsets="778:782" edt_offsets="778:782" id="a435">tiger</Token>
+          <Token char_offsets="784:789" edt_offsets="784:789" id="a436">rebels</Token>
+          <Token char_offsets="790:790" edt_offsets="790:790" id="a437">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a438" score="0" token_sequence_id="a414"/>
+        <NameTheory id="a439" score="0" token_sequence_id="a414">
+          <Name char_offsets="670:686" edt_offsets="670:686" end_token="a417" entity_type="PER" id="a440" start_token="a415"/>
+          <Name char_offsets="701:710" edt_offsets="701:710" end_token="a422" entity_type="GPE" id="a441" start_token="a421"/>
+          <Name char_offsets="772:782" edt_offsets="772:782" end_token="a435" entity_type="ORG" id="a442" start_token="a434"/>
+        </NameTheory>
+        <ValueMentionSet id="a443" score="0" token_sequence_id="a414">
+          <ValueMention char_offsets="751:754" edt_offsets="751:754" end_token="a430" id="a444" start_token="a430" value_type="TIMEX2.TIME"/>
+        </ValueMentionSet>
+        <Parse id="a445" score="-114.325981" token_sequence_id="a414">
+          <TreebankString node_id_method="DFS">(S^ (NPP (NNP a.) (NNP sarath) (NNP^ fonseka)) (ADVP (RB^ also)) (VP^ (VBD^ led) (NPA (DT the) (NPP (NNP sri) (NNP^ lankan)) (NN^ military)) (PP (IN^ during) (NP (NPA^ (DT the) (JJ final) (NN^ phase)) (PP (IN^ of) (NP (NPA^ (DT the) (DATE (CD^ 2009)) (NN^ war)) (PP (IN^ against) (NPA (DT the) (NPP (NNP tamil) (NNP^ tiger)) (NNS^ rebels)))))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="7" id="a446" name_score="0" parse_id="a445">
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a447" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a445.1"/>
+          <Mention entity_subtype="Government" entity_type="ORG" id="a448" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.598472416" mention_type="desc" role_type="UNDET" syn_node_id="a445.14"/>
+          <Mention entity_subtype="Nation" entity_type="GPE" id="a449" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="GPE" syn_node_id="a445.17"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a450" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a445.27"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a451" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a445.28"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a452" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a445.38"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a453" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a445.39"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a454" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a445.42"/>
+          <Mention entity_subtype="Group" entity_type="PER" id="a455" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.734147668" mention_type="desc" role_type="UNDET" syn_node_id="a445.50"/>
+          <Mention entity_subtype="Non-Governmental" entity_type="ORG" id="a456" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a445.53"/>
+        </MentionSet>
+        <PropositionSet id="a457" mention_set_id="a446">
+          <Proposition id="a458" type="name">
+            <Argument mention_id="a447" role="&lt;ref>"/>
+            <Argument syn_node_id="a445.1"/>
+          </Proposition>
+          <Proposition head_id="a445.12" id="a459" type="verb">
+            <Argument mention_id="a447" role="&lt;sub>"/>
+            <Argument mention_id="a448" role="&lt;obj>"/>
+            <Argument mention_id="a450" role="during"/>
+          </Proposition>
+          <Proposition head_id="a445.22" id="a460" type="noun">
+            <Argument mention_id="a448" role="&lt;ref>"/>
+            <Argument mention_id="a449" role="&lt;unknown>"/>
+          </Proposition>
+          <Proposition id="a461" type="name">
+            <Argument mention_id="a449" role="&lt;ref>"/>
+            <Argument syn_node_id="a445.17"/>
+          </Proposition>
+          <Proposition head_id="a445.31" id="a462" type="modifier">
+            <Argument mention_id="a450" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a445.33" id="a463" type="noun">
+            <Argument mention_id="a450" role="&lt;ref>"/>
+            <Argument mention_id="a452" role="of"/>
+          </Proposition>
+          <Proposition head_id="a445.45" id="a464" type="noun">
+            <Argument mention_id="a452" role="&lt;ref>"/>
+            <Argument mention_id="a454" role="&lt;temp>"/>
+            <Argument mention_id="a455" role="against"/>
+          </Proposition>
+          <Proposition head_id="a445.43" id="a465" type="modifier">
+            <Argument mention_id="a454" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a445.58" id="a466" type="noun">
+            <Argument mention_id="a455" role="&lt;ref>"/>
+            <Argument mention_id="a456" role="&lt;unknown>"/>
+          </Proposition>
+          <Proposition id="a467" type="name">
+            <Argument mention_id="a456" role="&lt;ref>"/>
+            <Argument syn_node_id="a445.53"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a468" score="1.32299995">
+          <RelMention id="a469" left_mention_id="a448" modality="Asserted" right_mention_id="a449" score="0.675999999" tense="Unspecified" type="PART-WHOLE.Subsidiary"/>
+          <RelMention id="a470" left_mention_id="a455" modality="Asserted" right_mention_id="a456" score="0.647000015" tense="Unspecified" type="ORG-AFF.Membership"/>
+        </RelMentionSet>
+        <EventMentionSet id="a471" score="-0.335274547">
+          <EventMention anchor_node_id="a445.45" anchor_prop_id="a464" event_type="Conflict.Attack" genericity="Specific" id="a472" modality="Asserted" polarity="Positive" score="-0.335274547" tense="Unspecified">
+            <EventMentionArg mention_id="a455" role="Target" score="0.995962203"/>
+            <EventMentionArg role="Time-Within" score="0.939872146" value_mention_id="a444"/>
+          </EventMention>
+        </EventMentionSet>
+        <SentenceTheory event_mention_set_id="a471" id="a473" mention_set_id="a446" name_theory_id="a439" parse_id="a445" part_of_speech_sequence_id="a438" primary_parse="full_parse" proposition_set_id="a457" rel_mention_set_id="a468" token_sequence_id="a414" value_mention_set_id="a443"/>
+      </Sentence>
+      <Sentence char_offsets="792:991" edt_offsets="792:991" id="a474" is_annotated="TRUE" region_id="a3">
+        <Contents>b. sarath fonseka was an ally of president mahinda rajapakse when the tamil tigers were crushed in may 2009 but the 2 men became rivals after contesting the presidency in the election in january 2010.</Contents>
+        <TokenSequence id="a475" score="0">
+          <Token char_offsets="792:793" edt_offsets="792:793" id="a476">b.</Token>
+          <Token char_offsets="795:800" edt_offsets="795:800" id="a477">sarath</Token>
+          <Token char_offsets="802:808" edt_offsets="802:808" id="a478">fonseka</Token>
+          <Token char_offsets="810:812" edt_offsets="810:812" id="a479">was</Token>
+          <Token char_offsets="814:815" edt_offsets="814:815" id="a480">an</Token>
+          <Token char_offsets="817:820" edt_offsets="817:820" id="a481">ally</Token>
+          <Token char_offsets="822:823" edt_offsets="822:823" id="a482">of</Token>
+          <Token char_offsets="825:833" edt_offsets="825:833" id="a483">president</Token>
+          <Token char_offsets="835:841" edt_offsets="835:841" id="a484">mahinda</Token>
+          <Token char_offsets="843:851" edt_offsets="843:851" id="a485">rajapakse</Token>
+          <Token char_offsets="853:856" edt_offsets="853:856" id="a486">when</Token>
+          <Token char_offsets="858:860" edt_offsets="858:860" id="a487">the</Token>
+          <Token char_offsets="862:866" edt_offsets="862:866" id="a488">tamil</Token>
+          <Token char_offsets="868:873" edt_offsets="868:873" id="a489">tigers</Token>
+          <Token char_offsets="875:878" edt_offsets="875:878" id="a490">were</Token>
+          <Token char_offsets="880:886" edt_offsets="880:886" id="a491">crushed</Token>
+          <Token char_offsets="888:889" edt_offsets="888:889" id="a492">in</Token>
+          <Token char_offsets="891:893" edt_offsets="891:893" id="a493">may</Token>
+          <Token char_offsets="895:898" edt_offsets="895:898" id="a494">2009</Token>
+          <Token char_offsets="900:902" edt_offsets="900:902" id="a495">but</Token>
+          <Token char_offsets="904:906" edt_offsets="904:906" id="a496">the</Token>
+          <Token char_offsets="908:908" edt_offsets="908:908" id="a497">2</Token>
+          <Token char_offsets="910:912" edt_offsets="910:912" id="a498">men</Token>
+          <Token char_offsets="914:919" edt_offsets="914:919" id="a499">became</Token>
+          <Token char_offsets="921:926" edt_offsets="921:926" id="a500">rivals</Token>
+          <Token char_offsets="928:932" edt_offsets="928:932" id="a501">after</Token>
+          <Token char_offsets="934:943" edt_offsets="934:943" id="a502">contesting</Token>
+          <Token char_offsets="945:947" edt_offsets="945:947" id="a503">the</Token>
+          <Token char_offsets="949:958" edt_offsets="949:958" id="a504">presidency</Token>
+          <Token char_offsets="960:961" edt_offsets="960:961" id="a505">in</Token>
+          <Token char_offsets="963:965" edt_offsets="963:965" id="a506">the</Token>
+          <Token char_offsets="967:974" edt_offsets="967:974" id="a507">election</Token>
+          <Token char_offsets="976:977" edt_offsets="976:977" id="a508">in</Token>
+          <Token char_offsets="979:985" edt_offsets="979:985" id="a509">january</Token>
+          <Token char_offsets="987:990" edt_offsets="987:990" id="a510">2010</Token>
+          <Token char_offsets="991:991" edt_offsets="991:991" id="a511">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a512" score="0" token_sequence_id="a475"/>
+        <NameTheory id="a513" score="0" token_sequence_id="a475">
+          <Name char_offsets="792:808" edt_offsets="792:808" end_token="a478" entity_type="PER" id="a514" start_token="a476"/>
+          <Name char_offsets="835:851" edt_offsets="835:851" end_token="a485" entity_type="PER" id="a515" start_token="a484"/>
+          <Name char_offsets="862:873" edt_offsets="862:873" end_token="a489" entity_type="ORG" id="a516" start_token="a488"/>
+        </NameTheory>
+        <ValueMentionSet id="a517" score="0" token_sequence_id="a475">
+          <ValueMention char_offsets="891:898" edt_offsets="891:898" end_token="a494" id="a518" start_token="a493" value_type="TIMEX2.TIME"/>
+          <ValueMention char_offsets="979:990" edt_offsets="979:990" end_token="a510" id="a519" start_token="a509" value_type="TIMEX2.TIME"/>
+        </ValueMentionSet>
+        <Parse id="a520" score="-190.3237" token_sequence_id="a475">
+          <TreebankString node_id_method="DFS">(S^ (S^ (NPP (NNP b.) (NNP sarath) (NNP^ fonseka)) (VP^ (VBD^ was) (NP (NPA^ (DT an) (NN^ ally)) (PP (IN^ of) (NPA (NNP president) (NPP^ (NNP mahinda) (NNP^ rajapakse))))) (SBAR (WHADVP^ (WRB^ when)) (S (NPA (DT the) (NPP^ (NNPS tamil) (NNPS^ tigers))) (VP^ (VBD^ were) (VP (VBN^ crushed) (PP (IN^ in) (DATE (DATE-NNP^ may) (CD 2009))))))))) (CC but) (S (NPA (DT the) (CD 2) (NNS^ men)) (VP^ (VBD^ became) (NPA (NNS^ rivals)) (PP (IN^ after) (S (VP^ (VBG^ contesting) (NPA (DT the) (NN^ presidency)) (PP (IN^ in) (NP (NPA^ (DT the) (NN^ election)) (PP (IN^ in) (DATE (DATE-NNP^ january) (CD 2010)))))))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="9" id="a521" name_score="0" parse_id="a520">
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a522" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a520.2"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a523" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a520.12"/>
+          <Mention entity_subtype="UNDET" entity_type="GPE" id="a524" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a520.13"/>
+          <Mention child="a527" entity_subtype="UNDET" entity_type="PER" id="a525" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a520.21"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a526" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a520.22"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a527" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" parent="a525" role_type="UNDET" syn_node_id="a520.24"/>
+          <Mention child="a529" entity_subtype="Non-Governmental" entity_type="ORG" id="a528" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a520.34"/>
+          <Mention entity_subtype="UNDET" entity_type="ORG" id="a529" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" parent="a528" role_type="UNDET" syn_node_id="a520.37"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a530" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a520.51"/>
+          <Mention entity_subtype="Group" entity_type="PER" id="a531" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.738129973" mention_type="desc" role_type="UNDET" syn_node_id="a520.59"/>
+          <Mention entity_subtype="UNDET" entity_type="ORG" id="a532" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.828866184" mention_type="desc" role_type="UNDET" syn_node_id="a520.69"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a533" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a520.79"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a534" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a520.87"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a535" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a520.88"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a536" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a520.96"/>
+        </MentionSet>
+        <PropositionSet id="a537" mention_set_id="a521">
+          <Proposition id="a538" type="name">
+            <Argument mention_id="a522" role="&lt;ref>"/>
+            <Argument syn_node_id="a520.2"/>
+          </Proposition>
+          <Proposition head_id="a520.10" id="a539" type="copula">
+            <Argument mention_id="a522" role="&lt;sub>"/>
+            <Argument mention_id="a523" role="&lt;obj>"/>
+            <Argument proposition_id="a544" role="when"/>
+          </Proposition>
+          <Proposition head_id="a520.16" id="a540" type="noun">
+            <Argument mention_id="a523" role="&lt;ref>"/>
+            <Argument mention_id="a525" role="of"/>
+          </Proposition>
+          <Proposition head_id="a520.22" id="a541" type="noun">
+            <Argument mention_id="a526" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition id="a542" type="name">
+            <Argument mention_id="a525" role="&lt;ref>"/>
+            <Argument syn_node_id="a520.24"/>
+          </Proposition>
+          <Proposition id="a543" type="name">
+            <Argument mention_id="a528" role="&lt;ref>"/>
+            <Argument syn_node_id="a520.37"/>
+          </Proposition>
+          <Proposition head_id="a520.46" id="a544" type="verb">
+            <Argument mention_id="a528" role="&lt;obj>"/>
+            <Argument mention_id="a530" role="&lt;temp>"/>
+          </Proposition>
+          <Proposition head_id="a520.54" id="a545" type="modifier">
+            <Argument mention_id="a530" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a520.62" id="a546" type="modifier">
+            <Argument mention_id="a531" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a520.64" id="a547" type="noun">
+            <Argument mention_id="a531" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a520.67" id="a548" type="verb">
+            <Argument mention_id="a531" role="&lt;sub>"/>
+            <Argument mention_id="a532" role="&lt;obj>"/>
+            <Argument proposition_id="a550" role="after"/>
+          </Proposition>
+          <Proposition head_id="a520.70" id="a549" type="noun">
+            <Argument mention_id="a532" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a520.77" id="a550" type="verb">
+            <Argument mention_id="a531" role="&lt;sub>"/>
+            <Argument mention_id="a533" role="&lt;obj>"/>
+            <Argument mention_id="a534" role="in"/>
+          </Proposition>
+          <Proposition head_id="a520.82" id="a551" type="noun">
+            <Argument mention_id="a533" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a520.91" id="a552" type="noun">
+            <Argument mention_id="a534" role="&lt;ref>"/>
+            <Argument mention_id="a536" role="&lt;temp>"/>
+          </Proposition>
+          <Proposition head_id="a520.99" id="a553" type="modifier">
+            <Argument mention_id="a536" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a554" score="0"/>
+        <EventMentionSet id="a555" score="-1.3011694">
+          <EventMention anchor_node_id="a520.46" anchor_prop_id="a544" event_type="Conflict.Attack" genericity="Specific" id="a556" modality="Asserted" polarity="Positive" score="-1" tense="Unspecified">
+            <EventMentionArg role="Time-Within" score="0" value_mention_id="a518"/>
+          </EventMention>
+          <EventMention anchor_node_id="a520.91" anchor_prop_id="a552" event_type="Personnel.Elect" genericity="Specific" id="a557" modality="Asserted" polarity="Positive" score="-0.301169366" tense="Unspecified">
+            <EventMentionArg role="Time-Within" score="0.999457836" value_mention_id="a519"/>
+          </EventMention>
+        </EventMentionSet>
+        <SentenceTheory event_mention_set_id="a555" id="a558" mention_set_id="a521" name_theory_id="a513" parse_id="a520" part_of_speech_sequence_id="a512" primary_parse="full_parse" proposition_set_id="a537" rel_mention_set_id="a554" token_sequence_id="a475" value_mention_set_id="a517"/>
+      </Sentence>
+      <Sentence char_offsets="993:1064" edt_offsets="993:1064" id="a559" is_annotated="TRUE" region_id="a3">
+        <Contents>c. sarath fonseka is a member of the democratic national alliance party.</Contents>
+        <TokenSequence id="a560" score="0">
+          <Token char_offsets="993:994" edt_offsets="993:994" id="a561">c.</Token>
+          <Token char_offsets="996:1001" edt_offsets="996:1001" id="a562">sarath</Token>
+          <Token char_offsets="1003:1009" edt_offsets="1003:1009" id="a563">fonseka</Token>
+          <Token char_offsets="1011:1012" edt_offsets="1011:1012" id="a564">is</Token>
+          <Token char_offsets="1014:1014" edt_offsets="1014:1014" id="a565">a</Token>
+          <Token char_offsets="1016:1021" edt_offsets="1016:1021" id="a566">member</Token>
+          <Token char_offsets="1023:1024" edt_offsets="1023:1024" id="a567">of</Token>
+          <Token char_offsets="1026:1028" edt_offsets="1026:1028" id="a568">the</Token>
+          <Token char_offsets="1030:1039" edt_offsets="1030:1039" id="a569">democratic</Token>
+          <Token char_offsets="1041:1048" edt_offsets="1041:1048" id="a570">national</Token>
+          <Token char_offsets="1050:1057" edt_offsets="1050:1057" id="a571">alliance</Token>
+          <Token char_offsets="1059:1063" edt_offsets="1059:1063" id="a572">party</Token>
+          <Token char_offsets="1064:1064" edt_offsets="1064:1064" id="a573">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a574" score="0" token_sequence_id="a560"/>
+        <NameTheory id="a575" score="0" token_sequence_id="a560">
+          <Name char_offsets="993:1009" edt_offsets="993:1009" end_token="a563" entity_type="PER" id="a576" start_token="a561"/>
+          <Name char_offsets="1030:1063" edt_offsets="1030:1063" end_token="a572" entity_type="ORG" id="a577" start_token="a569"/>
+        </NameTheory>
+        <ValueMentionSet id="a578" score="0" token_sequence_id="a560"/>
+        <Parse id="a579" score="-37.4541206" token_sequence_id="a560">
+          <TreebankString node_id_method="DFS">(S^ (NPP (NNP c.) (NNP sarath) (NNP^ fonseka)) (VP^ (VBZ^ is) (NP (NPA^ (DT a) (NN^ member)) (PP (IN^ of) (NPA (DT the) (NPP^ (NNP democratic) (NNP national) (NNP alliance) (NNP^ party)))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="2" id="a580" name_score="0" parse_id="a579">
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a581" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a579.1"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a582" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a579.11"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a583" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a579.12"/>
+          <Mention child="a585" entity_subtype="Non-Governmental" entity_type="ORG" id="a584" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a579.20"/>
+          <Mention entity_subtype="UNDET" entity_type="ORG" id="a585" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" parent="a584" role_type="UNDET" syn_node_id="a579.23"/>
+        </MentionSet>
+        <PropositionSet id="a586" mention_set_id="a580">
+          <Proposition id="a587" type="name">
+            <Argument mention_id="a581" role="&lt;ref>"/>
+            <Argument syn_node_id="a579.1"/>
+          </Proposition>
+          <Proposition head_id="a579.9" id="a588" type="copula">
+            <Argument mention_id="a581" role="&lt;sub>"/>
+            <Argument mention_id="a582" role="&lt;obj>"/>
+          </Proposition>
+          <Proposition head_id="a579.15" id="a589" type="noun">
+            <Argument mention_id="a582" role="&lt;ref>"/>
+            <Argument mention_id="a584" role="of"/>
+          </Proposition>
+          <Proposition id="a590" type="name">
+            <Argument mention_id="a584" role="&lt;ref>"/>
+            <Argument syn_node_id="a579.23"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a591" score="0.598999977">
+          <RelMention id="a592" left_mention_id="a582" modality="Asserted" right_mention_id="a584" score="0.598999977" tense="Unspecified" type="ORG-AFF.Membership"/>
+        </RelMentionSet>
+        <EventMentionSet id="a593" score="0"/>
+        <SentenceTheory event_mention_set_id="a593" id="a594" mention_set_id="a580" name_theory_id="a575" parse_id="a579" part_of_speech_sequence_id="a574" primary_parse="full_parse" proposition_set_id="a586" rel_mention_set_id="a591" token_sequence_id="a560" value_mention_set_id="a578"/>
+      </Sentence>
+      <Sentence char_offsets="1066:1155" edt_offsets="1066:1155" id="a595" is_annotated="TRUE" region_id="a3">
+        <Contents>d. sarath fonseka lost the presidential election on january 26, 2010 by 1.8 million votes.</Contents>
+        <TokenSequence id="a596" score="0">
+          <Token char_offsets="1066:1067" edt_offsets="1066:1067" id="a597">d.</Token>
+          <Token char_offsets="1069:1074" edt_offsets="1069:1074" id="a598">sarath</Token>
+          <Token char_offsets="1076:1082" edt_offsets="1076:1082" id="a599">fonseka</Token>
+          <Token char_offsets="1084:1087" edt_offsets="1084:1087" id="a600">lost</Token>
+          <Token char_offsets="1089:1091" edt_offsets="1089:1091" id="a601">the</Token>
+          <Token char_offsets="1093:1104" edt_offsets="1093:1104" id="a602">presidential</Token>
+          <Token char_offsets="1106:1113" edt_offsets="1106:1113" id="a603">election</Token>
+          <Token char_offsets="1115:1116" edt_offsets="1115:1116" id="a604">on</Token>
+          <Token char_offsets="1118:1124" edt_offsets="1118:1124" id="a605">january</Token>
+          <Token char_offsets="1126:1127" edt_offsets="1126:1127" id="a606">26</Token>
+          <Token char_offsets="1128:1128" edt_offsets="1128:1128" id="a607">,</Token>
+          <Token char_offsets="1130:1133" edt_offsets="1130:1133" id="a608">2010</Token>
+          <Token char_offsets="1135:1136" edt_offsets="1135:1136" id="a609">by</Token>
+          <Token char_offsets="1138:1140" edt_offsets="1138:1140" id="a610">1.8</Token>
+          <Token char_offsets="1142:1148" edt_offsets="1142:1148" id="a611">million</Token>
+          <Token char_offsets="1150:1154" edt_offsets="1150:1154" id="a612">votes</Token>
+          <Token char_offsets="1155:1155" edt_offsets="1155:1155" id="a613">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a614" score="0" token_sequence_id="a596"/>
+        <NameTheory id="a615" score="0" token_sequence_id="a596">
+          <Name char_offsets="1066:1082" edt_offsets="1066:1082" end_token="a599" entity_type="PER" id="a616" start_token="a597"/>
+        </NameTheory>
+        <ValueMentionSet id="a617" score="0" token_sequence_id="a596">
+          <ValueMention char_offsets="1118:1133" edt_offsets="1118:1133" end_token="a608" id="a618" start_token="a605" value_type="TIMEX2.TIME"/>
+        </ValueMentionSet>
+        <Parse id="a619" score="-94.6744385" token_sequence_id="a596">
+          <TreebankString node_id_method="DFS">(S^ (NPP (NNP d.) (NNP sarath) (NNP^ fonseka)) (VP^ (VBD^ lost) (NPA (DT the) (JJ presidential) (NN^ election)) (PP (IN^ on) (NP (DATE (DATE-NNP^ january) (CD 26)) (, ,) (DATE^ (CD^ 2010)) (PP (IN^ by) (NPA (QP (CD^ 1.8) (CD million)) (NNS^ votes)))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="4" id="a620" name_score="0" parse_id="a619">
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a621" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a619.1"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a622" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a619.11"/>
+          <Mention child="a624" entity_subtype="UNDET" entity_type="OTH" id="a623" intended_type="UNDET" is_metonymy="FALSE" mention_type="appo" role_type="UNDET" syn_node_id="a619.21"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a624" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" next="a625" parent="a623" role_type="UNDET" syn_node_id="a619.22"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a625" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" parent="a623" role_type="UNDET" syn_node_id="a619.29"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a626" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a619.35"/>
+        </MentionSet>
+        <PropositionSet id="a627" mention_set_id="a620">
+          <Proposition id="a628" type="name">
+            <Argument mention_id="a621" role="&lt;ref>"/>
+            <Argument syn_node_id="a619.1"/>
+          </Proposition>
+          <Proposition head_id="a619.9" id="a629" type="verb">
+            <Argument mention_id="a621" role="&lt;sub>"/>
+            <Argument mention_id="a622" role="&lt;obj>"/>
+            <Argument mention_id="a623" role="on"/>
+          </Proposition>
+          <Proposition head_id="a619.14" id="a630" type="modifier">
+            <Argument mention_id="a622" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a619.16" id="a631" type="noun">
+            <Argument mention_id="a622" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a619.22" id="a632" type="modifier">
+            <Argument mention_id="a623" role="&lt;ref>"/>
+            <Argument mention_id="a624" role="&lt;temp>"/>
+          </Proposition>
+          <Proposition head_id="a619.25" id="a633" type="modifier">
+            <Argument mention_id="a624" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a619.29" id="a634" type="modifier">
+            <Argument mention_id="a623" role="&lt;ref>"/>
+            <Argument mention_id="a625" role="&lt;temp>"/>
+          </Proposition>
+          <Proposition head_id="a619.30" id="a635" type="modifier">
+            <Argument mention_id="a625" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a619.33" id="a636" type="modifier">
+            <Argument mention_id="a623" role="&lt;ref>"/>
+            <Argument mention_id="a626" role="by"/>
+          </Proposition>
+          <Proposition head_id="a619.37" id="a637" type="modifier">
+            <Argument mention_id="a626" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a619.39" id="a638" type="modifier">
+            <Argument mention_id="a626" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a619.41" id="a639" type="noun">
+            <Argument mention_id="a626" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a640" score="0"/>
+        <EventMentionSet id="a641" score="-0.323392451">
+          <EventMention anchor_node_id="a619.16" anchor_prop_id="a631" event_type="Personnel.Elect" genericity="Specific" id="a642" modality="Asserted" polarity="Positive" score="-0.323392451" tense="Unspecified"/>
+        </EventMentionSet>
+        <SentenceTheory event_mention_set_id="a641" id="a643" mention_set_id="a620" name_theory_id="a615" parse_id="a619" part_of_speech_sequence_id="a614" primary_parse="full_parse" proposition_set_id="a627" rel_mention_set_id="a640" token_sequence_id="a596" value_mention_set_id="a617"/>
+      </Sentence>
+      <Sentence char_offsets="1157:1248" edt_offsets="1157:1248" id="a644" is_annotated="TRUE" region_id="a3">
+        <Contents>e. sarath fonseka is sri lanka’s first 4 star general and was in the army for over 40 years.</Contents>
+        <TokenSequence id="a645" score="0">
+          <Token char_offsets="1157:1158" edt_offsets="1157:1158" id="a646">e.</Token>
+          <Token char_offsets="1160:1165" edt_offsets="1160:1165" id="a647">sarath</Token>
+          <Token char_offsets="1167:1173" edt_offsets="1167:1173" id="a648">fonseka</Token>
+          <Token char_offsets="1175:1176" edt_offsets="1175:1176" id="a649">is</Token>
+          <Token char_offsets="1178:1180" edt_offsets="1178:1180" id="a650">sri</Token>
+          <Token char_offsets="1182:1186" edt_offsets="1182:1186" id="a651">lanka</Token>
+          <Token char_offsets="1187:1188" edt_offsets="1187:1188" id="a652">'s</Token>
+          <Token char_offsets="1190:1194" edt_offsets="1190:1194" id="a653">first</Token>
+          <Token char_offsets="1196:1196" edt_offsets="1196:1196" id="a654">4</Token>
+          <Token char_offsets="1198:1201" edt_offsets="1198:1201" id="a655">star</Token>
+          <Token char_offsets="1203:1209" edt_offsets="1203:1209" id="a656">general</Token>
+          <Token char_offsets="1211:1213" edt_offsets="1211:1213" id="a657">and</Token>
+          <Token char_offsets="1215:1217" edt_offsets="1215:1217" id="a658">was</Token>
+          <Token char_offsets="1219:1220" edt_offsets="1219:1220" id="a659">in</Token>
+          <Token char_offsets="1222:1224" edt_offsets="1222:1224" id="a660">the</Token>
+          <Token char_offsets="1226:1229" edt_offsets="1226:1229" id="a661">army</Token>
+          <Token char_offsets="1231:1233" edt_offsets="1231:1233" id="a662">for</Token>
+          <Token char_offsets="1235:1238" edt_offsets="1235:1238" id="a663">over</Token>
+          <Token char_offsets="1240:1241" edt_offsets="1240:1241" id="a664">40</Token>
+          <Token char_offsets="1243:1247" edt_offsets="1243:1247" id="a665">years</Token>
+          <Token char_offsets="1248:1248" edt_offsets="1248:1248" id="a666">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a667" score="0" token_sequence_id="a645"/>
+        <NameTheory id="a668" score="0" token_sequence_id="a645">
+          <Name char_offsets="1157:1173" edt_offsets="1157:1173" end_token="a648" entity_type="PER" id="a669" start_token="a646"/>
+          <Name char_offsets="1178:1186" edt_offsets="1178:1186" end_token="a651" entity_type="GPE" id="a670" start_token="a650"/>
+        </NameTheory>
+        <ValueMentionSet id="a671" score="0" token_sequence_id="a645">
+          <ValueMention char_offsets="1235:1247" edt_offsets="1235:1247" end_token="a665" id="a672" start_token="a663" value_type="TIMEX2.TIME"/>
+        </ValueMentionSet>
+        <Parse id="a673" score="-109.011475" token_sequence_id="a645">
+          <TreebankString node_id_method="DFS">(S^ (NPP (NNP e.) (NNP sarath) (NNP^ fonseka)) (VP^ (VP^ (VBZ^ is) (NPA (NPPOS (NPP (NNP sri) (NNP^ lanka)) (POS^ 's)) (JJ first) (ADJP (CD 4) (NN^ star)) (NN^ general))) (CC and) (VP (VBD^ was) (PP (IN^ in) (NPA (DT the) (NNP^ army))) (PP (IN^ for) (NPA (QP (IN^ over) (CD 40)) (NNS^ years))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="3" id="a674" name_score="0" parse_id="a673">
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a675" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a673.1"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a676" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a673.12"/>
+          <Mention entity_subtype="Nation" entity_type="GPE" id="a677" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a673.14"/>
+          <Mention entity_subtype="Government" entity_type="ORG" id="a678" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.539357007" mention_type="desc" role_type="UNDET" syn_node_id="a673.38"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a679" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a673.46"/>
+        </MentionSet>
+        <PropositionSet id="a680" mention_set_id="a674">
+          <Proposition id="a681" type="name">
+            <Argument mention_id="a675" role="&lt;ref>"/>
+            <Argument syn_node_id="a673.1"/>
+          </Proposition>
+          <Proposition head_id="a673.30" id="a682" type="comp">
+            <Argument proposition_id="a683" role="&lt;member>"/>
+            <Argument proposition_id="a690" role="&lt;member>"/>
+          </Proposition>
+          <Proposition head_id="a673.10" id="a683" type="copula">
+            <Argument mention_id="a675" role="&lt;sub>"/>
+            <Argument mention_id="a676" role="&lt;obj>"/>
+          </Proposition>
+          <Proposition head_id="a673.21" id="a684" type="modifier">
+            <Argument mention_id="a676" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a673.26" id="a685" type="modifier">
+            <Argument mention_id="a676" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a673.28" id="a686" type="noun">
+            <Argument mention_id="a676" role="&lt;ref>"/>
+            <Argument mention_id="a677" role="&lt;poss>"/>
+          </Proposition>
+          <Proposition id="a687" type="name">
+            <Argument mention_id="a677" role="&lt;ref>"/>
+            <Argument syn_node_id="a673.14"/>
+          </Proposition>
+          <Proposition head_id="a673.36" id="a688" type="modifier">
+            <Argument mention_id="a675" role="&lt;ref>"/>
+            <Argument mention_id="a678" role="in"/>
+          </Proposition>
+          <Proposition head_id="a673.41" id="a689" type="noun">
+            <Argument mention_id="a678" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a673.43" id="a690" type="modifier">
+            <Argument mention_id="a675" role="&lt;ref>"/>
+            <Argument mention_id="a679" role="&lt;temp>"/>
+          </Proposition>
+          <Proposition head_id="a673.50" id="a691" type="modifier">
+            <Argument mention_id="a679" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a673.52" id="a692" type="noun">
+            <Argument mention_id="a679" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a693" score="1.33500004">
+          <RelMention id="a694" left_mention_id="a675" modality="Asserted" right_mention_id="a678" score="0.335000008" tense="Unspecified" type="ORG-AFF.Employment"/>
+          <RelMention id="a695" left_mention_id="a676" modality="Asserted" right_mention_id="a677" score="1" tense="Unspecified" type="ORG-AFF.Employment"/>
+        </RelMentionSet>
+        <EventMentionSet id="a696" score="0"/>
+        <SentenceTheory event_mention_set_id="a696" id="a697" mention_set_id="a674" name_theory_id="a668" parse_id="a673" part_of_speech_sequence_id="a667" primary_parse="full_parse" proposition_set_id="a680" rel_mention_set_id="a693" token_sequence_id="a645" value_mention_set_id="a671"/>
+      </Sentence>
+      <Sentence char_offsets="1250:1252" edt_offsets="1250:1252" id="a698" is_annotated="TRUE" region_id="a3">
+        <TokenSequence id="a699" score="0">
+          <Token char_offsets="1250:1250" edt_offsets="1250:1250" id="a700">3</Token>
+          <Token char_offsets="1252:1252" edt_offsets="1252:1252" id="a701">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a702" score="0" token_sequence_id="a699"/>
+        <NameTheory id="a703" score="0" token_sequence_id="a699"/>
+        <ValueMentionSet id="a704" score="0" token_sequence_id="a699"/>
+        <Parse id="a705" score="-26.2978992" token_sequence_id="a699">
+          <TreebankString node_id_method="DFS">(NPA^ (CD^ 3) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="1" id="a706" name_score="0" parse_id="a705">
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a707" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a705.0"/>
+        </MentionSet>
+        <PropositionSet id="a708" mention_set_id="a706">
+          <Proposition head_id="a705.1" id="a709" type="modifier">
+            <Argument mention_id="a707" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a710" score="0"/>
+        <EventMentionSet id="a711" score="0"/>
+        <SentenceTheory event_mention_set_id="a711" id="a712" mention_set_id="a706" name_theory_id="a703" parse_id="a705" part_of_speech_sequence_id="a702" primary_parse="full_parse" proposition_set_id="a708" rel_mention_set_id="a710" token_sequence_id="a699" value_mention_set_id="a704"/>
+      </Sentence>
+      <Sentence char_offsets="1254:1360" edt_offsets="1254:1360" id="a713" is_annotated="TRUE" region_id="a3">
+        <Contents>sarath fonseka was arrested on february 8, 2010 on the charge of planning a military coup while in uniform.</Contents>
+        <TokenSequence id="a714" score="0">
+          <Token char_offsets="1254:1259" edt_offsets="1254:1259" id="a715">sarath</Token>
+          <Token char_offsets="1261:1267" edt_offsets="1261:1267" id="a716">fonseka</Token>
+          <Token char_offsets="1269:1271" edt_offsets="1269:1271" id="a717">was</Token>
+          <Token char_offsets="1273:1280" edt_offsets="1273:1280" id="a718">arrested</Token>
+          <Token char_offsets="1282:1283" edt_offsets="1282:1283" id="a719">on</Token>
+          <Token char_offsets="1285:1292" edt_offsets="1285:1292" id="a720">february</Token>
+          <Token char_offsets="1294:1294" edt_offsets="1294:1294" id="a721">8</Token>
+          <Token char_offsets="1295:1295" edt_offsets="1295:1295" id="a722">,</Token>
+          <Token char_offsets="1297:1300" edt_offsets="1297:1300" id="a723">2010</Token>
+          <Token char_offsets="1302:1303" edt_offsets="1302:1303" id="a724">on</Token>
+          <Token char_offsets="1305:1307" edt_offsets="1305:1307" id="a725">the</Token>
+          <Token char_offsets="1309:1314" edt_offsets="1309:1314" id="a726">charge</Token>
+          <Token char_offsets="1316:1317" edt_offsets="1316:1317" id="a727">of</Token>
+          <Token char_offsets="1319:1326" edt_offsets="1319:1326" id="a728">planning</Token>
+          <Token char_offsets="1328:1328" edt_offsets="1328:1328" id="a729">a</Token>
+          <Token char_offsets="1330:1337" edt_offsets="1330:1337" id="a730">military</Token>
+          <Token char_offsets="1339:1342" edt_offsets="1339:1342" id="a731">coup</Token>
+          <Token char_offsets="1344:1348" edt_offsets="1344:1348" id="a732">while</Token>
+          <Token char_offsets="1350:1351" edt_offsets="1350:1351" id="a733">in</Token>
+          <Token char_offsets="1353:1359" edt_offsets="1353:1359" id="a734">uniform</Token>
+          <Token char_offsets="1360:1360" edt_offsets="1360:1360" id="a735">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a736" score="0" token_sequence_id="a714"/>
+        <NameTheory id="a737" score="0" token_sequence_id="a714">
+          <Name char_offsets="1254:1267" edt_offsets="1254:1267" end_token="a716" entity_type="PER" id="a738" start_token="a715"/>
+        </NameTheory>
+        <ValueMentionSet id="a739" score="0" token_sequence_id="a714">
+          <ValueMention char_offsets="1285:1300" edt_offsets="1285:1300" end_token="a723" id="a740" start_token="a720" value_type="TIMEX2.TIME"/>
+        </ValueMentionSet>
+        <Parse id="a741" score="-129.528702" token_sequence_id="a714">
+          <TreebankString node_id_method="DFS">(S^ (NPP (NNP sarath) (NNP^ fonseka)) (VP^ (VBD^ was) (VP (VBN^ arrested) (PP (IN^ on) (NP (DATE (DATE-NNP^ february) (CD 8)) (, ,) (DATE^ (CD^ 2010)) (PP (IN^ on) (NP (NPA^ (DT the) (NN^ charge)) (PP (IN^ of) (S (VP^ (VBG^ planning) (NPA (DT a) (JJ military) (NN coup) (NN^ while)) (PP (IN^ in) (NPA (NN^ uniform)))))))))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="6" id="a742" name_score="0" parse_id="a741">
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a743" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a741.1"/>
+          <Mention child="a745" entity_subtype="UNDET" entity_type="OTH" id="a744" intended_type="UNDET" is_metonymy="FALSE" mention_type="appo" role_type="UNDET" syn_node_id="a741.15"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a745" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" next="a746" parent="a744" role_type="UNDET" syn_node_id="a741.16"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a746" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" parent="a744" role_type="UNDET" syn_node_id="a741.23"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a747" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a741.29"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a748" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a741.30"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a749" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a741.42"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a750" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a741.45"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a751" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a741.47"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a752" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a741.54"/>
+        </MentionSet>
+        <PropositionSet id="a753" mention_set_id="a742">
+          <Proposition id="a754" type="name">
+            <Argument mention_id="a743" role="&lt;ref>"/>
+            <Argument syn_node_id="a741.1"/>
+          </Proposition>
+          <Proposition head_id="a741.10" id="a755" type="verb">
+            <Argument mention_id="a743" role="&lt;obj>"/>
+            <Argument mention_id="a744" role="on"/>
+          </Proposition>
+          <Proposition head_id="a741.16" id="a756" type="modifier">
+            <Argument mention_id="a744" role="&lt;ref>"/>
+            <Argument mention_id="a745" role="&lt;temp>"/>
+          </Proposition>
+          <Proposition head_id="a741.19" id="a757" type="modifier">
+            <Argument mention_id="a745" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a741.23" id="a758" type="modifier">
+            <Argument mention_id="a744" role="&lt;ref>"/>
+            <Argument mention_id="a746" role="&lt;temp>"/>
+          </Proposition>
+          <Proposition head_id="a741.24" id="a759" type="modifier">
+            <Argument mention_id="a746" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a741.27" id="a760" type="modifier">
+            <Argument mention_id="a744" role="&lt;ref>"/>
+            <Argument mention_id="a747" role="on"/>
+          </Proposition>
+          <Proposition head_id="a741.33" id="a761" type="noun">
+            <Argument mention_id="a747" role="&lt;ref>"/>
+            <Argument proposition_id="a762" role="of"/>
+          </Proposition>
+          <Proposition head_id="a741.40" id="a762" type="verb">
+            <Argument mention_id="a749" role="&lt;obj>"/>
+            <Argument mention_id="a752" role="in"/>
+          </Proposition>
+          <Proposition head_id="a741.47" id="a763" type="modifier">
+            <Argument mention_id="a749" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a741.49" id="a764" type="noun">
+            <Argument mention_id="a749" role="&lt;ref>"/>
+            <Argument mention_id="a750" role="&lt;unknown>"/>
+          </Proposition>
+          <Proposition head_id="a741.55" id="a765" type="noun">
+            <Argument mention_id="a752" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a766" score="0"/>
+        <EventMentionSet id="a767" score="-1.13977063">
+          <EventMention anchor_node_id="a741.10" anchor_prop_id="a755" event_type="Justice.Arrest-Jail" genericity="Specific" id="a768" modality="Asserted" polarity="Positive" score="-0.17479907" tense="Unspecified">
+            <EventMentionArg mention_id="a743" role="Person" score="0.996498585"/>
+          </EventMention>
+          <EventMention anchor_node_id="a741.33" anchor_prop_id="a761" event_type="Justice.Charge-Indict" genericity="Specific" id="a769" modality="Asserted" polarity="Positive" score="-0.532045484" tense="Unspecified"/>
+          <EventMention anchor_node_id="a741.47" anchor_prop_id="a763" event_type="Conflict.Attack" genericity="Specific" id="a770" modality="Asserted" polarity="Positive" score="-0.432926059" tense="Unspecified"/>
+        </EventMentionSet>
+        <SentenceTheory event_mention_set_id="a767" id="a771" mention_set_id="a742" name_theory_id="a737" parse_id="a741" part_of_speech_sequence_id="a736" primary_parse="full_parse" proposition_set_id="a753" rel_mention_set_id="a766" token_sequence_id="a714" value_mention_set_id="a739"/>
+      </Sentence>
+      <Sentence char_offsets="1362:1443" edt_offsets="1362:1443" id="a772" is_annotated="TRUE" region_id="a3">
+        <Contents>a. sarath fonseka appeared in front of a court martial the week of march 18, 2010.</Contents>
+        <TokenSequence id="a773" score="0">
+          <Token char_offsets="1362:1363" edt_offsets="1362:1363" id="a774">a.</Token>
+          <Token char_offsets="1365:1370" edt_offsets="1365:1370" id="a775">sarath</Token>
+          <Token char_offsets="1372:1378" edt_offsets="1372:1378" id="a776">fonseka</Token>
+          <Token char_offsets="1380:1387" edt_offsets="1380:1387" id="a777">appeared</Token>
+          <Token char_offsets="1389:1390" edt_offsets="1389:1390" id="a778">in</Token>
+          <Token char_offsets="1392:1396" edt_offsets="1392:1396" id="a779">front</Token>
+          <Token char_offsets="1398:1399" edt_offsets="1398:1399" id="a780">of</Token>
+          <Token char_offsets="1401:1401" edt_offsets="1401:1401" id="a781">a</Token>
+          <Token char_offsets="1403:1407" edt_offsets="1403:1407" id="a782">court</Token>
+          <Token char_offsets="1409:1415" edt_offsets="1409:1415" id="a783">martial</Token>
+          <Token char_offsets="1417:1419" edt_offsets="1417:1419" id="a784">the</Token>
+          <Token char_offsets="1421:1424" edt_offsets="1421:1424" id="a785">week</Token>
+          <Token char_offsets="1426:1427" edt_offsets="1426:1427" id="a786">of</Token>
+          <Token char_offsets="1429:1433" edt_offsets="1429:1433" id="a787">march</Token>
+          <Token char_offsets="1435:1436" edt_offsets="1435:1436" id="a788">18</Token>
+          <Token char_offsets="1437:1437" edt_offsets="1437:1437" id="a789">,</Token>
+          <Token char_offsets="1439:1442" edt_offsets="1439:1442" id="a790">2010</Token>
+          <Token char_offsets="1443:1443" edt_offsets="1443:1443" id="a791">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a792" score="0" token_sequence_id="a773"/>
+        <NameTheory id="a793" score="0" token_sequence_id="a773">
+          <Name char_offsets="1362:1378" edt_offsets="1362:1378" end_token="a776" entity_type="PER" id="a794" start_token="a774"/>
+        </NameTheory>
+        <ValueMentionSet id="a795" score="0" token_sequence_id="a773">
+          <ValueMention char_offsets="1417:1442" edt_offsets="1417:1442" end_token="a790" id="a796" start_token="a784" value_type="TIMEX2.TIME"/>
+        </ValueMentionSet>
+        <Parse id="a797" score="-99.655632" token_sequence_id="a773">
+          <TreebankString node_id_method="DFS">(S^ (NPP (NNP a.) (NNP sarath) (NNP^ fonseka)) (VP^ (VBD^ appeared) (PP (IN^ in) (NP (NPA^ (NN^ front)) (PP (IN^ of) (NPA (DT a) (NN court) (NN^ martial))))) (NP (NPA^ (DT the) (NN^ week)) (PP (IN^ of) (DATE (DATE-NNP^ march) (CD 18) (, ,) (CD 2010))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="6" id="a798" name_score="0" parse_id="a797">
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a799" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a797.1"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a800" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a797.14"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a801" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a797.15"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a802" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a797.21"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a803" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a797.24"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a804" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a797.28"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a805" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a797.29"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a806" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a797.37"/>
+        </MentionSet>
+        <PropositionSet id="a807" mention_set_id="a798">
+          <Proposition id="a808" type="name">
+            <Argument mention_id="a799" role="&lt;ref>"/>
+            <Argument syn_node_id="a797.1"/>
+          </Proposition>
+          <Proposition head_id="a797.9" id="a809" type="verb">
+            <Argument mention_id="a799" role="&lt;sub>"/>
+            <Argument mention_id="a800" role="in"/>
+            <Argument mention_id="a804" role="&lt;temp>"/>
+          </Proposition>
+          <Proposition head_id="a797.16" id="a810" type="noun">
+            <Argument mention_id="a800" role="&lt;ref>"/>
+            <Argument mention_id="a802" role="of"/>
+          </Proposition>
+          <Proposition head_id="a797.24" id="a811" type="modifier">
+            <Argument mention_id="a802" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a797.26" id="a812" type="noun">
+            <Argument mention_id="a802" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a797.32" id="a813" type="noun">
+            <Argument mention_id="a804" role="&lt;ref>"/>
+            <Argument mention_id="a806" role="&lt;temp>"/>
+          </Proposition>
+          <Proposition head_id="a797.40" id="a814" type="modifier">
+            <Argument mention_id="a806" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a797.44" id="a815" type="modifier">
+            <Argument mention_id="a806" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a816" score="0"/>
+        <EventMentionSet id="a817" score="0"/>
+        <SentenceTheory event_mention_set_id="a817" id="a818" mention_set_id="a798" name_theory_id="a793" parse_id="a797" part_of_speech_sequence_id="a792" primary_parse="full_parse" proposition_set_id="a807" rel_mention_set_id="a816" token_sequence_id="a773" value_mention_set_id="a795"/>
+      </Sentence>
+      <Sentence char_offsets="1445:1467" edt_offsets="1445:1467" id="a819" is_annotated="TRUE" region_id="a3">
+        <Contents>the case was adjourned.</Contents>
+        <TokenSequence id="a820" score="0">
+          <Token char_offsets="1445:1447" edt_offsets="1445:1447" id="a821">the</Token>
+          <Token char_offsets="1449:1452" edt_offsets="1449:1452" id="a822">case</Token>
+          <Token char_offsets="1454:1456" edt_offsets="1454:1456" id="a823">was</Token>
+          <Token char_offsets="1458:1466" edt_offsets="1458:1466" id="a824">adjourned</Token>
+          <Token char_offsets="1467:1467" edt_offsets="1467:1467" id="a825">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a826" score="0" token_sequence_id="a820"/>
+        <NameTheory id="a827" score="0" token_sequence_id="a820"/>
+        <ValueMentionSet id="a828" score="0" token_sequence_id="a820"/>
+        <Parse id="a829" score="-22.6854" token_sequence_id="a820">
+          <TreebankString node_id_method="DFS">(S^ (NPA (DT the) (NN^ case)) (VP^ (VBD^ was) (VP (VBN^ adjourned))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="1" id="a830" name_score="0" parse_id="a829">
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a831" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a829.1"/>
+        </MentionSet>
+        <PropositionSet id="a832" mention_set_id="a830">
+          <Proposition head_id="a829.4" id="a833" type="noun">
+            <Argument mention_id="a831" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a829.10" id="a834" type="verb">
+            <Argument mention_id="a831" role="&lt;obj>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a835" score="0"/>
+        <EventMentionSet id="a836" score="0"/>
+        <SentenceTheory event_mention_set_id="a836" id="a837" mention_set_id="a830" name_theory_id="a827" parse_id="a829" part_of_speech_sequence_id="a826" primary_parse="full_parse" proposition_set_id="a832" rel_mention_set_id="a835" token_sequence_id="a820" value_mention_set_id="a828"/>
+      </Sentence>
+      <Sentence char_offsets="1469:1648" edt_offsets="1469:1648" id="a838" is_annotated="TRUE" region_id="a3">
+        <Contents>b. sri lankan retired chief justice sarath silva criticized the treatment of sarath fonseka and stated that there is no democracy in sri lanka because there is no room for dissent.</Contents>
+        <TokenSequence id="a839" score="0">
+          <Token char_offsets="1469:1470" edt_offsets="1469:1470" id="a840">b.</Token>
+          <Token char_offsets="1472:1474" edt_offsets="1472:1474" id="a841">sri</Token>
+          <Token char_offsets="1476:1481" edt_offsets="1476:1481" id="a842">lankan</Token>
+          <Token char_offsets="1483:1489" edt_offsets="1483:1489" id="a843">retired</Token>
+          <Token char_offsets="1491:1495" edt_offsets="1491:1495" id="a844">chief</Token>
+          <Token char_offsets="1497:1503" edt_offsets="1497:1503" id="a845">justice</Token>
+          <Token char_offsets="1505:1510" edt_offsets="1505:1510" id="a846">sarath</Token>
+          <Token char_offsets="1512:1516" edt_offsets="1512:1516" id="a847">silva</Token>
+          <Token char_offsets="1518:1527" edt_offsets="1518:1527" id="a848">criticized</Token>
+          <Token char_offsets="1529:1531" edt_offsets="1529:1531" id="a849">the</Token>
+          <Token char_offsets="1533:1541" edt_offsets="1533:1541" id="a850">treatment</Token>
+          <Token char_offsets="1543:1544" edt_offsets="1543:1544" id="a851">of</Token>
+          <Token char_offsets="1546:1551" edt_offsets="1546:1551" id="a852">sarath</Token>
+          <Token char_offsets="1553:1559" edt_offsets="1553:1559" id="a853">fonseka</Token>
+          <Token char_offsets="1561:1563" edt_offsets="1561:1563" id="a854">and</Token>
+          <Token char_offsets="1565:1570" edt_offsets="1565:1570" id="a855">stated</Token>
+          <Token char_offsets="1572:1575" edt_offsets="1572:1575" id="a856">that</Token>
+          <Token char_offsets="1577:1581" edt_offsets="1577:1581" id="a857">there</Token>
+          <Token char_offsets="1583:1584" edt_offsets="1583:1584" id="a858">is</Token>
+          <Token char_offsets="1586:1587" edt_offsets="1586:1587" id="a859">no</Token>
+          <Token char_offsets="1589:1597" edt_offsets="1589:1597" id="a860">democracy</Token>
+          <Token char_offsets="1599:1600" edt_offsets="1599:1600" id="a861">in</Token>
+          <Token char_offsets="1602:1604" edt_offsets="1602:1604" id="a862">sri</Token>
+          <Token char_offsets="1606:1610" edt_offsets="1606:1610" id="a863">lanka</Token>
+          <Token char_offsets="1612:1618" edt_offsets="1612:1618" id="a864">because</Token>
+          <Token char_offsets="1620:1624" edt_offsets="1620:1624" id="a865">there</Token>
+          <Token char_offsets="1626:1627" edt_offsets="1626:1627" id="a866">is</Token>
+          <Token char_offsets="1629:1630" edt_offsets="1629:1630" id="a867">no</Token>
+          <Token char_offsets="1632:1635" edt_offsets="1632:1635" id="a868">room</Token>
+          <Token char_offsets="1637:1639" edt_offsets="1637:1639" id="a869">for</Token>
+          <Token char_offsets="1641:1647" edt_offsets="1641:1647" id="a870">dissent</Token>
+          <Token char_offsets="1648:1648" edt_offsets="1648:1648" id="a871">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a872" score="0" token_sequence_id="a839"/>
+        <NameTheory id="a873" score="0" token_sequence_id="a839">
+          <Name char_offsets="1469:1481" edt_offsets="1469:1481" end_token="a842" entity_type="PER" id="a874" start_token="a840"/>
+          <Name char_offsets="1505:1516" edt_offsets="1505:1516" end_token="a847" entity_type="PER" id="a875" start_token="a846"/>
+          <Name char_offsets="1546:1559" edt_offsets="1546:1559" end_token="a853" entity_type="PER" id="a876" start_token="a852"/>
+          <Name char_offsets="1602:1610" edt_offsets="1602:1610" end_token="a863" entity_type="GPE" id="a877" start_token="a862"/>
+        </NameTheory>
+        <ValueMentionSet id="a878" score="0" token_sequence_id="a839"/>
+        <Parse id="a879" score="-158.528061" token_sequence_id="a839">
+          <TreebankString node_id_method="DFS">(S^ (NPA (NPP (NNP b.) (NNP sri) (NNP^ lankan)) (NNP retired) (NNP chief) (NNP justice) (NPP^ (NNP sarath) (NNP^ silva))) (VP^ (VP^ (VBD^ criticized) (NP (NPA^ (DT the) (NN^ treatment)) (PP (IN^ of) (NPP (NNP sarath) (NNP^ fonseka))))) (CC and) (VP (VBD^ stated) (SBAR (IN^ that) (S (NPA (EX^ there)) (VP^ (VBZ^ is) (NPA (DT no) (NN^ democracy)) (PP (IN^ in) (NPP (NNP sri) (NNP^ lanka))) (SBAR (IN^ because) (S (NPA (EX^ there)) (VP^ (VBZ^ is) (NP (NPA^ (DT no) (NN^ room)) (PP (IN^ for) (NPA (NN^ dissent)))))))))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="6" id="a880" name_score="0" parse_id="a879">
+          <Mention child="a886" entity_subtype="UNDET" entity_type="PER" id="a881" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a879.1"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a882" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a879.2"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a883" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a879.9"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a884" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a879.11"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a885" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a879.13"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a886" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" parent="a881" role_type="UNDET" syn_node_id="a879.15"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a887" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a879.24"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a888" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a879.25"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a889" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a879.33"/>
+          <Mention entity_subtype="UNDET" entity_type="UNDET" id="a890" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.909794629" mention_type="pron" role_type="UNDET" syn_node_id="a879.47"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a891" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a879.53"/>
+          <Mention entity_subtype="Nation" entity_type="GPE" id="a892" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="LOC" syn_node_id="a879.61"/>
+          <Mention entity_subtype="UNDET" entity_type="UNDET" id="a893" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.830664337" mention_type="pron" role_type="UNDET" syn_node_id="a879.70"/>
+          <Mention entity_subtype="Subarea-Facility" entity_type="FAC" id="a894" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a879.76"/>
+          <Mention entity_subtype="UNDET" entity_type="FAC" id="a895" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a879.77"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a896" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a879.85"/>
+        </MentionSet>
+        <PropositionSet id="a897" mention_set_id="a880">
+          <Proposition head_id="a879.9" id="a898" type="modifier">
+            <Argument mention_id="a885" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a879.11" id="a899" type="modifier">
+            <Argument mention_id="a885" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a879.13" id="a900" type="noun">
+            <Argument mention_id="a885" role="&lt;ref>"/>
+            <Argument mention_id="a882" role="&lt;unknown>"/>
+          </Proposition>
+          <Proposition id="a901" type="name">
+            <Argument mention_id="a882" role="&lt;ref>"/>
+            <Argument syn_node_id="a879.2"/>
+          </Proposition>
+          <Proposition id="a902" type="name">
+            <Argument mention_id="a881" role="&lt;ref>"/>
+            <Argument syn_node_id="a879.15"/>
+          </Proposition>
+          <Proposition head_id="a879.38" id="a903" type="comp">
+            <Argument proposition_id="a904" role="&lt;member>"/>
+            <Argument proposition_id="a907" role="&lt;member>"/>
+          </Proposition>
+          <Proposition head_id="a879.22" id="a904" type="verb">
+            <Argument mention_id="a881" role="&lt;sub>"/>
+            <Argument mention_id="a887" role="&lt;obj>"/>
+          </Proposition>
+          <Proposition head_id="a879.28" id="a905" type="noun">
+            <Argument mention_id="a887" role="&lt;ref>"/>
+            <Argument mention_id="a889" role="of"/>
+          </Proposition>
+          <Proposition id="a906" type="name">
+            <Argument mention_id="a889" role="&lt;ref>"/>
+            <Argument syn_node_id="a879.33"/>
+          </Proposition>
+          <Proposition head_id="a879.41" id="a907" type="verb">
+            <Argument mention_id="a881" role="&lt;sub>"/>
+            <Argument proposition_id="a909" role="that"/>
+          </Proposition>
+          <Proposition head_id="a879.47" id="a908" type="pronoun">
+            <Argument mention_id="a890" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a879.51" id="a909" status="Negative" type="copula">
+            <Argument mention_id="a890" role="&lt;sub>"/>
+            <Argument mention_id="a891" role="&lt;obj>"/>
+            <Argument mention_id="a892" role="in"/>
+            <Argument proposition_id="a913" role="because"/>
+          </Proposition>
+          <Proposition head_id="a879.56" id="a910" status="Negative" type="noun">
+            <Argument mention_id="a891" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition id="a911" type="name">
+            <Argument mention_id="a892" role="&lt;ref>"/>
+            <Argument syn_node_id="a879.61"/>
+          </Proposition>
+          <Proposition head_id="a879.70" id="a912" type="pronoun">
+            <Argument mention_id="a893" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a879.74" id="a913" type="copula">
+            <Argument mention_id="a893" role="&lt;sub>"/>
+            <Argument mention_id="a894" role="&lt;obj>"/>
+          </Proposition>
+          <Proposition head_id="a879.80" id="a914" type="noun">
+            <Argument mention_id="a894" role="&lt;ref>"/>
+            <Argument mention_id="a896" role="for"/>
+          </Proposition>
+          <Proposition head_id="a879.86" id="a915" type="noun">
+            <Argument mention_id="a896" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a916" score="0"/>
+        <EventMentionSet id="a917" score="-0.370463848">
+          <EventMention anchor_node_id="a879.9" anchor_prop_id="a898" event_type="Personnel.End-Position" genericity="Specific" id="a918" modality="Asserted" polarity="Positive" score="-0.370463848" tense="Unspecified">
+            <EventMentionArg mention_id="a882" role="Person" score="0.856417239"/>
+            <EventMentionArg mention_id="a885" role="Person" score="0"/>
+          </EventMention>
+        </EventMentionSet>
+        <SentenceTheory event_mention_set_id="a917" id="a919" mention_set_id="a880" name_theory_id="a873" parse_id="a879" part_of_speech_sequence_id="a872" primary_parse="full_parse" proposition_set_id="a897" rel_mention_set_id="a916" token_sequence_id="a839" value_mention_set_id="a878"/>
+      </Sentence>
+      <Sentence char_offsets="1650:1789" edt_offsets="1650:1789" id="a920" is_annotated="TRUE" region_id="a3">
+        <Contents>c. soon after sarath fonseka’s arrest 15 high ranking army officers considered to support sarath fonseka were sent on compulsory retirement.</Contents>
+        <TokenSequence id="a921" score="0">
+          <Token char_offsets="1650:1651" edt_offsets="1650:1651" id="a922">c.</Token>
+          <Token char_offsets="1653:1656" edt_offsets="1653:1656" id="a923">soon</Token>
+          <Token char_offsets="1658:1662" edt_offsets="1658:1662" id="a924">after</Token>
+          <Token char_offsets="1664:1669" edt_offsets="1664:1669" id="a925">sarath</Token>
+          <Token char_offsets="1671:1677" edt_offsets="1671:1677" id="a926">fonseka</Token>
+          <Token char_offsets="1678:1679" edt_offsets="1678:1679" id="a927">'s</Token>
+          <Token char_offsets="1681:1686" edt_offsets="1681:1686" id="a928">arrest</Token>
+          <Token char_offsets="1688:1689" edt_offsets="1688:1689" id="a929">15</Token>
+          <Token char_offsets="1691:1694" edt_offsets="1691:1694" id="a930">high</Token>
+          <Token char_offsets="1696:1702" edt_offsets="1696:1702" id="a931">ranking</Token>
+          <Token char_offsets="1704:1707" edt_offsets="1704:1707" id="a932">army</Token>
+          <Token char_offsets="1709:1716" edt_offsets="1709:1716" id="a933">officers</Token>
+          <Token char_offsets="1718:1727" edt_offsets="1718:1727" id="a934">considered</Token>
+          <Token char_offsets="1729:1730" edt_offsets="1729:1730" id="a935">to</Token>
+          <Token char_offsets="1732:1738" edt_offsets="1732:1738" id="a936">support</Token>
+          <Token char_offsets="1740:1745" edt_offsets="1740:1745" id="a937">sarath</Token>
+          <Token char_offsets="1747:1753" edt_offsets="1747:1753" id="a938">fonseka</Token>
+          <Token char_offsets="1755:1758" edt_offsets="1755:1758" id="a939">were</Token>
+          <Token char_offsets="1760:1763" edt_offsets="1760:1763" id="a940">sent</Token>
+          <Token char_offsets="1765:1766" edt_offsets="1765:1766" id="a941">on</Token>
+          <Token char_offsets="1768:1777" edt_offsets="1768:1777" id="a942">compulsory</Token>
+          <Token char_offsets="1779:1788" edt_offsets="1779:1788" id="a943">retirement</Token>
+          <Token char_offsets="1789:1789" edt_offsets="1789:1789" id="a944">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a945" score="0" token_sequence_id="a921"/>
+        <NameTheory id="a946" score="0" token_sequence_id="a921">
+          <Name char_offsets="1664:1677" edt_offsets="1664:1677" end_token="a926" entity_type="PER" id="a947" start_token="a925"/>
+          <Name char_offsets="1740:1753" edt_offsets="1740:1753" end_token="a938" entity_type="PER" id="a948" start_token="a937"/>
+        </NameTheory>
+        <ValueMentionSet id="a949" score="0" token_sequence_id="a921"/>
+        <Parse id="a950" score="-171.155807" token_sequence_id="a921">
+          <TreebankString node_id_method="DFS">(S^ (NPA (NNP^ c.)) (PP (ADVP (RB^ soon)) (IN^ after) (NPA (NPPOS (NPP (NNP sarath) (NNP^ fonseka)) (POS^ 's)) (NN^ arrest))) (NP (NPA^ (CD 15) (JJ high) (JJ ranking) (NNP army) (NNS^ officers)) (VP (VBN^ considered) (PP (TO^ to) (NPA (NN support) (NPP^ (NNP sarath) (NNP^ fonseka)))))) (VP^ (VBD^ were) (VP (VBN^ sent) (PP (IN^ on) (NPA (JJ compulsory) (NN^ retirement))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="5" id="a951" name_score="0" parse_id="a950">
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a952" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a950.1"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a953" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a950.10"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a954" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a950.12"/>
+          <Mention entity_subtype="Group" entity_type="PER" id="a955" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.433464557" mention_type="desc" role_type="UNDET" syn_node_id="a950.21"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a956" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a950.22"/>
+          <Mention entity_subtype="Government" entity_type="ORG" id="a957" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.828289688" mention_type="desc" role_type="UNDET" syn_node_id="a950.29"/>
+          <Mention child="a960" entity_subtype="UNDET" entity_type="PER" id="a958" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a950.39"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a959" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a950.40"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a960" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" parent="a958" role_type="UNDET" syn_node_id="a950.42"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a961" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a950.56"/>
+        </MentionSet>
+        <PropositionSet id="a962" mention_set_id="a951">
+          <Proposition head_id="a950.2" id="a963" type="noun">
+            <Argument mention_id="a952" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a950.23" id="a964" type="modifier">
+            <Argument mention_id="a955" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a950.25" id="a965" type="modifier">
+            <Argument mention_id="a955" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a950.27" id="a966" type="modifier">
+            <Argument mention_id="a955" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a950.29" id="a967" type="modifier">
+            <Argument mention_id="a955" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a950.31" id="a968" type="noun">
+            <Argument mention_id="a955" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a950.34" id="a969" type="verb">
+            <Argument mention_id="a955" role="&lt;obj>"/>
+            <Argument mention_id="a958" role="to"/>
+          </Proposition>
+          <Proposition head_id="a950.40" id="a970" type="noun">
+            <Argument mention_id="a959" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition id="a971" type="name">
+            <Argument mention_id="a958" role="&lt;ref>"/>
+            <Argument syn_node_id="a950.42"/>
+          </Proposition>
+          <Proposition head_id="a950.51" id="a972" type="verb">
+            <Argument mention_id="a955" role="&lt;obj>"/>
+            <Argument mention_id="a953" role="after"/>
+            <Argument mention_id="a961" role="on"/>
+          </Proposition>
+          <Proposition head_id="a950.19" id="a973" type="noun">
+            <Argument mention_id="a953" role="&lt;ref>"/>
+            <Argument mention_id="a954" role="&lt;poss>"/>
+          </Proposition>
+          <Proposition id="a974" type="name">
+            <Argument mention_id="a954" role="&lt;ref>"/>
+            <Argument syn_node_id="a950.12"/>
+          </Proposition>
+          <Proposition head_id="a950.57" id="a975" type="modifier">
+            <Argument mention_id="a961" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a950.59" id="a976" type="noun">
+            <Argument mention_id="a961" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a977" score="0.433999985">
+          <RelMention id="a978" left_mention_id="a955" modality="Asserted" right_mention_id="a957" score="0.433999985" tense="Unspecified" type="ORG-AFF.Employment"/>
+        </RelMentionSet>
+        <EventMentionSet id="a979" score="-0.15857476">
+          <EventMention anchor_node_id="a950.19" anchor_prop_id="a973" event_type="Justice.Arrest-Jail" genericity="Specific" id="a980" modality="Asserted" polarity="Positive" score="-0.15857476" tense="Unspecified">
+            <EventMentionArg mention_id="a954" role="Person" score="0.996757329"/>
+          </EventMention>
+        </EventMentionSet>
+        <SentenceTheory event_mention_set_id="a979" id="a981" mention_set_id="a951" name_theory_id="a946" parse_id="a950" part_of_speech_sequence_id="a945" primary_parse="full_parse" proposition_set_id="a962" rel_mention_set_id="a977" token_sequence_id="a921" value_mention_set_id="a949"/>
+      </Sentence>
+      <Sentence char_offsets="1791:1792" edt_offsets="1791:1792" id="a982" is_annotated="TRUE" region_id="a3">
+        <TokenSequence id="a983" score="0">
+          <Token char_offsets="1791:1791" edt_offsets="1791:1791" id="a984">4</Token>
+          <Token char_offsets="1792:1792" edt_offsets="1792:1792" id="a985">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a986" score="0" token_sequence_id="a983"/>
+        <NameTheory id="a987" score="0" token_sequence_id="a983"/>
+        <ValueMentionSet id="a988" score="0" token_sequence_id="a983"/>
+        <Parse id="a989" score="-26.3128052" token_sequence_id="a983">
+          <TreebankString node_id_method="DFS">(NPA^ (CD^ 4) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="1" id="a990" name_score="0" parse_id="a989">
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a991" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a989.0"/>
+        </MentionSet>
+        <PropositionSet id="a992" mention_set_id="a990">
+          <Proposition head_id="a989.1" id="a993" type="modifier">
+            <Argument mention_id="a991" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a994" score="0"/>
+        <EventMentionSet id="a995" score="0"/>
+        <SentenceTheory event_mention_set_id="a995" id="a996" mention_set_id="a990" name_theory_id="a987" parse_id="a989" part_of_speech_sequence_id="a986" primary_parse="full_parse" proposition_set_id="a992" rel_mention_set_id="a994" token_sequence_id="a983" value_mention_set_id="a988"/>
+      </Sentence>
+      <Sentence char_offsets="1794:1942" edt_offsets="1794:1942" id="a997" is_annotated="TRUE" region_id="a3">
+        <Contents>local and international rights groups have accused mahinda rajapakse of cracking down on dissent but the sri lankan government denies the accusation.</Contents>
+        <TokenSequence id="a998" score="0">
+          <Token char_offsets="1794:1798" edt_offsets="1794:1798" id="a999">local</Token>
+          <Token char_offsets="1800:1802" edt_offsets="1800:1802" id="a1000">and</Token>
+          <Token char_offsets="1804:1816" edt_offsets="1804:1816" id="a1001">international</Token>
+          <Token char_offsets="1818:1823" edt_offsets="1818:1823" id="a1002">rights</Token>
+          <Token char_offsets="1825:1830" edt_offsets="1825:1830" id="a1003">groups</Token>
+          <Token char_offsets="1832:1835" edt_offsets="1832:1835" id="a1004">have</Token>
+          <Token char_offsets="1837:1843" edt_offsets="1837:1843" id="a1005">accused</Token>
+          <Token char_offsets="1845:1851" edt_offsets="1845:1851" id="a1006">mahinda</Token>
+          <Token char_offsets="1853:1861" edt_offsets="1853:1861" id="a1007">rajapakse</Token>
+          <Token char_offsets="1863:1864" edt_offsets="1863:1864" id="a1008">of</Token>
+          <Token char_offsets="1866:1873" edt_offsets="1866:1873" id="a1009">cracking</Token>
+          <Token char_offsets="1875:1878" edt_offsets="1875:1878" id="a1010">down</Token>
+          <Token char_offsets="1880:1881" edt_offsets="1880:1881" id="a1011">on</Token>
+          <Token char_offsets="1883:1889" edt_offsets="1883:1889" id="a1012">dissent</Token>
+          <Token char_offsets="1891:1893" edt_offsets="1891:1893" id="a1013">but</Token>
+          <Token char_offsets="1895:1897" edt_offsets="1895:1897" id="a1014">the</Token>
+          <Token char_offsets="1899:1901" edt_offsets="1899:1901" id="a1015">sri</Token>
+          <Token char_offsets="1903:1908" edt_offsets="1903:1908" id="a1016">lankan</Token>
+          <Token char_offsets="1910:1919" edt_offsets="1910:1919" id="a1017">government</Token>
+          <Token char_offsets="1921:1926" edt_offsets="1921:1926" id="a1018">denies</Token>
+          <Token char_offsets="1928:1930" edt_offsets="1928:1930" id="a1019">the</Token>
+          <Token char_offsets="1932:1941" edt_offsets="1932:1941" id="a1020">accusation</Token>
+          <Token char_offsets="1942:1942" edt_offsets="1942:1942" id="a1021">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a1022" score="0" token_sequence_id="a998"/>
+        <NameTheory id="a1023" score="0" token_sequence_id="a998">
+          <Name char_offsets="1845:1861" edt_offsets="1845:1861" end_token="a1007" entity_type="PER" id="a1024" start_token="a1006"/>
+          <Name char_offsets="1899:1908" edt_offsets="1899:1908" end_token="a1016" entity_type="GPE" id="a1025" start_token="a1015"/>
+        </NameTheory>
+        <ValueMentionSet id="a1026" score="0" token_sequence_id="a998"/>
+        <Parse id="a1027" score="-120.352791" token_sequence_id="a998">
+          <TreebankString node_id_method="DFS">(S^ (S^ (NPA (ADJP (JJ^ local) (CC and) (JJ international)) (NNS rights) (NNS^ groups)) (VP^ (VBP^ have) (VP (VBN^ accused) (NPP (NNP mahinda) (NNP^ rajapakse)) (PP (IN^ of) (S (VP^ (VBG^ cracking) (PRT (RP^ down)) (PP (IN^ on) (NPA (NN^ dissent))))))))) (CC but) (S (NPA (DT the) (NPP (NNP sri) (NNP^ lankan)) (NN^ government)) (VP^ (VBZ^ denies) (NPA (DT the) (NN^ accusation)))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="4" id="a1028" name_score="0" parse_id="a1027">
+          <Mention entity_subtype="Non-Governmental" entity_type="ORG" id="a1029" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.65828234" mention_type="desc" role_type="UNDET" syn_node_id="a1027.2"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a1030" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a1027.10"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a1031" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a1027.20"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a1032" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a1027.38"/>
+          <Mention entity_subtype="Nation" entity_type="GPE" id="a1033" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="ORG" syn_node_id="a1027.44"/>
+          <Mention entity_subtype="Nation" entity_type="GPE" id="a1034" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="GPE" syn_node_id="a1027.47"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a1035" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a1027.57"/>
+        </MentionSet>
+        <PropositionSet id="a1036" mention_set_id="a1028">
+          <Proposition head_id="a1027.4" id="a1037" type="modifier">
+            <Argument mention_id="a1029" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a1027.10" id="a1038" type="modifier">
+            <Argument mention_id="a1029" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a1027.12" id="a1039" type="noun">
+            <Argument mention_id="a1029" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a1027.18" id="a1040" type="verb">
+            <Argument mention_id="a1029" role="&lt;sub>"/>
+            <Argument mention_id="a1031" role="&lt;obj>"/>
+            <Argument proposition_id="a1042" role="of"/>
+          </Proposition>
+          <Proposition id="a1041" type="name">
+            <Argument mention_id="a1031" role="&lt;ref>"/>
+            <Argument syn_node_id="a1027.20"/>
+          </Proposition>
+          <Proposition head_id="a1027.30" id="a1042" particle_id="a1027.32" type="verb">
+            <Argument mention_id="a1031" role="&lt;sub>"/>
+            <Argument mention_id="a1032" role="on"/>
+          </Proposition>
+          <Proposition head_id="a1027.39" id="a1043" type="noun">
+            <Argument mention_id="a1032" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a1027.52" id="a1044" type="noun">
+            <Argument mention_id="a1033" role="&lt;ref>"/>
+            <Argument mention_id="a1034" role="&lt;unknown>"/>
+          </Proposition>
+          <Proposition id="a1045" type="name">
+            <Argument mention_id="a1034" role="&lt;ref>"/>
+            <Argument syn_node_id="a1027.47"/>
+          </Proposition>
+          <Proposition head_id="a1027.55" id="a1046" type="verb">
+            <Argument mention_id="a1033" role="&lt;sub>"/>
+            <Argument mention_id="a1035" role="&lt;obj>"/>
+          </Proposition>
+          <Proposition head_id="a1027.60" id="a1047" type="noun">
+            <Argument mention_id="a1035" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a1048" score="0"/>
+        <EventMentionSet id="a1049" score="0"/>
+        <SentenceTheory event_mention_set_id="a1049" id="a1050" mention_set_id="a1028" name_theory_id="a1023" parse_id="a1027" part_of_speech_sequence_id="a1022" primary_parse="full_parse" proposition_set_id="a1036" rel_mention_set_id="a1048" token_sequence_id="a998" value_mention_set_id="a1026"/>
+      </Sentence>
+      <Sentence char_offsets="1944:1945" edt_offsets="1944:1945" id="a1051" is_annotated="TRUE" region_id="a3">
+        <TokenSequence id="a1052" score="0">
+          <Token char_offsets="1944:1944" edt_offsets="1944:1944" id="a1053">5</Token>
+          <Token char_offsets="1945:1945" edt_offsets="1945:1945" id="a1054">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a1055" score="0" token_sequence_id="a1052"/>
+        <NameTheory id="a1056" score="0" token_sequence_id="a1052"/>
+        <ValueMentionSet id="a1057" score="0" token_sequence_id="a1052"/>
+        <Parse id="a1058" score="-25.7451401" token_sequence_id="a1052">
+          <TreebankString node_id_method="DFS">(NPA^ (CD^ 5) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="1" id="a1059" name_score="0" parse_id="a1058">
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a1060" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a1058.0"/>
+        </MentionSet>
+        <PropositionSet id="a1061" mention_set_id="a1059">
+          <Proposition head_id="a1058.1" id="a1062" type="modifier">
+            <Argument mention_id="a1060" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a1063" score="0"/>
+        <EventMentionSet id="a1064" score="0"/>
+        <SentenceTheory event_mention_set_id="a1064" id="a1065" mention_set_id="a1059" name_theory_id="a1056" parse_id="a1058" part_of_speech_sequence_id="a1055" primary_parse="full_parse" proposition_set_id="a1061" rel_mention_set_id="a1063" token_sequence_id="a1052" value_mention_set_id="a1057"/>
+      </Sentence>
+      <Sentence char_offsets="1947:2016" edt_offsets="1947:2016" id="a1066" is_annotated="TRUE" region_id="a3">
+        <Contents>the tamil tigers are also called the liberation tigers of tamil eelam.</Contents>
+        <TokenSequence id="a1067" score="0">
+          <Token char_offsets="1947:1949" edt_offsets="1947:1949" id="a1068">the</Token>
+          <Token char_offsets="1951:1955" edt_offsets="1951:1955" id="a1069">tamil</Token>
+          <Token char_offsets="1957:1962" edt_offsets="1957:1962" id="a1070">tigers</Token>
+          <Token char_offsets="1964:1966" edt_offsets="1964:1966" id="a1071">are</Token>
+          <Token char_offsets="1968:1971" edt_offsets="1968:1971" id="a1072">also</Token>
+          <Token char_offsets="1973:1978" edt_offsets="1973:1978" id="a1073">called</Token>
+          <Token char_offsets="1980:1982" edt_offsets="1980:1982" id="a1074">the</Token>
+          <Token char_offsets="1984:1993" edt_offsets="1984:1993" id="a1075">liberation</Token>
+          <Token char_offsets="1995:2000" edt_offsets="1995:2000" id="a1076">tigers</Token>
+          <Token char_offsets="2002:2003" edt_offsets="2002:2003" id="a1077">of</Token>
+          <Token char_offsets="2005:2009" edt_offsets="2005:2009" id="a1078">tamil</Token>
+          <Token char_offsets="2011:2015" edt_offsets="2011:2015" id="a1079">eelam</Token>
+          <Token char_offsets="2016:2016" edt_offsets="2016:2016" id="a1080">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a1081" score="0" token_sequence_id="a1067"/>
+        <NameTheory id="a1082" score="0" token_sequence_id="a1067">
+          <Name char_offsets="1951:1962" edt_offsets="1951:1962" end_token="a1070" entity_type="ORG" id="a1083" start_token="a1069"/>
+          <Name char_offsets="1984:2015" edt_offsets="1984:2015" end_token="a1079" entity_type="ORG" id="a1084" start_token="a1075"/>
+        </NameTheory>
+        <ValueMentionSet id="a1085" score="0" token_sequence_id="a1067"/>
+        <Parse id="a1086" score="-36.5315475" token_sequence_id="a1067">
+          <TreebankString node_id_method="DFS">(S^ (NPA (DT the) (NPP^ (NNPS tamil) (NNPS^ tigers))) (VP^ (VBP^ are) (ADVP (RB^ also)) (VP (VBN^ called) (S (NPA^ (DT the) (NPP^ (NNP liberation) (NNP tigers) (NNP of) (NNP tamil) (NNP^ eelam)))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="0" id="a1087" name_score="0" parse_id="a1086">
+          <Mention child="a1089" entity_subtype="Non-Governmental" entity_type="ORG" id="a1088" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a1086.1"/>
+          <Mention entity_subtype="UNDET" entity_type="ORG" id="a1089" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" parent="a1088" role_type="UNDET" syn_node_id="a1086.4"/>
+          <Mention child="a1091" entity_subtype="Non-Governmental" entity_type="ORG" id="a1090" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a1086.19"/>
+          <Mention entity_subtype="UNDET" entity_type="ORG" id="a1091" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" parent="a1090" role_type="UNDET" syn_node_id="a1086.22"/>
+        </MentionSet>
+        <PropositionSet id="a1092" mention_set_id="a1087">
+          <Proposition id="a1093" type="name">
+            <Argument mention_id="a1088" role="&lt;ref>"/>
+            <Argument syn_node_id="a1086.4"/>
+          </Proposition>
+          <Proposition adverb_id="a1086.12" head_id="a1086.16" id="a1094" type="verb">
+            <Argument mention_id="a1088" role="&lt;obj>"/>
+          </Proposition>
+          <Proposition id="a1095" type="name">
+            <Argument mention_id="a1090" role="&lt;ref>"/>
+            <Argument syn_node_id="a1086.22"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a1096" score="0"/>
+        <EventMentionSet id="a1097" score="0"/>
+        <SentenceTheory event_mention_set_id="a1097" id="a1098" mention_set_id="a1087" name_theory_id="a1082" parse_id="a1086" part_of_speech_sequence_id="a1081" primary_parse="full_parse" proposition_set_id="a1092" rel_mention_set_id="a1096" token_sequence_id="a1067" value_mention_set_id="a1085"/>
+      </Sentence>
+      <Sentence char_offsets="2018:2113" edt_offsets="2018:2113" id="a1099" is_annotated="TRUE" region_id="a3">
+        <Contents>a. the tamil tigers have fought for 37 years in a separatist struggle that led to 100000 deaths.</Contents>
+        <TokenSequence id="a1100" score="0">
+          <Token char_offsets="2018:2019" edt_offsets="2018:2019" id="a1101">a.</Token>
+          <Token char_offsets="2021:2023" edt_offsets="2021:2023" id="a1102">the</Token>
+          <Token char_offsets="2025:2029" edt_offsets="2025:2029" id="a1103">tamil</Token>
+          <Token char_offsets="2031:2036" edt_offsets="2031:2036" id="a1104">tigers</Token>
+          <Token char_offsets="2038:2041" edt_offsets="2038:2041" id="a1105">have</Token>
+          <Token char_offsets="2043:2048" edt_offsets="2043:2048" id="a1106">fought</Token>
+          <Token char_offsets="2050:2052" edt_offsets="2050:2052" id="a1107">for</Token>
+          <Token char_offsets="2054:2055" edt_offsets="2054:2055" id="a1108">37</Token>
+          <Token char_offsets="2057:2061" edt_offsets="2057:2061" id="a1109">years</Token>
+          <Token char_offsets="2063:2064" edt_offsets="2063:2064" id="a1110">in</Token>
+          <Token char_offsets="2066:2066" edt_offsets="2066:2066" id="a1111">a</Token>
+          <Token char_offsets="2068:2077" edt_offsets="2068:2077" id="a1112">separatist</Token>
+          <Token char_offsets="2079:2086" edt_offsets="2079:2086" id="a1113">struggle</Token>
+          <Token char_offsets="2088:2091" edt_offsets="2088:2091" id="a1114">that</Token>
+          <Token char_offsets="2093:2095" edt_offsets="2093:2095" id="a1115">led</Token>
+          <Token char_offsets="2097:2098" edt_offsets="2097:2098" id="a1116">to</Token>
+          <Token char_offsets="2100:2105" edt_offsets="2100:2105" id="a1117">100000</Token>
+          <Token char_offsets="2107:2112" edt_offsets="2107:2112" id="a1118">deaths</Token>
+          <Token char_offsets="2113:2113" edt_offsets="2113:2113" id="a1119">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a1120" score="0" token_sequence_id="a1100"/>
+        <NameTheory id="a1121" score="0" token_sequence_id="a1100">
+          <Name char_offsets="2025:2036" edt_offsets="2025:2036" end_token="a1104" entity_type="ORG" id="a1122" start_token="a1103"/>
+        </NameTheory>
+        <ValueMentionSet id="a1123" score="0" token_sequence_id="a1100">
+          <ValueMention char_offsets="2054:2061" edt_offsets="2054:2061" end_token="a1109" id="a1124" start_token="a1108" value_type="TIMEX2.TIME"/>
+        </ValueMentionSet>
+        <Parse id="a1125" score="-116.43232" token_sequence_id="a1100">
+          <TreebankString node_id_method="DFS">(FRAG^ (NP (NPA^ (NN^ a.)) (SBAR (S^ (NPA (DT the) (NPP^ (NNPS tamil) (NNPS^ tigers))) (VP^ (VBP^ have) (VP (VBN^ fought) (PP (IN^ for) (NPA (CD 37) (NNS^ years))) (PP (IN^ in) (NP (NPA^ (DT a) (JJ separatist) (NN^ struggle)) (SBAR (WHNP^ (WDT^ that)) (S (VP^ (VBD^ led) (PP (TO^ to) (NPA (CD 100000) (NNS^ deaths))))))))))))) (.^ .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="6" id="a1126" name_score="0" parse_id="a1125">
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a1127" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a1125.1"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a1128" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a1125.2"/>
+          <Mention child="a1130" entity_subtype="Non-Governmental" entity_type="ORG" id="a1129" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a1125.7"/>
+          <Mention entity_subtype="UNDET" entity_type="ORG" id="a1130" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" parent="a1129" role_type="UNDET" syn_node_id="a1125.10"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a1131" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a1125.24"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a1132" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a1125.32"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a1133" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a1125.33"/>
+          <Mention entity_subtype="UNDET" entity_type="UNDET" id="a1134" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.709373593" mention_type="pron" role_type="UNDET" syn_node_id="a1125.41"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a1135" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a1125.51"/>
+        </MentionSet>
+        <PropositionSet id="a1136" mention_set_id="a1126">
+          <Proposition head_id="a1125.3" id="a1137" type="noun">
+            <Argument mention_id="a1127" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition id="a1138" type="name">
+            <Argument mention_id="a1129" role="&lt;ref>"/>
+            <Argument syn_node_id="a1125.10"/>
+          </Proposition>
+          <Proposition head_id="a1125.19" id="a1139" type="verb">
+            <Argument mention_id="a1129" role="&lt;sub>"/>
+            <Argument mention_id="a1127" role="&lt;obj>"/>
+            <Argument mention_id="a1131" role="&lt;temp>"/>
+            <Argument mention_id="a1132" role="in"/>
+          </Proposition>
+          <Proposition head_id="a1125.25" id="a1140" type="modifier">
+            <Argument mention_id="a1131" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a1125.27" id="a1141" type="noun">
+            <Argument mention_id="a1131" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a1125.36" id="a1142" type="modifier">
+            <Argument mention_id="a1132" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a1125.38" id="a1143" type="noun">
+            <Argument mention_id="a1132" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a1125.41" id="a1144" type="pronoun">
+            <Argument mention_id="a1134" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a1125.46" id="a1145" type="verb">
+            <Argument mention_id="a1134" role="&lt;sub>"/>
+            <Argument mention_id="a1135" role="to"/>
+          </Proposition>
+          <Proposition head_id="a1125.52" id="a1146" type="modifier">
+            <Argument mention_id="a1135" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a1125.54" id="a1147" type="noun">
+            <Argument mention_id="a1135" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a1148" score="0"/>
+        <EventMentionSet id="a1149" score="-0.57277751">
+          <EventMention anchor_node_id="a1125.54" anchor_prop_id="a1147" event_type="Life.Die" genericity="Specific" id="a1150" modality="Asserted" polarity="Positive" score="-0.57277751" tense="Unspecified"/>
+        </EventMentionSet>
+        <SentenceTheory event_mention_set_id="a1149" id="a1151" mention_set_id="a1126" name_theory_id="a1121" parse_id="a1125" part_of_speech_sequence_id="a1120" primary_parse="full_parse" proposition_set_id="a1136" rel_mention_set_id="a1148" token_sequence_id="a1100" value_mention_set_id="a1123"/>
+      </Sentence>
+    </Sentences>
+    <EntitySet id="a1152" score="1.11028557e+09">
+      <Entity entity_subtype="Nation" entity_type="GPE" id="a1153" is_generic="TRUE" mention_ids="a29"/>
+      <Entity entity_subtype="Nation" entity_type="GPE" id="a1154" is_generic="FALSE" mention_ids="a53 a79 a128 a240 a287 a392 a449 a677 a892 a1034 a1033"/>
+      <Entity entity_subtype="Individual" entity_type="PER" id="a1155" is_generic="FALSE" mention_ids="a133 a132 a172 a245 a244 a384 a385 a388 a447 a522 a523 a581 a582 a743 a799 a889 a954 a958 a959"/>
+      <Entity entity_subtype="Individual" entity_type="PER" id="a1156" is_generic="FALSE" mention_ids="a134 a246 a283 a284"/>
+      <Entity entity_subtype="Non-Governmental" entity_type="ORG" id="a1157" is_generic="FALSE" mention_ids="a127 a239"/>
+      <Entity entity_subtype="Media" entity_type="ORG" id="a1158" is_generic="FALSE" mention_ids="a286"/>
+      <Entity entity_subtype="Individual" entity_type="PER" id="a1159" is_generic="FALSE" mention_ids="a321"/>
+      <Entity entity_subtype="Non-Governmental" entity_type="ORG" id="a1160" is_generic="FALSE" mention_ids="a456 a528 a1088 a1090 a1129"/>
+      <Entity entity_subtype="Government" entity_type="ORG" id="a1161" is_generic="FALSE" mention_ids="a448 a678 a957"/>
+      <Entity entity_subtype="Group" entity_type="PER" id="a1162" is_generic="FALSE" mention_ids="a455"/>
+      <Entity entity_subtype="Individual" entity_type="PER" id="a1163" is_generic="FALSE" mention_ids="a525 a526 a1031"/>
+      <Entity entity_subtype="Group" entity_type="PER" id="a1164" is_generic="FALSE" mention_ids="a531"/>
+      <Entity entity_subtype="Commercial" entity_type="ORG" id="a1165" is_generic="FALSE" mention_ids="a532"/>
+      <Entity entity_subtype="Non-Governmental" entity_type="ORG" id="a1166" is_generic="FALSE" mention_ids="a584"/>
+      <Entity entity_subtype="Individual" entity_type="PER" id="a1167" is_generic="FALSE" mention_ids="a621"/>
+      <Entity entity_subtype="Individual" entity_type="PER" id="a1168" is_generic="FALSE" mention_ids="a675 a676"/>
+      <Entity entity_subtype="Individual" entity_type="PER" id="a1169" is_generic="FALSE" mention_ids="a881 a885"/>
+      <Entity entity_subtype="Individual" entity_type="PER" id="a1170" is_generic="FALSE" mention_ids="a882"/>
+      <Entity entity_subtype="Subarea-Facility" entity_type="FAC" id="a1171" is_generic="TRUE" mention_ids="a894"/>
+      <Entity entity_subtype="Group" entity_type="PER" id="a1172" is_generic="FALSE" mention_ids="a955"/>
+      <Entity entity_subtype="Non-Governmental" entity_type="ORG" id="a1173" is_generic="TRUE" mention_ids="a1029"/>
+    </EntitySet>
+    <ValueSet id="a1174">
+      <Value id="a1175" timex_val="2010-03-18" type="TIMEX2.TIME" value_mention_ref="a123"/>
+      <Value id="a1176" timex_val="2010-03" type="TIMEX2.TIME" value_mention_ref="a168"/>
+      <Value id="a1177" timex_val="2010-03-18" type="TIMEX2.TIME" value_mention_ref="a235"/>
+      <Value id="a1178" timex_val="2010-03-11" type="TIMEX2.TIME" value_mention_ref="a318"/>
+      <Value id="a1179" timex_val="2010-01-26" type="TIMEX2.TIME" value_mention_ref="a381"/>
+      <Value id="a1180" timex_val="2009" type="TIMEX2.TIME" value_mention_ref="a444"/>
+      <Value id="a1181" timex_val="2009-05" type="TIMEX2.TIME" value_mention_ref="a518"/>
+      <Value id="a1182" timex_val="2010-01" type="TIMEX2.TIME" value_mention_ref="a519"/>
+      <Value id="a1183" timex_val="2010-01-26" type="TIMEX2.TIME" value_mention_ref="a618"/>
+      <Value id="a1184" timex_mod="MORE_THAN" timex_val="P40Y" type="TIMEX2.TIME" value_mention_ref="a672"/>
+      <Value id="a1185" timex_val="2010-02-08" type="TIMEX2.TIME" value_mention_ref="a740"/>
+      <Value id="a1186" timex_val="2010-03-18" type="TIMEX2.TIME" value_mention_ref="a796"/>
+      <Value id="a1187" timex_val="P37Y" type="TIMEX2.TIME" value_mention_ref="a1124"/>
+    </ValueSet>
+    <RelationSet id="a1188">
+      <Relation confidence="0.773000002" id="a1189" left_entity_id="a1157" modality="Asserted" rel_mention_ids="a147 a259" right_entity_id="a1154" tense="Unspecified" type="GEN-AFF.Org-Location"/>
+      <Relation confidence="0.586000025" id="a1190" left_entity_id="a1156" modality="Asserted" rel_mention_ids="a295" right_entity_id="a1158" tense="Unspecified" type="ORG-AFF.Employment"/>
+      <Relation confidence="0.460999995" id="a1191" left_entity_id="a1158" modality="Asserted" rel_mention_ids="a296" right_entity_id="a1154" tense="Unspecified" type="PART-WHOLE.Subsidiary"/>
+      <Relation confidence="0.675999999" id="a1192" left_entity_id="a1161" modality="Asserted" rel_mention_ids="a469" right_entity_id="a1154" tense="Unspecified" type="PART-WHOLE.Subsidiary"/>
+      <Relation confidence="0.647000015" id="a1193" left_entity_id="a1162" modality="Asserted" rel_mention_ids="a470" right_entity_id="a1160" tense="Unspecified" type="ORG-AFF.Membership"/>
+      <Relation confidence="0.598999977" id="a1194" left_entity_id="a1155" modality="Asserted" rel_mention_ids="a592" right_entity_id="a1166" tense="Unspecified" type="ORG-AFF.Membership"/>
+      <Relation confidence="0.335000008" id="a1195" left_entity_id="a1168" modality="Asserted" rel_mention_ids="a694" right_entity_id="a1161" tense="Unspecified" type="ORG-AFF.Employment"/>
+      <Relation confidence="1" id="a1196" left_entity_id="a1168" modality="Asserted" rel_mention_ids="a695" right_entity_id="a1154" tense="Unspecified" type="ORG-AFF.Employment"/>
+      <Relation confidence="0.433999985" id="a1197" left_entity_id="a1172" modality="Asserted" rel_mention_ids="a978" right_entity_id="a1161" tense="Unspecified" type="ORG-AFF.Employment"/>
+    </RelationSet>
+    <EventSet id="a1198">
+      <Event event_mention_ids="a149" event_type="Conflict.Demonstrate" genericity="Specific" id="a1199" modality="Asserted" polarity="Positive" tense="Unspecified">
+        <EventArg role="Time-Within" value_id="a1175"/>
+      </Event>
+      <Event event_mention_ids="a150 a262 a768 a980" event_type="Justice.Arrest-Jail" genericity="Specific" id="a1200" modality="Asserted" polarity="Positive" tense="Unspecified">
+        <EventArg entity_id="a1155" role="Person"/>
+      </Event>
+      <Event event_mention_ids="a181" event_type="Justice.Trial-Hearing" genericity="Specific" id="a1201" modality="Asserted" polarity="Positive" tense="Unspecified">
+        <EventArg entity_id="a1155" role="Defendant"/>
+        <EventArg role="Time-Within" value_id="a1176"/>
+      </Event>
+      <Event event_mention_ids="a261" event_type="Conflict.Demonstrate" genericity="Specific" id="a1202" modality="Asserted" polarity="Positive" tense="Unspecified">
+        <EventArg role="Time-Within" value_id="a1177"/>
+      </Event>
+      <Event event_mention_ids="a333" event_type="Justice.Arrest-Jail" genericity="Specific" id="a1203" modality="Asserted" polarity="Positive" tense="Unspecified">
+        <EventArg entity_id="a1159" role="Person"/>
+        <EventArg role="Time-Within" value_id="a1178"/>
+      </Event>
+      <Event event_mention_ids="a411" event_type="Personnel.Elect" genericity="Specific" id="a1204" modality="Asserted" polarity="Positive" tense="Unspecified">
+        <EventArg entity_id="a1154" role="Place"/>
+        <EventArg role="Time-Within" value_id="a1179"/>
+      </Event>
+      <Event event_mention_ids="a472" event_type="Conflict.Attack" genericity="Specific" id="a1205" modality="Asserted" polarity="Positive" tense="Unspecified">
+        <EventArg entity_id="a1162" role="Target"/>
+        <EventArg role="Time-Within" value_id="a1180"/>
+      </Event>
+      <Event event_mention_ids="a556" event_type="Conflict.Attack" genericity="Specific" id="a1206" modality="Asserted" polarity="Positive" tense="Unspecified">
+        <EventArg role="Time-Within" value_id="a1181"/>
+      </Event>
+      <Event event_mention_ids="a557" event_type="Personnel.Elect" genericity="Specific" id="a1207" modality="Asserted" polarity="Positive" tense="Unspecified">
+        <EventArg role="Time-Within" value_id="a1182"/>
+      </Event>
+      <Event event_mention_ids="a642" event_type="Personnel.Elect" genericity="Specific" id="a1208" modality="Asserted" polarity="Positive" tense="Unspecified"/>
+      <Event event_mention_ids="a769" event_type="Justice.Charge-Indict" genericity="Specific" id="a1209" modality="Asserted" polarity="Positive" tense="Unspecified"/>
+      <Event event_mention_ids="a770" event_type="Conflict.Attack" genericity="Specific" id="a1210" modality="Asserted" polarity="Positive" tense="Unspecified"/>
+      <Event event_mention_ids="a918" event_type="Personnel.End-Position" genericity="Specific" id="a1211" modality="Asserted" polarity="Positive" tense="Unspecified">
+        <EventArg entity_id="a1170" role="Person"/>
+        <EventArg entity_id="a1169" role="Person"/>
+      </Event>
+      <Event event_mention_ids="a1150" event_type="Life.Die" genericity="Specific" id="a1212" modality="Asserted" polarity="Positive" tense="Unspecified"/>
+    </EventSet>
+    <ValueMentionSet id="a1213" score="0"/>
+    <RelMentionSet id="a1214" score="0"/>
+  </Document>
+
+</SerifXML>
