@@ -171,8 +171,6 @@ function addACERelations(communicationUUID, sentenceUUID, tokenizationUUID) {
   var webFontURLs = [];
 
   Util.embed('ace_relations_' + sentence.uuid, collData, docData, webFontURLs);
-
-  $('#ace_relations_button_' + sentenceUUID).addClass('active');
 }
 
 
@@ -222,8 +220,6 @@ function addNERTags(communicationUUID, sentenceUUID, tokenizationUUID) {
   var docData = { text: sentence_text, entities: ner_tag_labels };
 
   Util.embed('sentence_ner_' + sentence.uuid, collData, docData, webFontURLs);
-
-  $('#sentence_ner_button_' + sentenceUUID).addClass('active');
 }
 
 
@@ -340,8 +336,6 @@ function addPOSTags(communicationUUID, sentenceUUID, tokenizationUUID) {
     // Array containing locations of the visualisation fonts
     webFontURLs
   );
-
-  $('#sentence_pos_button_' + sentenceUUID).addClass('active');
 }
 
 
@@ -373,6 +367,7 @@ function addSentenceBRATControls(comm) {
             }
             else {
               addNERTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+              $('#sentence_ner_button_' + sentenceUUID).addClass('active');
             }
           })
           .css('margin-right', '1em')
@@ -392,6 +387,7 @@ function addSentenceBRATControls(comm) {
             }
             else {
               addPOSTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+              $('#sentence_pos_button_' + sentenceUUID).addClass('active');
             }
           })
           .css('margin-right', '1em')
@@ -411,6 +407,7 @@ function addSentenceBRATControls(comm) {
             }
             else {
               addACERelations(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+              $('#ace_relations_button_' + sentenceUUID).addClass('active');
             }
           })
           .css('margin-right', '1em')
