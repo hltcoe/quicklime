@@ -35,7 +35,7 @@ function addACERelations(communicationUUID, sentenceUUID, tokenizationUUID) {
             relationEntityCounter += 1;
             var start = entityMention.tokens.textSpan.start - sentence.textSpan.start;
             var ending = entityMention.tokens.textSpan.ending - sentence.textSpan.start;
-            relationEntityLabels.push([entityMention.uuid, entityMention.entityType, [[start, ending]]]);
+            relationEntityLabels.push([entityMention.uuid, entityMention.entityType.toString(), [[start, ending]]]);
           }
         }
       }
@@ -49,9 +49,11 @@ function addACERelations(communicationUUID, sentenceUUID, tokenizationUUID) {
         var situationMentionList = comm.situationMentionSets[situationMentionSetIndex].mentionList;
         for (var situationMentionIndex in situationMentionList) {
           var situationMention = situationMentionList[situationMentionIndex];
-          relationLabels.push([situationMention.uuid, situationMention.situationType, [
-            ['Left', situationMention.argumentList[0].entityMentionId],
-            ['Right', situationMention.argumentList[1].entityMentionId]]]);
+          if (situationMention.situationType == 300) {
+            relationLabels.push([situationMention.uuid, situationMention.stateType.toString(), [
+              ['Left', situationMention.argumentList[0].entityMentionId],
+              ['Right', situationMention.argumentList[1].entityMentionId]]]);
+          }
         }
       }
     }
@@ -59,69 +61,111 @@ function addACERelations(communicationUUID, sentenceUUID, tokenizationUUID) {
 
   var collData = {
     entity_types: [
-      // Coordination, white
-      { type: 1, labels: ['PER', 'Person'], bgColor: '#ffccaa' },
-      { type: 2, labels: ['ORG', 'Organization'], bgColor: '#8fb2ff' },
-      { type: 3, labels: ['GPE', 'Geo-Political Entity'], bgColor: '#7fe2ff' },
-      { type: 4, labels: ['OTH', 'Other'], bgColor: 'white' },
-      { type: 6, labels: ['FAC', 'Facility'], bgColor: '#aaaaee' },
-      { type: 7, labels: ['VEH', 'Vehicle'], bgColor: '#ccccee' },
-      { type: 8, labels: ['WEA', 'Weaopn'], bgColor: 'darkgray' },
-      { type: 9, labels: ['LOC', 'Location'], bgColor: '#6fffdf' },
-      { type: 10, labels: ['TIME', 'Time'], bgColor: 'white' },
-      { type: 23, labels: ['JT', 'Job Title'], bgColor: 'white' },
+      // The 'type' field must be a string, and not a number.
+      //
+      // getArcLabels() in 'brat/client/src/util.js' invokes the match()
+      // function on the object passed in as the 'type' field:
+      //   var splitType = arcType.match(/^(.*?)(\d*)$/);
+      // and an error will occur if that object is a number.
+      { type: '1', labels: ['PER', 'Person'], bgColor: '#ffccaa' },
+      { type: '2', labels: ['ORG', 'Organization'], bgColor: '#8fb2ff' },
+      { type: '3', labels: ['GPE', 'Geo-Political Entity'], bgColor: '#7fe2ff' },
+      { type: '4', labels: ['OTH', 'Other'], bgColor: '#F9F247' },
+      { type: '6', labels: ['FAC', 'Facility'], bgColor: '#aaaaee' },
+      { type: '7', labels: ['VEH', 'Vehicle'], bgColor: '#ccccee' },
+      { type: '8', labels: ['WEA', 'Weaopn'], bgColor: 'darkgray' },
+      { type: '9', labels: ['LOC', 'Location'], bgColor: '#6fffdf' },
+      { type: '10', labels: ['TIME', 'Time'], bgColor: '#F9F247' },
+      { type: '23', labels: ['JT', 'Job Title'], bgColor: '#F9F247' },
     ],
     relation_types: [
       {
-        type: 42,
-        labels: ['Loc', 'Located'],
+        type: '41',
+        labels: ['Loc', 'Located in'],
         color: '#e30834',
         dashArray: '3-3',
-        args: [ { role: 'Left' }, { role: 'Right' } ],
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
       },
       {
-        type: 43,
+        type: '42',
         labels: ['Near', 'Near'],
         color: '#e30834',
         dashArray: '3-3',
-        args: [ { role: 'Left' }, { role: 'Right' } ],
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
       },
       {
-        type: 71,
-        labels: ['Geo', 'Geographical'],
+        type: '43',
+        labels: ['Part', 'Part of Whole'],
         color: '#e30834',
         dashArray: '3-3',
-        args: [ { role: 'Left' }, { role: 'Right' } ],
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+      },
+      {
+        type: '57',
+        labels: ['Business with', 'Business Relationship'],
+        color: '#e30834',
+        dashArray: '3-3',
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+      },
+      {
+        type: '58',
+        labels: ['Family of', 'Family Relationship'],
+        color: '#e30834',
+        dashArray: '3-3',
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+      },
+      {
+        type: '60',
+        labels: ['Owned by', 'Owner/Inventor/Manufacturer'],
+        color: '#e30834',
+        dashArray: '3-3',
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+      },
+      {
+        type: '62',
+        labels: ['Located at', 'Organization Location'],
+        color: '#e30834',
+        dashArray: '3-3',
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+      },
+      {
+        type: '63',
+        labels: ['Employed by', 'Organization Affiliation - Employment'],
+        color: '#e30834',
+        dashArray: '3-3',
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+      },
+      {
+        type: '69',
+        labels: ['Member of', 'Organization Affiliation - Member'],
+        color: '#e30834',
+        dashArray: '3-3',
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+      },
+      {
+        type: '71',
+        labels: ['Located in', 'Geographical part/whole'],
+        color: '#e30834',
+        dashArray: '3-3',
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
       },
     ],
   }
 
-/*
-Geographical	color:#e30834, dashArray:3-3
-Subsidiary	color:#e30834, dashArray:3-3
-Artifact	color:#e30834, dashArray:3-3
-
-Business	color:#e30834, dashArray:3-3
-Family	color:#e30834, dashArray:3-3
-Lasting	color:#e30834, dashArray:3-3
-
-Employment	color:#e30834, dashArray:3-3
-Ownership	color:#e30834, dashArray:3-3
-Founder	color:#e30834, dashArray:3-3
-Student-Alum	color:#e30834, dashArray:3-3
-Sports-Affiliation	color:#e30834, dashArray:3-3
-Investor-Shareholder	color:#e30834, dashArray:3-3
-Membership	color:#e30834, dashArray:3-3
-
-User-Owner-Inventor-Manufacturer	color:#e30834, dashArray:3-3
-
-Citizen-Resident-Religion-Ethnicity	color:#e30834, dashArray:3-3
-*/
-
   var docData = {
     text     : sentence_text,
     entities : relationEntityLabels,
-//    relations: relationLabels,
+    relations: relationLabels,
   };
 
   var webFontURLs = [];
@@ -196,7 +240,7 @@ function addPOSTags(communicationUUID, sentenceUUID, tokenizationUUID) {
   var collData = {
     entity_types: [
       // Coordination, white
-      { type: 'CC', labels: ['CC', 'CC'], bgColor: 'white' },
+      { type: 'CC', labels: ['CC', 'CC'], bgColor: '#F9F247' },
 
       // Punctuation, light grey
       /*
