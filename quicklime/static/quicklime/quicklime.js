@@ -89,6 +89,9 @@ function addCommunication(parentElementID, comm) {
         sentence_div.append($('<div>')
           .addClass('dagre_parse')
           .attr('id', 'dependency_parse_' + sentence.uuid));
+        sentence_div.append($('<div>')
+          .addClass('dagre_parse')
+          .attr('id', 'ace_relations_' + sentence.uuid));
 
         sentence_segmentation_div.append(sentence_div);
       }
