@@ -1,7 +1,7 @@
 
 
-function addACERelations(communicationUUID, sentenceUUID, tokenizationUUID) {
-  var comm = getCommunicationWithUUID(communicationUUID);
+QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID) {
+  var comm = QL.getCommunicationWithUUID(communicationUUID);
   var sentence = comm.getSentenceWithUUID(sentenceUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
 
@@ -174,8 +174,8 @@ function addACERelations(communicationUUID, sentenceUUID, tokenizationUUID) {
 }
 
 
-function addNERTags(communicationUUID, sentenceUUID, tokenizationUUID) {
-  var comm = getCommunicationWithUUID(communicationUUID);
+QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
+  var comm = QL.getCommunicationWithUUID(communicationUUID);
   var sentence = comm.getSentenceWithUUID(sentenceUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
 
@@ -199,7 +199,7 @@ function addNERTags(communicationUUID, sentenceUUID, tokenizationUUID) {
     ]
   }
 
-  var comm = getCommunicationWithUUID(communicationUUID);
+  var comm = QL.getCommunicationWithUUID(communicationUUID);
   var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
   var ner_tag_labels = [];
 
@@ -223,8 +223,8 @@ function addNERTags(communicationUUID, sentenceUUID, tokenizationUUID) {
 }
 
 
-function addPOSTags(communicationUUID, sentenceUUID, tokenizationUUID) {
-  var comm = getCommunicationWithUUID(communicationUUID);
+QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
+  var comm = QL.getCommunicationWithUUID(communicationUUID);
   var sentence = comm.getSentenceWithUUID(sentenceUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
 
@@ -306,7 +306,7 @@ function addPOSTags(communicationUUID, sentenceUUID, tokenizationUUID) {
     ]
   };
 
-  var comm = getCommunicationWithUUID(communicationUUID);
+  var comm = QL.getCommunicationWithUUID(communicationUUID);
   var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
   var pos_tag_labels = [];
 
@@ -348,7 +348,7 @@ Add buttons to sentence_control <div>'s:
 +     <button>
 +     ...
  */
-function addSentenceBRATControls(comm) {
+QL.addSentenceBRATControls = function(comm) {
   for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
     if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
       for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
@@ -362,11 +362,11 @@ function addSentenceBRATControls(comm) {
           .attr('id', 'sentence_ner_button_' + sentence.uuid)
           .attr('type', 'button')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-            if (hasNERTags(event.data.sentence_uuid)) {
-              toggleNERTags(event.data.sentence_uuid);
+            if (QL.hasNERTags(event.data.sentence_uuid)) {
+              QL.toggleNERTags(event.data.sentence_uuid);
             }
             else {
-              addNERTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+              QL.addNERTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
               $('#sentence_ner_button_' + event.data.sentence_uuid).addClass('active');
             }
           })
@@ -382,11 +382,11 @@ function addSentenceBRATControls(comm) {
           .attr('id', 'sentence_pos_button_' + sentence.uuid)
           .attr('type', 'button')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-            if (hasPOSTags(event.data.sentence_uuid)) {
-              togglePOSTags(event.data.sentence_uuid);
+            if (QL.hasPOSTags(event.data.sentence_uuid)) {
+              QL.togglePOSTags(event.data.sentence_uuid);
             }
             else {
-              addPOSTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+              QL.addPOSTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
               $('#sentence_pos_button_' + event.data.sentence_uuid).addClass('active');
             }
           })
@@ -402,11 +402,11 @@ function addSentenceBRATControls(comm) {
           .attr('id', 'ace_relations_button_' + sentence.uuid)
           .attr('type', 'button')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-            if (hasACERelations(event.data.sentence_uuid)) {
-              toggleACERelations(event.data.sentence_uuid);
+            if (QL.hasACERelations(event.data.sentence_uuid)) {
+              QL.toggleACERelations(event.data.sentence_uuid);
             }
             else {
-              addACERelations(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+              QL.addACERelations(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
               $('#ace_relations_button_' + event.data.sentence_uuid).addClass('active');
             }
           })
@@ -424,7 +424,7 @@ function addSentenceBRATControls(comm) {
 }
 
 
-function hasACERelations(sentenceUUID) {
+QL.hasACERelations = function(sentenceUUID) {
   if ($("#ace_relations_" + sentenceUUID + " svg").length > 0) {
     return true;
   }
@@ -434,7 +434,7 @@ function hasACERelations(sentenceUUID) {
 }
 
 
-function hasNERTags(sentenceUUID) {
+QL.hasNERTags = function(sentenceUUID) {
   if ($("#sentence_ner_" + sentenceUUID + " svg").length > 0) {
     return true;
   }
@@ -444,7 +444,7 @@ function hasNERTags(sentenceUUID) {
 }
 
 
-function hasPOSTags(sentenceUUID) {
+QL.hasPOSTags = function(sentenceUUID) {
   if ($("#sentence_pos_" + sentenceUUID + " svg").length > 0) {
     return true;
   }
@@ -454,7 +454,7 @@ function hasPOSTags(sentenceUUID) {
 }
 
 
-function toggleACERelations(sentenceUUID) {
+QL.toggleACERelations = function(sentenceUUID) {
   if ($("#ace_relations_" + sentenceUUID).css('display') == 'none') {
     $('#ace_relations_button_' + sentenceUUID).addClass('active');
     $("#ace_relations_" + sentenceUUID).show();
@@ -466,7 +466,7 @@ function toggleACERelations(sentenceUUID) {
 }
 
 
-function toggleNERTags(sentenceUUID) {
+QL.toggleNERTags = function(sentenceUUID) {
   if ($("#sentence_ner_" + sentenceUUID).css('display') == 'none') {
     $('#sentence_ner_button_' + sentenceUUID).addClass('active');
     $("#sentence_ner_" + sentenceUUID).show();
@@ -478,7 +478,7 @@ function toggleNERTags(sentenceUUID) {
 }
 
 
-function togglePOSTags(sentenceUUID) {
+QL.togglePOSTags = function(sentenceUUID) {
   if ($("#sentence_pos_" + sentenceUUID).css('display') == 'none') {
     $('#sentence_pos_button_' + sentenceUUID).addClass('active');
     $("#sentence_pos_" + sentenceUUID).show();

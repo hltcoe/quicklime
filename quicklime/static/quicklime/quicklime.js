@@ -1,14 +1,13 @@
+// Namespace for Quicklime
+var QL = {
+    global_comm: undefined
+};
 
 
-// <HACK> Use global variable to keep Communication around in memory
-// TODO: Fix hack
-var global_comm;
-
-function getCommunicationWithUUID(uuid) {
+QL.getCommunicationWithUUID = function(uuid) {
   // TODO: Replace this stub with actual code
-  return global_comm;
+  return QL.global_comm;
 }
-// </HACK>
 
 
 /*
@@ -31,8 +30,8 @@ function getCommunicationWithUUID(uuid) {
           <div class="dagre_parse" id="constituent_pare_[SENTENCE_UUID]">
           <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]">
 */
-function addCommunication(parentElementID, comm) {
-  global_comm = comm;
+QL.addCommunication = function(parentElementID, comm) {
+  QL.global_comm = comm;
 
   var parent_element = $('#' + parentElementID);
   var document_div = $('<div>').addClass('communication').attr('id', 'communication_' + comm.uuid);
@@ -68,7 +67,7 @@ function addCommunication(parentElementID, comm) {
           var token_span = $('<span>')
             .addClass('token')
             .attr('id', 'tokenization_' + tokenization.uuid + "_" + token.tokenIndex)
-              .html(cleanedTokenText(token.text));
+              .html(QL.cleanedTokenText(token.text));
           var token_padding_span = $('<span>')
             .addClass('token_padding')
             .attr('id', 'tokenization_padding_' + tokenization.uuid + "_" + token.tokenIndex)
@@ -135,7 +134,7 @@ function addCommunication(parentElementID, comm) {
 }
 
 
-function addEntityList(comm) {
+QL.addEntityList = function(comm) {
   // Add list of entities, and list of mentions for each entity, to the DOM
   for (var entityListIndex in comm.entitySets[0].entityList) {
     var counter = parseInt(entityListIndex) + 1;
@@ -177,7 +176,7 @@ function addEntityList(comm) {
 }
 
 
-function addEntityMouseoverHighlighting(comm) {
+QL.addEntityMouseoverHighlighting = function(comm) {
   // Add mouseover functions for all elements linked to an entity
   for (var entityListIndex in comm.entitySets[0].entityList) {
     var entity = comm.entitySets[0].entityList[entityListIndex];
@@ -202,7 +201,7 @@ function addEntityMouseoverHighlighting(comm) {
 }
 
 
-function cleanedTokenText(tokenText) {
+QL.cleanedTokenText = function(tokenText) {
   // Convert Penn Treebank-style symbols for brackets to bracket characters
   //   http://www.cis.upenn.edu/~treebank/tokenization.html
   switch(tokenText) {

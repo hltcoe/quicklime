@@ -1,17 +1,16 @@
 
-
-function addConstituentParse(communicationUUID, sentenceUUID, tokenizationUUID) {
-  var comm = getCommunicationWithUUID(comm);
+QL.addConstituentParse = function(communicationUUID, sentenceUUID, tokenizationUUID) {
+  var comm = QL.getCommunicationWithUUID(comm);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
-  drawConstituentParse("#constituent_parse_" + sentenceUUID, tokenization);
+  QL.drawConstituentParse("#constituent_parse_" + sentenceUUID, tokenization);
   $('#constituent_parse_button_' + sentenceUUID).addClass('active');
 }
 
 
-function addDependencyParse(communicationUUID, sentenceUUID, tokenizationUUID) {
-  var comm = getCommunicationWithUUID(comm);
+QL.addDependencyParse = function(communicationUUID, sentenceUUID, tokenizationUUID) {
+  var comm = QL.getCommunicationWithUUID(comm);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
-  drawDependencyParse("#dependency_parse_" + sentenceUUID, tokenization);
+  QL.drawDependencyParse("#dependency_parse_" + sentenceUUID, tokenization);
 }
 
 
@@ -23,7 +22,7 @@ Add buttons to sentence_control <div>'s:
 +     <button>
 +     ...
  */
-function addSentenceParseControls(comm) {
+QL.addSentenceParseControls = function(comm) {
   for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
     if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
       for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
@@ -37,11 +36,11 @@ function addSentenceParseControls(comm) {
           .attr('id', 'constituent_parse_button_' + sentence.uuid)
           .attr('type', 'button')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-            if (hasConstituentParse(event.data.sentence_uuid)) {
-              toggleConstituentParse(event.data.sentence_uuid);
+            if (QL.hasConstituentParse(event.data.sentence_uuid)) {
+              QL.toggleConstituentParse(event.data.sentence_uuid);
             }
             else {
-              addConstituentParse(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+              QL.addConstituentParse(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
             }
           })
           .css('margin-right', '1em')
@@ -56,11 +55,11 @@ function addSentenceParseControls(comm) {
           .attr('id', 'dependency_parse_button_' + sentence.uuid)
           .attr('type', 'button')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-            if (hasDependencyParse(event.data.sentence_uuid)) {
-              toggleDependencyParse(event.data.sentence_uuid);
+            if (QL.hasDependencyParse(event.data.sentence_uuid)) {
+              QL.toggleDependencyParse(event.data.sentence_uuid);
             }
             else {
-              addDependencyParse(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+              QL.addDependencyParse(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
             }
           })
           .css('margin-right', '1em')
@@ -75,7 +74,7 @@ function addSentenceParseControls(comm) {
 }
 
 
-function drawConstituentParse(containerSelectorString, tokenization) {
+QL.drawConstituentParse = function(containerSelectorString, tokenization) {
   var g = new dagreD3.Digraph();
 
   for (var constituentIndex in tokenization.parse.constituentList) {
@@ -97,11 +96,11 @@ function drawConstituentParse(containerSelectorString, tokenization) {
     }
   }
 
-  drawParse(containerSelectorString, g);
+  QL.drawParse(containerSelectorString, g);
 }
 
 
-function drawDependencyParse(containerSelectorString, tokenization) {
+QL.drawDependencyParse = function(containerSelectorString, tokenization) {
   var g = new dagreD3.Digraph();
 
   // TODO: Handle multiple dependency parses, instead of just picking the first
@@ -133,11 +132,11 @@ function drawDependencyParse(containerSelectorString, tokenization) {
     }
   }
 
-  drawParse(containerSelectorString, g);
+  QL.drawParse(containerSelectorString, g);
 }
 
 
-function drawParse(containerSelectorString, digraph) {
+QL.drawParse = function(containerSelectorString, digraph) {
   // Code adapted from dagre-d3 demo code:
   //   http://cpettitt.github.io/project/dagre-d3/latest/demo/sentence-tokenization.html
 
@@ -160,7 +159,7 @@ function drawParse(containerSelectorString, digraph) {
 }
 
 
-function hasConstituentParse(sentenceUUID) {
+QL.hasConstituentParse = function(sentenceUUID) {
   if ($("#constituent_parse_" + sentenceUUID + " svg").length > 0) {
     return true;
   }
@@ -170,7 +169,7 @@ function hasConstituentParse(sentenceUUID) {
 }
 
 
-function hasDependencyParse(sentenceUUID) {
+QL.hasDependencyParse = function(sentenceUUID) {
   if ($("#dependency_parse_" + sentenceUUID + " svg").length > 0) {
     return true;
   }
@@ -180,7 +179,7 @@ function hasDependencyParse(sentenceUUID) {
 }
 
 
-function toggleConstituentParse(sentenceUUID) {
+QL.toggleConstituentParse = function(sentenceUUID) {
   if ($("#constituent_parse_" + sentenceUUID).css('display') == 'none') {
     $('#constituent_parse_button_' + sentenceUUID).addClass('active');
     $("#constituent_parse_" + sentenceUUID).show();
@@ -192,7 +191,7 @@ function toggleConstituentParse(sentenceUUID) {
 }
 
 
-function toggleDependencyParse(sentenceUUID) {
+QL.toggleDependencyParse = function(sentenceUUID) {
   if ($("#dependency_parse_" + sentenceUUID).css('display') == 'none') {
     $('#dependency_parse_button_' + sentenceUUID).addClass('active');
     $("#dependency_parse_" + sentenceUUID).show();
