@@ -11,9 +11,7 @@ module.exports = function(grunt) {
     jshint: {
       files: [
         'Gruntfile.js', 
-        'quicklime/static/quicklime/quicklime*.js',
-        'quicklime/static/quicklime/concrete.js',
-        'quicklime/static/quicklime/thrift.js'
+        'quicklime/static/quicklime/quicklime*.js'
       ],
       options: {
         // options here to override JSHint defaults

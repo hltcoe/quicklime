@@ -6,7 +6,7 @@ var QL = {
 
 QL.getCommunicationWithUUID = function(uuid) {
   return QL._communications[uuid];
-}
+};
 
 
 /*
@@ -125,12 +125,12 @@ QL.addCommunication = function(parentElementID, comm) {
   for (var entityListIndex in comm.entitySets[0].entityList) {
     var entity = comm.entitySets[0].entityList[entityListIndex];
     for (var i; i < entity.mentionIdList.length; i++) {
-      var entityMention = entity.mentionIdList[i];
+      entityMention = entity.mentionIdList[i];
       $('#mention_' + entityMention.uuid).addClass('coref_mention');
     }
   }
 
-}
+};
 
 
 QL.addEntityList = function(comm) {
@@ -172,7 +172,7 @@ QL.addEntityList = function(comm) {
 
     $('#entityList').append(entityList_div);
   }
-}
+};
 
 
 QL.addEntityMouseoverHighlighting = function(comm) {
@@ -197,7 +197,7 @@ QL.addEntityMouseoverHighlighting = function(comm) {
       });
     }
   }
-}
+};
 
 
 QL.cleanedTokenText = function(tokenText) {
@@ -219,4 +219,4 @@ QL.cleanedTokenText = function(tokenText) {
     default:
       return tokenText;
   }
-}
+};

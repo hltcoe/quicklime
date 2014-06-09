@@ -4,14 +4,14 @@ QL.addConstituentParse = function(communicationUUID, sentenceUUID, tokenizationU
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
   QL.drawConstituentParse("#constituent_parse_" + sentenceUUID, tokenization);
   $('#constituent_parse_button_' + sentenceUUID).addClass('active');
-}
+};
 
 
 QL.addDependencyParse = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var comm = QL.getCommunicationWithUUID(communicationUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
   QL.drawDependencyParse("#dependency_parse_" + sentenceUUID, tokenization);
-}
+};
 
 
 /*
@@ -65,21 +65,24 @@ QL.addSentenceParseControls = function(comm) {
           .css('margin-right', '1em')
           .html("DP");
 	if (!tokenization.dependencyParseList) {
-	  dependency_parse_button.attr('disabled', 'disabled');
+          dependency_parse_button.attr('disabled', 'disabled');
 	}
 	sentence_controls_div.append(dependency_parse_button);
       }
     }
   }
-}
+};
 
 
 QL.drawConstituentParse = function(containerSelectorString, tokenization) {
-  var g = new dagreD3.Digraph();
+  var
+    constituent,
+    constituentIndex,
+    g = new dagreD3.Digraph();
 
-  for (var constituentIndex in tokenization.parse.constituentList) {
-    var constituent = tokenization.parse.constituentList[constituentIndex];
-    if (constituent.childList.length == 0) {
+  for (constituentIndex in tokenization.parse.constituentList) {
+    constituent = tokenization.parse.constituentList[constituentIndex];
+    if (constituent.childList.length === 0) {
       g.addNode(constituent.id, { label: constituent.tag, nodeclass: "type-TOKEN" });
     }
     else {
@@ -87,8 +90,8 @@ QL.drawConstituentParse = function(containerSelectorString, tokenization) {
     }
   }
 
-  for (var constituentIndex in tokenization.parse.constituentList) {
-    var constituent = tokenization.parse.constituentList[constituentIndex];
+  for (constituentIndex in tokenization.parse.constituentList) {
+    constituent = tokenization.parse.constituentList[constituentIndex];
     if (constituent.childList.length > 0) {
       for (var childIndex in constituent.childList) {
         g.addEdge(null, constituent.id, constituent.childList[childIndex]);
@@ -97,11 +100,12 @@ QL.drawConstituentParse = function(containerSelectorString, tokenization) {
   }
 
   QL.drawParse(containerSelectorString, g);
-}
+};
 
 
 QL.drawDependencyParse = function(containerSelectorString, tokenization) {
   var g = new dagreD3.Digraph();
+  var dependency, i;
 
   // TODO: Handle multiple dependency parses, instead of just picking the first
   var dependencyParse = tokenization.dependencyParseList[0];
@@ -109,23 +113,23 @@ QL.drawDependencyParse = function(containerSelectorString, tokenization) {
   var nodeSet = {};
 
   // Some tokens - such as punctuation marks - will not have nodes in the dependency parse
-  for (var i = 0; i < dependencyParse.dependencyList.length; i++) {
-    var dependency = dependencyParse.dependencyList[i];
+  for (i = 0; i < dependencyParse.dependencyList.length; i++) {
+    dependency = dependencyParse.dependencyList[i];
     nodeSet[dependency.dep] = true;
     if (dependency.gov) {
       nodeSet[dependency.gov] = true;
     }
   }
 
-  for (var i = 0; i < tokenization.tokenList.length; i++) {
-    var token = tokenization.tokenList[i];
+  for (i = 0; i < tokenization.tokenList.length; i++) {
+    token = tokenization.tokenList[i];
     if (token.tokenIndex in nodeSet) {
       g.addNode(token.tokenIndex, { label: token.text, nodeclass: "type-UNKNOWN" });
     }
   }
 
-  for (var i = 0; i < dependencyParse.dependencyList.length; i++) {
-    var dependency = dependencyParse.dependencyList[i];
+  for (i = 0; i < dependencyParse.dependencyList.length; i++) {
+    dependency = dependencyParse.dependencyList[i];
     // The root edge will not have a 'gov'
     if (typeof(dependency.gov) != 'undefined') {
       g.addEdge(null, dependency.gov, dependency.dep, { label: dependency.edgeType });
@@ -133,7 +137,7 @@ QL.drawDependencyParse = function(containerSelectorString, tokenization) {
   }
 
   QL.drawParse(containerSelectorString, g);
-}
+};
 
 
 QL.drawParse = function(containerSelectorString, digraph) {
@@ -156,7 +160,7 @@ QL.drawParse = function(containerSelectorString, digraph) {
   d3.select(containerSelectorString).select("svg")
     .attr("width", layout.graph().width + 40)
     .attr("height", layout.graph().height + 40);
-}
+};
 
 
 QL.hasConstituentParse = function(sentenceUUID) {
@@ -166,7 +170,7 @@ QL.hasConstituentParse = function(sentenceUUID) {
   else {
     return false;
   }
-}
+};
 
 
 QL.hasDependencyParse = function(sentenceUUID) {
@@ -176,7 +180,7 @@ QL.hasDependencyParse = function(sentenceUUID) {
   else {
     return false;
   }
-}
+};
 
 
 QL.toggleConstituentParse = function(sentenceUUID) {
@@ -188,7 +192,7 @@ QL.toggleConstituentParse = function(sentenceUUID) {
     $('#constituent_parse_button_' + sentenceUUID).removeClass('active');
     $("#constituent_parse_" + sentenceUUID).hide();
   }
-}
+};
 
 
 QL.toggleDependencyParse = function(sentenceUUID) {
@@ -200,4 +204,4 @@ QL.toggleDependencyParse = function(sentenceUUID) {
     $('#dependency_parse_button_' + sentenceUUID).removeClass('active');
     $("#dependency_parse_" + sentenceUUID).hide();
   }
-}
+};

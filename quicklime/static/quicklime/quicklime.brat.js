@@ -9,14 +9,24 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
   sentence_text = sentence_text.replace(/\n/g, " ");
 
   // Set of entities in this sentence that are part of a relation
-  var relationEntitySet = {}
+  var relationEntitySet = {};
 
-  for (var situationMentionSetIndex in comm.situationMentionSets) {
+  var
+    argumentIndex,
+    entityMention,
+    entityMentionIndex,
+    entityMentionSetIndex,
+    situationMention,
+    situationMentionIndex,
+    situationMentionList,
+    situationMentionSetIndex;
+
+  for (situationMentionSetIndex in comm.situationMentionSets) {
     if (comm.situationMentionSets[situationMentionSetIndex].mentionList) {
-      var situationMentionList = comm.situationMentionSets[situationMentionSetIndex].mentionList;
-      for (var situationMentionIndex in situationMentionList) {
-        var situationMention = situationMentionList[situationMentionIndex];
-        for (var argumentIndex in situationMention.argumentList) {
+      situationMentionList = comm.situationMentionSets[situationMentionSetIndex].mentionList;
+      for (situationMentionIndex in situationMentionList) {
+        situationMention = situationMentionList[situationMentionIndex];
+        for (argumentIndex in situationMention.argumentList) {
           relationEntitySet[situationMention.argumentList[argumentIndex].entityMentionId] = true;
         }
       }
@@ -25,10 +35,10 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
 
   var relationEntityCounter = 1;
   var relationEntityLabels = [];
-  for (var entityMentionSetIndex in comm.entityMentionSets) {
+  for (entityMentionSetIndex in comm.entityMentionSets) {
     if (comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-      for (var entityMentionIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-        var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[entityMentionIndex];
+      for (entityMentionIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
+        entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[entityMentionIndex];
         if (entityMention.tokens.tokenizationId == tokenizationUUID) {
           if (entityMention.uuid in relationEntitySet) {
             var entityID = "T" + relationEntityCounter;
@@ -43,12 +53,12 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
   }
 
   var relationLabels = [];
-  for (var situationMentionSetIndex in comm.situationMentionSets) {
+  for (situationMentionSetIndex in comm.situationMentionSets) {
     if (comm.situationMentionSets[situationMentionSetIndex].mentionList) {
       if (comm.situationMentionSets[situationMentionSetIndex].metadata.tool == 'Serif: relations') {
-        var situationMentionList = comm.situationMentionSets[situationMentionSetIndex].mentionList;
-        for (var situationMentionIndex in situationMentionList) {
-          var situationMention = situationMentionList[situationMentionIndex];
+        situationMentionList = comm.situationMentionSets[situationMentionSetIndex].mentionList;
+        for (situationMentionIndex in situationMentionList) {
+          situationMention = situationMentionList[situationMentionIndex];
           if (situationMention.situationType == 300) {
             relationLabels.push([situationMention.uuid, situationMention.stateType.toString(), [
               ['Left', situationMention.argumentList[0].entityMentionId],
@@ -160,7 +170,7 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
                 { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
       },
     ],
-  }
+  };
 
   var docData = {
     text     : sentence_text,
@@ -171,7 +181,7 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
   var webFontURLs = [];
 
   Util.embed('ace_relations_' + sentence.uuid, collData, docData, webFontURLs);
-}
+};
 
 
 QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
@@ -197,9 +207,8 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
       { type: 'SET', labels: ['Set', 'Set'], bgColor: '#ff7c95' },
       { type: 'TIME', labels: ['Time', 'Time'], bgColor: '#9affe6' },
     ]
-  }
+  };
 
-  var comm = QL.getCommunicationWithUUID(communicationUUID);
   var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
   var ner_tag_labels = [];
 
@@ -220,7 +229,7 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var docData = { text: sentence_text, entities: ner_tag_labels };
 
   Util.embed('sentence_ner_' + sentence.uuid, collData, docData, webFontURLs);
-}
+};
 
 
 QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
@@ -306,7 +315,6 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     ]
   };
 
-  var comm = QL.getCommunicationWithUUID(communicationUUID);
   var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
   var pos_tag_labels = [];
 
@@ -336,7 +344,7 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     // Array containing locations of the visualisation fonts
     webFontURLs
   );
-}
+};
 
 
 
@@ -373,7 +381,7 @@ QL.addSentenceBRATControls = function(comm) {
           .css('margin-right', '1em')
           .html("NER");
 	if (!tokenization.nerTagList) {
-	  ner_tag_button.attr('disabled', 'disabled');
+          ner_tag_button.attr('disabled', 'disabled');
 	}
 	sentence_controls_div.append(ner_tag_button);
 
@@ -393,7 +401,7 @@ QL.addSentenceBRATControls = function(comm) {
           .css('margin-right', '1em')
           .html("POS");
 	if (!tokenization.posTagList) {
-	  pos_tag_button.attr('disabled', 'disabled');
+          pos_tag_button.attr('disabled', 'disabled');
 	}
 	sentence_controls_div.append(pos_tag_button);
 
@@ -414,14 +422,14 @@ QL.addSentenceBRATControls = function(comm) {
           .html("Rel");
         /*
 	if (!tokenization.posTagList) {
-	  relation_button.attr('disabled', 'disabled');
+          relation_button.attr('disabled', 'disabled');
 	}
         */
 	sentence_controls_div.append(relation_button);
       }
     }
   }
-}
+};
 
 
 QL.hasACERelations = function(sentenceUUID) {
@@ -431,7 +439,7 @@ QL.hasACERelations = function(sentenceUUID) {
   else {
     return false;
   }
-}
+};
 
 
 QL.hasNERTags = function(sentenceUUID) {
@@ -441,7 +449,7 @@ QL.hasNERTags = function(sentenceUUID) {
   else {
     return false;
   }
-}
+};
 
 
 QL.hasPOSTags = function(sentenceUUID) {
@@ -451,7 +459,7 @@ QL.hasPOSTags = function(sentenceUUID) {
   else {
     return false;
   }
-}
+};
 
 
 QL.toggleACERelations = function(sentenceUUID) {
@@ -463,7 +471,7 @@ QL.toggleACERelations = function(sentenceUUID) {
     $('#ace_relations_button_' + sentenceUUID).removeClass('active');
     $("#ace_relations_" + sentenceUUID).hide();
   }
-}
+};
 
 
 QL.toggleNERTags = function(sentenceUUID) {
@@ -475,7 +483,7 @@ QL.toggleNERTags = function(sentenceUUID) {
     $('#sentence_ner_button_' + sentenceUUID).removeClass('active');
     $("#sentence_ner_" + sentenceUUID).hide();
   }
-}
+};
 
 
 QL.togglePOSTags = function(sentenceUUID) {
@@ -487,4 +495,4 @@ QL.togglePOSTags = function(sentenceUUID) {
     $('#sentence_pos_button_' + sentenceUUID).removeClass('active');
     $("#sentence_pos_" + sentenceUUID).hide();
   }
-}
+};
