@@ -1,12 +1,11 @@
 // Namespace for Quicklime
 var QL = {
-    global_comm: undefined
+    _communications: {}
 };
 
 
 QL.getCommunicationWithUUID = function(uuid) {
-  // TODO: Replace this stub with actual code
-  return QL.global_comm;
+  return QL._communications[uuid];
 }
 
 
@@ -31,7 +30,7 @@ QL.getCommunicationWithUUID = function(uuid) {
           <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]">
 */
 QL.addCommunication = function(parentElementID, comm) {
-  QL.global_comm = comm;
+  QL._communications[comm.uuid] = comm;
 
   var parent_element = $('#' + parentElementID);
   var document_div = $('<div>').addClass('communication').attr('id', 'communication_' + comm.uuid);
