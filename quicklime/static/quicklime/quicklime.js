@@ -164,7 +164,7 @@ function addEntityList(comm) {
     for (var mentionIdListIndex in entityList.mentionIdList) {
       var mentionId = entityList.mentionIdList[mentionIdListIndex];
       var mentionId_li = $('<li>')
-        .html('<span class="coref_mention mention_' + mentionId + '">' + getTokensForEntityMentionID(comm, mentionId).join(" ") + '</span>');
+        .html('<span class="coref_mention mention_' + mentionId + '">' + comm.getTokensForEntityMentionID(mentionId).join(" ") + '</span>');
       mentionId_ul.append(mentionId_li);
 
       // Add 'entity_ENTITY_UUID' class to each mention of that entity
@@ -221,73 +221,4 @@ function cleanedTokenText(tokenText) {
     default:
       return tokenText;
   }
-}
-
-
-function getEntityMentionWithUUID(comm, uuid) {
-  if (comm.entityMentionSets) {
-    for (var entityMentionSetIndex in comm.entityMentionSets) {
-      if (comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-        for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-          var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
-          if (entityMention.uuid == uuid) {
-            return entityMention;
-          }
-        }
-      }
-    }
-  }
-  // TODO: Error handling if no matching UUID could be found
-  console.log("ERROR: No EntityMention found with UUID " + uuid);
-}
-
-
-function getSentenceWithUUID(comm, uuid) {
-  if (comm.sectionSegmentations[0].sectionList) {
-    for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
-      if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
-        for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
-          var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
-          if (sentence.uuid == uuid) {
-            return sentence;
-          }
-        }
-      }
-    }
-  }
-  // TODO: Error handling if no matching UUID could be found
-  console.log("ERROR: No Tokenization found with UUID " + uuid);
-}
-
-
-function getTokenizationWithUUID(comm, uuid) {
-  if (comm.sectionSegmentations[0].sectionList) {
-    for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
-      if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
-        for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
-          var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
-          for (var tokenizationListIndex in sentence.tokenizationList) {
-            if (sentence.tokenizationList[tokenizationListIndex].uuid == uuid) {
-              return sentence.tokenizationList[tokenizationListIndex];
-            }
-          }
-        }
-      }
-    }
-  }
-  // TODO: Error handling if no matching UUID could be found
-  console.log("ERROR: No Tokenization found with UUID " + uuid);
-}
-
-
-function getTokensForEntityMentionID(comm, mentionId) {
-  var entityMention = getEntityMentionWithUUID(comm, mentionId);
-  var tokenization = getTokenizationWithUUID(comm, entityMention.tokens.tokenizationId);
-
-  var tokens = new Array();
-
-  for (var tokenIndex in entityMention.tokens.tokenIndexList) {
-    tokens.push(tokenization.tokenList[entityMention.tokens.tokenIndexList[tokenIndex]].text);
-  }
-  return tokens;
 }

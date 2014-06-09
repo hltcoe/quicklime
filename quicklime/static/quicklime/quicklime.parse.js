@@ -2,7 +2,7 @@
 
 function addConstituentParse(communicationUUID, sentenceUUID, tokenizationUUID) {
   var comm = getCommunicationWithUUID(comm);
-  var tokenization = getTokenizationWithUUID(comm, tokenizationUUID);
+  var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
   drawConstituentParse("#constituent_parse_" + sentenceUUID, tokenization);
   $('#constituent_parse_button_' + sentenceUUID).addClass('active');
 }
@@ -10,7 +10,7 @@ function addConstituentParse(communicationUUID, sentenceUUID, tokenizationUUID) 
 
 function addDependencyParse(communicationUUID, sentenceUUID, tokenizationUUID) {
   var comm = getCommunicationWithUUID(comm);
-  var tokenization = getTokenizationWithUUID(comm, tokenizationUUID);
+  var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
   drawDependencyParse("#dependency_parse_" + sentenceUUID, tokenization);
 }
 

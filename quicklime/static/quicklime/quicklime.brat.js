@@ -2,8 +2,8 @@
 
 function addACERelations(communicationUUID, sentenceUUID, tokenizationUUID) {
   var comm = getCommunicationWithUUID(communicationUUID);
-  var sentence = getSentenceWithUUID(comm, sentenceUUID);
-  var tokenization = getTokenizationWithUUID(comm, tokenizationUUID);
+  var sentence = comm.getSentenceWithUUID(sentenceUUID);
+  var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
 
   var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
   sentence_text = sentence_text.replace(/\n/g, " ");
@@ -176,8 +176,8 @@ function addACERelations(communicationUUID, sentenceUUID, tokenizationUUID) {
 
 function addNERTags(communicationUUID, sentenceUUID, tokenizationUUID) {
   var comm = getCommunicationWithUUID(communicationUUID);
-  var sentence = getSentenceWithUUID(comm, sentenceUUID);
-  var tokenization = getTokenizationWithUUID(comm, tokenizationUUID);
+  var sentence = comm.getSentenceWithUUID(sentenceUUID);
+  var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
 
   var webFontURLs = [];
 
@@ -225,8 +225,8 @@ function addNERTags(communicationUUID, sentenceUUID, tokenizationUUID) {
 
 function addPOSTags(communicationUUID, sentenceUUID, tokenizationUUID) {
   var comm = getCommunicationWithUUID(communicationUUID);
-  var sentence = getSentenceWithUUID(comm, sentenceUUID);
-  var tokenization = getTokenizationWithUUID(comm, tokenizationUUID);
+  var sentence = comm.getSentenceWithUUID(sentenceUUID);
+  var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
 
   var webFontURLs = [];
 
