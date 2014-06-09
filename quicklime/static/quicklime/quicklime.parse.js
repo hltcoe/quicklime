@@ -1,6 +1,6 @@
 
 QL.addConstituentParse = function(communicationUUID, sentenceUUID, tokenizationUUID) {
-  var comm = QL.getCommunicationWithUUID(comm);
+  var comm = QL.getCommunicationWithUUID(communicationUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
   QL.drawConstituentParse("#constituent_parse_" + sentenceUUID, tokenization);
   $('#constituent_parse_button_' + sentenceUUID).addClass('active');
@@ -8,7 +8,7 @@ QL.addConstituentParse = function(communicationUUID, sentenceUUID, tokenizationU
 
 
 QL.addDependencyParse = function(communicationUUID, sentenceUUID, tokenizationUUID) {
-  var comm = QL.getCommunicationWithUUID(comm);
+  var comm = QL.getCommunicationWithUUID(communicationUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
   QL.drawDependencyParse("#dependency_parse_" + sentenceUUID, tokenization);
 }
