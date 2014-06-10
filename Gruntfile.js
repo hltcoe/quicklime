@@ -10,7 +10,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
       files: [
-        'Gruntfile.js', 
+        'Gruntfile.js',
         'quicklime/static/quicklime/quicklime*.js'
       ],
       options: {
@@ -26,7 +26,6 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('test', ['jshint']);
   grunt.registerTask('default', ['jshint']);
