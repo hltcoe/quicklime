@@ -40,6 +40,8 @@ QL.addCommunication = function(parentElementID, comm) {
   var section_segmentation_div = $('<div>').addClass('section_segmention')
     .attr('id', 'section_segmentation_' + comm.sectionSegmentations[0].uuid);
 
+  var tokenIndex;
+
   for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
     var section_div = $('<div>').addClass('section')
       .attr('id', 'section_' + comm.sectionSegmentations[0].sectionList[sectionListIndex].uuid);
@@ -61,7 +63,7 @@ QL.addCommunication = function(parentElementID, comm) {
         sentence_div.append(sentence_controls_div);
 
         var tokenization_div = $('<div>').addClass('tokenization').attr('id', 'tokenization_' + tokenization.uuid);
-        for (var tokenIndex in tokenization.tokenList) {
+        for (tokenIndex in tokenization.tokenList) {
           var token = tokenization.tokenList[tokenIndex];
           var token_span = $('<span>')
             .addClass('token')
@@ -100,10 +102,11 @@ QL.addCommunication = function(parentElementID, comm) {
   document_div.append(section_segmentation_div);
 
   // Add mentionId's to tokens
+  var entityMention;
   for (var entityMentionSetIndex in comm.entityMentionSets) {
     if (comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
       for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-        var entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
+        entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
         if (entityMention.tokens.tokenIndexList) {
           var total_tokens = entityMention.tokens.tokenIndexList.length;
           for (tokenIndex in entityMention.tokens.tokenIndexList) {
@@ -136,7 +139,7 @@ QL.addCommunication = function(parentElementID, comm) {
 QL.addEntityList = function(comm) {
   // Add list of entities, and list of mentions for each entity, to the DOM
   for (var entityListIndex in comm.entitySets[0].entityList) {
-    var counter = parseInt(entityListIndex) + 1;
+    var counter = parseInt(entityListIndex, 10) + 1;
     var entityList = comm.entitySets[0].entityList[entityListIndex];
     var entityList_div = $('<div>');
     var entityCounter_span = $('<span>')
@@ -176,25 +179,37 @@ QL.addEntityList = function(comm) {
 
 
 QL.addEntityMouseoverHighlighting = function(comm) {
+  function addHighlightToEntity(event) {
+    $(event.data.entity_selector).addClass("highlighted_entity");
+  }
+
+  function addHighlightToMention(event) {
+    $(event.data.mention_selector).addClass("highlighted_mention");
+  }
+
+  function removeHighlightFromEntity(event) {
+    $(event.data.entity_selector).removeClass("highlighted_entity");
+  }
+
+  function removeHighlightFromMention(event) {
+    $(event.data.mention_selector).removeClass("highlighted_mention");
+  }
+
   // Add mouseover functions for all elements linked to an entity
   for (var entityListIndex in comm.entitySets[0].entityList) {
     var entity = comm.entitySets[0].entityList[entityListIndex];
-    $('.entity_' + entity.uuid).mouseenter({ entity_selector: '.entity_' + entity.uuid }, function(event) {
-      $(event.data.entity_selector).addClass("highlighted_entity");
-    }).mouseleave({ entity_selector: '.entity_' + entity.uuid }, function(event) {
-      $(event.data.entity_selector).removeClass("highlighted_entity");
-    });
+    $('.entity_' + entity.uuid)
+      .mouseenter({ entity_selector: '.entity_' + entity.uuid }, addHighlightToEntity)
+      .mouseleave({ entity_selector: '.entity_' + entity.uuid }, removeHighlightFromEntity);
 
     // Add mouseover functions for all elements linked to a mention of an entity in entitySet.
     // Mouseover functions will not be added any mentions - such as value mentions - that are
     // not linked to an entity in entitySet.
     for (var i = 0; i < entity.mentionIdList.length; i++) {
       var entityMentionId = entity.mentionIdList[i];
-      $('.mention_' + entityMentionId).mouseenter({ mention_selector: '.mention_'+entityMentionId }, function(event) {
-        $(event.data.mention_selector).addClass("highlighted_mention");
-      }).mouseleave({ mention_selector: '.mention_'+entityMentionId }, function(event) {
-        $(event.data.mention_selector).removeClass("highlighted_mention");
-      });
+      $('.mention_' + entityMentionId)
+        .mouseenter({ mention_selector: '.mention_'+entityMentionId }, addHighlightToMention)
+        .mouseleave({ mention_selector: '.mention_'+entityMentionId }, removeHighlightFromMention);
     }
   }
 };

@@ -14,6 +14,8 @@ QL.addDependencyParse = function(communicationUUID, sentenceUUID, tokenizationUU
 };
 
 
+
+
 /*
 Add buttons to sentence_control <div>'s:
 
@@ -23,6 +25,24 @@ Add buttons to sentence_control <div>'s:
 +     ...
  */
 QL.addSentenceParseControls = function(comm) {
+  function addOrToggleConstituentParse(event) {
+    if (QL.hasConstituentParse(event.data.sentence_uuid)) {
+      QL.toggleConstituentParse(event.data.sentence_uuid);
+    }
+    else {
+      QL.addConstituentParse(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+    }
+  }
+
+  function addOrToggleDependencyParse(event) {
+    if (QL.hasDependencyParse(event.data.sentence_uuid)) {
+      QL.toggleDependencyParse(event.data.sentence_uuid);
+    }
+    else {
+      QL.addDependencyParse(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+    }
+  }
+
   for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
     if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
       for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
@@ -35,14 +55,8 @@ QL.addSentenceParseControls = function(comm) {
           .addClass('btn btn-default btn-xs')
           .attr('id', 'constituent_parse_button_' + sentence.uuid)
           .attr('type', 'button')
-          .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-            if (QL.hasConstituentParse(event.data.sentence_uuid)) {
-              QL.toggleConstituentParse(event.data.sentence_uuid);
-            }
-            else {
-              QL.addConstituentParse(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
-            }
-          })
+          .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
+                 addOrToggleConstituentParse)
           .css('margin-right', '1em')
           .html("CP");
         if (!tokenization.parse) {
@@ -54,14 +68,8 @@ QL.addSentenceParseControls = function(comm) {
           .addClass('btn btn-default btn-xs')
           .attr('id', 'dependency_parse_button_' + sentence.uuid)
           .attr('type', 'button')
-          .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-            if (QL.hasDependencyParse(event.data.sentence_uuid)) {
-              QL.toggleDependencyParse(event.data.sentence_uuid);
-            }
-            else {
-              QL.addDependencyParse(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
-            }
-          })
+          .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
+                 addOrToggleDependencyParse)
           .css('margin-right', '1em')
           .html("DP");
 	if (!tokenization.dependencyParseList) {

@@ -357,6 +357,36 @@ Add buttons to sentence_control <div>'s:
 +     ...
  */
 QL.addSentenceBRATControls = function(comm) {
+  function addOrToggleNERTags(event) {
+    if (QL.hasNERTags(event.data.sentence_uuid)) {
+      QL.toggleNERTags(event.data.sentence_uuid);
+    }
+    else {
+      QL.addNERTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+      $('#sentence_ner_button_' + event.data.sentence_uuid).addClass('active');
+    }
+  }
+
+  function addOrTogglePOSTags(event) {
+    if (QL.hasPOSTags(event.data.sentence_uuid)) {
+      QL.togglePOSTags(event.data.sentence_uuid);
+    }
+    else {
+      QL.addPOSTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+      $('#sentence_pos_button_' + event.data.sentence_uuid).addClass('active');
+    }
+  }
+
+  function addOrToggleACERelations(event) {
+    if (QL.hasACERelations(event.data.sentence_uuid)) {
+      QL.toggleACERelations(event.data.sentence_uuid);
+    }
+    else {
+      QL.addACERelations(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+      $('#ace_relations_button_' + event.data.sentence_uuid).addClass('active');
+    }
+  }
+
   for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
     if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
       for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
@@ -369,15 +399,8 @@ QL.addSentenceBRATControls = function(comm) {
           .addClass('btn btn-default btn-xs')
           .attr('id', 'sentence_ner_button_' + sentence.uuid)
           .attr('type', 'button')
-          .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-            if (QL.hasNERTags(event.data.sentence_uuid)) {
-              QL.toggleNERTags(event.data.sentence_uuid);
-            }
-            else {
-              QL.addNERTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
-              $('#sentence_ner_button_' + event.data.sentence_uuid).addClass('active');
-            }
-          })
+          .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
+                 addOrToggleNERTags)
           .css('margin-right', '1em')
           .html("NER");
 	if (!tokenization.nerTagList) {
@@ -389,15 +412,8 @@ QL.addSentenceBRATControls = function(comm) {
           .addClass('btn btn-default btn-xs')
           .attr('id', 'sentence_pos_button_' + sentence.uuid)
           .attr('type', 'button')
-          .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-            if (QL.hasPOSTags(event.data.sentence_uuid)) {
-              QL.togglePOSTags(event.data.sentence_uuid);
-            }
-            else {
-              QL.addPOSTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
-              $('#sentence_pos_button_' + event.data.sentence_uuid).addClass('active');
-            }
-          })
+          .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
+                 addOrTogglePOSTags)
           .css('margin-right', '1em')
           .html("POS");
 	if (!tokenization.posTagList) {
@@ -409,15 +425,8 @@ QL.addSentenceBRATControls = function(comm) {
           .addClass('btn btn-default btn-xs')
           .attr('id', 'ace_relations_button_' + sentence.uuid)
           .attr('type', 'button')
-          .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid}, function(event) {
-            if (QL.hasACERelations(event.data.sentence_uuid)) {
-              QL.toggleACERelations(event.data.sentence_uuid);
-            }
-            else {
-              QL.addACERelations(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
-              $('#ace_relations_button_' + event.data.sentence_uuid).addClass('active');
-            }
-          })
+          .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
+                 addOrToggleACERelations)
           .css('margin-right', '1em')
           .html("Rel");
         /*
