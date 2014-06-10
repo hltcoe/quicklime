@@ -31,10 +31,6 @@ class CommunicationHandler:
 def index():
     return static_file("index.html", root="quicklime/templates")
 
-@route('/thrift_test')
-def index():
-    return static_file("thrift_test.html", root="quicklime/templates")
-
 @route('/quicklime/as_json')
 def as_json():
     # HACKY global variable used to save JSON for Communication

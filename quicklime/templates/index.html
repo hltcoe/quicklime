@@ -77,15 +77,21 @@
   <script src="static/quicklime/quicklime.brat.js"></script>
   <script src="static/quicklime/quicklime.parse.js"></script>
 
+  <script src="static/quicklime/thrift.js"></script>
+  <script src="static/quicklime/concrete.js"></script>
+
   <script>
    $(document).ready(function() {
-     $.getJSON('quicklime/as_json',function(comm) {
-       QL.addCommunication('communication_one', comm);
-       QL.addSentenceParseControls(comm);
-       QL.addSentenceBRATControls(comm);
-       QL.addEntityList(comm);
-       QL.addEntityMouseoverHighlighting(comm);
-     });
+     var transport = new Thrift.Transport("/quicklime/thrift_endpoint");
+     var protocol = new Thrift.TJSONProtocol(transport);
+     var client = new CommunicationServiceClient(protocol);
+     var comm = client.readComm();
+
+     QL.addCommunication('communication_one', comm);
+     QL.addSentenceParseControls(comm);
+     QL.addSentenceBRATControls(comm);
+     QL.addEntityList(comm);
+     QL.addEntityMouseoverHighlighting(comm);
    });
   </script>
 </head>
