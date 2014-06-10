@@ -338,7 +338,7 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   }
 
   var pos_tag_labels = [];
-  for (var i = 0; i < tokenization.posTagList.taggedTokenList.length; i++) {
+  for (i = 0; i < tokenization.posTagList.taggedTokenList.length; i++) {
     var posTag = tokenization.posTagList.taggedTokenList[i];
     var token = tokenization.tokenList[posTag.tokenIndex];
     var entityID = "T" + (i+1);
@@ -416,7 +416,7 @@ QL.addSentenceBRATControls = function(comm) {
         var sentence_controls_div = $('#sentence_controls_' + sentence.uuid);
 
 	if (tokenization.nerTagList) {
-	  var ner_tag_button = $('<button>')
+          var ner_tag_button = $('<button>')
             .addClass('btn btn-default btn-xs')
             .attr('id', 'sentence_ner_button_' + sentence.uuid)
             .attr('type', 'button')
@@ -424,11 +424,11 @@ QL.addSentenceBRATControls = function(comm) {
                    addOrToggleNERTags)
             .css('margin-right', '1em')
             .html("NER");
-	  sentence_controls_div.append(ner_tag_button);
+          sentence_controls_div.append(ner_tag_button);
 	}
 
 	if (tokenization.posTagList) {
-	  var pos_tag_button = $('<button>')
+          var pos_tag_button = $('<button>')
             .addClass('btn btn-default btn-xs')
             .attr('id', 'sentence_pos_button_' + sentence.uuid)
             .attr('type', 'button')
@@ -436,7 +436,7 @@ QL.addSentenceBRATControls = function(comm) {
                    addOrTogglePOSTags)
             .css('margin-right', '1em')
             .html("POS");
-	  sentence_controls_div.append(pos_tag_button);
+          sentence_controls_div.append(pos_tag_button);
 	}
 
 	var relation_button = $('<button>')
