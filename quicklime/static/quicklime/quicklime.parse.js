@@ -102,7 +102,7 @@ QL.addSentenceParseControls = function(comm) {
           for (var dependencyParseIndex in tokenization.dependencyParseList) {
             var dependency_parse_button = $('<button>')
               .addClass('btn btn-default btn-xs')
-              .attr('id', 'dependency_parse_button_' + sentence.uuid)
+              .attr('id', 'dependency_parse_button_' + sentence.uuid + "_" + dependencyParseIndex)
               .attr('type', 'button')
               .click({comm_uuid: comm.uuid,
                       sentence_uuid: sentence.uuid,
