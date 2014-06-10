@@ -415,31 +415,29 @@ QL.addSentenceBRATControls = function(comm) {
 
         var sentence_controls_div = $('#sentence_controls_' + sentence.uuid);
 
-	var ner_tag_button = $('<button>')
-          .addClass('btn btn-default btn-xs')
-          .attr('id', 'sentence_ner_button_' + sentence.uuid)
-          .attr('type', 'button')
-          .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
-                 addOrToggleNERTags)
-          .css('margin-right', '1em')
-          .html("NER");
-	if (!tokenization.nerTagList) {
-          ner_tag_button.attr('disabled', 'disabled');
+	if (tokenization.nerTagList) {
+	  var ner_tag_button = $('<button>')
+            .addClass('btn btn-default btn-xs')
+            .attr('id', 'sentence_ner_button_' + sentence.uuid)
+            .attr('type', 'button')
+            .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
+                   addOrToggleNERTags)
+            .css('margin-right', '1em')
+            .html("NER");
+	  sentence_controls_div.append(ner_tag_button);
 	}
-	sentence_controls_div.append(ner_tag_button);
 
-	var pos_tag_button = $('<button>')
-          .addClass('btn btn-default btn-xs')
-          .attr('id', 'sentence_pos_button_' + sentence.uuid)
-          .attr('type', 'button')
-          .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
-                 addOrTogglePOSTags)
-          .css('margin-right', '1em')
-          .html("POS");
-	if (!tokenization.posTagList) {
-          pos_tag_button.attr('disabled', 'disabled');
+	if (tokenization.posTagList) {
+	  var pos_tag_button = $('<button>')
+            .addClass('btn btn-default btn-xs')
+            .attr('id', 'sentence_pos_button_' + sentence.uuid)
+            .attr('type', 'button')
+            .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
+                   addOrTogglePOSTags)
+            .css('margin-right', '1em')
+            .html("POS");
+	  sentence_controls_div.append(pos_tag_button);
 	}
-	sentence_controls_div.append(pos_tag_button);
 
 	var relation_button = $('<button>')
           .addClass('btn btn-default btn-xs')
@@ -449,12 +447,7 @@ QL.addSentenceBRATControls = function(comm) {
                  addOrToggleACERelations)
           .css('margin-right', '1em')
           .html("Rel");
-        /*
-	if (!tokenization.posTagList) {
-          relation_button.attr('disabled', 'disabled');
-	}
-        */
-	sentence_controls_div.append(relation_button);
+        sentence_controls_div.append(relation_button);
       }
     }
   }
