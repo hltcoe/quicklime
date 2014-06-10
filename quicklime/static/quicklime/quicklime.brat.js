@@ -497,24 +497,24 @@ QL.toggleACERelations = function(sentenceUUID) {
 
 
 QL.toggleNERTags = function(sentenceUUID) {
-  if ($("#sentence_ner_" + sentenceUUID).css('display') == 'none') {
+  if ($("#sentence_ner_container_" + sentenceUUID).css('display') == 'none') {
     $('#sentence_ner_button_' + sentenceUUID).addClass('active');
-    $("#sentence_ner_" + sentenceUUID).show();
+    $("#sentence_ner_container_" + sentenceUUID).show();
   }
   else {
     $('#sentence_ner_button_' + sentenceUUID).removeClass('active');
-    $("#sentence_ner_" + sentenceUUID).hide();
+    $("#sentence_ner_container_" + sentenceUUID).hide();
   }
 };
 
 
 QL.togglePOSTags = function(sentenceUUID) {
-  if ($("#sentence_pos_" + sentenceUUID).css('display') == 'none') {
+  if ($("#sentence_pos_container_" + sentenceUUID).css('display') == 'none') {
     $('#sentence_pos_button_' + sentenceUUID).addClass('active');
-    $("#sentence_pos_" + sentenceUUID).show();
+    $("#sentence_pos_container_" + sentenceUUID).show();
   }
   else {
     $('#sentence_pos_button_' + sentenceUUID).removeClass('active');
-    $("#sentence_pos_" + sentenceUUID).hide();
+    $("#sentence_pos_container_" + sentenceUUID).hide();
   }
 };

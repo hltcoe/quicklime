@@ -1,15 +1,6 @@
-// Namespace for Quicklime
-var QL = {
-    _communications: {}
-};
-
-
-QL.getCommunicationWithUUID = function(uuid) {
-  return QL._communications[uuid];
-};
-
-
 /*
+Quicklime creates a DOM structure for a Communication:
+
 <div class="communication" id="communication_UUID">>
   <div class="section_segmentation" id="section_segmentation_UUID">
     <div class="section" id="section_UUID">
@@ -25,10 +16,29 @@ QL.getCommunicationWithUUID = function(uuid) {
             <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
             <span class="token_padding"id=" tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
           ...
-          <div class="brat_sentence" id="sentence_pos_[SENTENCE_UUID]">
-          <div class="dagre_parse" id="constituent_pare_[SENTENCE_UUID]">
+          <div class="brat_sentence_container" id="sentence_ner_container_[SENTENCE_UUID]">
+            <div class="brat_sentence" id="sentence_ner_[SENTENCE_UUID]">
+          <div class="brat_sentence_container" id="sentence_pos_container_[SENTENCE_UUID]">
+            <div class="brat_sentence" id="sentence_pos_[SENTENCE_UUID]">
           <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]">
+          <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]">
+            <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]_0">
+            <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]_1">
+            ...
 */
+
+
+// Namespace for Quicklime
+var QL = {
+    _communications: {}
+};
+
+
+QL.getCommunicationWithUUID = function(uuid) {
+  return QL._communications[uuid];
+};
+
+
 QL.addCommunication = function(parentElementID, comm) {
   QL._communications[comm.uuid] = comm;
 
@@ -77,12 +87,22 @@ QL.addCommunication = function(parentElementID, comm) {
           tokenization_div.append(token_padding_span);
         }
         sentence_div.append(tokenization_div);
-        sentence_div.append($('<div>')
-          .addClass('brat_sentence')
-          .attr('id', 'sentence_ner_' + sentence.uuid));
-        sentence_div.append($('<div>')
-          .addClass('brat_sentence')
-          .attr('id', 'sentence_pos_' + sentence.uuid));
+        sentence_div.append(
+          $('<div>')
+            .addClass('brat_sentence_container')
+            .attr('id', 'sentence_ner_container_' + sentence.uuid)
+            .append(
+              $('<div>')
+                .addClass('brat_sentence')
+                .attr('id', 'sentence_ner_' + sentence.uuid)));
+        sentence_div.append(
+          $('<div>')
+            .addClass('brat_sentence_container')
+            .attr('id', 'sentence_pos_container_' + sentence.uuid)
+            .append(
+              $('<div>')
+                .addClass('brat_sentence')
+                .attr('id', 'sentence_pos_' + sentence.uuid)));
         sentence_div.append($('<div>')
           .addClass('dagre_parse')
           .attr('id', 'constituent_parse_' + sentence.uuid));

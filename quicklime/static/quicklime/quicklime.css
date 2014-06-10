@@ -62,6 +62,8 @@ div.dagre_parse {
 }
 /* BRAT adds the 'hasSVG' class to the <div> */
 div .brat_sentence.hasSVG {
+}
+div .brat_sentence_container {
     margin-top: 0.75em;
     margin-bottom: 1.25em;
 }
