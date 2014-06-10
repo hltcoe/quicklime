@@ -447,7 +447,7 @@ QL.addSentenceBRATControls = function(comm) {
                  addOrToggleACERelations)
           .css('margin-right', '1em')
           .html("Rel");
-        sentence_controls_div.append(relation_button);
+//        sentence_controls_div.append(relation_button);
       }
     }
   }
