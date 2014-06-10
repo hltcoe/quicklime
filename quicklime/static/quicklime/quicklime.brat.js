@@ -185,6 +185,8 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
 
 
 QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
+  var i;
+
   var comm = QL.getCommunicationWithUUID(communicationUUID);
   var sentence = comm.getSentenceWithUUID(sentenceUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
@@ -209,10 +211,18 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     ]
   };
 
-  var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
-  var ner_tag_labels = [];
+  var sentence_text = "";
+  var token_offsets = [];
+  for (i = 0, total_tokens = tokenization.tokenList.length; i < total_tokens; i++) {
+    token_offsets.push({
+      'start': sentence_text.length,
+      'ending': sentence_text.length + tokenization.tokenList[i].text.length
+    });
+    sentence_text += tokenization.tokenList[i].text + " ";
+  }
 
-  for (var i = 0; i < tokenization.nerTagList.taggedTokenList.length; i++) {
+  var ner_tag_labels = [];
+  for (i = 0; i < tokenization.nerTagList.taggedTokenList.length; i++) {
     var nerTag = tokenization.nerTagList.taggedTokenList[i];
     var token = tokenization.tokenList[nerTag.tokenIndex];
     var entityID = "T" + (i+1);
@@ -220,8 +230,8 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
         nerTag.tag != "OTHER" &&   // Serif tag
         nerTag.tag != "NONE")      // Serif tag
     {
-      var start = token.textSpan.start - sentence.textSpan.start;
-      var ending = token.textSpan.ending - sentence.textSpan.start;
+      var start = token_offsets[nerTag.tokenIndex].start;
+      var ending = token_offsets[nerTag.tokenIndex].ending;
       ner_tag_labels.push([entityID, nerTag.tag, [[start, ending]]]);
     }
   }
@@ -233,6 +243,8 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
 
 QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
+  var i;
+
   var comm = QL.getCommunicationWithUUID(communicationUUID);
   var sentence = comm.getSentenceWithUUID(sentenceUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
@@ -315,15 +327,23 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     ]
   };
 
-  var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
-  var pos_tag_labels = [];
+  var sentence_text = "";
+  var token_offsets = [];
+  for (i = 0, total_tokens = tokenization.tokenList.length; i < total_tokens; i++) {
+    token_offsets.push({
+      'start': sentence_text.length,
+      'ending': sentence_text.length + tokenization.tokenList[i].text.length
+    });
+    sentence_text += tokenization.tokenList[i].text + " ";
+  }
 
+  var pos_tag_labels = [];
   for (var i = 0; i < tokenization.posTagList.taggedTokenList.length; i++) {
     var posTag = tokenization.posTagList.taggedTokenList[i];
     var token = tokenization.tokenList[posTag.tokenIndex];
     var entityID = "T" + (i+1);
-    var start = token.textSpan.start - sentence.textSpan.start;
-    var ending = token.textSpan.ending - sentence.textSpan.start;
+    var start = token_offsets[posTag.tokenIndex].start;
+    var ending = token_offsets[posTag.tokenIndex].ending;
     pos_tag_labels.push([entityID, posTag.tag, [[start, ending]]]);
   }
 
