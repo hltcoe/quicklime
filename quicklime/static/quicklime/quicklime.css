@@ -72,6 +72,14 @@ div .brat_sentence.hasSVG {
    CSS rules for Quicklime
  */
 
+.parse_label {
+    border-top: 1px solid #999;
+    border-left: 1px solid #999;
+    border-right: 1px solid #999;
+    background-color: pink;
+    padding-left: 0.5em;
+}
+
 .highlighted_entity {
     background-color: pink;
 }

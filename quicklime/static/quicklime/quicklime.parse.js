@@ -3,6 +3,14 @@ QL.addConstituentParse = function(communicationUUID, sentenceUUID, tokenizationU
   var comm = QL.getCommunicationWithUUID(communicationUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
   QL.drawConstituentParse("#constituent_parse_" + sentenceUUID, tokenization);
+  $("#constituent_parse_" + sentenceUUID).prepend(
+    // We add 2 to SVG width to compensate for border
+    $('<div>')
+      .addClass('parse_label')
+      .html("CP")
+      .width(2 + $("#constituent_parse_" + sentenceUUID + " svg").width())
+  );
+
   $('#constituent_parse_button_' + sentenceUUID).addClass('active');
 };
 
@@ -19,6 +27,16 @@ QL.addDependencyParse = function(communicationUUID, sentenceUUID, tokenizationUU
     "#dependency_parse_" + sentenceUUID + "_" + dependencyParseIndex,
     tokenization,
     dependencyParseIndex);
+
+  // Add title bar with width based on width of SVG canvas
+  $("#dependency_parse_" + sentenceUUID + "_" + dependencyParseIndex).prepend(
+    // We add 2 to SVG width to compensate for border
+    $('<div>')
+      .addClass('parse_label')
+      .html("DP" + dependencyParseIndex)
+      .width(2 + $("#dependency_parse_" + sentenceUUID + "_" + dependencyParseIndex + " svg").width())
+  );
+
   $('#dependency_parse_button_' + sentenceUUID + "_" + dependencyParseIndex).addClass('active');
 };
 
