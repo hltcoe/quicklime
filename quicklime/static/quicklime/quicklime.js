@@ -91,6 +91,12 @@ QL.addCommunication = function(parentElementID, comm) {
           $('<div>')
             .addClass('brat_sentence_container')
             .attr('id', 'sentence_ner_container_' + sentence.uuid)
+            .css("display", "none")
+            .append(
+              $('<div>')
+                .addClass('brat_sentence_label')
+                .html("NER")
+            )
             .append(
               $('<div>')
                 .addClass('brat_sentence')
@@ -99,6 +105,12 @@ QL.addCommunication = function(parentElementID, comm) {
           $('<div>')
             .addClass('brat_sentence_container')
             .attr('id', 'sentence_pos_container_' + sentence.uuid)
+            .css("display", "none")
+            .append(
+              $('<div>')
+                .addClass('brat_sentence_label')
+                .html("POS")
+            )
             .append(
               $('<div>')
                 .addClass('brat_sentence')

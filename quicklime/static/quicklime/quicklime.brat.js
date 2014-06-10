@@ -384,6 +384,7 @@ QL.addSentenceBRATControls = function(comm) {
     else {
       QL.addNERTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
       $('#sentence_ner_button_' + event.data.sentence_uuid).addClass('active');
+      $("#sentence_ner_container_" + event.data.sentence_uuid).show();
     }
   }
 
@@ -394,6 +395,7 @@ QL.addSentenceBRATControls = function(comm) {
     else {
       QL.addPOSTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
       $('#sentence_pos_button_' + event.data.sentence_uuid).addClass('active');
+      $("#sentence_pos_container_" + event.data.sentence_uuid).show();
     }
   }
 

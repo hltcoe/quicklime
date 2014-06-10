@@ -63,6 +63,16 @@ div.dagre_parse {
 /* BRAT adds the 'hasSVG' class to the <div> */
 div .brat_sentence.hasSVG {
 }
+
+div .brat_sentence_label {
+    /* The color #81A4FC is the BRAT border color */
+    border-top: 1px solid #81A4FC;
+    border-left: 1px solid #81A4FC;
+    border-right: 1px solid #81A4FC;
+    background-color: pink;
+    padding-left: 0.5em;
+}
+
 div .brat_sentence_container {
     margin-top: 0.75em;
     margin-bottom: 1.25em;
