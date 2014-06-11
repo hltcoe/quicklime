@@ -82,7 +82,7 @@
 
   <script>
    $(document).ready(function() {
-     var transport = new Thrift.Transport("/quicklime/thrift_endpoint");
+     var transport = new Thrift.Transport("/quicklime/thrift_endpoint/");
      var protocol = new Thrift.TJSONProtocol(transport);
      var client = new CommunicationServiceClient(protocol);
      var comm = client.readComm();
