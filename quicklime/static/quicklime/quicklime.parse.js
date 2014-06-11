@@ -145,7 +145,7 @@ QL.drawConstituentParse = function(containerSelectorString, tokenization) {
     }
   }
 
-  QL.drawParse(containerSelectorString, g);
+  QL.drawParse(containerSelectorString, g, 10);
 };
 
 
@@ -185,9 +185,12 @@ QL.drawDependencyParse = function(containerSelectorString, tokenization, depende
 };
 
 
-QL.drawParse = function(containerSelectorString, digraph) {
+QL.drawParse = function(containerSelectorString, digraph, nodeSep) {
   // Code adapted from dagre-d3 demo code:
   //   http://cpettitt.github.io/project/dagre-d3/latest/demo/sentence-tokenization.html
+
+  // Node separation defaults to 20px
+  nodeSep = nodeSep || 20;
 
   var renderer = new dagreD3.Renderer();
   var oldDrawNodes = renderer.drawNodes();
@@ -201,7 +204,8 @@ QL.drawParse = function(containerSelectorString, digraph) {
   d3.select(containerSelectorString)
     .append("svg").attr("height", 800).attr("width", 600).attr("style", "background-color: white;")
     .append("g").attr("transform", "translate(20, 20)");
-  var layout = renderer.run(digraph, d3.select(containerSelectorString).select("svg").select("g"));
+  var layout = dagreD3.layout().nodeSep(nodeSep);
+  layout = renderer.layout(layout).run(digraph, d3.select(containerSelectorString).select("svg").select("g"));
   d3.select(containerSelectorString).select("svg")
     .attr("width", layout.graph().width + 40)
     .attr("height", layout.graph().height + 40);
