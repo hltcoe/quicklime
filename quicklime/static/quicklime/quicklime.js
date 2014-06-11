@@ -17,13 +17,18 @@ Quicklime creates a DOM structure for a Communication:
             <span class="token_padding"id=" tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
           ...
           <div class="brat_sentence_container" id="sentence_ner_container_[SENTENCE_UUID]">
+            <div class="brat_sentence_label brat_ner_sentence_label">
             <div class="brat_sentence" id="sentence_ner_[SENTENCE_UUID]">
           <div class="brat_sentence_container" id="sentence_pos_container_[SENTENCE_UUID]">
+            <div class="brat_sentence_label brat_pos_sentence_label">
             <div class="brat_sentence" id="sentence_pos_[SENTENCE_UUID]">
           <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]">
-          <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]">
-            <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]_0">
-            <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]_1">
+            <div class="parse_label constituent_parse_label">
+          <div class="dagre_parse" id="dependency_parse_[SENTENCE_UUID]">
+            <div class="dagre_parse" id="dependency_parse_[SENTENCE_UUID]_0">
+              <div class="parse_label dependency_parse_label_0">
+            <div class="dagre_parse" id="dependency_parse_[SENTENCE_UUID]_1">
+              <div class="parse_label dependency_parse_label_1">
             ...
 */
 
@@ -94,7 +99,7 @@ QL.addCommunication = function(parentElementID, comm) {
             .css("display", "none")
             .append(
               $('<div>')
-                .addClass('brat_sentence_label')
+                .addClass('brat_sentence_label brat_ner_sentence_label')
                 .html("NER")
             )
             .append(
@@ -108,7 +113,7 @@ QL.addCommunication = function(parentElementID, comm) {
             .css("display", "none")
             .append(
               $('<div>')
-                .addClass('brat_sentence_label')
+                .addClass('brat_sentence_label brat_pos_sentence_label')
                 .html("POS")
             )
             .append(

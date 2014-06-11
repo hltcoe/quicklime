@@ -72,6 +72,12 @@ div .brat_sentence_label {
     background-color: pink;
     padding-left: 0.5em;
 }
+div .brat_ner_sentence_label {
+    background-color: pink;
+}
+div .brat_pos_sentence_label {
+    background-color: #ccdaf6;
+}
 
 div .brat_sentence_container {
     margin-top: 0.75em;
@@ -91,6 +97,19 @@ div .brat_sentence_container {
     background-color: pink;
     padding-left: 0.5em;
 }
+.constituent_parse_label {
+    background-color: #ccdaf6;
+}
+.dependency_parse_label_0 {
+    background-color: #fffda8;
+}
+.dependency_parse_label_1 {
+    background-color: #a4bced;
+}
+.dependency_parse_label_2 {
+    background-color: #adf6a2;
+}
+
 
 .highlighted_entity {
     background-color: pink;
