@@ -36,7 +36,7 @@ def as_json():
     # HACKY global variable used to save JSON for Communication
     return communication_as_json
 
-@post('/quicklime/thrift_endpoint')
+@post('/quicklime/thrift_endpoint/')
 def thrift_endpoint():
     itrans = TTransport.TFileObjectTransport(request.body)
     itrans = TTransport.TBufferedTransport(
