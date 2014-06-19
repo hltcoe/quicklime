@@ -1,5 +1,9 @@
 
-
+/**
+ * @param {String} communicationUUID
+ * @param {String} sentenceUUID
+ * @param {String} tokenizationUUID
+ */
 QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var comm = QL.getCommunicationWithUUID(communicationUUID);
   var sentence = comm.getSentenceWithUUID(sentenceUUID);
@@ -184,6 +188,11 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
 };
 
 
+/**
+ * @param {String} communicationUUID
+ * @param {String} sentenceUUID
+ * @param {String} tokenizationUUID
+ */
 QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var i;
 
@@ -242,6 +251,11 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 };
 
 
+/**
+ * @param {String} communicationUUID
+ * @param {String} sentenceUUID
+ * @param {String} tokenizationUUID
+ */
 QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var i;
 
@@ -376,7 +390,13 @@ Add buttons to sentence_control <div>'s:
 +     <button>
 +     ...
  */
+/**
+ * @param {Communication} comm
+ */
 QL.addSentenceBRATControls = function(comm) {
+  /**
+   * @param {MouseEvent} event
+   */
   function addOrToggleNERTags(event) {
     if (QL.hasNERTags(event.data.sentence_uuid)) {
       QL.toggleNERTags(event.data.sentence_uuid);
@@ -388,6 +408,9 @@ QL.addSentenceBRATControls = function(comm) {
     }
   }
 
+  /**
+   * @param {MouseEvent} event
+   */
   function addOrTogglePOSTags(event) {
     if (QL.hasPOSTags(event.data.sentence_uuid)) {
       QL.togglePOSTags(event.data.sentence_uuid);
@@ -399,6 +422,9 @@ QL.addSentenceBRATControls = function(comm) {
     }
   }
 
+  /**
+   * @param {MouseEvent} event
+   */
   function addOrToggleACERelations(event) {
     if (QL.hasACERelations(event.data.sentence_uuid)) {
       QL.toggleACERelations(event.data.sentence_uuid);
@@ -455,7 +481,10 @@ QL.addSentenceBRATControls = function(comm) {
   }
 };
 
-
+/**
+ * @param {String} sentenceUUID
+ * @returns {Boolean}
+ */
 QL.hasACERelations = function(sentenceUUID) {
   if ($("#ace_relations_" + sentenceUUID + " svg").length > 0) {
     return true;
@@ -466,6 +495,10 @@ QL.hasACERelations = function(sentenceUUID) {
 };
 
 
+/**
+ * @param {String} sentenceUUID
+ * @returns {Boolean}
+ */
 QL.hasNERTags = function(sentenceUUID) {
   if ($("#sentence_ner_" + sentenceUUID + " svg").length > 0) {
     return true;
@@ -476,6 +509,10 @@ QL.hasNERTags = function(sentenceUUID) {
 };
 
 
+/**
+ * @param {String} sentenceUUID
+ * @returns {Boolean}
+ */
 QL.hasPOSTags = function(sentenceUUID) {
   if ($("#sentence_pos_" + sentenceUUID + " svg").length > 0) {
     return true;
@@ -486,6 +523,9 @@ QL.hasPOSTags = function(sentenceUUID) {
 };
 
 
+/**
+ * @param {String} sentenceUUID
+ */
 QL.toggleACERelations = function(sentenceUUID) {
   if ($("#ace_relations_" + sentenceUUID).css('display') == 'none') {
     $('#ace_relations_button_' + sentenceUUID).addClass('active');
@@ -498,6 +538,9 @@ QL.toggleACERelations = function(sentenceUUID) {
 };
 
 
+/**
+ * @param {String} sentenceUUID
+ */
 QL.toggleNERTags = function(sentenceUUID) {
   if ($("#sentence_ner_container_" + sentenceUUID).css('display') == 'none') {
     $('#sentence_ner_button_' + sentenceUUID).addClass('active');
@@ -510,6 +553,9 @@ QL.toggleNERTags = function(sentenceUUID) {
 };
 
 
+/**
+ * @param {String} sentenceUUID
+ */
 QL.togglePOSTags = function(sentenceUUID) {
   if ($("#sentence_pos_container_" + sentenceUUID).css('display') == 'none') {
     $('#sentence_pos_button_' + sentenceUUID).addClass('active');

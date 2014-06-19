@@ -39,11 +39,19 @@ var QL = {
 };
 
 
+/**
+ * @param {String} uuid
+ * @returns {Communication}
+ */
 QL.getCommunicationWithUUID = function(uuid) {
   return QL._communications[uuid];
 };
 
 
+/**
+ * @param {String} parentElementID
+ * @param {Communication} comm
+ */
 QL.addCommunication = function(parentElementID, comm) {
   QL._communications[comm.uuid] = comm;
 
@@ -173,6 +181,9 @@ QL.addCommunication = function(parentElementID, comm) {
 };
 
 
+/**
+ * @param {Communication} comm
+ */
 QL.addEntityList = function(comm) {
   // Add list of entities, and list of mentions for each entity, to the DOM
   for (var entityListIndex in comm.entitySets[0].entityList) {
@@ -215,19 +226,34 @@ QL.addEntityList = function(comm) {
 };
 
 
+/**
+ * @param {Communication} comm
+ */
 QL.addEntityMouseoverHighlighting = function(comm) {
+  /**
+   * @param {MouseEvent} event
+   */
   function addHighlightToEntity(event) {
     $(event.data.entity_selector).addClass("highlighted_entity");
   }
 
+  /**
+   * @param {MouseEvent} event
+   */
   function addHighlightToMention(event) {
     $(event.data.mention_selector).addClass("highlighted_mention");
   }
 
+  /**
+   * @param {MouseEvent} event
+   */
   function removeHighlightFromEntity(event) {
     $(event.data.entity_selector).removeClass("highlighted_entity");
   }
 
+  /**
+   * @param {MouseEvent} event
+   */
   function removeHighlightFromMention(event) {
     $(event.data.mention_selector).removeClass("highlighted_mention");
   }
@@ -252,6 +278,9 @@ QL.addEntityMouseoverHighlighting = function(comm) {
 };
 
 
+/**
+ * @param {String} tokenText
+ */
 QL.cleanedTokenText = function(tokenText) {
   // Convert Penn Treebank-style symbols for brackets to bracket characters
   //   http://www.cis.upenn.edu/~treebank/tokenization.html

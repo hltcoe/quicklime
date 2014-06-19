@@ -1,4 +1,9 @@
 
+/**
+ * @param {String} communicationUUID
+ * @param {String} sentenceUUID
+ * @param {String} tokenizationUUID
+ */
 QL.addConstituentParse = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var comm = QL.getCommunicationWithUUID(communicationUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
@@ -15,6 +20,12 @@ QL.addConstituentParse = function(communicationUUID, sentenceUUID, tokenizationU
 };
 
 
+/**
+ * @param {String} communicationUUID
+ * @param {String} sentenceUUID
+ * @param {String} tokenizationUUID
+ * @param {Number} dependencyParseIndex
+ */
 QL.addDependencyParse = function(communicationUUID, sentenceUUID, tokenizationUUID, dependencyParseIndex) {
   var comm = QL.getCommunicationWithUUID(communicationUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
@@ -50,8 +61,14 @@ Add buttons to sentence_control <div>'s:
 +     <button>
 +     <button>
 +     ...
+*/
+/**
+ * @param {Communication} comm
  */
 QL.addSentenceParseControls = function(comm) {
+  /**
+   * @param {MouseEvent} event
+   */
   function addOrToggleConstituentParse(event) {
     if (QL.domHasConstituentParse(event.data.sentence_uuid)) {
       QL.toggleConstituentParse(event.data.sentence_uuid);
@@ -61,6 +78,9 @@ QL.addSentenceParseControls = function(comm) {
     }
   }
 
+  /**
+   * @param {MouseEvent} event
+   */
   function addOrToggleDependencyParse(event) {
     if (QL.domHasDependencyParse(event.data.sentence_uuid, event.data.dependencyParseIndex)) {
       QL.toggleDependencyParse(
@@ -120,6 +140,10 @@ QL.addSentenceParseControls = function(comm) {
 };
 
 
+/**
+ * @param {String} containerSelectorString
+ * @param {Tokenization} tokenization
+ */
 QL.drawConstituentParse = function(containerSelectorString, tokenization) {
   var
     constituent,
@@ -149,6 +173,11 @@ QL.drawConstituentParse = function(containerSelectorString, tokenization) {
 };
 
 
+/**
+ * @param {String} containerSelectorString
+ * @param {Tokenization} tokenization
+ * @param {Number} dependencyParseIndex
+ */
 QL.drawDependencyParse = function(containerSelectorString, tokenization, dependencyParseIndex) {
   var g = new dagreD3.Digraph();
   var dependency, i;
@@ -185,6 +214,11 @@ QL.drawDependencyParse = function(containerSelectorString, tokenization, depende
 };
 
 
+/**
+ * @param {String} containerSelectorString
+ * @param {dagre3.Digraph} digraph
+ * @param {Number} [nodeSep=20] - Distance between nodes, in pixels
+ */
 QL.drawParse = function(containerSelectorString, digraph, nodeSep) {
   // Code adapted from dagre-d3 demo code:
   //   http://cpettitt.github.io/project/dagre-d3/latest/demo/sentence-tokenization.html
@@ -212,6 +246,9 @@ QL.drawParse = function(containerSelectorString, digraph, nodeSep) {
 };
 
 
+/**
+ * @param {String} sentenceUUID
+ */
 QL.domHasConstituentParse = function(sentenceUUID) {
   if ($("#constituent_parse_" + sentenceUUID + " svg").length > 0) {
     return true;
@@ -222,6 +259,10 @@ QL.domHasConstituentParse = function(sentenceUUID) {
 };
 
 
+/**
+ * @param {String} sentenceUUID
+ * @param {Number} dependencyParseIndex
+ */
 QL.domHasDependencyParse = function(sentenceUUID, dependencyParseIndex) {
   if ($("#dependency_parse_" + sentenceUUID + "_" + dependencyParseIndex + " svg").length > 0) {
     return true;
@@ -232,6 +273,9 @@ QL.domHasDependencyParse = function(sentenceUUID, dependencyParseIndex) {
 };
 
 
+/**
+ * @param {String} sentenceUUID
+ */
 QL.toggleConstituentParse = function(sentenceUUID) {
   if ($("#constituent_parse_" + sentenceUUID).css('display') == 'none') {
     $('#constituent_parse_button_' + sentenceUUID).addClass('active');
@@ -244,6 +288,10 @@ QL.toggleConstituentParse = function(sentenceUUID) {
 };
 
 
+/**
+ * @param {String} sentenceUUID
+ * @param {Number} dependencyParseIndex
+ */
 QL.toggleDependencyParse = function(sentenceUUID, dependencyParseIndex) {
   if ($("#dependency_parse_" + sentenceUUID + "_" + dependencyParseIndex).css('display') == 'none') {
     $('#dependency_parse_button_' + sentenceUUID + "_" + dependencyParseIndex).addClass('active');
