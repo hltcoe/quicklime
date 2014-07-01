@@ -7,16 +7,16 @@
 QL.addConstituentParse = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var comm = QL.getCommunicationWithUUID(communicationUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
-  QL.drawConstituentParse("#constituent_parse_" + sentenceUUID, tokenization);
-  $("#constituent_parse_" + sentenceUUID).prepend(
+  QL.drawConstituentParse("#constituent_parse_" + sentenceUUID.uuidString, tokenization);
+  $("#constituent_parse_" + sentenceUUID.uuidString).prepend(
     // We add 2 to SVG width to compensate for border
     $('<div>')
       .addClass('parse_label constituent_parse_label')
       .html("CP")
-      .width(2 + $("#constituent_parse_" + sentenceUUID + " svg").width())
+      .width(2 + $("#constituent_parse_" + sentenceUUID.uuidString + " svg").width())
   );
 
-  $('#constituent_parse_button_' + sentenceUUID).addClass('active');
+  $('#constituent_parse_button_' + sentenceUUID.uuidString).addClass('active');
 };
 
 
@@ -30,25 +30,25 @@ QL.addDependencyParse = function(communicationUUID, sentenceUUID, tokenizationUU
   var comm = QL.getCommunicationWithUUID(communicationUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
 
-  $("#dependency_parse_" + sentenceUUID).append(
+  $("#dependency_parse_" + sentenceUUID.uuidString).append(
     $('<div>')
-      .attr("id", "dependency_parse_" + sentenceUUID + "_" + dependencyParseIndex)
+      .attr("id", "dependency_parse_" + sentenceUUID.uuidString + "_" + dependencyParseIndex)
   );
   QL.drawDependencyParse(
-    "#dependency_parse_" + sentenceUUID + "_" + dependencyParseIndex,
+    "#dependency_parse_" + sentenceUUID.uuidString + "_" + dependencyParseIndex,
     tokenization,
     dependencyParseIndex);
 
   // Add title bar with width based on width of SVG canvas
-  $("#dependency_parse_" + sentenceUUID + "_" + dependencyParseIndex).prepend(
+  $("#dependency_parse_" + sentenceUUID.uuidString + "_" + dependencyParseIndex).prepend(
     // We add 2 to SVG width to compensate for border
     $('<div>')
       .addClass('parse_label dependency_parse_label_' + dependencyParseIndex)
       .html("DP" + dependencyParseIndex)
-      .width(2 + $("#dependency_parse_" + sentenceUUID + "_" + dependencyParseIndex + " svg").width())
+      .width(2 + $("#dependency_parse_" + sentenceUUID.uuidString + "_" + dependencyParseIndex + " svg").width())
   );
 
-  $('#dependency_parse_button_' + sentenceUUID + "_" + dependencyParseIndex).addClass('active');
+  $('#dependency_parse_button_' + sentenceUUID.uuidString + "_" + dependencyParseIndex).addClass('active');
 };
 
 
@@ -104,12 +104,12 @@ QL.addSentenceParseControls = function(comm) {
         var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
         var tokenization = sentence.tokenizationList[0];
 
-        var sentence_controls_div = $('#sentence_controls_' + sentence.uuid);
+        var sentence_controls_div = $('#sentence_controls_' + sentence.uuid.uuidString);
 
         if (tokenization.parse) {
           var constituent_parse_button = $('<button>')
             .addClass('btn btn-default btn-xs')
-            .attr('id', 'constituent_parse_button_' + sentence.uuid)
+            .attr('id', 'constituent_parse_button_' + sentence.uuid.uuidString)
             .attr('type', 'button')
             .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
                    addOrToggleConstituentParse)
@@ -122,7 +122,7 @@ QL.addSentenceParseControls = function(comm) {
           for (var dependencyParseIndex in tokenization.dependencyParseList) {
             var dependency_parse_button = $('<button>')
               .addClass('btn btn-default btn-xs')
-              .attr('id', 'dependency_parse_button_' + sentence.uuid + "_" + dependencyParseIndex)
+              .attr('id', 'dependency_parse_button_' + sentence.uuid.uuidString + "_" + dependencyParseIndex)
               .attr('type', 'button')
               .click({comm_uuid: comm.uuid,
                       sentence_uuid: sentence.uuid,
@@ -250,7 +250,7 @@ QL.drawParse = function(containerSelectorString, digraph, nodeSep) {
  * @param {String} sentenceUUID
  */
 QL.domHasConstituentParse = function(sentenceUUID) {
-  if ($("#constituent_parse_" + sentenceUUID + " svg").length > 0) {
+  if ($("#constituent_parse_" + sentenceUUID.uuidString + " svg").length > 0) {
     return true;
   }
   else {
@@ -264,7 +264,7 @@ QL.domHasConstituentParse = function(sentenceUUID) {
  * @param {Number} dependencyParseIndex
  */
 QL.domHasDependencyParse = function(sentenceUUID, dependencyParseIndex) {
-  if ($("#dependency_parse_" + sentenceUUID + "_" + dependencyParseIndex + " svg").length > 0) {
+  if ($("#dependency_parse_" + sentenceUUID.uuidString + "_" + dependencyParseIndex + " svg").length > 0) {
     return true;
   }
   else {
@@ -277,13 +277,13 @@ QL.domHasDependencyParse = function(sentenceUUID, dependencyParseIndex) {
  * @param {String} sentenceUUID
  */
 QL.toggleConstituentParse = function(sentenceUUID) {
-  if ($("#constituent_parse_" + sentenceUUID).css('display') == 'none') {
-    $('#constituent_parse_button_' + sentenceUUID).addClass('active');
-    $("#constituent_parse_" + sentenceUUID).show();
+  if ($("#constituent_parse_" + sentenceUUID.uuidString).css('display') == 'none') {
+    $('#constituent_parse_button_' + sentenceUUID.uuidString).addClass('active');
+    $("#constituent_parse_" + sentenceUUID.uuidString).show();
   }
   else {
-    $('#constituent_parse_button_' + sentenceUUID).removeClass('active');
-    $("#constituent_parse_" + sentenceUUID).hide();
+    $('#constituent_parse_button_' + sentenceUUID.uuidString).removeClass('active');
+    $("#constituent_parse_" + sentenceUUID.uuidString).hide();
   }
 };
 
@@ -293,12 +293,12 @@ QL.toggleConstituentParse = function(sentenceUUID) {
  * @param {Number} dependencyParseIndex
  */
 QL.toggleDependencyParse = function(sentenceUUID, dependencyParseIndex) {
-  if ($("#dependency_parse_" + sentenceUUID + "_" + dependencyParseIndex).css('display') == 'none') {
-    $('#dependency_parse_button_' + sentenceUUID + "_" + dependencyParseIndex).addClass('active');
-    $("#dependency_parse_" + sentenceUUID + "_" + dependencyParseIndex).show();
+  if ($("#dependency_parse_" + sentenceUUID.uuidString + "_" + dependencyParseIndex).css('display') == 'none') {
+    $('#dependency_parse_button_' + sentenceUUID.uuidString + "_" + dependencyParseIndex).addClass('active');
+    $("#dependency_parse_" + sentenceUUID.uuidString + "_" + dependencyParseIndex).show();
   }
   else {
-    $('#dependency_parse_button_' + sentenceUUID + "_" + dependencyParseIndex).removeClass('active');
-    $("#dependency_parse_" + sentenceUUID + "_" + dependencyParseIndex).hide();
+    $('#dependency_parse_button_' + sentenceUUID.uuidString + "_" + dependencyParseIndex).removeClass('active');
+    $("#dependency_parse_" + sentenceUUID.uuidString + "_" + dependencyParseIndex).hide();
   }
 };
