@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<SerifXML version="22">
+
+  <Document docid="dog-bites-man" id="a1" is_downcased="FALSE" language="English" source_type="UNKNOWN">
+    <OriginalText char_offsets="0:242" edt_offsets="0:144" id="a2">
+      <Contents>&lt;DOC id="dog-bites-man" type="other"&gt;
+&lt;HEADLINE&gt;
+Dog Bites Man
+&lt;/HEADLINE&gt;
+&lt;TEXT&gt;
+&lt;P&gt;
+John Smith, manager of ACME INC, was bit by a dog on March 10th, 2013.
+&lt;/P&gt;
+&lt;P&gt;
+He died!
+&lt;/P&gt;
+&lt;P&gt;
+John's daughter Mary expressed sorrow.
+&lt;/P&gt;
+&lt;/TEXT&gt;
+&lt;/DOC&gt;
+</Contents>
+    </OriginalText>
+    <Regions>
+      <Region char_offsets="81:81" edt_offsets="17:17" id="a3" is_receiver="FALSE" is_speaker="FALSE" tag="TEXT"/>
+      <Region char_offsets="85:161" edt_offsets="18:90" id="a4" is_receiver="FALSE" is_speaker="FALSE" tag="TEXT">
+        <Contents>
+John Smith, manager of ACME INC, was bit by a dog on March 10th, 2013.
+
+</Contents>
+        <OffsetSpan char_offsets="85:156" edt_offsets="18:89" end_pos="72" start_pos="0"/>
+        <OffsetSpan char_offsets="161:161" edt_offsets="90:90" end_pos="73" start_pos="72"/>
+      </Region>
+      <Region char_offsets="165:179" edt_offsets="91:101" id="a5" is_receiver="FALSE" is_speaker="FALSE" tag="TEXT">
+        <Contents>
+He died!
+
+</Contents>
+        <OffsetSpan char_offsets="165:174" edt_offsets="91:100" end_pos="10" start_pos="0"/>
+        <OffsetSpan char_offsets="179:179" edt_offsets="101:101" end_pos="11" start_pos="10"/>
+      </Region>
+      <Region char_offsets="183:227" edt_offsets="102:142" id="a6" is_receiver="FALSE" is_speaker="FALSE" tag="TEXT">
+        <Contents>
+John's daughter Mary expressed sorrow.
+
+</Contents>
+        <OffsetSpan char_offsets="183:222" edt_offsets="102:141" end_pos="40" start_pos="0"/>
+        <OffsetSpan char_offsets="227:227" edt_offsets="142:142" end_pos="41" start_pos="40"/>
+      </Region>
+    </Regions>
+    <Segments/>
+    <Metadata>
+      <Span char_offsets="81:227" edt_offsets="17:142" id="a7" region_type="TEXT" span_type="RegionSpan"/>
+    </Metadata>
+    <Sentences>
+      <Sentence char_offsets="86:155" edt_offsets="19:88" id="a8" is_annotated="TRUE" region_id="a4">
+        <TokenSequence id="a9" score="0">
+          <Token char_offsets="86:89" edt_offsets="19:22" id="a10">John</Token>
+          <Token char_offsets="91:95" edt_offsets="24:28" id="a11">Smith</Token>
+          <Token char_offsets="96:96" edt_offsets="29:29" id="a12">,</Token>
+          <Token char_offsets="98:104" edt_offsets="31:37" id="a13">manager</Token>
+          <Token char_offsets="106:107" edt_offsets="39:40" id="a14">of</Token>
+          <Token char_offsets="109:112" edt_offsets="42:45" id="a15">ACME</Token>
+          <Token char_offsets="114:116" edt_offsets="47:49" id="a16">INC</Token>
+          <Token char_offsets="117:117" edt_offsets="50:50" id="a17">,</Token>
+          <Token char_offsets="119:121" edt_offsets="52:54" id="a18">was</Token>
+          <Token char_offsets="123:125" edt_offsets="56:58" id="a19">bit</Token>
+          <Token char_offsets="127:128" edt_offsets="60:61" id="a20">by</Token>
+          <Token char_offsets="130:130" edt_offsets="63:63" id="a21">a</Token>
+          <Token char_offsets="132:134" edt_offsets="65:67" id="a22">dog</Token>
+          <Token char_offsets="136:137" edt_offsets="69:70" id="a23">on</Token>
+          <Token char_offsets="139:143" edt_offsets="72:76" id="a24">March</Token>
+          <Token char_offsets="145:148" edt_offsets="78:81" id="a25">10th</Token>
+          <Token char_offsets="149:149" edt_offsets="82:82" id="a26">,</Token>
+          <Token char_offsets="151:154" edt_offsets="84:87" id="a27">2013</Token>
+          <Token char_offsets="155:155" edt_offsets="88:88" id="a28">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a29" score="0" token_sequence_id="a9">
+          <POS id="a30" tag="NNP" token_id="a10"/>
+          <POS id="a31" tag="NNP" token_id="a11"/>
+          <POS id="a32" tag="," token_id="a12"/>
+          <POS id="a33" tag="NN" token_id="a13"/>
+          <POS id="a34" tag="IN" token_id="a14"/>
+          <POS id="a35" tag="NNP" token_id="a15"/>
+          <POS id="a36" tag="NNP" token_id="a16"/>
+          <POS id="a37" tag="," token_id="a17"/>
+          <POS id="a38" tag="VBD" token_id="a18"/>
+          <POS id="a39" tag="NN" token_id="a19"/>
+          <POS id="a40" tag="IN" token_id="a20"/>
+          <POS id="a41" tag="DT" token_id="a21"/>
+          <POS id="a42" tag="NN" token_id="a22"/>
+          <POS id="a43" tag="IN" token_id="a23"/>
+          <POS id="a44" tag="DATE-NNP" token_id="a24"/>
+          <POS id="a45" tag="JJ" token_id="a25"/>
+          <POS id="a46" tag="," token_id="a26"/>
+          <POS id="a47" tag="CD" token_id="a27"/>
+          <POS id="a48" tag="." token_id="a28"/>
+        </PartOfSpeechSequence>
+        <NameTheory id="a49" score="0" token_sequence_id="a9">
+          <Name char_offsets="86:95" edt_offsets="19:28" end_token="a11" entity_type="PER" id="a50" start_token="a10"/>
+          <Name char_offsets="109:116" edt_offsets="42:49" end_token="a16" entity_type="ORG" id="a51" start_token="a15"/>
+        </NameTheory>
+        <ValueMentionSet id="a52" score="0" token_sequence_id="a9">
+          <ValueMention char_offsets="139:154" edt_offsets="72:87" end_token="a27" id="a53" start_token="a24" value_type="TIMEX2.TIME"/>
+        </ValueMentionSet>
+        <Parse id="a54" score="-106.465" token_sequence_id="a9">
+          <TreebankString node_id_method="DFS">(S^ (NP (NPP^ (NNP john) (NNP^ smith)) (, ,) (NP (NPA^ (NN^ manager)) (PP (IN^ of) (NPP (NNP acme) (NNP^ inc)))) (, ,)) (VP^ (VBD^ was) (NP (NPA^ (NN^ bit)) (PP (IN^ by) (NP (NPA^ (DT a) (NN^ dog)) (PP (IN^ on) (NP (DATE^ (DATE-NNP^ march) (JJ 10th)) (, ,) (NPA (CD^ 2013)))))))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="8" id="a55" name_score="0" parse_id="a54">
+          <Mention child="a57" entity_subtype="UNDET" entity_type="PER" id="a56" intended_type="UNDET" is_metonymy="FALSE" mention_type="appo" role_type="UNDET" syn_node_id="a54.1"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a57" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" next="a58" parent="a56" role_type="UNDET" syn_node_id="a54.2"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a58" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" parent="a56" role_type="UNDET" syn_node_id="a54.9"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a59" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a54.10"/>
+          <Mention entity_subtype="UNDET" entity_type="ORG" id="a60" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a54.16"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a61" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a54.26"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a62" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a54.27"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a63" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a54.33"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a64" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a54.34"/>
+          <Mention child="a66" entity_subtype="UNDET" entity_type="OTH" id="a65" intended_type="UNDET" is_metonymy="FALSE" mention_type="appo" role_type="UNDET" syn_node_id="a54.42"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a66" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" next="a67" parent="a65" role_type="UNDET" syn_node_id="a54.43"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a67" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" parent="a65" role_type="UNDET" syn_node_id="a54.50"/>
+        </MentionSet>
+        <PropositionSet id="a68" mention_set_id="a55">
+          <Proposition id="a69" type="name">
+            <Argument mention_id="a57" role="&lt;ref>"/>
+            <Argument syn_node_id="a54.2"/>
+          </Proposition>
+          <Proposition head_id="a54.11" id="a70" type="noun">
+            <Argument mention_id="a58" role="&lt;ref>"/>
+            <Argument mention_id="a60" role="of"/>
+          </Proposition>
+          <Proposition id="a71" type="name">
+            <Argument mention_id="a60" role="&lt;ref>"/>
+            <Argument syn_node_id="a54.16"/>
+          </Proposition>
+          <Proposition head_id="a54.24" id="a72" type="copula">
+            <Argument mention_id="a57" role="&lt;sub>"/>
+            <Argument mention_id="a61" role="&lt;obj>"/>
+          </Proposition>
+          <Proposition head_id="a54.28" id="a73" type="noun">
+            <Argument mention_id="a61" role="&lt;ref>"/>
+            <Argument mention_id="a63" role="by"/>
+          </Proposition>
+          <Proposition head_id="a54.37" id="a74" type="noun">
+            <Argument mention_id="a63" role="&lt;ref>"/>
+            <Argument mention_id="a66" role="on"/>
+          </Proposition>
+          <Proposition head_id="a54.46" id="a75" type="modifier">
+            <Argument mention_id="a66" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a54.51" id="a76" type="modifier">
+            <Argument mention_id="a67" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a77" score="0.489">
+          <RelMention id="a78" left_mention_id="a58" modality="Asserted" right_mention_id="a60" score="0.489" tense="Unspecified" type="ORG-AFF.Employment"/>
+        </RelMentionSet>
+        <EventMentionSet id="a79" parse_id="a54" score="0"/>
+        <SentenceTheory event_mention_set_id="a79" id="a80" mention_set_id="a55" name_theory_id="a49" parse_id="a54" part_of_speech_sequence_id="a29" primary_parse="full_parse" proposition_set_id="a68" rel_mention_set_id="a77" token_sequence_id="a9" value_mention_set_id="a52"/>
+      </Sentence>
+      <Sentence char_offsets="166:173" edt_offsets="92:99" id="a81" is_annotated="TRUE" region_id="a5">
+        <TokenSequence id="a82" score="0">
+          <Token char_offsets="166:167" edt_offsets="92:93" id="a83">He</Token>
+          <Token char_offsets="169:172" edt_offsets="95:98" id="a84">died</Token>
+          <Token char_offsets="173:173" edt_offsets="99:99" id="a85">!</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a86" score="0" token_sequence_id="a82">
+          <POS id="a87" tag="PRP" token_id="a83"/>
+          <POS id="a88" tag="VBD" token_id="a84"/>
+          <POS id="a89" tag="." token_id="a85"/>
+        </PartOfSpeechSequence>
+        <NameTheory id="a90" score="0" token_sequence_id="a82"/>
+        <ValueMentionSet id="a91" score="0" token_sequence_id="a82"/>
+        <Parse id="a92" score="-28.6932" token_sequence_id="a82">
+          <TreebankString node_id_method="DFS">(S^ (NPA (PRP^ he)) (VP^ (VBD^ died)) (. !))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="0" id="a93" name_score="0" parse_id="a92">
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a94" intended_type="UNDET" is_metonymy="FALSE" link_confidence="0.899052" mention_type="pron" role_type="UNDET" syn_node_id="a92.1"/>
+          <Mention entity_subtype="UNDET" entity_type="UNDET" id="a95" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" role_type="UNDET" syn_node_id="a92.2"/>
+        </MentionSet>
+        <PropositionSet id="a96" mention_set_id="a93">
+          <Proposition head_id="a92.1" id="a97" type="pronoun">
+            <Argument mention_id="a94" role="&lt;ref>"/>
+          </Proposition>
+          <Proposition head_id="a92.5" id="a98" type="verb">
+            <Argument mention_id="a94" role="&lt;sub>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a99" score="0"/>
+        <EventMentionSet id="a100" parse_id="a92" score="0">
+          <EventMention anchor_node_id="a92.5" anchor_prop_id="a98" event_type="Life.Die" genericity="Specific" id="a101" modality="Asserted" polarity="Positive" score="0" tense="Unspecified">
+            <EventMentionArg mention_id="a94" role="Victim" score="0.991052"/>
+          </EventMention>
+        </EventMentionSet>
+        <SentenceTheory event_mention_set_id="a100" id="a102" mention_set_id="a93" name_theory_id="a90" parse_id="a92" part_of_speech_sequence_id="a86" primary_parse="full_parse" proposition_set_id="a96" rel_mention_set_id="a99" token_sequence_id="a82" value_mention_set_id="a91"/>
+      </Sentence>
+      <Sentence char_offsets="184:221" edt_offsets="103:140" id="a103" is_annotated="TRUE" region_id="a6">
+        <TokenSequence id="a104" score="0">
+          <Token char_offsets="184:187" edt_offsets="103:106" id="a105">John</Token>
+          <Token char_offsets="188:189" edt_offsets="107:108" id="a106">'s</Token>
+          <Token char_offsets="191:198" edt_offsets="110:117" id="a107">daughter</Token>
+          <Token char_offsets="200:203" edt_offsets="119:122" id="a108">Mary</Token>
+          <Token char_offsets="205:213" edt_offsets="124:132" id="a109">expressed</Token>
+          <Token char_offsets="215:220" edt_offsets="134:139" id="a110">sorrow</Token>
+          <Token char_offsets="221:221" edt_offsets="140:140" id="a111">.</Token>
+        </TokenSequence>
+        <PartOfSpeechSequence id="a112" score="0" token_sequence_id="a104">
+          <POS id="a113" tag="NNP" token_id="a105"/>
+          <POS id="a114" tag="POS" token_id="a106"/>
+          <POS id="a115" tag="NN" token_id="a107"/>
+          <POS id="a116" tag="NNP" token_id="a108"/>
+          <POS id="a117" tag="VBD" token_id="a109"/>
+          <POS id="a118" tag="NN" token_id="a110"/>
+          <POS id="a119" tag="." token_id="a111"/>
+        </PartOfSpeechSequence>
+        <NameTheory id="a120" score="0" token_sequence_id="a104">
+          <Name char_offsets="184:187" edt_offsets="103:106" end_token="a105" entity_type="PER" id="a121" start_token="a105"/>
+          <Name char_offsets="200:203" edt_offsets="119:122" end_token="a108" entity_type="PER" id="a122" start_token="a108"/>
+        </NameTheory>
+        <ValueMentionSet id="a123" score="0" token_sequence_id="a104"/>
+        <Parse id="a124" score="-56.109" token_sequence_id="a104">
+          <TreebankString node_id_method="DFS">(S^ (NPA (NPPOS (NPP (NNP^ john)) (POS^ 's)) (NN daughter) (NPP^ (NNP^ mary))) (VP^ (VBD^ expressed) (NPA (NN^ sorrow))) (. .))</TreebankString>
+        </Parse>
+        <MentionSet desc_score="1" id="a125" name_score="0" parse_id="a124">
+          <Mention child="a129" entity_subtype="Individual" entity_type="PER" id="a126" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a124.1"/>
+          <Mention entity_subtype="Individual" entity_type="PER" id="a127" intended_type="UNDET" is_metonymy="FALSE" mention_type="name" role_type="UNDET" syn_node_id="a124.3"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a128" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a124.8"/>
+          <Mention entity_subtype="UNDET" entity_type="PER" id="a129" intended_type="UNDET" is_metonymy="FALSE" mention_type="none" parent="a126" role_type="UNDET" syn_node_id="a124.10"/>
+          <Mention entity_subtype="UNDET" entity_type="OTH" id="a130" intended_type="UNDET" is_metonymy="FALSE" mention_type="desc" role_type="UNDET" syn_node_id="a124.16"/>
+        </MentionSet>
+        <PropositionSet id="a131" mention_set_id="a125">
+          <Proposition head_id="a124.8" id="a132" type="noun">
+            <Argument mention_id="a128" role="&lt;ref>"/>
+            <Argument mention_id="a127" role="&lt;poss>"/>
+          </Proposition>
+          <Proposition id="a133" type="name">
+            <Argument mention_id="a127" role="&lt;ref>"/>
+            <Argument syn_node_id="a124.3"/>
+          </Proposition>
+          <Proposition id="a134" type="name">
+            <Argument mention_id="a126" role="&lt;ref>"/>
+            <Argument syn_node_id="a124.10"/>
+          </Proposition>
+          <Proposition head_id="a124.14" id="a135" type="verb">
+            <Argument mention_id="a126" role="&lt;sub>"/>
+            <Argument mention_id="a130" role="&lt;obj>"/>
+          </Proposition>
+          <Proposition head_id="a124.17" id="a136" type="noun">
+            <Argument mention_id="a130" role="&lt;ref>"/>
+          </Proposition>
+        </PropositionSet>
+        <RelMentionSet id="a137" score="0">
+          <RelMention id="a138" left_mention_id="a127" modality="Asserted" right_mention_id="a128" score="0" tense="Unspecified" type="PER-SOC.Family"/>
+        </RelMentionSet>
+        <EventMentionSet id="a139" parse_id="a124" score="0"/>
+        <SentenceTheory event_mention_set_id="a139" id="a140" mention_set_id="a125" name_theory_id="a120" parse_id="a124" part_of_speech_sequence_id="a112" primary_parse="full_parse" proposition_set_id="a131" rel_mention_set_id="a137" token_sequence_id="a104" value_mention_set_id="a123"/>
+      </Sentence>
+    </Sentences>
+    <EntitySet id="a141" score="1.74659e+07">
+      <Entity entity_subtype="Individual" entity_type="PER" id="a142" is_generic="FALSE" mention_ids="a57 a56 a58 a94 a127"/>
+      <Entity entity_subtype="Commercial" entity_type="ORG" id="a143" is_generic="FALSE" mention_ids="a60"/>
+      <Entity entity_subtype="Individual" entity_type="PER" id="a144" is_generic="FALSE" mention_ids="a126 a128"/>
+    </EntitySet>
+    <ValueSet id="a145">
+      <Value id="a146" timex_val="2013-03-10" type="TIMEX2.TIME" value_mention_ref="a53"/>
+    </ValueSet>
+    <RelationSet id="a147">
+      <Relation confidence="0.489" id="a148" left_entity_id="a142" modality="Asserted" rel_mention_ids="a78" right_entity_id="a143" tense="Unspecified" type="ORG-AFF.Employment"/>
+      <Relation confidence="0" id="a149" left_entity_id="a142" modality="Asserted" rel_mention_ids="a138" right_entity_id="a144" tense="Unspecified" type="PER-SOC.Family"/>
+    </RelationSet>
+    <EventSet id="a150">
+      <Event event_mention_ids="a101" event_type="Life.Die" genericity="Specific" id="a151" modality="Asserted" polarity="Positive" tense="Unspecified">
+        <EventArg entity_id="a142" role="Victim"/>
+      </Event>
+    </EventSet>
+    <ValueMentionSet id="a152" score="0"/>
+    <RelMentionSet id="a153" score="0"/>
+  </Document>
+
+</SerifXML>
