@@ -4,8 +4,8 @@
       "mentionSet": [
         {
           "confidence": 1.0,
-          "entityType": 24,
-          "phraseType": 1,
+          "entityType": "Unknown",
+          "phraseType": "Name",
           "text": "John Smith , manager of ACME INC ,",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -19,14 +19,18 @@
               6,
               7
             ],
-            "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+            "tokenizationId": {
+              "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+            }
           },
-          "uuid": "16664e68-d5b9-4c72-886e-736884a895ad"
+          "uuid": {
+            "uuidString": "9c2de8e4-b39b-44aa-a5e9-4b67e31d2241"
+          }
         },
         {
           "confidence": 1.0,
-          "entityType": 24,
-          "phraseType": 1,
+          "entityType": "Unknown",
+          "phraseType": "Name",
           "text": "John Smith",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -34,14 +38,18 @@
               0,
               1
             ],
-            "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+            "tokenizationId": {
+              "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+            }
           },
-          "uuid": "08685565-a196-4faa-a89d-533dec0cdc0c"
+          "uuid": {
+            "uuidString": "874ffee5-4810-4191-a7fb-399144a3d22d"
+          }
         },
         {
           "confidence": 1.0,
-          "entityType": 24,
-          "phraseType": 1,
+          "entityType": "Unknown",
+          "phraseType": "Name",
           "text": "manager of ACME INC",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -51,28 +59,36 @@
               5,
               6
             ],
-            "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+            "tokenizationId": {
+              "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+            }
           },
-          "uuid": "bab276a5-cdfc-4521-8ad7-1d1d391c0f9b"
+          "uuid": {
+            "uuidString": "bac4dc64-ef6d-4d5f-8ec7-dd2f6af1fe1a"
+          }
         },
         {
           "confidence": 1.0,
-          "entityType": 24,
-          "phraseType": 1,
+          "entityType": "Unknown",
+          "phraseType": "Name",
           "text": "He",
           "tokens": {
             "anchorTokenIndex": -1,
             "tokenIndexList": [
               0
             ],
-            "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
+            "tokenizationId": {
+              "uuidString": "44ea8849-2047-438a-b4e7-7333498d71da"
+            }
           },
-          "uuid": "760bd9a7-bf75-485f-abec-6bf31cd41399"
+          "uuid": {
+            "uuidString": "5ff536b2-086c-48d8-bfcd-b92792f401e4"
+          }
         },
         {
           "confidence": 1.0,
-          "entityType": 24,
-          "phraseType": 1,
+          "entityType": "Unknown",
+          "phraseType": "Name",
           "text": "John 's",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -80,15 +96,23 @@
               0,
               1
             ],
-            "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+            "tokenizationId": {
+              "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+            }
           },
-          "uuid": "9a8e196a-fd33-4f7f-bda3-1d00f9380f0e"
+          "uuid": {
+            "uuidString": "4c025423-ab3b-4990-9467-94aef682fcdc"
+          }
         }
       ],
       "metadata": {
+        "confidence": 1.0,
+        "timestamp": 1404235627001,
         "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/pubs/conllst2011-coref.pdf"
       },
-      "uuid": "419048f9-0f3e-4f23-98cc-2535563dc9fe"
+      "uuid": {
+        "uuidString": "b69857a6-cab7-449f-8b20-11fc6ae052f4"
+      }
     }
   ],
   "entitySets": [
@@ -96,37 +120,59 @@
       "entityList": [
         {
           "mentionIdList": [
-            "16664e68-d5b9-4c72-886e-736884a895ad",
-            "08685565-a196-4faa-a89d-533dec0cdc0c",
-            "bab276a5-cdfc-4521-8ad7-1d1d391c0f9b",
-            "760bd9a7-bf75-485f-abec-6bf31cd41399",
-            "9a8e196a-fd33-4f7f-bda3-1d00f9380f0e"
+            {
+              "uuidString": "9c2de8e4-b39b-44aa-a5e9-4b67e31d2241"
+            },
+            {
+              "uuidString": "874ffee5-4810-4191-a7fb-399144a3d22d"
+            },
+            {
+              "uuidString": "bac4dc64-ef6d-4d5f-8ec7-dd2f6af1fe1a"
+            },
+            {
+              "uuidString": "5ff536b2-086c-48d8-bfcd-b92792f401e4"
+            },
+            {
+              "uuidString": "4c025423-ab3b-4990-9467-94aef682fcdc"
+            }
           ],
-          "type": 4,
-          "uuid": "658a7570-ea1d-4cd2-9ae3-b9ecbb730d93"
+          "type": "Other",
+          "uuid": {
+            "uuidString": "b196025a-eb51-4076-9ddd-fcac056104ae"
+          }
         }
       ],
       "metadata": {
+        "confidence": 1.0,
+        "timestamp": 1404235627001,
         "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/pubs/conllst2011-coref.pdf"
       },
-      "uuid": "8e0b6f36-1d7e-431d-ad86-d2c885f1ce78"
+      "uuid": {
+        "uuidString": "21d43056-8dba-4efc-9a8a-006b34bfd546"
+      }
     }
   ],
   "id": "agiga_dog-bites-man",
   "sectionSegmentations": [
     {
       "metadata": {
+        "confidence": 1.0,
+        "timestamp": 1404235627001,
         "tool": "Annotated Gigaword Pipeline"
       },
       "sectionList": [
         {
-          "kind": 1,
+          "kind": "Passage",
           "sentenceSegmentation": [
             {
               "metadata": {
+                "confidence": 1.0,
+                "timestamp": 1404235627001,
                 "tool": "Annotated Gigaword Pipeline Splitta http://www.aclweb.org/anthology-new/N/N09/N09-2061.pdf"
               },
-              "sectionId": "c95e06ec-8395-4773-b4eb-2d97f585a959",
+              "sectionId": {
+                "uuidString": "a11d6e7b-6e6b-4bbd-b654-18ce265a512d"
+              },
               "sentenceList": [
                 {
                   "textSpan": {
@@ -214,9 +260,13 @@
                             }
                           ],
                           "metadata": {
+                            "confidence": 1.0,
+                            "timestamp": 1404235627001,
                             "tool": "Annotated Gigaword Pipeline basic-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "d33ec550-6f84-483d-8f3b-98e1f5bd51e6"
+                          "uuid": {
+                            "uuidString": "02f9cc2d-32c8-404b-b822-770dabc65ae8"
+                          }
                         },
                         {
                           "dependencyList": [
@@ -281,9 +331,13 @@
                             }
                           ],
                           "metadata": {
+                            "confidence": 1.0,
+                            "timestamp": 1404235627001,
                             "tool": "Annotated Gigaword Pipeline col-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "a688c6a3-31a7-4d97-889f-268eb2a30742"
+                          "uuid": {
+                            "uuidString": "9385ef9e-f19d-4322-b3ee-608c3e3e0e07"
+                          }
                         },
                         {
                           "dependencyList": [
@@ -348,14 +402,20 @@
                             }
                           ],
                           "metadata": {
+                            "confidence": 1.0,
+                            "timestamp": 1404235627001,
                             "tool": "Annotated Gigaword Pipeline col-ccproc-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "b5db56f1-0ede-4376-8fc7-a6c93b3752b0"
+                          "uuid": {
+                            "uuidString": "59681e10-c42c-4613-ad76-89bc28fded05"
+                          }
                         }
                       ],
                       "kind": 1,
                       "lemmaList": {
                         "metadata": {
+                          "confidence": 1.0,
+                          "timestamp": 1404235627001,
                           "tool": "Annotated Gigaword Pipeline"
                         },
                         "taggedTokenList": [
@@ -455,13 +515,19 @@
                             "tokenIndex": 18
                           }
                         ],
-                        "uuid": "17364670-0250-482f-b462-7ff62c7f581a"
+                        "uuid": {
+                          "uuidString": "4557ca62-99fd-40b6-adc0-f661e78f918d"
+                        }
                       },
                       "metadata": {
+                        "confidence": 1.0,
+                        "timestamp": 1404235627001,
                         "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/software/tokensregex.shtml"
                       },
                       "nerTagList": {
                         "metadata": {
+                          "confidence": 1.0,
+                          "timestamp": 1404235627001,
                           "tool": "Annotated Gigaword Pipeline"
                         },
                         "taggedTokenList": [
@@ -561,7 +627,9 @@
                             "tokenIndex": 18
                           }
                         ],
-                        "uuid": "9d2e6398-b7d2-43c7-bd33-684f790bc983"
+                        "uuid": {
+                          "uuidString": "f80d885e-9995-4b20-a124-0327328c3bbf"
+                        }
                       },
                       "parse": {
                         "constituentList": [
@@ -575,7 +643,9 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -590,7 +660,9 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -603,7 +675,9 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -618,7 +692,9 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -635,7 +711,9 @@
                                 0,
                                 1
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -648,7 +726,9 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -663,7 +743,9 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -676,7 +758,9 @@
                               "tokenIndexList": [
                                 3
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -691,7 +775,9 @@
                               "tokenIndexList": [
                                 3
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -706,7 +792,9 @@
                               "tokenIndexList": [
                                 3
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -719,7 +807,9 @@
                               "tokenIndexList": [
                                 4
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -734,7 +824,9 @@
                               "tokenIndexList": [
                                 4
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -747,7 +839,9 @@
                               "tokenIndexList": [
                                 5
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -762,7 +856,9 @@
                               "tokenIndexList": [
                                 5
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -775,7 +871,9 @@
                               "tokenIndexList": [
                                 6
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -790,7 +888,9 @@
                               "tokenIndexList": [
                                 6
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -807,7 +907,9 @@
                                 5,
                                 6
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -825,7 +927,9 @@
                                 5,
                                 6
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -844,7 +948,9 @@
                                 5,
                                 6
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -857,7 +963,9 @@
                               "tokenIndexList": [
                                 7
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -872,7 +980,9 @@
                               "tokenIndexList": [
                                 7
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -897,7 +1007,9 @@
                                 6,
                                 7
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -910,7 +1022,9 @@
                               "tokenIndexList": [
                                 8
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -925,7 +1039,9 @@
                               "tokenIndexList": [
                                 8
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -938,7 +1054,9 @@
                               "tokenIndexList": [
                                 9
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -953,7 +1071,9 @@
                               "tokenIndexList": [
                                 9
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -968,7 +1088,9 @@
                               "tokenIndexList": [
                                 9
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -981,7 +1103,9 @@
                               "tokenIndexList": [
                                 10
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -996,7 +1120,9 @@
                               "tokenIndexList": [
                                 10
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1009,7 +1135,9 @@
                               "tokenIndexList": [
                                 11
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1024,7 +1152,9 @@
                               "tokenIndexList": [
                                 11
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1037,7 +1167,9 @@
                               "tokenIndexList": [
                                 12
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1052,7 +1184,9 @@
                               "tokenIndexList": [
                                 12
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1069,7 +1203,9 @@
                                 11,
                                 12
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1082,7 +1218,9 @@
                               "tokenIndexList": [
                                 13
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1097,7 +1235,9 @@
                               "tokenIndexList": [
                                 13
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1110,7 +1250,9 @@
                               "tokenIndexList": [
                                 14
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1125,7 +1267,9 @@
                               "tokenIndexList": [
                                 14
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1138,7 +1282,9 @@
                               "tokenIndexList": [
                                 15
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1153,7 +1299,9 @@
                               "tokenIndexList": [
                                 15
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1166,7 +1314,9 @@
                               "tokenIndexList": [
                                 16
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1181,7 +1331,9 @@
                               "tokenIndexList": [
                                 16
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1194,7 +1346,9 @@
                               "tokenIndexList": [
                                 17
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1209,7 +1363,9 @@
                               "tokenIndexList": [
                                 17
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1230,7 +1386,9 @@
                                 16,
                                 17
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1250,7 +1408,9 @@
                                 16,
                                 17
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1272,7 +1432,9 @@
                                 16,
                                 17
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1295,7 +1457,9 @@
                                 16,
                                 17
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1319,7 +1483,9 @@
                                 16,
                                 17
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1344,7 +1510,9 @@
                                 16,
                                 17
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1357,7 +1525,9 @@
                               "tokenIndexList": [
                                 18
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1372,7 +1542,9 @@
                               "tokenIndexList": [
                                 18
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1407,7 +1579,9 @@
                                 17,
                                 18
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           },
                           {
@@ -1440,17 +1614,25 @@
                                 17,
                                 18
                               ],
-                              "tokenizationId": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                              "tokenizationId": {
+                                "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                              }
                             }
                           }
                         ],
                         "metadata": {
+                          "confidence": 1.0,
+                          "timestamp": 1404235627001,
                           "tool": "Annotated Gigaword Pipeline http://www.aclweb.org/anthology-new/D/D10/D10-1002.pdf"
                         },
-                        "uuid": "24040a2f-bd76-4dfb-afe0-3eadc703a1ca"
+                        "uuid": {
+                          "uuidString": "a495e849-8893-4fb0-b1bc-7bc816d4a44f"
+                        }
                       },
                       "posTagList": {
                         "metadata": {
+                          "confidence": 1.0,
+                          "timestamp": 1404235627001,
                           "tool": "Annotated Gigaword Pipeline"
                         },
                         "taggedTokenList": [
@@ -1550,7 +1732,9 @@
                             "tokenIndex": 18
                           }
                         ],
-                        "uuid": "8746fe51-72b4-4035-8c7c-4efa356154da"
+                        "uuid": {
+                          "uuidString": "8aa770d7-545b-4f88-93db-da9b9abdef85"
+                        }
                       },
                       "tokenList": [
                         {
@@ -1706,10 +1890,14 @@
                           "tokenIndex": 18
                         }
                       ],
-                      "uuid": "d566f969-6829-4fe6-a9a4-afb6702c7408"
+                      "uuid": {
+                        "uuidString": "d9b42387-09d2-41ea-a584-2b89c8af889a"
+                      }
                     }
                   ],
-                  "uuid": "5b42569a-baf6-40f5-97ff-9d03edd9975d"
+                  "uuid": {
+                    "uuidString": "0468089e-4645-4525-adca-85d50b18db0a"
+                  }
                 },
                 {
                   "textSpan": {
@@ -1732,9 +1920,13 @@
                             }
                           ],
                           "metadata": {
+                            "confidence": 1.0,
+                            "timestamp": 1404235627001,
                             "tool": "Annotated Gigaword Pipeline basic-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "c10d2512-30ec-4da8-992b-cf63f02c9f3e"
+                          "uuid": {
+                            "uuidString": "29bbf316-72ef-48ba-be48-7674b4fd97bc"
+                          }
                         },
                         {
                           "dependencyList": [
@@ -1749,9 +1941,13 @@
                             }
                           ],
                           "metadata": {
+                            "confidence": 1.0,
+                            "timestamp": 1404235627001,
                             "tool": "Annotated Gigaword Pipeline col-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "2385c1ed-8dc3-4f7e-a730-429a96e55afe"
+                          "uuid": {
+                            "uuidString": "052da52d-77c8-45d7-bf66-762a020c9151"
+                          }
                         },
                         {
                           "dependencyList": [
@@ -1766,14 +1962,20 @@
                             }
                           ],
                           "metadata": {
+                            "confidence": 1.0,
+                            "timestamp": 1404235627001,
                             "tool": "Annotated Gigaword Pipeline col-ccproc-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "6b9129b2-9723-4b8c-ba29-341d37eb6bcb"
+                          "uuid": {
+                            "uuidString": "2ed230d5-9746-4b0b-9147-3b71a5cae1a0"
+                          }
                         }
                       ],
                       "kind": 1,
                       "lemmaList": {
                         "metadata": {
+                          "confidence": 1.0,
+                          "timestamp": 1404235627001,
                           "tool": "Annotated Gigaword Pipeline"
                         },
                         "taggedTokenList": [
@@ -1793,13 +1995,19 @@
                             "tokenIndex": 2
                           }
                         ],
-                        "uuid": "d7e6dfe1-645b-4bc8-ab6d-1a7cc5f818f9"
+                        "uuid": {
+                          "uuidString": "fb4c659a-0e0d-4d58-8ddc-ebf6d5b666d6"
+                        }
                       },
                       "metadata": {
+                        "confidence": 1.0,
+                        "timestamp": 1404235627001,
                         "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/software/tokensregex.shtml"
                       },
                       "nerTagList": {
                         "metadata": {
+                          "confidence": 1.0,
+                          "timestamp": 1404235627001,
                           "tool": "Annotated Gigaword Pipeline"
                         },
                         "taggedTokenList": [
@@ -1819,7 +2027,9 @@
                             "tokenIndex": 2
                           }
                         ],
-                        "uuid": "9724bc0a-e766-43f8-ada2-85d3eeba14f2"
+                        "uuid": {
+                          "uuidString": "bfd694eb-c26c-4809-aa95-0b19a88c6b66"
+                        }
                       },
                       "parse": {
                         "constituentList": [
@@ -1833,7 +2043,9 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
+                              "tokenizationId": {
+                                "uuidString": "44ea8849-2047-438a-b4e7-7333498d71da"
+                              }
                             }
                           },
                           {
@@ -1848,7 +2060,9 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
+                              "tokenizationId": {
+                                "uuidString": "44ea8849-2047-438a-b4e7-7333498d71da"
+                              }
                             }
                           },
                           {
@@ -1863,7 +2077,9 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
+                              "tokenizationId": {
+                                "uuidString": "44ea8849-2047-438a-b4e7-7333498d71da"
+                              }
                             }
                           },
                           {
@@ -1876,7 +2092,9 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
+                              "tokenizationId": {
+                                "uuidString": "44ea8849-2047-438a-b4e7-7333498d71da"
+                              }
                             }
                           },
                           {
@@ -1891,7 +2109,9 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
+                              "tokenizationId": {
+                                "uuidString": "44ea8849-2047-438a-b4e7-7333498d71da"
+                              }
                             }
                           },
                           {
@@ -1906,7 +2126,9 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
+                              "tokenizationId": {
+                                "uuidString": "44ea8849-2047-438a-b4e7-7333498d71da"
+                              }
                             }
                           },
                           {
@@ -1919,7 +2141,9 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
+                              "tokenizationId": {
+                                "uuidString": "44ea8849-2047-438a-b4e7-7333498d71da"
+                              }
                             }
                           },
                           {
@@ -1934,7 +2158,9 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
+                              "tokenizationId": {
+                                "uuidString": "44ea8849-2047-438a-b4e7-7333498d71da"
+                              }
                             }
                           },
                           {
@@ -1953,7 +2179,9 @@
                                 1,
                                 2
                               ],
-                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
+                              "tokenizationId": {
+                                "uuidString": "44ea8849-2047-438a-b4e7-7333498d71da"
+                              }
                             }
                           },
                           {
@@ -1970,17 +2198,25 @@
                                 1,
                                 2
                               ],
-                              "tokenizationId": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
+                              "tokenizationId": {
+                                "uuidString": "44ea8849-2047-438a-b4e7-7333498d71da"
+                              }
                             }
                           }
                         ],
                         "metadata": {
+                          "confidence": 1.0,
+                          "timestamp": 1404235627001,
                           "tool": "Annotated Gigaword Pipeline http://www.aclweb.org/anthology-new/D/D10/D10-1002.pdf"
                         },
-                        "uuid": "74f69ba9-be9d-46ac-92a8-7540a9bcd913"
+                        "uuid": {
+                          "uuidString": "ecd7f87b-504e-4224-8b27-9594083aabde"
+                        }
                       },
                       "posTagList": {
                         "metadata": {
+                          "confidence": 1.0,
+                          "timestamp": 1404235627001,
                           "tool": "Annotated Gigaword Pipeline"
                         },
                         "taggedTokenList": [
@@ -2000,38 +2236,44 @@
                             "tokenIndex": 2
                           }
                         ],
-                        "uuid": "1a0acec4-fb92-495a-86ae-d743d61028ed"
+                        "uuid": {
+                          "uuidString": "8bb11d37-dd48-4150-b54f-a62334f78281"
+                        }
                       },
                       "tokenList": [
                         {
                           "text": "He",
                           "textSpan": {
-                            "ending": 2,
-                            "start": 0
+                            "ending": 77,
+                            "start": 75
                           },
                           "tokenIndex": 0
                         },
                         {
                           "text": "died",
                           "textSpan": {
-                            "ending": 7,
-                            "start": 3
+                            "ending": 82,
+                            "start": 78
                           },
                           "tokenIndex": 1
                         },
                         {
                           "text": "!",
                           "textSpan": {
-                            "ending": 9,
-                            "start": 8
+                            "ending": 84,
+                            "start": 83
                           },
                           "tokenIndex": 2
                         }
                       ],
-                      "uuid": "a622e144-8dae-436d-b7ee-e97a81bbf88a"
+                      "uuid": {
+                        "uuidString": "44ea8849-2047-438a-b4e7-7333498d71da"
+                      }
                     }
                   ],
-                  "uuid": "d2aa37f3-9e85-4a2d-8e38-ce851e4d7a52"
+                  "uuid": {
+                    "uuidString": "8158ee9f-a43e-4b1e-a1df-2154ae3d6068"
+                  }
                 },
                 {
                   "textSpan": {
@@ -2074,9 +2316,13 @@
                             }
                           ],
                           "metadata": {
+                            "confidence": 1.0,
+                            "timestamp": 1404235627001,
                             "tool": "Annotated Gigaword Pipeline basic-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "028bf77e-3d75-4937-a047-8203a08e81a5"
+                          "uuid": {
+                            "uuidString": "2da84864-bb0f-443d-8234-28c3b0e99779"
+                          }
                         },
                         {
                           "dependencyList": [
@@ -2106,9 +2352,13 @@
                             }
                           ],
                           "metadata": {
+                            "confidence": 1.0,
+                            "timestamp": 1404235627001,
                             "tool": "Annotated Gigaword Pipeline col-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "fb4ba931-f07e-4680-9b00-7b53da306533"
+                          "uuid": {
+                            "uuidString": "87483b39-b79d-4bd6-8253-fc6ae7c5a26a"
+                          }
                         },
                         {
                           "dependencyList": [
@@ -2138,14 +2388,20 @@
                             }
                           ],
                           "metadata": {
+                            "confidence": 1.0,
+                            "timestamp": 1404235627001,
                             "tool": "Annotated Gigaword Pipeline col-ccproc-deps http://nlp.stanford.edu/software/dependencies_manual.pdf"
                           },
-                          "uuid": "36b63b1b-0437-4ede-aa8a-c78f7ef94da8"
+                          "uuid": {
+                            "uuidString": "2d5b23f8-8368-4567-88f7-ebb84dd089df"
+                          }
                         }
                       ],
                       "kind": 1,
                       "lemmaList": {
                         "metadata": {
+                          "confidence": 1.0,
+                          "timestamp": 1404235627001,
                           "tool": "Annotated Gigaword Pipeline"
                         },
                         "taggedTokenList": [
@@ -2185,13 +2441,19 @@
                             "tokenIndex": 6
                           }
                         ],
-                        "uuid": "84f601cb-ec1b-43e8-80d0-f35e6a27c7d3"
+                        "uuid": {
+                          "uuidString": "0eaa383b-4bd5-4074-873e-df5ad93df61f"
+                        }
                       },
                       "metadata": {
+                        "confidence": 1.0,
+                        "timestamp": 1404235627001,
                         "tool": "Annotated Gigaword Pipeline http://nlp.stanford.edu/software/tokensregex.shtml"
                       },
                       "nerTagList": {
                         "metadata": {
+                          "confidence": 1.0,
+                          "timestamp": 1404235627001,
                           "tool": "Annotated Gigaword Pipeline"
                         },
                         "taggedTokenList": [
@@ -2231,7 +2493,9 @@
                             "tokenIndex": 6
                           }
                         ],
-                        "uuid": "13287aff-8e1a-4775-8556-0bd2711e6a89"
+                        "uuid": {
+                          "uuidString": "3c56c5b7-4a01-4c08-acd9-40cb3d68dfa6"
+                        }
                       },
                       "parse": {
                         "constituentList": [
@@ -2245,7 +2509,9 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2260,7 +2526,9 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2273,7 +2541,9 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2288,7 +2558,9 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2305,7 +2577,9 @@
                                 0,
                                 1
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2318,7 +2592,9 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2333,7 +2609,9 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2346,7 +2624,9 @@
                               "tokenIndexList": [
                                 3
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2361,7 +2641,9 @@
                               "tokenIndexList": [
                                 3
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2381,7 +2663,9 @@
                                 2,
                                 3
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2394,7 +2678,9 @@
                               "tokenIndexList": [
                                 4
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2409,7 +2695,9 @@
                               "tokenIndexList": [
                                 4
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2422,7 +2710,9 @@
                               "tokenIndexList": [
                                 5
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2437,7 +2727,9 @@
                               "tokenIndexList": [
                                 5
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2452,7 +2744,9 @@
                               "tokenIndexList": [
                                 5
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2469,7 +2763,9 @@
                                 4,
                                 5
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2482,7 +2778,9 @@
                               "tokenIndexList": [
                                 6
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2497,7 +2795,9 @@
                               "tokenIndexList": [
                                 6
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2520,7 +2820,9 @@
                                 5,
                                 6
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           },
                           {
@@ -2541,17 +2843,25 @@
                                 5,
                                 6
                               ],
-                              "tokenizationId": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                              "tokenizationId": {
+                                "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                              }
                             }
                           }
                         ],
                         "metadata": {
+                          "confidence": 1.0,
+                          "timestamp": 1404235627001,
                           "tool": "Annotated Gigaword Pipeline http://www.aclweb.org/anthology-new/D/D10/D10-1002.pdf"
                         },
-                        "uuid": "51fcde85-67f1-4a52-a6c7-28ae91736217"
+                        "uuid": {
+                          "uuidString": "d52e17a7-15ad-46b1-b4eb-786e01d6c96e"
+                        }
                       },
                       "posTagList": {
                         "metadata": {
+                          "confidence": 1.0,
+                          "timestamp": 1404235627001,
                           "tool": "Annotated Gigaword Pipeline"
                         },
                         "taggedTokenList": [
@@ -2591,86 +2901,100 @@
                             "tokenIndex": 6
                           }
                         ],
-                        "uuid": "1404516f-421e-4489-97dc-fc73713504b9"
+                        "uuid": {
+                          "uuidString": "60b2a927-9495-4ea6-b90f-84db6873fa53"
+                        }
                       },
                       "tokenList": [
                         {
                           "text": "John",
                           "textSpan": {
-                            "ending": 4,
-                            "start": 0
+                            "ending": 89,
+                            "start": 85
                           },
                           "tokenIndex": 0
                         },
                         {
                           "text": "'s",
                           "textSpan": {
-                            "ending": 7,
-                            "start": 5
+                            "ending": 92,
+                            "start": 90
                           },
                           "tokenIndex": 1
                         },
                         {
                           "text": "daughter",
                           "textSpan": {
-                            "ending": 16,
-                            "start": 8
+                            "ending": 101,
+                            "start": 93
                           },
                           "tokenIndex": 2
                         },
                         {
                           "text": "Mary",
                           "textSpan": {
-                            "ending": 21,
-                            "start": 17
+                            "ending": 106,
+                            "start": 102
                           },
                           "tokenIndex": 3
                         },
                         {
                           "text": "expressed",
                           "textSpan": {
-                            "ending": 31,
-                            "start": 22
+                            "ending": 116,
+                            "start": 107
                           },
                           "tokenIndex": 4
                         },
                         {
                           "text": "sorrow",
                           "textSpan": {
-                            "ending": 38,
-                            "start": 32
+                            "ending": 123,
+                            "start": 117
                           },
                           "tokenIndex": 5
                         },
                         {
                           "text": ".",
                           "textSpan": {
-                            "ending": 40,
-                            "start": 39
+                            "ending": 125,
+                            "start": 124
                           },
                           "tokenIndex": 6
                         }
                       ],
-                      "uuid": "e836e5e3-ec4c-4d55-b05c-019aa70bbe40"
+                      "uuid": {
+                        "uuidString": "6f6805fd-ede4-4fd1-9fbd-89d9f186d6ea"
+                      }
                     }
                   ],
-                  "uuid": "b2f2d5af-9ea0-48d0-acc8-32635f7fda3f"
+                  "uuid": {
+                    "uuidString": "524aa14f-3a4b-41e1-9cc9-8a224a1ef646"
+                  }
                 }
               ],
-              "uuid": "93bcfbac-e096-4880-8569-ff0318a20cb8"
+              "uuid": {
+                "uuidString": "01794d5e-9293-4255-9c28-dffd69b2ade2"
+              }
             }
           ],
           "textSpan": {
             "ending": 126,
             "start": 0
           },
-          "uuid": "c95e06ec-8395-4773-b4eb-2d97f585a959"
+          "uuid": {
+            "uuidString": "a11d6e7b-6e6b-4bbd-b654-18ce265a512d"
+          }
         }
       ],
-      "uuid": "eafae779-de28-45a1-a52d-3d3a767ab595"
+      "uuid": {
+        "uuidString": "e4edc3cb-b052-4d60-b07c-cd4cf70014d1"
+      }
     }
   ],
   "text": "John Smith , manager of ACME INC , was bit by a dog on March 10th , 2013 .\nHe died !\nJohn 's daughter Mary expressed sorrow .\n",
-  "type": 2,
-  "uuid": "955b9a9a-af07-4ed0-85be-daca2ff82246"
+  "type": "News",
+  "uuid": {
+    "uuidString": "a785fab0-abe9-4660-a236-e5446238330c"
+  }
 }
