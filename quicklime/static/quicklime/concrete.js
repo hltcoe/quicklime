@@ -379,6 +379,7 @@ Communication = function(args) {
   this.text = null;
   this.startTime = null;
   this.endTime = null;
+  this.processedContent = null;
   this.lids = null;
   this.sectionSegmentations = null;
   this.entityMentionSets = null;
@@ -388,6 +389,7 @@ Communication = function(args) {
   this.sound = null;
   this.tweetInfo = null;
   this.emailInfo = null;
+  this.nitfInfo = null;
   this.keyValueMap = null;
   if (args) {
     if (args.id !== undefined) {
@@ -407,6 +409,9 @@ Communication = function(args) {
     }
     if (args.endTime !== undefined) {
       this.endTime = args.endTime;
+    }
+    if (args.processedContent !== undefined) {
+      this.processedContent = args.processedContent;
     }
     if (args.lids !== undefined) {
       this.lids = args.lids;
@@ -435,6 +440,9 @@ Communication = function(args) {
     if (args.emailInfo !== undefined) {
       this.emailInfo = args.emailInfo;
     }
+    if (args.nitfInfo !== undefined) {
+      this.nitfInfo = args.nitfInfo;
+    }
     if (args.keyValueMap !== undefined) {
       this.keyValueMap = args.keyValueMap;
     }
@@ -462,8 +470,9 @@ Communication.prototype.read = function(input) {
       }
       break;
       case 2:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -492,6 +501,13 @@ Communication.prototype.read = function(input) {
       case 6:
       if (ftype == Thrift.Type.I64) {
         this.endTime = input.readI64().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 7:
+      if (ftype == Thrift.Type.STRING) {
+        this.processedContent = input.readString().value;
       } else {
         input.skip(ftype);
       }
@@ -646,6 +662,14 @@ Communication.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
+      case 23:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.nitfInfo = new NITFInfo();
+        this.nitfInfo.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
       case 30:
       if (ftype == Thrift.Type.MAP) {
         var _size42 = 0;
@@ -692,8 +716,8 @@ Communication.prototype.write = function(output) {
     output.writeFieldEnd();
   }
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 2);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 2);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.type !== null && this.type !== undefined) {
@@ -714,6 +738,11 @@ Communication.prototype.write = function(output) {
   if (this.endTime !== null && this.endTime !== undefined) {
     output.writeFieldBegin('endTime', Thrift.Type.I64, 6);
     output.writeI64(this.endTime);
+    output.writeFieldEnd();
+  }
+  if (this.processedContent !== null && this.processedContent !== undefined) {
+    output.writeFieldBegin('processedContent', Thrift.Type.STRING, 7);
+    output.writeString(this.processedContent);
     output.writeFieldEnd();
   }
   if (this.lids !== null && this.lids !== undefined) {
@@ -815,6 +844,11 @@ Communication.prototype.write = function(output) {
     this.emailInfo.write(output);
     output.writeFieldEnd();
   }
+  if (this.nitfInfo !== null && this.nitfInfo !== undefined) {
+    output.writeFieldBegin('nitfInfo', Thrift.Type.STRUCT, 23);
+    this.nitfInfo.write(output);
+    output.writeFieldEnd();
+  }
   if (this.keyValueMap !== null && this.keyValueMap !== undefined) {
     output.writeFieldBegin('keyValueMap', Thrift.Type.MAP, 30);
     output.writeMapBegin(Thrift.Type.STRING, Thrift.Type.STRING, Thrift.objectLength(this.keyValueMap));
@@ -869,15 +903,17 @@ EntityRef.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.entityId = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.entityId = new UUID();
+        this.entityId.read(input);
       } else {
         input.skip(ftype);
       }
       break;
       case 2:
-      if (ftype == Thrift.Type.STRING) {
-        this.communicationId = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.communicationId = new UUID();
+        this.communicationId.read(input);
       } else {
         input.skip(ftype);
       }
@@ -894,13 +930,13 @@ EntityRef.prototype.read = function(input) {
 EntityRef.prototype.write = function(output) {
   output.writeStructBegin('EntityRef');
   if (this.entityId !== null && this.entityId !== undefined) {
-    output.writeFieldBegin('entityId', Thrift.Type.STRING, 1);
-    output.writeString(this.entityId);
+    output.writeFieldBegin('entityId', Thrift.Type.STRUCT, 1);
+    this.entityId.write(output);
     output.writeFieldEnd();
   }
   if (this.communicationId !== null && this.communicationId !== undefined) {
-    output.writeFieldBegin('communicationId', Thrift.Type.STRING, 2);
-    output.writeString(this.communicationId);
+    output.writeFieldBegin('communicationId', Thrift.Type.STRUCT, 2);
+    this.communicationId.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -935,15 +971,17 @@ SituationRef.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.situationId = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.situationId = new UUID();
+        this.situationId.read(input);
       } else {
         input.skip(ftype);
       }
       break;
       case 2:
-      if (ftype == Thrift.Type.STRING) {
-        this.communicationId = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.communicationId = new UUID();
+        this.communicationId.read(input);
       } else {
         input.skip(ftype);
       }
@@ -960,13 +998,13 @@ SituationRef.prototype.read = function(input) {
 SituationRef.prototype.write = function(output) {
   output.writeStructBegin('SituationRef');
   if (this.situationId !== null && this.situationId !== undefined) {
-    output.writeFieldBegin('situationId', Thrift.Type.STRING, 1);
-    output.writeString(this.situationId);
+    output.writeFieldBegin('situationId', Thrift.Type.STRUCT, 1);
+    this.situationId.write(output);
     output.writeFieldEnd();
   }
   if (this.communicationId !== null && this.communicationId !== undefined) {
-    output.writeFieldBegin('communicationId', Thrift.Type.STRING, 2);
-    output.writeString(this.communicationId);
+    output.writeFieldBegin('communicationId', Thrift.Type.STRUCT, 2);
+    this.communicationId.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -1005,8 +1043,9 @@ DiscourseEntity.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -1051,8 +1090,8 @@ DiscourseEntity.prototype.read = function(input) {
 DiscourseEntity.prototype.write = function(output) {
   output.writeStructBegin('DiscourseEntity');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.entityRefList !== null && this.entityRefList !== undefined) {
@@ -1110,8 +1149,9 @@ DiscourseSituation.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -1156,8 +1196,8 @@ DiscourseSituation.prototype.read = function(input) {
 DiscourseSituation.prototype.write = function(output) {
   output.writeStructBegin('DiscourseSituation');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.situationRefList !== null && this.situationRefList !== undefined) {
@@ -1219,8 +1259,9 @@ DiscourseAnnotation.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -1287,8 +1328,8 @@ DiscourseAnnotation.prototype.read = function(input) {
 DiscourseAnnotation.prototype.write = function(output) {
   output.writeStructBegin('DiscourseAnnotation');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.metadata !== null && this.metadata !== undefined) {
@@ -1360,8 +1401,9 @@ Discourse.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -1407,8 +1449,8 @@ Discourse.prototype.read = function(input) {
 Discourse.prototype.write = function(output) {
   output.writeStructBegin('Discourse');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.metadata !== null && this.metadata !== undefined) {
@@ -1863,8 +1905,9 @@ Entity.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -1881,7 +1924,8 @@ Entity.prototype.read = function(input) {
         for (var _i5 = 0; _i5 < _size0; ++_i5)
         {
           var elem6 = null;
-          elem6 = input.readString().value;
+          elem6 = new UUID();
+          elem6.read(input);
           this.mentionIdList.push(elem6);
         }
         input.readListEnd();
@@ -1922,19 +1966,19 @@ Entity.prototype.read = function(input) {
 Entity.prototype.write = function(output) {
   output.writeStructBegin('Entity');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.mentionIdList !== null && this.mentionIdList !== undefined) {
     output.writeFieldBegin('mentionIdList', Thrift.Type.LIST, 2);
-    output.writeListBegin(Thrift.Type.STRING, this.mentionIdList.length);
+    output.writeListBegin(Thrift.Type.STRUCT, this.mentionIdList.length);
     for (var iter7 in this.mentionIdList)
     {
       if (this.mentionIdList.hasOwnProperty(iter7))
       {
         iter7 = this.mentionIdList[iter7];
-        output.writeString(iter7);
+        iter7.write(output);
       }
     }
     output.writeListEnd();
@@ -1991,8 +2035,9 @@ EntitySet.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -2038,8 +2083,8 @@ EntitySet.prototype.read = function(input) {
 EntitySet.prototype.write = function(output) {
   output.writeStructBegin('EntitySet');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.metadata !== null && this.metadata !== undefined) {
@@ -2109,8 +2154,9 @@ EntityMention.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -2163,8 +2209,8 @@ EntityMention.prototype.read = function(input) {
 EntityMention.prototype.write = function(output) {
   output.writeStructBegin('EntityMention');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.tokens !== null && this.tokens !== undefined) {
@@ -2228,8 +2274,9 @@ EntityMentionSet.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -2275,8 +2322,8 @@ EntityMentionSet.prototype.read = function(input) {
 EntityMentionSet.prototype.write = function(output) {
   output.writeStructBegin('EntityMentionSet');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.metadata !== null && this.metadata !== undefined) {
@@ -2341,8 +2388,9 @@ LanguageIdentification.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -2396,8 +2444,8 @@ LanguageIdentification.prototype.read = function(input) {
 LanguageIdentification.prototype.write = function(output) {
   output.writeStructBegin('LanguageIdentification');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.metadata !== null && this.metadata !== undefined) {
@@ -2750,6 +2798,1161 @@ AnnotationMetadata.prototype.write = function(output) {
 //
 
 
+NITFInfo = function(args) {
+  this.alternateURL = null;
+  this.articleAbstract = null;
+  this.authorBiography = null;
+  this.banner = null;
+  this.biographicalCategories = null;
+  this.body = null;
+  this.byline = null;
+  this.columnName = null;
+  this.columnNumber = null;
+  this.correctionDate = null;
+  this.correctionText = null;
+  this.credit = null;
+  this.dateline = null;
+  this.dayOfWeek = null;
+  this.descriptors = null;
+  this.featurePage = null;
+  this.generalOnlineDescriptors = null;
+  this.guid = null;
+  this.headline = null;
+  this.kicker = null;
+  this.leadParagraph = null;
+  this.locations = null;
+  this.names = null;
+  this.newsDesk = null;
+  this.normalizedByline = null;
+  this.onlineDescriptors = null;
+  this.onlineHeadline = null;
+  this.onlineLeadParagraph = null;
+  this.onlineLocations = null;
+  this.onlineOrganizations = null;
+  this.onlinePeople = null;
+  this.onlineSection = null;
+  this.onlineTitles = null;
+  this.organizations = null;
+  this.page = null;
+  this.people = null;
+  this.publicationDate = null;
+  this.publicationDayOfMonth = null;
+  this.publicationMonth = null;
+  this.publicationYear = null;
+  this.section = null;
+  this.seriesName = null;
+  this.slug = null;
+  this.sourceFilePath = null;
+  this.taxonomicClassifiers = null;
+  this.titles = null;
+  this.typesOfMaterial = null;
+  this.url = null;
+  this.wordCount = null;
+  if (args) {
+    if (args.alternateURL !== undefined) {
+      this.alternateURL = args.alternateURL;
+    }
+    if (args.articleAbstract !== undefined) {
+      this.articleAbstract = args.articleAbstract;
+    }
+    if (args.authorBiography !== undefined) {
+      this.authorBiography = args.authorBiography;
+    }
+    if (args.banner !== undefined) {
+      this.banner = args.banner;
+    }
+    if (args.biographicalCategories !== undefined) {
+      this.biographicalCategories = args.biographicalCategories;
+    }
+    if (args.body !== undefined) {
+      this.body = args.body;
+    }
+    if (args.byline !== undefined) {
+      this.byline = args.byline;
+    }
+    if (args.columnName !== undefined) {
+      this.columnName = args.columnName;
+    }
+    if (args.columnNumber !== undefined) {
+      this.columnNumber = args.columnNumber;
+    }
+    if (args.correctionDate !== undefined) {
+      this.correctionDate = args.correctionDate;
+    }
+    if (args.correctionText !== undefined) {
+      this.correctionText = args.correctionText;
+    }
+    if (args.credit !== undefined) {
+      this.credit = args.credit;
+    }
+    if (args.dateline !== undefined) {
+      this.dateline = args.dateline;
+    }
+    if (args.dayOfWeek !== undefined) {
+      this.dayOfWeek = args.dayOfWeek;
+    }
+    if (args.descriptors !== undefined) {
+      this.descriptors = args.descriptors;
+    }
+    if (args.featurePage !== undefined) {
+      this.featurePage = args.featurePage;
+    }
+    if (args.generalOnlineDescriptors !== undefined) {
+      this.generalOnlineDescriptors = args.generalOnlineDescriptors;
+    }
+    if (args.guid !== undefined) {
+      this.guid = args.guid;
+    }
+    if (args.headline !== undefined) {
+      this.headline = args.headline;
+    }
+    if (args.kicker !== undefined) {
+      this.kicker = args.kicker;
+    }
+    if (args.leadParagraph !== undefined) {
+      this.leadParagraph = args.leadParagraph;
+    }
+    if (args.locations !== undefined) {
+      this.locations = args.locations;
+    }
+    if (args.names !== undefined) {
+      this.names = args.names;
+    }
+    if (args.newsDesk !== undefined) {
+      this.newsDesk = args.newsDesk;
+    }
+    if (args.normalizedByline !== undefined) {
+      this.normalizedByline = args.normalizedByline;
+    }
+    if (args.onlineDescriptors !== undefined) {
+      this.onlineDescriptors = args.onlineDescriptors;
+    }
+    if (args.onlineHeadline !== undefined) {
+      this.onlineHeadline = args.onlineHeadline;
+    }
+    if (args.onlineLeadParagraph !== undefined) {
+      this.onlineLeadParagraph = args.onlineLeadParagraph;
+    }
+    if (args.onlineLocations !== undefined) {
+      this.onlineLocations = args.onlineLocations;
+    }
+    if (args.onlineOrganizations !== undefined) {
+      this.onlineOrganizations = args.onlineOrganizations;
+    }
+    if (args.onlinePeople !== undefined) {
+      this.onlinePeople = args.onlinePeople;
+    }
+    if (args.onlineSection !== undefined) {
+      this.onlineSection = args.onlineSection;
+    }
+    if (args.onlineTitles !== undefined) {
+      this.onlineTitles = args.onlineTitles;
+    }
+    if (args.organizations !== undefined) {
+      this.organizations = args.organizations;
+    }
+    if (args.page !== undefined) {
+      this.page = args.page;
+    }
+    if (args.people !== undefined) {
+      this.people = args.people;
+    }
+    if (args.publicationDate !== undefined) {
+      this.publicationDate = args.publicationDate;
+    }
+    if (args.publicationDayOfMonth !== undefined) {
+      this.publicationDayOfMonth = args.publicationDayOfMonth;
+    }
+    if (args.publicationMonth !== undefined) {
+      this.publicationMonth = args.publicationMonth;
+    }
+    if (args.publicationYear !== undefined) {
+      this.publicationYear = args.publicationYear;
+    }
+    if (args.section !== undefined) {
+      this.section = args.section;
+    }
+    if (args.seriesName !== undefined) {
+      this.seriesName = args.seriesName;
+    }
+    if (args.slug !== undefined) {
+      this.slug = args.slug;
+    }
+    if (args.sourceFilePath !== undefined) {
+      this.sourceFilePath = args.sourceFilePath;
+    }
+    if (args.taxonomicClassifiers !== undefined) {
+      this.taxonomicClassifiers = args.taxonomicClassifiers;
+    }
+    if (args.titles !== undefined) {
+      this.titles = args.titles;
+    }
+    if (args.typesOfMaterial !== undefined) {
+      this.typesOfMaterial = args.typesOfMaterial;
+    }
+    if (args.url !== undefined) {
+      this.url = args.url;
+    }
+    if (args.wordCount !== undefined) {
+      this.wordCount = args.wordCount;
+    }
+  }
+};
+NITFInfo.prototype = {};
+NITFInfo.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRING) {
+        this.alternateURL = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.articleAbstract = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.STRING) {
+        this.authorBiography = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 4:
+      if (ftype == Thrift.Type.STRING) {
+        this.banner = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 5:
+      if (ftype == Thrift.Type.LIST) {
+        var _size0 = 0;
+        var _rtmp34;
+        this.biographicalCategories = [];
+        var _etype3 = 0;
+        _rtmp34 = input.readListBegin();
+        _etype3 = _rtmp34.etype;
+        _size0 = _rtmp34.size;
+        for (var _i5 = 0; _i5 < _size0; ++_i5)
+        {
+          var elem6 = null;
+          elem6 = input.readString().value;
+          this.biographicalCategories.push(elem6);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 6:
+      if (ftype == Thrift.Type.STRING) {
+        this.body = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 7:
+      if (ftype == Thrift.Type.STRING) {
+        this.byline = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 8:
+      if (ftype == Thrift.Type.STRING) {
+        this.columnName = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 9:
+      if (ftype == Thrift.Type.I32) {
+        this.columnNumber = input.readI32().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 10:
+      if (ftype == Thrift.Type.I64) {
+        this.correctionDate = input.readI64().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 11:
+      if (ftype == Thrift.Type.STRING) {
+        this.correctionText = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 12:
+      if (ftype == Thrift.Type.STRING) {
+        this.credit = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 13:
+      if (ftype == Thrift.Type.STRING) {
+        this.dateline = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 14:
+      if (ftype == Thrift.Type.STRING) {
+        this.dayOfWeek = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 15:
+      if (ftype == Thrift.Type.LIST) {
+        var _size7 = 0;
+        var _rtmp311;
+        this.descriptors = [];
+        var _etype10 = 0;
+        _rtmp311 = input.readListBegin();
+        _etype10 = _rtmp311.etype;
+        _size7 = _rtmp311.size;
+        for (var _i12 = 0; _i12 < _size7; ++_i12)
+        {
+          var elem13 = null;
+          elem13 = input.readString().value;
+          this.descriptors.push(elem13);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 16:
+      if (ftype == Thrift.Type.STRING) {
+        this.featurePage = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 17:
+      if (ftype == Thrift.Type.LIST) {
+        var _size14 = 0;
+        var _rtmp318;
+        this.generalOnlineDescriptors = [];
+        var _etype17 = 0;
+        _rtmp318 = input.readListBegin();
+        _etype17 = _rtmp318.etype;
+        _size14 = _rtmp318.size;
+        for (var _i19 = 0; _i19 < _size14; ++_i19)
+        {
+          var elem20 = null;
+          elem20 = input.readString().value;
+          this.generalOnlineDescriptors.push(elem20);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 18:
+      if (ftype == Thrift.Type.I32) {
+        this.guid = input.readI32().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 19:
+      if (ftype == Thrift.Type.STRING) {
+        this.headline = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 20:
+      if (ftype == Thrift.Type.STRING) {
+        this.kicker = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 21:
+      if (ftype == Thrift.Type.STRING) {
+        this.leadParagraph = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 22:
+      if (ftype == Thrift.Type.LIST) {
+        var _size21 = 0;
+        var _rtmp325;
+        this.locations = [];
+        var _etype24 = 0;
+        _rtmp325 = input.readListBegin();
+        _etype24 = _rtmp325.etype;
+        _size21 = _rtmp325.size;
+        for (var _i26 = 0; _i26 < _size21; ++_i26)
+        {
+          var elem27 = null;
+          elem27 = input.readString().value;
+          this.locations.push(elem27);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 23:
+      if (ftype == Thrift.Type.LIST) {
+        var _size28 = 0;
+        var _rtmp332;
+        this.names = [];
+        var _etype31 = 0;
+        _rtmp332 = input.readListBegin();
+        _etype31 = _rtmp332.etype;
+        _size28 = _rtmp332.size;
+        for (var _i33 = 0; _i33 < _size28; ++_i33)
+        {
+          var elem34 = null;
+          elem34 = input.readString().value;
+          this.names.push(elem34);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 24:
+      if (ftype == Thrift.Type.STRING) {
+        this.newsDesk = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 25:
+      if (ftype == Thrift.Type.STRING) {
+        this.normalizedByline = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 26:
+      if (ftype == Thrift.Type.LIST) {
+        var _size35 = 0;
+        var _rtmp339;
+        this.onlineDescriptors = [];
+        var _etype38 = 0;
+        _rtmp339 = input.readListBegin();
+        _etype38 = _rtmp339.etype;
+        _size35 = _rtmp339.size;
+        for (var _i40 = 0; _i40 < _size35; ++_i40)
+        {
+          var elem41 = null;
+          elem41 = input.readString().value;
+          this.onlineDescriptors.push(elem41);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 27:
+      if (ftype == Thrift.Type.STRING) {
+        this.onlineHeadline = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 28:
+      if (ftype == Thrift.Type.STRING) {
+        this.onlineLeadParagraph = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 29:
+      if (ftype == Thrift.Type.LIST) {
+        var _size42 = 0;
+        var _rtmp346;
+        this.onlineLocations = [];
+        var _etype45 = 0;
+        _rtmp346 = input.readListBegin();
+        _etype45 = _rtmp346.etype;
+        _size42 = _rtmp346.size;
+        for (var _i47 = 0; _i47 < _size42; ++_i47)
+        {
+          var elem48 = null;
+          elem48 = input.readString().value;
+          this.onlineLocations.push(elem48);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 30:
+      if (ftype == Thrift.Type.LIST) {
+        var _size49 = 0;
+        var _rtmp353;
+        this.onlineOrganizations = [];
+        var _etype52 = 0;
+        _rtmp353 = input.readListBegin();
+        _etype52 = _rtmp353.etype;
+        _size49 = _rtmp353.size;
+        for (var _i54 = 0; _i54 < _size49; ++_i54)
+        {
+          var elem55 = null;
+          elem55 = input.readString().value;
+          this.onlineOrganizations.push(elem55);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 31:
+      if (ftype == Thrift.Type.LIST) {
+        var _size56 = 0;
+        var _rtmp360;
+        this.onlinePeople = [];
+        var _etype59 = 0;
+        _rtmp360 = input.readListBegin();
+        _etype59 = _rtmp360.etype;
+        _size56 = _rtmp360.size;
+        for (var _i61 = 0; _i61 < _size56; ++_i61)
+        {
+          var elem62 = null;
+          elem62 = input.readString().value;
+          this.onlinePeople.push(elem62);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 32:
+      if (ftype == Thrift.Type.STRING) {
+        this.onlineSection = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 33:
+      if (ftype == Thrift.Type.LIST) {
+        var _size63 = 0;
+        var _rtmp367;
+        this.onlineTitles = [];
+        var _etype66 = 0;
+        _rtmp367 = input.readListBegin();
+        _etype66 = _rtmp367.etype;
+        _size63 = _rtmp367.size;
+        for (var _i68 = 0; _i68 < _size63; ++_i68)
+        {
+          var elem69 = null;
+          elem69 = input.readString().value;
+          this.onlineTitles.push(elem69);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 34:
+      if (ftype == Thrift.Type.LIST) {
+        var _size70 = 0;
+        var _rtmp374;
+        this.organizations = [];
+        var _etype73 = 0;
+        _rtmp374 = input.readListBegin();
+        _etype73 = _rtmp374.etype;
+        _size70 = _rtmp374.size;
+        for (var _i75 = 0; _i75 < _size70; ++_i75)
+        {
+          var elem76 = null;
+          elem76 = input.readString().value;
+          this.organizations.push(elem76);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 35:
+      if (ftype == Thrift.Type.I32) {
+        this.page = input.readI32().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 36:
+      if (ftype == Thrift.Type.LIST) {
+        var _size77 = 0;
+        var _rtmp381;
+        this.people = [];
+        var _etype80 = 0;
+        _rtmp381 = input.readListBegin();
+        _etype80 = _rtmp381.etype;
+        _size77 = _rtmp381.size;
+        for (var _i82 = 0; _i82 < _size77; ++_i82)
+        {
+          var elem83 = null;
+          elem83 = input.readString().value;
+          this.people.push(elem83);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 37:
+      if (ftype == Thrift.Type.I64) {
+        this.publicationDate = input.readI64().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 38:
+      if (ftype == Thrift.Type.I32) {
+        this.publicationDayOfMonth = input.readI32().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 39:
+      if (ftype == Thrift.Type.I32) {
+        this.publicationMonth = input.readI32().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 40:
+      if (ftype == Thrift.Type.I32) {
+        this.publicationYear = input.readI32().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 41:
+      if (ftype == Thrift.Type.STRING) {
+        this.section = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 42:
+      if (ftype == Thrift.Type.STRING) {
+        this.seriesName = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 43:
+      if (ftype == Thrift.Type.STRING) {
+        this.slug = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 44:
+      if (ftype == Thrift.Type.STRING) {
+        this.sourceFilePath = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 45:
+      if (ftype == Thrift.Type.LIST) {
+        var _size84 = 0;
+        var _rtmp388;
+        this.taxonomicClassifiers = [];
+        var _etype87 = 0;
+        _rtmp388 = input.readListBegin();
+        _etype87 = _rtmp388.etype;
+        _size84 = _rtmp388.size;
+        for (var _i89 = 0; _i89 < _size84; ++_i89)
+        {
+          var elem90 = null;
+          elem90 = input.readString().value;
+          this.taxonomicClassifiers.push(elem90);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 46:
+      if (ftype == Thrift.Type.LIST) {
+        var _size91 = 0;
+        var _rtmp395;
+        this.titles = [];
+        var _etype94 = 0;
+        _rtmp395 = input.readListBegin();
+        _etype94 = _rtmp395.etype;
+        _size91 = _rtmp395.size;
+        for (var _i96 = 0; _i96 < _size91; ++_i96)
+        {
+          var elem97 = null;
+          elem97 = input.readString().value;
+          this.titles.push(elem97);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 47:
+      if (ftype == Thrift.Type.LIST) {
+        var _size98 = 0;
+        var _rtmp3102;
+        this.typesOfMaterial = [];
+        var _etype101 = 0;
+        _rtmp3102 = input.readListBegin();
+        _etype101 = _rtmp3102.etype;
+        _size98 = _rtmp3102.size;
+        for (var _i103 = 0; _i103 < _size98; ++_i103)
+        {
+          var elem104 = null;
+          elem104 = input.readString().value;
+          this.typesOfMaterial.push(elem104);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 48:
+      if (ftype == Thrift.Type.STRING) {
+        this.url = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 49:
+      if (ftype == Thrift.Type.I32) {
+        this.wordCount = input.readI32().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+NITFInfo.prototype.write = function(output) {
+  output.writeStructBegin('NITFInfo');
+  if (this.alternateURL !== null && this.alternateURL !== undefined) {
+    output.writeFieldBegin('alternateURL', Thrift.Type.STRING, 1);
+    output.writeString(this.alternateURL);
+    output.writeFieldEnd();
+  }
+  if (this.articleAbstract !== null && this.articleAbstract !== undefined) {
+    output.writeFieldBegin('articleAbstract', Thrift.Type.STRING, 2);
+    output.writeString(this.articleAbstract);
+    output.writeFieldEnd();
+  }
+  if (this.authorBiography !== null && this.authorBiography !== undefined) {
+    output.writeFieldBegin('authorBiography', Thrift.Type.STRING, 3);
+    output.writeString(this.authorBiography);
+    output.writeFieldEnd();
+  }
+  if (this.banner !== null && this.banner !== undefined) {
+    output.writeFieldBegin('banner', Thrift.Type.STRING, 4);
+    output.writeString(this.banner);
+    output.writeFieldEnd();
+  }
+  if (this.biographicalCategories !== null && this.biographicalCategories !== undefined) {
+    output.writeFieldBegin('biographicalCategories', Thrift.Type.LIST, 5);
+    output.writeListBegin(Thrift.Type.STRING, this.biographicalCategories.length);
+    for (var iter105 in this.biographicalCategories)
+    {
+      if (this.biographicalCategories.hasOwnProperty(iter105))
+      {
+        iter105 = this.biographicalCategories[iter105];
+        output.writeString(iter105);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.body !== null && this.body !== undefined) {
+    output.writeFieldBegin('body', Thrift.Type.STRING, 6);
+    output.writeString(this.body);
+    output.writeFieldEnd();
+  }
+  if (this.byline !== null && this.byline !== undefined) {
+    output.writeFieldBegin('byline', Thrift.Type.STRING, 7);
+    output.writeString(this.byline);
+    output.writeFieldEnd();
+  }
+  if (this.columnName !== null && this.columnName !== undefined) {
+    output.writeFieldBegin('columnName', Thrift.Type.STRING, 8);
+    output.writeString(this.columnName);
+    output.writeFieldEnd();
+  }
+  if (this.columnNumber !== null && this.columnNumber !== undefined) {
+    output.writeFieldBegin('columnNumber', Thrift.Type.I32, 9);
+    output.writeI32(this.columnNumber);
+    output.writeFieldEnd();
+  }
+  if (this.correctionDate !== null && this.correctionDate !== undefined) {
+    output.writeFieldBegin('correctionDate', Thrift.Type.I64, 10);
+    output.writeI64(this.correctionDate);
+    output.writeFieldEnd();
+  }
+  if (this.correctionText !== null && this.correctionText !== undefined) {
+    output.writeFieldBegin('correctionText', Thrift.Type.STRING, 11);
+    output.writeString(this.correctionText);
+    output.writeFieldEnd();
+  }
+  if (this.credit !== null && this.credit !== undefined) {
+    output.writeFieldBegin('credit', Thrift.Type.STRING, 12);
+    output.writeString(this.credit);
+    output.writeFieldEnd();
+  }
+  if (this.dateline !== null && this.dateline !== undefined) {
+    output.writeFieldBegin('dateline', Thrift.Type.STRING, 13);
+    output.writeString(this.dateline);
+    output.writeFieldEnd();
+  }
+  if (this.dayOfWeek !== null && this.dayOfWeek !== undefined) {
+    output.writeFieldBegin('dayOfWeek', Thrift.Type.STRING, 14);
+    output.writeString(this.dayOfWeek);
+    output.writeFieldEnd();
+  }
+  if (this.descriptors !== null && this.descriptors !== undefined) {
+    output.writeFieldBegin('descriptors', Thrift.Type.LIST, 15);
+    output.writeListBegin(Thrift.Type.STRING, this.descriptors.length);
+    for (var iter106 in this.descriptors)
+    {
+      if (this.descriptors.hasOwnProperty(iter106))
+      {
+        iter106 = this.descriptors[iter106];
+        output.writeString(iter106);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.featurePage !== null && this.featurePage !== undefined) {
+    output.writeFieldBegin('featurePage', Thrift.Type.STRING, 16);
+    output.writeString(this.featurePage);
+    output.writeFieldEnd();
+  }
+  if (this.generalOnlineDescriptors !== null && this.generalOnlineDescriptors !== undefined) {
+    output.writeFieldBegin('generalOnlineDescriptors', Thrift.Type.LIST, 17);
+    output.writeListBegin(Thrift.Type.STRING, this.generalOnlineDescriptors.length);
+    for (var iter107 in this.generalOnlineDescriptors)
+    {
+      if (this.generalOnlineDescriptors.hasOwnProperty(iter107))
+      {
+        iter107 = this.generalOnlineDescriptors[iter107];
+        output.writeString(iter107);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.guid !== null && this.guid !== undefined) {
+    output.writeFieldBegin('guid', Thrift.Type.I32, 18);
+    output.writeI32(this.guid);
+    output.writeFieldEnd();
+  }
+  if (this.headline !== null && this.headline !== undefined) {
+    output.writeFieldBegin('headline', Thrift.Type.STRING, 19);
+    output.writeString(this.headline);
+    output.writeFieldEnd();
+  }
+  if (this.kicker !== null && this.kicker !== undefined) {
+    output.writeFieldBegin('kicker', Thrift.Type.STRING, 20);
+    output.writeString(this.kicker);
+    output.writeFieldEnd();
+  }
+  if (this.leadParagraph !== null && this.leadParagraph !== undefined) {
+    output.writeFieldBegin('leadParagraph', Thrift.Type.STRING, 21);
+    output.writeString(this.leadParagraph);
+    output.writeFieldEnd();
+  }
+  if (this.locations !== null && this.locations !== undefined) {
+    output.writeFieldBegin('locations', Thrift.Type.LIST, 22);
+    output.writeListBegin(Thrift.Type.STRING, this.locations.length);
+    for (var iter108 in this.locations)
+    {
+      if (this.locations.hasOwnProperty(iter108))
+      {
+        iter108 = this.locations[iter108];
+        output.writeString(iter108);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.names !== null && this.names !== undefined) {
+    output.writeFieldBegin('names', Thrift.Type.LIST, 23);
+    output.writeListBegin(Thrift.Type.STRING, this.names.length);
+    for (var iter109 in this.names)
+    {
+      if (this.names.hasOwnProperty(iter109))
+      {
+        iter109 = this.names[iter109];
+        output.writeString(iter109);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.newsDesk !== null && this.newsDesk !== undefined) {
+    output.writeFieldBegin('newsDesk', Thrift.Type.STRING, 24);
+    output.writeString(this.newsDesk);
+    output.writeFieldEnd();
+  }
+  if (this.normalizedByline !== null && this.normalizedByline !== undefined) {
+    output.writeFieldBegin('normalizedByline', Thrift.Type.STRING, 25);
+    output.writeString(this.normalizedByline);
+    output.writeFieldEnd();
+  }
+  if (this.onlineDescriptors !== null && this.onlineDescriptors !== undefined) {
+    output.writeFieldBegin('onlineDescriptors', Thrift.Type.LIST, 26);
+    output.writeListBegin(Thrift.Type.STRING, this.onlineDescriptors.length);
+    for (var iter110 in this.onlineDescriptors)
+    {
+      if (this.onlineDescriptors.hasOwnProperty(iter110))
+      {
+        iter110 = this.onlineDescriptors[iter110];
+        output.writeString(iter110);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.onlineHeadline !== null && this.onlineHeadline !== undefined) {
+    output.writeFieldBegin('onlineHeadline', Thrift.Type.STRING, 27);
+    output.writeString(this.onlineHeadline);
+    output.writeFieldEnd();
+  }
+  if (this.onlineLeadParagraph !== null && this.onlineLeadParagraph !== undefined) {
+    output.writeFieldBegin('onlineLeadParagraph', Thrift.Type.STRING, 28);
+    output.writeString(this.onlineLeadParagraph);
+    output.writeFieldEnd();
+  }
+  if (this.onlineLocations !== null && this.onlineLocations !== undefined) {
+    output.writeFieldBegin('onlineLocations', Thrift.Type.LIST, 29);
+    output.writeListBegin(Thrift.Type.STRING, this.onlineLocations.length);
+    for (var iter111 in this.onlineLocations)
+    {
+      if (this.onlineLocations.hasOwnProperty(iter111))
+      {
+        iter111 = this.onlineLocations[iter111];
+        output.writeString(iter111);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.onlineOrganizations !== null && this.onlineOrganizations !== undefined) {
+    output.writeFieldBegin('onlineOrganizations', Thrift.Type.LIST, 30);
+    output.writeListBegin(Thrift.Type.STRING, this.onlineOrganizations.length);
+    for (var iter112 in this.onlineOrganizations)
+    {
+      if (this.onlineOrganizations.hasOwnProperty(iter112))
+      {
+        iter112 = this.onlineOrganizations[iter112];
+        output.writeString(iter112);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.onlinePeople !== null && this.onlinePeople !== undefined) {
+    output.writeFieldBegin('onlinePeople', Thrift.Type.LIST, 31);
+    output.writeListBegin(Thrift.Type.STRING, this.onlinePeople.length);
+    for (var iter113 in this.onlinePeople)
+    {
+      if (this.onlinePeople.hasOwnProperty(iter113))
+      {
+        iter113 = this.onlinePeople[iter113];
+        output.writeString(iter113);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.onlineSection !== null && this.onlineSection !== undefined) {
+    output.writeFieldBegin('onlineSection', Thrift.Type.STRING, 32);
+    output.writeString(this.onlineSection);
+    output.writeFieldEnd();
+  }
+  if (this.onlineTitles !== null && this.onlineTitles !== undefined) {
+    output.writeFieldBegin('onlineTitles', Thrift.Type.LIST, 33);
+    output.writeListBegin(Thrift.Type.STRING, this.onlineTitles.length);
+    for (var iter114 in this.onlineTitles)
+    {
+      if (this.onlineTitles.hasOwnProperty(iter114))
+      {
+        iter114 = this.onlineTitles[iter114];
+        output.writeString(iter114);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.organizations !== null && this.organizations !== undefined) {
+    output.writeFieldBegin('organizations', Thrift.Type.LIST, 34);
+    output.writeListBegin(Thrift.Type.STRING, this.organizations.length);
+    for (var iter115 in this.organizations)
+    {
+      if (this.organizations.hasOwnProperty(iter115))
+      {
+        iter115 = this.organizations[iter115];
+        output.writeString(iter115);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.page !== null && this.page !== undefined) {
+    output.writeFieldBegin('page', Thrift.Type.I32, 35);
+    output.writeI32(this.page);
+    output.writeFieldEnd();
+  }
+  if (this.people !== null && this.people !== undefined) {
+    output.writeFieldBegin('people', Thrift.Type.LIST, 36);
+    output.writeListBegin(Thrift.Type.STRING, this.people.length);
+    for (var iter116 in this.people)
+    {
+      if (this.people.hasOwnProperty(iter116))
+      {
+        iter116 = this.people[iter116];
+        output.writeString(iter116);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.publicationDate !== null && this.publicationDate !== undefined) {
+    output.writeFieldBegin('publicationDate', Thrift.Type.I64, 37);
+    output.writeI64(this.publicationDate);
+    output.writeFieldEnd();
+  }
+  if (this.publicationDayOfMonth !== null && this.publicationDayOfMonth !== undefined) {
+    output.writeFieldBegin('publicationDayOfMonth', Thrift.Type.I32, 38);
+    output.writeI32(this.publicationDayOfMonth);
+    output.writeFieldEnd();
+  }
+  if (this.publicationMonth !== null && this.publicationMonth !== undefined) {
+    output.writeFieldBegin('publicationMonth', Thrift.Type.I32, 39);
+    output.writeI32(this.publicationMonth);
+    output.writeFieldEnd();
+  }
+  if (this.publicationYear !== null && this.publicationYear !== undefined) {
+    output.writeFieldBegin('publicationYear', Thrift.Type.I32, 40);
+    output.writeI32(this.publicationYear);
+    output.writeFieldEnd();
+  }
+  if (this.section !== null && this.section !== undefined) {
+    output.writeFieldBegin('section', Thrift.Type.STRING, 41);
+    output.writeString(this.section);
+    output.writeFieldEnd();
+  }
+  if (this.seriesName !== null && this.seriesName !== undefined) {
+    output.writeFieldBegin('seriesName', Thrift.Type.STRING, 42);
+    output.writeString(this.seriesName);
+    output.writeFieldEnd();
+  }
+  if (this.slug !== null && this.slug !== undefined) {
+    output.writeFieldBegin('slug', Thrift.Type.STRING, 43);
+    output.writeString(this.slug);
+    output.writeFieldEnd();
+  }
+  if (this.sourceFilePath !== null && this.sourceFilePath !== undefined) {
+    output.writeFieldBegin('sourceFilePath', Thrift.Type.STRING, 44);
+    output.writeString(this.sourceFilePath);
+    output.writeFieldEnd();
+  }
+  if (this.taxonomicClassifiers !== null && this.taxonomicClassifiers !== undefined) {
+    output.writeFieldBegin('taxonomicClassifiers', Thrift.Type.LIST, 45);
+    output.writeListBegin(Thrift.Type.STRING, this.taxonomicClassifiers.length);
+    for (var iter117 in this.taxonomicClassifiers)
+    {
+      if (this.taxonomicClassifiers.hasOwnProperty(iter117))
+      {
+        iter117 = this.taxonomicClassifiers[iter117];
+        output.writeString(iter117);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.titles !== null && this.titles !== undefined) {
+    output.writeFieldBegin('titles', Thrift.Type.LIST, 46);
+    output.writeListBegin(Thrift.Type.STRING, this.titles.length);
+    for (var iter118 in this.titles)
+    {
+      if (this.titles.hasOwnProperty(iter118))
+      {
+        iter118 = this.titles[iter118];
+        output.writeString(iter118);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.typesOfMaterial !== null && this.typesOfMaterial !== undefined) {
+    output.writeFieldBegin('typesOfMaterial', Thrift.Type.LIST, 47);
+    output.writeListBegin(Thrift.Type.STRING, this.typesOfMaterial.length);
+    for (var iter119 in this.typesOfMaterial)
+    {
+      if (this.typesOfMaterial.hasOwnProperty(iter119))
+      {
+        iter119 = this.typesOfMaterial[iter119];
+        output.writeString(iter119);
+      }
+    }
+    output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.url !== null && this.url !== undefined) {
+    output.writeFieldBegin('url', Thrift.Type.STRING, 48);
+    output.writeString(this.url);
+    output.writeFieldEnd();
+  }
+  if (this.wordCount !== null && this.wordCount !== undefined) {
+    output.writeFieldBegin('wordCount', Thrift.Type.I32, 49);
+    output.writeI32(this.wordCount);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
+;//
+// Autogenerated by Thrift Compiler (1.0.0-dev)
+//
+// DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
+//
+
+
 Argument = function(args) {
   this.role = null;
   this.entityId = null;
@@ -2792,15 +3995,17 @@ Argument.prototype.read = function(input) {
       }
       break;
       case 2:
-      if (ftype == Thrift.Type.STRING) {
-        this.entityId = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.entityId = new UUID();
+        this.entityId.read(input);
       } else {
         input.skip(ftype);
       }
       break;
       case 3:
-      if (ftype == Thrift.Type.STRING) {
-        this.situationId = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.situationId = new UUID();
+        this.situationId.read(input);
       } else {
         input.skip(ftype);
       }
@@ -2829,13 +4034,13 @@ Argument.prototype.write = function(output) {
     output.writeFieldEnd();
   }
   if (this.entityId !== null && this.entityId !== undefined) {
-    output.writeFieldBegin('entityId', Thrift.Type.STRING, 2);
-    output.writeString(this.entityId);
+    output.writeFieldBegin('entityId', Thrift.Type.STRUCT, 2);
+    this.entityId.write(output);
     output.writeFieldEnd();
   }
   if (this.situationId !== null && this.situationId !== undefined) {
-    output.writeFieldBegin('situationId', Thrift.Type.STRING, 3);
-    output.writeString(this.situationId);
+    output.writeFieldBegin('situationId', Thrift.Type.STRUCT, 3);
+    this.situationId.write(output);
     output.writeFieldEnd();
   }
   if (this.roleLabel !== null && this.roleLabel !== undefined) {
@@ -2886,8 +4091,9 @@ Justification.prototype.read = function(input) {
       }
       break;
       case 2:
-      if (ftype == Thrift.Type.STRING) {
-        this.mentionId = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.mentionId = new UUID();
+        this.mentionId.read(input);
       } else {
         input.skip(ftype);
       }
@@ -2930,8 +4136,8 @@ Justification.prototype.write = function(output) {
     output.writeFieldEnd();
   }
   if (this.mentionId !== null && this.mentionId !== undefined) {
-    output.writeFieldBegin('mentionId', Thrift.Type.STRING, 2);
-    output.writeString(this.mentionId);
+    output.writeFieldBegin('mentionId', Thrift.Type.STRUCT, 2);
+    this.mentionId.write(output);
     output.writeFieldEnd();
   }
   if (this.tokens !== null && this.tokens !== undefined) {
@@ -3032,8 +4238,9 @@ Situation.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -3078,7 +4285,8 @@ Situation.prototype.read = function(input) {
         for (var _i20 = 0; _i20 < _size15; ++_i20)
         {
           var elem21 = null;
-          elem21 = input.readString().value;
+          elem21 = new UUID();
+          elem21.read(input);
           this.mentionIdList.push(elem21);
         }
         input.readListEnd();
@@ -3189,8 +4397,8 @@ Situation.prototype.read = function(input) {
 Situation.prototype.write = function(output) {
   output.writeStructBegin('Situation');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.situationType !== null && this.situationType !== undefined) {
@@ -3214,13 +4422,13 @@ Situation.prototype.write = function(output) {
   }
   if (this.mentionIdList !== null && this.mentionIdList !== undefined) {
     output.writeFieldBegin('mentionIdList', Thrift.Type.LIST, 4);
-    output.writeListBegin(Thrift.Type.STRING, this.mentionIdList.length);
+    output.writeListBegin(Thrift.Type.STRUCT, this.mentionIdList.length);
     for (var iter30 in this.mentionIdList)
     {
       if (this.mentionIdList.hasOwnProperty(iter30))
       {
         iter30 = this.mentionIdList[iter30];
-        output.writeString(iter30);
+        iter30.write(output);
       }
     }
     output.writeListEnd();
@@ -3326,8 +4534,9 @@ SituationSet.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -3373,8 +4582,8 @@ SituationSet.prototype.read = function(input) {
 SituationSet.prototype.write = function(output) {
   output.writeStructBegin('SituationSet');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.metadata !== null && this.metadata !== undefined) {
@@ -3443,15 +4652,17 @@ MentionArgument.prototype.read = function(input) {
       }
       break;
       case 2:
-      if (ftype == Thrift.Type.STRING) {
-        this.entityMentionId = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.entityMentionId = new UUID();
+        this.entityMentionId.read(input);
       } else {
         input.skip(ftype);
       }
       break;
       case 3:
-      if (ftype == Thrift.Type.STRING) {
-        this.situationMentionId = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.situationMentionId = new UUID();
+        this.situationMentionId.read(input);
       } else {
         input.skip(ftype);
       }
@@ -3480,13 +4691,13 @@ MentionArgument.prototype.write = function(output) {
     output.writeFieldEnd();
   }
   if (this.entityMentionId !== null && this.entityMentionId !== undefined) {
-    output.writeFieldBegin('entityMentionId', Thrift.Type.STRING, 2);
-    output.writeString(this.entityMentionId);
+    output.writeFieldBegin('entityMentionId', Thrift.Type.STRUCT, 2);
+    this.entityMentionId.write(output);
     output.writeFieldEnd();
   }
   if (this.situationMentionId !== null && this.situationMentionId !== undefined) {
-    output.writeFieldBegin('situationMentionId', Thrift.Type.STRING, 3);
-    output.writeString(this.situationMentionId);
+    output.writeFieldBegin('situationMentionId', Thrift.Type.STRUCT, 3);
+    this.situationMentionId.write(output);
     output.writeFieldEnd();
   }
   if (this.roleLabel !== null && this.roleLabel !== undefined) {
@@ -3562,8 +4773,9 @@ SituationMention.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -3665,8 +4877,8 @@ SituationMention.prototype.read = function(input) {
 SituationMention.prototype.write = function(output) {
   output.writeStructBegin('SituationMention');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.text !== null && this.text !== undefined) {
@@ -3764,8 +4976,9 @@ SituationMentionSet.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -3811,8 +5024,8 @@ SituationMentionSet.prototype.read = function(input) {
 SituationMentionSet.prototype.write = function(output) {
   output.writeStructBegin('SituationMentionSet');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.metadata !== null && this.metadata !== undefined) {
@@ -4155,8 +5368,9 @@ TokenRefSequence.prototype.read = function(input) {
       }
       break;
       case 3:
-      if (ftype == Thrift.Type.STRING) {
-        this.tokenizationId = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.tokenizationId = new UUID();
+        this.tokenizationId.read(input);
       } else {
         input.skip(ftype);
       }
@@ -4208,8 +5422,8 @@ TokenRefSequence.prototype.write = function(output) {
     output.writeFieldEnd();
   }
   if (this.tokenizationId !== null && this.tokenizationId !== undefined) {
-    output.writeFieldBegin('tokenizationId', Thrift.Type.STRING, 3);
-    output.writeString(this.tokenizationId);
+    output.writeFieldBegin('tokenizationId', Thrift.Type.STRUCT, 3);
+    this.tokenizationId.write(output);
     output.writeFieldEnd();
   }
   if (this.textSpan !== null && this.textSpan !== undefined) {
@@ -4340,8 +5554,9 @@ TokenTagging.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -4387,8 +5602,8 @@ TokenTagging.prototype.read = function(input) {
 TokenTagging.prototype.write = function(output) {
   output.writeStructBegin('TokenTagging');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.metadata !== null && this.metadata !== undefined) {
@@ -4528,8 +5743,9 @@ DependencyParse.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -4575,8 +5791,8 @@ DependencyParse.prototype.read = function(input) {
 DependencyParse.prototype.write = function(output) {
   output.writeStructBegin('DependencyParse');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.metadata !== null && this.metadata !== undefined) {
@@ -4771,8 +5987,9 @@ Parse.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -4818,8 +6035,8 @@ Parse.prototype.read = function(input) {
 Parse.prototype.write = function(output) {
   output.writeStructBegin('Parse');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.metadata !== null && this.metadata !== undefined) {
@@ -5223,8 +6440,9 @@ Tokenization.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -5335,8 +6553,9 @@ Tokenization.prototype.read = function(input) {
       }
       break;
       case 12:
-      if (ftype == Thrift.Type.STRING) {
-        this.sentenceId = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.sentenceId = new UUID();
+        this.sentenceId.read(input);
       } else {
         input.skip(ftype);
       }
@@ -5353,8 +6572,8 @@ Tokenization.prototype.read = function(input) {
 Tokenization.prototype.write = function(output) {
   output.writeStructBegin('Tokenization');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.metadata !== null && this.metadata !== undefined) {
@@ -5426,8 +6645,8 @@ Tokenization.prototype.write = function(output) {
     output.writeFieldEnd();
   }
   if (this.sentenceId !== null && this.sentenceId !== undefined) {
-    output.writeFieldBegin('sentenceId', Thrift.Type.STRING, 12);
-    output.writeString(this.sentenceId);
+    output.writeFieldBegin('sentenceId', Thrift.Type.STRUCT, 12);
+    this.sentenceId.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -5560,8 +6779,9 @@ Sentence.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -5615,8 +6835,8 @@ Sentence.prototype.read = function(input) {
 Sentence.prototype.write = function(output) {
   output.writeStructBegin('Sentence');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.tokenizationList !== null && this.tokenizationList !== undefined) {
@@ -5683,8 +6903,9 @@ SentenceSegmentation.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -5719,8 +6940,9 @@ SentenceSegmentation.prototype.read = function(input) {
       }
       break;
       case 4:
-      if (ftype == Thrift.Type.STRING) {
-        this.sectionId = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.sectionId = new UUID();
+        this.sectionId.read(input);
       } else {
         input.skip(ftype);
       }
@@ -5737,8 +6959,8 @@ SentenceSegmentation.prototype.read = function(input) {
 SentenceSegmentation.prototype.write = function(output) {
   output.writeStructBegin('SentenceSegmentation');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.metadata !== null && this.metadata !== undefined) {
@@ -5761,8 +6983,8 @@ SentenceSegmentation.prototype.write = function(output) {
     output.writeFieldEnd();
   }
   if (this.sectionId !== null && this.sectionId !== undefined) {
-    output.writeFieldBegin('sectionId', Thrift.Type.STRING, 4);
-    output.writeString(this.sectionId);
+    output.writeFieldBegin('sectionId', Thrift.Type.STRUCT, 4);
+    this.sectionId.write(output);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -5907,8 +7129,9 @@ Section.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -5996,8 +7219,8 @@ Section.prototype.read = function(input) {
 Section.prototype.write = function(output) {
   output.writeStructBegin('Section');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.sentenceSegmentation !== null && this.sentenceSegmentation !== undefined) {
@@ -6084,8 +7307,9 @@ SectionSegmentation.prototype.read = function(input) {
     switch (fid)
     {
       case 1:
-      if (ftype == Thrift.Type.STRING) {
-        this.uuid = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.uuid = new UUID();
+        this.uuid.read(input);
       } else {
         input.skip(ftype);
       }
@@ -6131,8 +7355,8 @@ SectionSegmentation.prototype.read = function(input) {
 SectionSegmentation.prototype.write = function(output) {
   output.writeStructBegin('SectionSegmentation');
   if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRING, 1);
-    output.writeString(this.uuid);
+    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
+    this.uuid.write(output);
     output.writeFieldEnd();
   }
   if (this.metadata !== null && this.metadata !== undefined) {
@@ -7695,6 +8919,66 @@ TweetInfo.prototype.write = function(output) {
   return;
 };
 
+;//
+// Autogenerated by Thrift Compiler (1.0.0-dev)
+//
+// DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
+//
+
+
+UUID = function(args) {
+  this.uuidString = null;
+  if (args) {
+    if (args.uuidString !== undefined) {
+      this.uuidString = args.uuidString;
+    }
+  }
+};
+UUID.prototype = {};
+UUID.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRING) {
+        this.uuidString = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 0:
+        input.skip(ftype);
+        break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+UUID.prototype.write = function(output) {
+  output.writeStructBegin('UUID');
+  if (this.uuidString !== null && this.uuidString !== undefined) {
+    output.writeFieldBegin('uuidString', Thrift.Type.STRING, 1);
+    output.writeString(this.uuidString);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 ;/*
   COMMUNICATION_FU
 */
@@ -7705,7 +8989,7 @@ Communication.prototype.getEntityMentionWithUUID = function(uuid) {
       if (this.entityMentionSets[entityMentionSetIndex].mentionSet) {
         for (var mentionSetIndex in this.entityMentionSets[entityMentionSetIndex].mentionSet) {
           var entityMention = this.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
-          if (entityMention.uuid == uuid) {
+          if (entityMention.uuid.uuidString == uuid.uuidString) {
             return entityMention;
           }
         }
@@ -7713,7 +8997,7 @@ Communication.prototype.getEntityMentionWithUUID = function(uuid) {
     }
   }
   // TODO: Error handling if no matching UUID could be found
-  console.log("ERROR: No EntityMention found with UUID " + uuid);
+  console.log("ERROR: No EntityMention found with UUID " + uuid.uuidString);
 };
 
 
@@ -7723,7 +9007,7 @@ Communication.prototype.getSentenceWithUUID = function(uuid) {
       if (this.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
         for (var sentenceIndex in this.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
           var sentence = this.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
-          if (sentence.uuid == uuid) {
+          if (sentence.uuid.uuidString == uuid.uuidString) {
             return sentence;
           }
         }
@@ -7731,7 +9015,7 @@ Communication.prototype.getSentenceWithUUID = function(uuid) {
     }
   }
   // TODO: Error handling if no matching UUID could be found
-  console.log("ERROR: No Tokenization found with UUID " + uuid);
+  console.log("ERROR: No Tokenization found with UUID " + uuid.uuidString);
 };
 
 
@@ -7742,7 +9026,7 @@ Communication.prototype.getTokenizationWithUUID = function(uuid) {
         for (var sentenceIndex in this.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
           var sentence = this.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
           for (var tokenizationListIndex in sentence.tokenizationList) {
-            if (sentence.tokenizationList[tokenizationListIndex].uuid == uuid) {
+            if (sentence.tokenizationList[tokenizationListIndex].uuid.uuidString == uuid.uuidString) {
               return sentence.tokenizationList[tokenizationListIndex];
             }
           }
@@ -7751,7 +9035,7 @@ Communication.prototype.getTokenizationWithUUID = function(uuid) {
     }
   }
   // TODO: Error handling if no matching UUID could be found
-  console.log("ERROR: No Tokenization found with UUID " + uuid);
+  console.log("ERROR: No Tokenization found with UUID " + uuid.uuidString);
 };
 
 
