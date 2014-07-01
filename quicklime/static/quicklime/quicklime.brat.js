@@ -222,18 +222,18 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
   var sentence_text = "";
   var token_offsets = [];
-  for (i = 0, total_tokens = tokenization.tokenList.length; i < total_tokens; i++) {
+  for (i = 0, total_tokens = tokenization.tokenList.tokenList.length; i < total_tokens; i++) {
     token_offsets.push({
       'start': sentence_text.length,
-      'ending': sentence_text.length + tokenization.tokenList[i].text.length
+      'ending': sentence_text.length + tokenization.tokenList.tokenList[i].text.length
     });
-    sentence_text += tokenization.tokenList[i].text + " ";
+    sentence_text += tokenization.tokenList.tokenList[i].text + " ";
   }
 
   var ner_tag_labels = [];
   for (i = 0; i < tokenization.nerTagList.taggedTokenList.length; i++) {
     var nerTag = tokenization.nerTagList.taggedTokenList[i];
-    var token = tokenization.tokenList[nerTag.tokenIndex];
+    var token = tokenization.tokenList.tokenList[nerTag.tokenIndex];
     var entityID = "T" + (i+1);
     if (nerTag.tag != "O" &&       // Stanford tag
         nerTag.tag != "OTHER" &&   // Serif tag
@@ -343,18 +343,18 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
   var sentence_text = "";
   var token_offsets = [];
-  for (i = 0, total_tokens = tokenization.tokenList.length; i < total_tokens; i++) {
+  for (i = 0, total_tokens = tokenization.tokenList.tokenList.length; i < total_tokens; i++) {
     token_offsets.push({
       'start': sentence_text.length,
-      'ending': sentence_text.length + tokenization.tokenList[i].text.length
+      'ending': sentence_text.length + tokenization.tokenList.tokenList[i].text.length
     });
-    sentence_text += tokenization.tokenList[i].text + " ";
+    sentence_text += tokenization.tokenList.tokenList[i].text + " ";
   }
 
   var pos_tag_labels = [];
   for (i = 0; i < tokenization.posTagList.taggedTokenList.length; i++) {
     var posTag = tokenization.posTagList.taggedTokenList[i];
-    var token = tokenization.tokenList[posTag.tokenIndex];
+    var token = tokenization.tokenList.tokenList[posTag.tokenIndex];
     var entityID = "T" + (i+1);
     var start = token_offsets[posTag.tokenIndex].start;
     var ending = token_offsets[posTag.tokenIndex].ending;
