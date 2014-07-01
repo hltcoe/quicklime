@@ -3,8 +3,8 @@
     {
       "mentionSet": [
         {
-          "entityType": 1,
-          "phraseType": 1,
+          "entityType": "PER",
+          "phraseType": "PhraseType.NAME",
           "text": "John Smith",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -16,13 +16,17 @@
               0,
               1
             ],
-            "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+            "tokenizationId": {
+              "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+            }
           },
-          "uuid": "89ac87aa-5dd3-4681-ad7d-8b4431bab5d2"
+          "uuid": {
+            "uuidString": "03063d66-8d6a-4431-8169-f316972e6d40"
+          }
         },
         {
-          "entityType": 2,
-          "phraseType": 1,
+          "entityType": "ORG",
+          "phraseType": "PhraseType.NAME",
           "text": "ACME INC",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -34,13 +38,17 @@
               5,
               6
             ],
-            "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+            "tokenizationId": {
+              "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+            }
           },
-          "uuid": "2ac85ff1-beff-4c75-a901-241b593598c8"
+          "uuid": {
+            "uuidString": "4bb77b9d-dff5-4fe1-9ca8-1a05f2ddd332"
+          }
         },
         {
-          "entityType": 1,
-          "phraseType": 1,
+          "entityType": "PER",
+          "phraseType": "PhraseType.NAME",
           "text": "John",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -51,13 +59,17 @@
             "tokenIndexList": [
               0
             ],
-            "tokenizationId": "652bd7e9-9b57-42eb-8671-ce2068ef0a89"
+            "tokenizationId": {
+              "uuidString": "ea48ea4d-6179-4fb7-9bfd-6cef9a68e8da"
+            }
           },
-          "uuid": "affa4049-ed55-4069-896f-557f6545370d"
+          "uuid": {
+            "uuidString": "95cff96b-c58b-4fe0-a040-45d6a24084f3"
+          }
         },
         {
-          "entityType": 1,
-          "phraseType": 1,
+          "entityType": "PER",
+          "phraseType": "PhraseType.NAME",
           "text": "Mary",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -68,22 +80,28 @@
             "tokenIndexList": [
               3
             ],
-            "tokenizationId": "652bd7e9-9b57-42eb-8671-ce2068ef0a89"
+            "tokenizationId": {
+              "uuidString": "ea48ea4d-6179-4fb7-9bfd-6cef9a68e8da"
+            }
           },
-          "uuid": "9db002a2-1bc9-4c0f-920f-2a5a824d8d3c"
+          "uuid": {
+            "uuidString": "769cd321-6990-4375-a1f7-dccbc03ee994"
+          }
         }
       ],
       "metadata": {
-        "timestamp": 1397843769,
+        "timestamp": 1404239390,
         "tool": "Serif: names"
       },
-      "uuid": "2527eaf3-e828-44eb-bd47-060d758a73ea"
+      "uuid": {
+        "uuidString": "08292e8c-c10d-48b7-9ee5-3ea3967b5865"
+      }
     },
     {
       "mentionSet": [
         {
-          "entityType": 10,
-          "phraseType": 4,
+          "entityType": "TIMEX2.TIME",
+          "phraseType": "PhraseType.OTHER",
           "text": "March 10th, 2013",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -97,22 +115,28 @@
               16,
               17
             ],
-            "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+            "tokenizationId": {
+              "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+            }
           },
-          "uuid": "a7335b82-8027-4cd4-9b0a-44a284bf6ded"
+          "uuid": {
+            "uuidString": "d9f5a3ba-b32d-4d6f-88ad-aa712dbb2d75"
+          }
         }
       ],
       "metadata": {
-        "timestamp": 1397843769,
+        "timestamp": 1404239390,
         "tool": "Serif: values"
       },
-      "uuid": "8d690223-c99b-42a5-aade-685b212b5b49"
+      "uuid": {
+        "uuidString": "36c362cd-5a95-43a1-a107-496ea1153470"
+      }
     },
     {
       "mentionSet": [
         {
-          "entityType": 1,
-          "phraseType": 5,
+          "entityType": "PER",
+          "phraseType": "PhraseType.APPOSITIVE",
           "text": "John Smith, manager of ACME INC,",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -130,13 +154,17 @@
               6,
               7
             ],
-            "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+            "tokenizationId": {
+              "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+            }
           },
-          "uuid": "82b93fb6-1de4-4d01-80d4-8c0efe81691f"
+          "uuid": {
+            "uuidString": "cbfad06a-f64e-4fb2-b8bf-f03540bd4783"
+          }
         },
         {
-          "entityType": 1,
-          "phraseType": 1,
+          "entityType": "PER",
+          "phraseType": "PhraseType.NAME",
           "text": "John Smith",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -148,13 +176,17 @@
               0,
               1
             ],
-            "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+            "tokenizationId": {
+              "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+            }
           },
-          "uuid": "eeb478fa-965a-4b18-9824-490cc4c2bc8c"
+          "uuid": {
+            "uuidString": "d574ad41-8f2c-458d-abbc-469fcb710b04"
+          }
         },
         {
-          "entityType": 1,
-          "phraseType": 3,
+          "entityType": "PER",
+          "phraseType": "PhraseType.COMMON_NOUN",
           "text": "manager of ACME INC",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -168,13 +200,17 @@
               5,
               6
             ],
-            "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+            "tokenizationId": {
+              "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+            }
           },
-          "uuid": "e65408fd-1e07-41c8-a301-8ff0059fc4cb"
+          "uuid": {
+            "uuidString": "c7a307c3-62cc-44a5-badb-a3cb58859422"
+          }
         },
         {
-          "entityType": 2,
-          "phraseType": 1,
+          "entityType": "ORG",
+          "phraseType": "PhraseType.NAME",
           "text": "ACME INC",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -186,13 +222,17 @@
               5,
               6
             ],
-            "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+            "tokenizationId": {
+              "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+            }
           },
-          "uuid": "8f1ff230-8e67-46e3-8ae2-37e85d932e0e"
+          "uuid": {
+            "uuidString": "c1f9993e-bc61-4626-a199-cb11682d3fc2"
+          }
         },
         {
-          "entityType": 4,
-          "phraseType": 3,
+          "entityType": "OTH",
+          "phraseType": "PhraseType.COMMON_NOUN",
           "text": "bit by a dog on March 10th, 2013",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -211,13 +251,17 @@
               16,
               17
             ],
-            "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+            "tokenizationId": {
+              "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+            }
           },
-          "uuid": "6b06700c-395d-4d12-8b98-15c967ec9812"
+          "uuid": {
+            "uuidString": "a375b05b-0194-41ad-91dc-924145fd284d"
+          }
         },
         {
-          "entityType": 4,
-          "phraseType": 3,
+          "entityType": "OTH",
+          "phraseType": "PhraseType.COMMON_NOUN",
           "text": "a dog on March 10th, 2013",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -234,13 +278,17 @@
               16,
               17
             ],
-            "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+            "tokenizationId": {
+              "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+            }
           },
-          "uuid": "9f85107d-f6f6-47b2-adc6-ec74653d06d5"
+          "uuid": {
+            "uuidString": "da597a4b-fa2f-4a1e-9bd2-ca6b976d5403"
+          }
         },
         {
-          "entityType": 4,
-          "phraseType": 5,
+          "entityType": "OTH",
+          "phraseType": "PhraseType.APPOSITIVE",
           "text": "March 10th, 2013",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -254,13 +302,17 @@
               16,
               17
             ],
-            "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+            "tokenizationId": {
+              "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+            }
           },
-          "uuid": "7d07b2a0-bfd6-4d9a-a0b0-c62c3428c7bf"
+          "uuid": {
+            "uuidString": "38834bda-a524-4042-8d43-261bf1872edc"
+          }
         },
         {
-          "entityType": 4,
-          "phraseType": 3,
+          "entityType": "OTH",
+          "phraseType": "PhraseType.COMMON_NOUN",
           "text": "March 10th",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -272,13 +324,17 @@
               14,
               15
             ],
-            "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+            "tokenizationId": {
+              "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+            }
           },
-          "uuid": "6d726695-3971-4f38-a16e-2b7df3fb7b9c"
+          "uuid": {
+            "uuidString": "264e42d9-efb4-436c-a1f8-a6f91aa579f8"
+          }
         },
         {
-          "entityType": 4,
-          "phraseType": 3,
+          "entityType": "OTH",
+          "phraseType": "PhraseType.COMMON_NOUN",
           "text": "2013",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -289,13 +345,17 @@
             "tokenIndexList": [
               17
             ],
-            "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+            "tokenizationId": {
+              "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+            }
           },
-          "uuid": "67b5a35e-ea65-467d-924f-2112259c1ed9"
+          "uuid": {
+            "uuidString": "67d6eee1-091e-41c8-a45c-61f1555b788d"
+          }
         },
         {
-          "entityType": 1,
-          "phraseType": 2,
+          "entityType": "PER",
+          "phraseType": "PhraseType.PRONOUN",
           "text": "He",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -306,13 +366,17 @@
             "tokenIndexList": [
               0
             ],
-            "tokenizationId": "973eb7c5-8290-464d-8c04-233fd922ad1f"
+            "tokenizationId": {
+              "uuidString": "e87dd047-4c26-45ba-ae06-f6425effa175"
+            }
           },
-          "uuid": "e4da8c72-f402-45ac-8da7-7e2f39c6548c"
+          "uuid": {
+            "uuidString": "97a5a724-2dab-4019-82f3-a6bf6f200b56"
+          }
         },
         {
-          "entityType": 1,
-          "phraseType": 1,
+          "entityType": "PER",
+          "phraseType": "PhraseType.NAME",
           "text": "John's daughter Mary",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -326,13 +390,17 @@
               2,
               3
             ],
-            "tokenizationId": "652bd7e9-9b57-42eb-8671-ce2068ef0a89"
+            "tokenizationId": {
+              "uuidString": "ea48ea4d-6179-4fb7-9bfd-6cef9a68e8da"
+            }
           },
-          "uuid": "de4ab964-f128-4b0a-a12b-605c3f84e8f2"
+          "uuid": {
+            "uuidString": "fe1ca3a7-3fdf-4b00-8237-66762215d489"
+          }
         },
         {
-          "entityType": 1,
-          "phraseType": 1,
+          "entityType": "PER",
+          "phraseType": "PhraseType.NAME",
           "text": "John",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -343,13 +411,17 @@
             "tokenIndexList": [
               0
             ],
-            "tokenizationId": "652bd7e9-9b57-42eb-8671-ce2068ef0a89"
+            "tokenizationId": {
+              "uuidString": "ea48ea4d-6179-4fb7-9bfd-6cef9a68e8da"
+            }
           },
-          "uuid": "918bf94e-454f-42bf-89a1-f78aefd4f8a6"
+          "uuid": {
+            "uuidString": "3a162bd0-4dd8-4beb-a554-053ab56f3bd2"
+          }
         },
         {
-          "entityType": 1,
-          "phraseType": 3,
+          "entityType": "PER",
+          "phraseType": "PhraseType.COMMON_NOUN",
           "text": "daughter",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -360,13 +432,17 @@
             "tokenIndexList": [
               2
             ],
-            "tokenizationId": "652bd7e9-9b57-42eb-8671-ce2068ef0a89"
+            "tokenizationId": {
+              "uuidString": "ea48ea4d-6179-4fb7-9bfd-6cef9a68e8da"
+            }
           },
-          "uuid": "d62cf742-f57e-4741-a279-5620bfa12f4f"
+          "uuid": {
+            "uuidString": "33aa7b54-56bb-4f55-8992-c6a49877f083"
+          }
         },
         {
-          "entityType": 4,
-          "phraseType": 3,
+          "entityType": "OTH",
+          "phraseType": "PhraseType.COMMON_NOUN",
           "text": "sorrow",
           "tokens": {
             "anchorTokenIndex": -1,
@@ -377,16 +453,22 @@
             "tokenIndexList": [
               5
             ],
-            "tokenizationId": "652bd7e9-9b57-42eb-8671-ce2068ef0a89"
+            "tokenizationId": {
+              "uuidString": "ea48ea4d-6179-4fb7-9bfd-6cef9a68e8da"
+            }
           },
-          "uuid": "3f00b358-d228-4aea-a6f9-9f6217d53c97"
+          "uuid": {
+            "uuidString": "a48f080c-eafd-4f9e-9388-9107c7af3494"
+          }
         }
       ],
       "metadata": {
-        "timestamp": 1397843769,
+        "timestamp": 1404239390,
         "tool": "Serif: mentions"
       },
-      "uuid": "b948b6fb-4860-4c40-b726-daa52174261a"
+      "uuid": {
+        "uuidString": "935aee3f-c2bf-4e9e-a864-cfe56a295651"
+      }
     }
   ],
   "entitySets": [
@@ -394,90 +476,128 @@
       "entityList": [
         {
           "mentionIdList": [
-            "eeb478fa-965a-4b18-9824-490cc4c2bc8c",
-            "82b93fb6-1de4-4d01-80d4-8c0efe81691f",
-            "e65408fd-1e07-41c8-a301-8ff0059fc4cb",
-            "e4da8c72-f402-45ac-8da7-7e2f39c6548c",
-            "918bf94e-454f-42bf-89a1-f78aefd4f8a6"
+            {
+              "uuidString": "d574ad41-8f2c-458d-abbc-469fcb710b04"
+            },
+            {
+              "uuidString": "cbfad06a-f64e-4fb2-b8bf-f03540bd4783"
+            },
+            {
+              "uuidString": "c7a307c3-62cc-44a5-badb-a3cb58859422"
+            },
+            {
+              "uuidString": "97a5a724-2dab-4019-82f3-a6bf6f200b56"
+            },
+            {
+              "uuidString": "3a162bd0-4dd8-4beb-a554-053ab56f3bd2"
+            }
           ],
-          "type": 1,
-          "uuid": "9c37c35b-b955-47c5-b990-16c6704e491a"
+          "type": "PER",
+          "uuid": {
+            "uuidString": "d5d1092f-6b29-450e-9bb8-0327a86f14de"
+          }
         },
         {
           "mentionIdList": [
-            "8f1ff230-8e67-46e3-8ae2-37e85d932e0e"
+            {
+              "uuidString": "c1f9993e-bc61-4626-a199-cb11682d3fc2"
+            }
           ],
-          "type": 2,
-          "uuid": "66254a3a-5676-4a71-a401-9a2aae31aa1c"
+          "type": "ORG",
+          "uuid": {
+            "uuidString": "e2ca9296-5769-49b1-a784-17b8379a24f8"
+          }
         },
         {
           "mentionIdList": [
-            "de4ab964-f128-4b0a-a12b-605c3f84e8f2",
-            "d62cf742-f57e-4741-a279-5620bfa12f4f"
+            {
+              "uuidString": "fe1ca3a7-3fdf-4b00-8237-66762215d489"
+            },
+            {
+              "uuidString": "33aa7b54-56bb-4f55-8992-c6a49877f083"
+            }
           ],
-          "type": 1,
-          "uuid": "5ae0f592-268e-426f-a08a-dcc801d789d2"
+          "type": "PER",
+          "uuid": {
+            "uuidString": "f0dabe20-332c-4f45-80cc-88147d2977a1"
+          }
         }
       ],
       "metadata": {
-        "timestamp": 1397843769,
+        "timestamp": 1404239390,
         "tool": "Serif: doc-entities"
       },
-      "uuid": "5c735fb4-0c0f-4d3f-adb0-3dc3bdf3ec99"
+      "uuid": {
+        "uuidString": "4afbb175-81d5-44ee-a701-1ce1618d17a0"
+      }
     },
     {
       "entityList": [
         {
           "mentionIdList": [
-            "a7335b82-8027-4cd4-9b0a-44a284bf6ded"
+            {
+              "uuidString": "d9f5a3ba-b32d-4d6f-88ad-aa712dbb2d75"
+            }
           ],
-          "type": 10,
-          "uuid": "8b9f3e7e-ac94-40c6-b633-4c4c0a3e9c4b"
+          "type": "TIMEX2.TIME",
+          "uuid": {
+            "uuidString": "c2a5dfac-f8cb-40ac-b26a-31cc02f0c2ef"
+          }
         }
       ],
       "metadata": {
-        "timestamp": 1397843769,
+        "timestamp": 1404239390,
         "tool": "Serif: doc-values"
       },
-      "uuid": "877e836b-62d2-4753-966c-cdf6c4dc5650"
+      "uuid": {
+        "uuidString": "fb277d93-bb4b-49cd-aca1-2c5d12aad1e3"
+      }
     }
   ],
-  "id": "serif_dog-bites-man.xml",
+  "id": "serif_example.xml",
   "sectionSegmentations": [
     {
       "metadata": {
-        "timestamp": 1397843769,
+        "timestamp": 1404239390,
         "tool": "Serif: zoning"
       },
       "sectionList": [
         {
-          "kind": 1,
+          "kind": "SectionKind.PASSAGE",
           "sentenceSegmentation": [
             {
               "metadata": {
-                "timestamp": 1397843769,
+                "timestamp": 1404239390,
                 "tool": "Serif: sent-break"
               },
-              "sectionId": "4aa1ccfa-2e9c-478b-8777-070ed5afe097",
+              "sectionId": {
+                "uuidString": "818224bd-e57f-4c2d-8857-7215b5faa65b"
+              },
               "sentenceList": [],
-              "uuid": "a4b9218d-6c7d-4171-8365-fc67e68cb739"
+              "uuid": {
+                "uuidString": "1984303a-79f2-4a63-8e90-686118c5f6fb"
+              }
             }
           ],
           "textSpan": {
             "ending": 82,
             "start": 81
           },
-          "uuid": "4aa1ccfa-2e9c-478b-8777-070ed5afe097"
+          "uuid": {
+            "uuidString": "818224bd-e57f-4c2d-8857-7215b5faa65b"
+          }
         },
         {
-          "kind": 1,
+          "kind": "SectionKind.PASSAGE",
           "sentenceSegmentation": [
             {
               "metadata": {
-                "timestamp": 1397843769,
+                "timestamp": 1404239390,
                 "tool": "Serif: sent-break"
               },
-              "sectionId": "3bf303ea-6eff-4369-bac8-a842a15724f5",
+              "sectionId": {
+                "uuidString": "1016d1ce-c518-4174-a324-1d3bf8be9d4b"
+              },
               "sentenceList": [
                 {
                   "textSpan": {
@@ -488,23 +608,23 @@
                     {
                       "kind": 1,
                       "metadata": {
-                        "timestamp": 1397843769,
+                        "timestamp": 1404239390,
                         "tool": "Serif: tokens"
                       },
                       "nerTagList": {
                         "metadata": {
-                          "timestamp": 1397843769,
+                          "timestamp": 1404239390,
                           "tool": "Serif: names"
                         },
                         "taggedTokenList": [
                           {
                             "confidence": 1.0,
-                            "tag": "PERSON",
+                            "tag": "PER",
                             "tokenIndex": 0
                           },
                           {
                             "confidence": 1.0,
-                            "tag": "PERSON",
+                            "tag": "PER",
                             "tokenIndex": 1
                           },
                           {
@@ -524,12 +644,12 @@
                           },
                           {
                             "confidence": 1.0,
-                            "tag": "ORGANIZATION",
+                            "tag": "ORG",
                             "tokenIndex": 5
                           },
                           {
                             "confidence": 1.0,
-                            "tag": "ORGANIZATION",
+                            "tag": "ORG",
                             "tokenIndex": 6
                           },
                           {
@@ -593,7 +713,9 @@
                             "tokenIndex": 18
                           }
                         ],
-                        "uuid": "95f01d77-9bf7-4ea1-913d-d67f7ea3e01c"
+                        "uuid": {
+                          "uuidString": "20ed3fc6-2e14-4110-965d-f55ff35c7747"
+                        }
                       },
                       "parse": {
                         "constituentList": [
@@ -645,7 +767,9 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -666,7 +790,9 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -687,7 +813,9 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -725,7 +853,9 @@
                               "tokenIndexList": [
                                 3
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -755,7 +885,9 @@
                               "tokenIndexList": [
                                 4
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -785,7 +917,9 @@
                               "tokenIndexList": [
                                 5
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -806,7 +940,9 @@
                               "tokenIndexList": [
                                 6
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -827,7 +963,9 @@
                               "tokenIndexList": [
                                 7
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -857,7 +995,9 @@
                               "tokenIndexList": [
                                 8
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -895,7 +1035,9 @@
                               "tokenIndexList": [
                                 9
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -925,7 +1067,9 @@
                               "tokenIndexList": [
                                 10
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -964,7 +1108,9 @@
                               "tokenIndexList": [
                                 11
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -985,7 +1131,9 @@
                               "tokenIndexList": [
                                 12
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -1015,7 +1163,9 @@
                               "tokenIndexList": [
                                 13
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -1055,7 +1205,9 @@
                               "tokenIndexList": [
                                 14
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -1076,7 +1228,9 @@
                               "tokenIndexList": [
                                 15
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -1097,7 +1251,9 @@
                               "tokenIndexList": [
                                 16
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -1126,7 +1282,9 @@
                               "tokenIndexList": [
                                 17
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           },
                           {
@@ -1147,19 +1305,23 @@
                               "tokenIndexList": [
                                 18
                               ],
-                              "tokenizationId": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                              "tokenizationId": {
+                                "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                              }
                             }
                           }
                         ],
                         "metadata": {
-                          "timestamp": 1397843769,
+                          "timestamp": 1404239390,
                           "tool": "Serif: parse"
                         },
-                        "uuid": "93c93fb3-993b-4103-a6bc-545ab0f7f0f1"
+                        "uuid": {
+                          "uuidString": "1e8ae16c-94d2-4fd4-b12a-67ecf0c11756"
+                        }
                       },
                       "posTagList": {
                         "metadata": {
-                          "timestamp": 1397843769,
+                          "timestamp": 1404239390,
                           "tool": "Serif: part-of-speech"
                         },
                         "taggedTokenList": [
@@ -1240,7 +1402,9 @@
                             "tokenIndex": 18
                           }
                         ],
-                        "uuid": "b75bdb16-fc9a-4d96-ba19-27b6601b8a66"
+                        "uuid": {
+                          "uuidString": "18afa32c-d188-40bc-a931-50230d04b66a"
+                        }
                       },
                       "tokenList": [
                         {
@@ -1396,30 +1560,40 @@
                           "tokenIndex": 18
                         }
                       ],
-                      "uuid": "4df6bae5-7e14-4519-8874-eed569106c2b"
+                      "uuid": {
+                        "uuidString": "5e72f7f5-25a3-4a29-8528-af4dbf70fb62"
+                      }
                     }
                   ],
-                  "uuid": "429db711-bc6a-47d4-8a36-a55d1e041355"
+                  "uuid": {
+                    "uuidString": "ccdd9170-6d5a-4186-b6b8-47986c6cf0c9"
+                  }
                 }
               ],
-              "uuid": "e71ea0a5-df1b-4880-9c65-ba1d1debfd3a"
+              "uuid": {
+                "uuidString": "dd2503bc-d4cc-4b5a-9ae3-81c311553c48"
+              }
             }
           ],
           "textSpan": {
             "ending": 162,
             "start": 85
           },
-          "uuid": "3bf303ea-6eff-4369-bac8-a842a15724f5"
+          "uuid": {
+            "uuidString": "1016d1ce-c518-4174-a324-1d3bf8be9d4b"
+          }
         },
         {
-          "kind": 1,
+          "kind": "SectionKind.PASSAGE",
           "sentenceSegmentation": [
             {
               "metadata": {
-                "timestamp": 1397843769,
+                "timestamp": 1404239390,
                 "tool": "Serif: sent-break"
               },
-              "sectionId": "76886932-c364-432d-bd26-4d41c16fcef6",
+              "sectionId": {
+                "uuidString": "8ceb26f3-12e0-48e0-9140-5f8ea244123c"
+              },
               "sentenceList": [
                 {
                   "textSpan": {
@@ -1430,12 +1604,12 @@
                     {
                       "kind": 1,
                       "metadata": {
-                        "timestamp": 1397843769,
+                        "timestamp": 1404239390,
                         "tool": "Serif: tokens"
                       },
                       "nerTagList": {
                         "metadata": {
-                          "timestamp": 1397843769,
+                          "timestamp": 1404239390,
                           "tool": "Serif: names"
                         },
                         "taggedTokenList": [
@@ -1455,7 +1629,9 @@
                             "tokenIndex": 2
                           }
                         ],
-                        "uuid": "665e2bef-7f73-4bf4-80d7-fcd2b405e6d3"
+                        "uuid": {
+                          "uuidString": "e164e228-b3ad-4451-875b-41e9c7dbb6c0"
+                        }
                       },
                       "parse": {
                         "constituentList": [
@@ -1495,7 +1671,9 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "973eb7c5-8290-464d-8c04-233fd922ad1f"
+                              "tokenizationId": {
+                                "uuidString": "e87dd047-4c26-45ba-ae06-f6425effa175"
+                              }
                             }
                           },
                           {
@@ -1524,7 +1702,9 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "973eb7c5-8290-464d-8c04-233fd922ad1f"
+                              "tokenizationId": {
+                                "uuidString": "e87dd047-4c26-45ba-ae06-f6425effa175"
+                              }
                             }
                           },
                           {
@@ -1545,19 +1725,23 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "973eb7c5-8290-464d-8c04-233fd922ad1f"
+                              "tokenizationId": {
+                                "uuidString": "e87dd047-4c26-45ba-ae06-f6425effa175"
+                              }
                             }
                           }
                         ],
                         "metadata": {
-                          "timestamp": 1397843769,
+                          "timestamp": 1404239390,
                           "tool": "Serif: parse"
                         },
-                        "uuid": "76b40fbc-4c91-4038-971b-562223a7883a"
+                        "uuid": {
+                          "uuidString": "30d56728-8b5a-43db-9043-cbf37d13f26b"
+                        }
                       },
                       "posTagList": {
                         "metadata": {
-                          "timestamp": 1397843769,
+                          "timestamp": 1404239390,
                           "tool": "Serif: part-of-speech"
                         },
                         "taggedTokenList": [
@@ -1574,7 +1758,9 @@
                             "tokenIndex": 2
                           }
                         ],
-                        "uuid": "4abd40d1-19eb-4136-be9b-55577e5655ea"
+                        "uuid": {
+                          "uuidString": "90d48078-44a1-4762-9ceb-7266daa23ea7"
+                        }
                       },
                       "tokenList": [
                         {
@@ -1602,30 +1788,40 @@
                           "tokenIndex": 2
                         }
                       ],
-                      "uuid": "973eb7c5-8290-464d-8c04-233fd922ad1f"
+                      "uuid": {
+                        "uuidString": "e87dd047-4c26-45ba-ae06-f6425effa175"
+                      }
                     }
                   ],
-                  "uuid": "6679ad5b-8d70-43fc-80d4-f29342266949"
+                  "uuid": {
+                    "uuidString": "02eb4cc0-8177-462e-9388-6f2402de50da"
+                  }
                 }
               ],
-              "uuid": "f2620ca0-52dd-4d2e-9176-d0e62196a8ef"
+              "uuid": {
+                "uuidString": "057449ff-7a6c-4e99-87f0-fe539569b9c9"
+              }
             }
           ],
           "textSpan": {
             "ending": 180,
             "start": 165
           },
-          "uuid": "76886932-c364-432d-bd26-4d41c16fcef6"
+          "uuid": {
+            "uuidString": "8ceb26f3-12e0-48e0-9140-5f8ea244123c"
+          }
         },
         {
-          "kind": 1,
+          "kind": "SectionKind.PASSAGE",
           "sentenceSegmentation": [
             {
               "metadata": {
-                "timestamp": 1397843769,
+                "timestamp": 1404239390,
                 "tool": "Serif: sent-break"
               },
-              "sectionId": "615aeda2-3b29-41a7-a07d-79b1401d8a53",
+              "sectionId": {
+                "uuidString": "c797a83a-cc9a-47ca-8dd7-f99afb1c0754"
+              },
               "sentenceList": [
                 {
                   "textSpan": {
@@ -1636,18 +1832,18 @@
                     {
                       "kind": 1,
                       "metadata": {
-                        "timestamp": 1397843769,
+                        "timestamp": 1404239390,
                         "tool": "Serif: tokens"
                       },
                       "nerTagList": {
                         "metadata": {
-                          "timestamp": 1397843769,
+                          "timestamp": 1404239390,
                           "tool": "Serif: names"
                         },
                         "taggedTokenList": [
                           {
                             "confidence": 1.0,
-                            "tag": "PERSON",
+                            "tag": "PER",
                             "tokenIndex": 0
                           },
                           {
@@ -1662,7 +1858,7 @@
                           },
                           {
                             "confidence": 1.0,
-                            "tag": "PERSON",
+                            "tag": "PER",
                             "tokenIndex": 3
                           },
                           {
@@ -1681,7 +1877,9 @@
                             "tokenIndex": 6
                           }
                         ],
-                        "uuid": "acfdcdfd-f42f-4b7d-a5cf-8599b7056cf8"
+                        "uuid": {
+                          "uuidString": "034963c0-205b-473f-a4ab-0349c80c878a"
+                        }
                       },
                       "parse": {
                         "constituentList": [
@@ -1740,7 +1938,9 @@
                               "tokenIndexList": [
                                 0
                               ],
-                              "tokenizationId": "652bd7e9-9b57-42eb-8671-ce2068ef0a89"
+                              "tokenizationId": {
+                                "uuidString": "ea48ea4d-6179-4fb7-9bfd-6cef9a68e8da"
+                              }
                             }
                           },
                           {
@@ -1761,7 +1961,9 @@
                               "tokenIndexList": [
                                 1
                               ],
-                              "tokenizationId": "652bd7e9-9b57-42eb-8671-ce2068ef0a89"
+                              "tokenizationId": {
+                                "uuidString": "ea48ea4d-6179-4fb7-9bfd-6cef9a68e8da"
+                              }
                             }
                           },
                           {
@@ -1782,7 +1984,9 @@
                               "tokenIndexList": [
                                 2
                               ],
-                              "tokenizationId": "652bd7e9-9b57-42eb-8671-ce2068ef0a89"
+                              "tokenizationId": {
+                                "uuidString": "ea48ea4d-6179-4fb7-9bfd-6cef9a68e8da"
+                              }
                             }
                           },
                           {
@@ -1811,7 +2015,9 @@
                               "tokenIndexList": [
                                 3
                               ],
-                              "tokenizationId": "652bd7e9-9b57-42eb-8671-ce2068ef0a89"
+                              "tokenizationId": {
+                                "uuidString": "ea48ea4d-6179-4fb7-9bfd-6cef9a68e8da"
+                              }
                             }
                           },
                           {
@@ -1841,7 +2047,9 @@
                               "tokenIndexList": [
                                 4
                               ],
-                              "tokenizationId": "652bd7e9-9b57-42eb-8671-ce2068ef0a89"
+                              "tokenizationId": {
+                                "uuidString": "ea48ea4d-6179-4fb7-9bfd-6cef9a68e8da"
+                              }
                             }
                           },
                           {
@@ -1870,7 +2078,9 @@
                               "tokenIndexList": [
                                 5
                               ],
-                              "tokenizationId": "652bd7e9-9b57-42eb-8671-ce2068ef0a89"
+                              "tokenizationId": {
+                                "uuidString": "ea48ea4d-6179-4fb7-9bfd-6cef9a68e8da"
+                              }
                             }
                           },
                           {
@@ -1891,19 +2101,23 @@
                               "tokenIndexList": [
                                 6
                               ],
-                              "tokenizationId": "652bd7e9-9b57-42eb-8671-ce2068ef0a89"
+                              "tokenizationId": {
+                                "uuidString": "ea48ea4d-6179-4fb7-9bfd-6cef9a68e8da"
+                              }
                             }
                           }
                         ],
                         "metadata": {
-                          "timestamp": 1397843769,
+                          "timestamp": 1404239390,
                           "tool": "Serif: parse"
                         },
-                        "uuid": "99ffbf4f-0452-4950-bb58-d1674c121beb"
+                        "uuid": {
+                          "uuidString": "a49a75d9-579e-40f0-a8d7-307c062db864"
+                        }
                       },
                       "posTagList": {
                         "metadata": {
-                          "timestamp": 1397843769,
+                          "timestamp": 1404239390,
                           "tool": "Serif: part-of-speech"
                         },
                         "taggedTokenList": [
@@ -1936,7 +2150,9 @@
                             "tokenIndex": 6
                           }
                         ],
-                        "uuid": "c895977b-49a3-4aa4-8c3a-8d8d77502268"
+                        "uuid": {
+                          "uuidString": "4ab02f31-b883-44ad-8802-1dbacfb0dab7"
+                        }
                       },
                       "tokenList": [
                         {
@@ -1996,127 +2212,195 @@
                           "tokenIndex": 6
                         }
                       ],
-                      "uuid": "652bd7e9-9b57-42eb-8671-ce2068ef0a89"
+                      "uuid": {
+                        "uuidString": "ea48ea4d-6179-4fb7-9bfd-6cef9a68e8da"
+                      }
                     }
                   ],
-                  "uuid": "2cfbd279-b7f9-471f-83fb-0a57e4f7cce9"
+                  "uuid": {
+                    "uuidString": "bbf07e57-8b09-405a-96c2-0379a8a7879b"
+                  }
                 }
               ],
-              "uuid": "e72e1aca-5510-42e0-af18-a58f3589017f"
+              "uuid": {
+                "uuidString": "710b8bf5-7490-4804-9920-e37268e76a11"
+              }
             }
           ],
           "textSpan": {
             "ending": 228,
             "start": 183
           },
-          "uuid": "615aeda2-3b29-41a7-a07d-79b1401d8a53"
+          "uuid": {
+            "uuidString": "c797a83a-cc9a-47ca-8dd7-f99afb1c0754"
+          }
         }
       ],
-      "uuid": "78585b57-4c79-4c72-a199-040894291f17"
+      "uuid": {
+        "uuidString": "b97e1a7b-4155-4c38-91d2-8e204eca5f95"
+      }
     }
   ],
   "situationMentionSets": [
     {
       "mentionList": [],
       "metadata": {
-        "timestamp": 1397843769,
+        "timestamp": 1404239390,
         "tool": "Serif: situation-mentions"
       },
-      "uuid": "e46ea08c-e404-4e93-8aa0-4974c1d4570a"
+      "uuid": {
+        "uuidString": "9f36293c-4344-411d-aa22-a0d7601471a9"
+      }
     },
     {
       "mentionList": [
         {
           "argumentList": [
             {
-              "role": 38,
-              "situationMentionId": "e65408fd-1e07-41c8-a301-8ff0059fc4cb"
+              "entityMentionId": {
+                "uuidString": "c7a307c3-62cc-44a5-badb-a3cb58859422"
+              },
+              "role": "Role.RELATION_SOURCE_ROLE"
             },
             {
-              "role": 39,
-              "situationMentionId": "8f1ff230-8e67-46e3-8ae2-37e85d932e0e"
+              "entityMentionId": {
+                "uuidString": "c1f9993e-bc61-4626-a199-cb11682d3fc2"
+              },
+              "role": "Role.RELATION_TARGET_ROLE"
             }
           ],
-          "situationType": 300,
-          "stateType": 63,
-          "uuid": "a2b7c620-1d21-4445-a60a-24c79706c80e"
+          "situationType": "SituationType.STATE",
+          "stateType": "ORG-AFF.Employment",
+          "uuid": {
+            "uuidString": "95d966c1-4ecd-4657-a182-cd3ff7019ec4"
+          }
         },
         {
           "argumentList": [
             {
-              "role": 38,
-              "situationMentionId": "918bf94e-454f-42bf-89a1-f78aefd4f8a6"
+              "entityMentionId": {
+                "uuidString": "3a162bd0-4dd8-4beb-a554-053ab56f3bd2"
+              },
+              "role": "Role.RELATION_SOURCE_ROLE"
             },
             {
-              "role": 39,
-              "situationMentionId": "d62cf742-f57e-4741-a279-5620bfa12f4f"
+              "entityMentionId": {
+                "uuidString": "33aa7b54-56bb-4f55-8992-c6a49877f083"
+              },
+              "role": "Role.RELATION_TARGET_ROLE"
             }
           ],
-          "situationType": 300,
-          "stateType": 58,
-          "uuid": "0b5f7ba6-9477-4478-8d47-e87a31273de8"
+          "situationType": "SituationType.STATE",
+          "stateType": "PER-SOC.Family",
+          "uuid": {
+            "uuidString": "a76a5dde-3c05-4512-953a-42bbf9ac54d6"
+          }
         }
       ],
       "metadata": {
-        "timestamp": 1397843769,
+        "timestamp": 1404239390,
         "tool": "Serif: relations"
       },
-      "uuid": "b7b97a39-eb30-4321-a01a-c739478da4b8"
+      "uuid": {
+        "uuidString": "c2040564-5a85-4d3c-83b8-4ae0edd3580f"
+      }
     },
     {
-      "mentionList": [],
+      "mentionList": [
+        {
+          "argumentList": [
+            {
+              "entityMentionId": {
+                "uuidString": "97a5a724-2dab-4019-82f3-a6bf6f200b56"
+              },
+              "role": "Victim"
+            }
+          ],
+          "eventType": "Life.Die",
+          "situationType": "SituationType.EVENT",
+          "text": "died",
+          "tokens": {
+            "anchorTokenIndex": -1,
+            "tokenIndexList": [
+              1
+            ],
+            "tokenizationId": {
+              "uuidString": "e87dd047-4c26-45ba-ae06-f6425effa175"
+            }
+          },
+          "uuid": {
+            "uuidString": "14be33e6-b5f3-4eec-ad99-a2da223093a3"
+          }
+        }
+      ],
       "metadata": {
-        "timestamp": 1397843769,
+        "timestamp": 1404239390,
         "tool": "Serif: events"
       },
-      "uuid": "f47213f2-20da-4206-a2a2-f6d249de9c5b"
+      "uuid": {
+        "uuidString": "a60b4a1c-e919-4663-97ab-6a4d08b47457"
+      }
     }
   ],
   "situationSets": [
     {
       "metadata": {
-        "timestamp": 1397843769,
+        "timestamp": 1404239390,
         "tool": "Serif: situations"
       },
       "situationList": [],
-      "uuid": "60a42291-d50e-4e45-b6d8-f7084759508e"
+      "uuid": {
+        "uuidString": "320b18bf-277e-4f17-88ff-1c48347cbf0c"
+      }
     },
     {
       "metadata": {
-        "timestamp": 1397843769,
+        "timestamp": 1404239390,
         "tool": "Serif: relations"
       },
       "situationList": [],
-      "uuid": "1ddab5be-2f71-4408-9b27-b47a48f3b80e"
+      "uuid": {
+        "uuidString": "d5510619-c423-4e4c-9a73-71c3ee496ad1"
+      }
     },
     {
       "metadata": {
-        "timestamp": 1397843769,
+        "timestamp": 1404239390,
         "tool": "Serif: events"
       },
       "situationList": [
         {
           "argumentList": [
             {
-              "role": 6,
-              "situationId": "9c37c35b-b955-47c5-b990-16c6704e491a"
+              "entityId": {
+                "uuidString": "d5d1092f-6b29-450e-9bb8-0327a86f14de"
+              },
+              "role": "Victim"
             }
           ],
-          "eventType": 24,
+          "eventType": "Life.Die",
           "justificationList": [
             {
-              "justificationType": 1,
-              "mentionId": "36b67763-3a79-450b-8144-2a0c7fedd759"
+              "justificationType": "JustificationType.DIRECT_MENTION",
+              "mentionId": {
+                "uuidString": "14be33e6-b5f3-4eec-ad99-a2da223093a3"
+              }
             }
           ],
-          "situationType": 200,
-          "uuid": "2b28e9ad-ce5d-46f0-98f4-fe31288f0929"
+          "situationType": "SituationType.EVENT",
+          "uuid": {
+            "uuidString": "1958c297-f02e-4a17-9b14-a80bab920c27"
+          }
         }
       ],
-      "uuid": "62916687-3597-4011-a05d-ad712cd23160"
+      "uuid": {
+        "uuidString": "1f0b3842-772d-4b60-8543-95eb5c34cc97"
+      }
     }
   ],
   "text": "<DOC id=\"dog-bites-man\" type=\"other\">\n<HEADLINE>\nDog Bites Man\n</HEADLINE>\n<TEXT>\n<P>\nJohn Smith, manager of ACME INC, was bit by a dog on March 10th, 2013.\n</P>\n<P>\nHe died!\n</P>\n<P>\nJohn's daughter Mary expressed sorrow.\n</P>\n</TEXT>\n</DOC>\n",
-  "type": 0,
-  "uuid": "a868157d-1115-4840-9205-904e241271ab"
+  "type": "CommunicationType.OTHER",
+  "uuid": {
+    "uuidString": "d2f133c8-4d76-4cb8-8f81-0fbb3fd7503e"
+  }
 }
