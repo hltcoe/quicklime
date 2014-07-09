@@ -86,8 +86,8 @@ QL.addCommunication = function(parentElementID, comm) {
         sentence_div.append(sentence_controls_div);
 
         var tokenization_div = $('<div>').addClass('tokenization').attr('id', 'tokenization_' + tokenization.uuid.uuidString);
-        for (tokenIndex in tokenization.tokenList.tokenList) {
-          var token = tokenization.tokenList.tokenList[tokenIndex];
+        for (tokenIndex in tokenization.tokenList.tokens) {
+          var token = tokenization.tokenList.tokens[tokenIndex];
           var token_span = $('<span>')
             .addClass('token')
             .attr('id', 'tokenization_' + tokenization.uuid.uuidString + "_" + token.tokenIndex)

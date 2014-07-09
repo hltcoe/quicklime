@@ -4281,6 +4281,88 @@ Justification.prototype.write = function(output) {
   return;
 };
 
+TimeML = function(args) {
+  this.timemlClass = null;
+  this.timemlTense = null;
+  this.timemlAspect = null;
+  if (args) {
+    if (args.timemlClass !== undefined) {
+      this.timemlClass = args.timemlClass;
+    }
+    if (args.timemlTense !== undefined) {
+      this.timemlTense = args.timemlTense;
+    }
+    if (args.timemlAspect !== undefined) {
+      this.timemlAspect = args.timemlAspect;
+    }
+  }
+};
+TimeML.prototype = {};
+TimeML.prototype.read = function(input) {
+  input.readStructBegin();
+  while (true)
+  {
+    var ret = input.readFieldBegin();
+    var fname = ret.fname;
+    var ftype = ret.ftype;
+    var fid = ret.fid;
+    if (ftype == Thrift.Type.STOP) {
+      break;
+    }
+    switch (fid)
+    {
+      case 1:
+      if (ftype == Thrift.Type.STRING) {
+        this.timemlClass = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.timemlTense = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 3:
+      if (ftype == Thrift.Type.STRING) {
+        this.timemlAspect = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      default:
+        input.skip(ftype);
+    }
+    input.readFieldEnd();
+  }
+  input.readStructEnd();
+  return;
+};
+
+TimeML.prototype.write = function(output) {
+  output.writeStructBegin('TimeML');
+  if (this.timemlClass !== null && this.timemlClass !== undefined) {
+    output.writeFieldBegin('timemlClass', Thrift.Type.STRING, 1);
+    output.writeString(this.timemlClass);
+    output.writeFieldEnd();
+  }
+  if (this.timemlTense !== null && this.timemlTense !== undefined) {
+    output.writeFieldBegin('timemlTense', Thrift.Type.STRING, 2);
+    output.writeString(this.timemlTense);
+    output.writeFieldEnd();
+  }
+  if (this.timemlAspect !== null && this.timemlAspect !== undefined) {
+    output.writeFieldBegin('timemlAspect', Thrift.Type.STRING, 3);
+    output.writeString(this.timemlAspect);
+    output.writeFieldEnd();
+  }
+  output.writeFieldStop();
+  output.writeStructEnd();
+  return;
+};
+
 Situation = function(args) {
   this.uuid = null;
   this.situationType = null;
@@ -4291,9 +4373,7 @@ Situation = function(args) {
   this.stateType = null;
   this.temporalFactType = null;
   this.situationKindLemma = null;
-  this.timemlClass = null;
-  this.timemlTense = null;
-  this.timemlAspect = null;
+  this.timeML = null;
   this.intensity = null;
   this.polarity = null;
   this.confidence = null;
@@ -4325,14 +4405,8 @@ Situation = function(args) {
     if (args.situationKindLemma !== undefined) {
       this.situationKindLemma = args.situationKindLemma;
     }
-    if (args.timemlClass !== undefined) {
-      this.timemlClass = args.timemlClass;
-    }
-    if (args.timemlTense !== undefined) {
-      this.timemlTense = args.timemlTense;
-    }
-    if (args.timemlAspect !== undefined) {
-      this.timemlAspect = args.timemlAspect;
+    if (args.timeML !== undefined) {
+      this.timeML = args.timeML;
     }
     if (args.intensity !== undefined) {
       this.intensity = args.intensity;
@@ -4466,22 +4540,9 @@ Situation.prototype.read = function(input) {
       }
       break;
       case 54:
-      if (ftype == Thrift.Type.STRING) {
-        this.timemlClass = input.readString().value;
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 55:
-      if (ftype == Thrift.Type.STRING) {
-        this.timemlTense = input.readString().value;
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 56:
-      if (ftype == Thrift.Type.STRING) {
-        this.timemlAspect = input.readString().value;
+      if (ftype == Thrift.Type.STRUCT) {
+        this.timeML = new TimeML();
+        this.timeML.read(input);
       } else {
         input.skip(ftype);
       }
@@ -4590,19 +4651,9 @@ Situation.prototype.write = function(output) {
     output.writeString(this.situationKindLemma);
     output.writeFieldEnd();
   }
-  if (this.timemlClass !== null && this.timemlClass !== undefined) {
-    output.writeFieldBegin('timemlClass', Thrift.Type.STRING, 54);
-    output.writeString(this.timemlClass);
-    output.writeFieldEnd();
-  }
-  if (this.timemlTense !== null && this.timemlTense !== undefined) {
-    output.writeFieldBegin('timemlTense', Thrift.Type.STRING, 55);
-    output.writeString(this.timemlTense);
-    output.writeFieldEnd();
-  }
-  if (this.timemlAspect !== null && this.timemlAspect !== undefined) {
-    output.writeFieldBegin('timemlAspect', Thrift.Type.STRING, 56);
-    output.writeString(this.timemlAspect);
+  if (this.timeML !== null && this.timeML !== undefined) {
+    output.writeFieldBegin('timeML', Thrift.Type.STRUCT, 54);
+    this.timeML.write(output);
     output.writeFieldEnd();
   }
   if (this.intensity !== null && this.intensity !== undefined) {
@@ -6496,11 +6547,11 @@ TokenLattice.prototype.write = function(output) {
 };
 
 TokenList = function(args) {
-  this.tokenList = null;
+  this.tokens = null;
   this.reconstructedText = null;
   if (args) {
-    if (args.tokenList !== undefined) {
-      this.tokenList = args.tokenList;
+    if (args.tokens !== undefined) {
+      this.tokens = args.tokens;
     }
     if (args.reconstructedText !== undefined) {
       this.reconstructedText = args.reconstructedText;
@@ -6525,7 +6576,7 @@ TokenList.prototype.read = function(input) {
       if (ftype == Thrift.Type.LIST) {
         var _size56 = 0;
         var _rtmp360;
-        this.tokenList = [];
+        this.tokens = [];
         var _etype59 = 0;
         _rtmp360 = input.readListBegin();
         _etype59 = _rtmp360.etype;
@@ -6535,7 +6586,7 @@ TokenList.prototype.read = function(input) {
           var elem62 = null;
           elem62 = new Token();
           elem62.read(input);
-          this.tokenList.push(elem62);
+          this.tokens.push(elem62);
         }
         input.readListEnd();
       } else {
@@ -6560,14 +6611,14 @@ TokenList.prototype.read = function(input) {
 
 TokenList.prototype.write = function(output) {
   output.writeStructBegin('TokenList');
-  if (this.tokenList !== null && this.tokenList !== undefined) {
-    output.writeFieldBegin('tokenList', Thrift.Type.LIST, 1);
-    output.writeListBegin(Thrift.Type.STRUCT, this.tokenList.length);
-    for (var iter63 in this.tokenList)
+  if (this.tokens !== null && this.tokens !== undefined) {
+    output.writeFieldBegin('tokens', Thrift.Type.LIST, 1);
+    output.writeListBegin(Thrift.Type.STRUCT, this.tokens.length);
+    for (var iter63 in this.tokens)
     {
-      if (this.tokenList.hasOwnProperty(iter63))
+      if (this.tokens.hasOwnProperty(iter63))
       {
-        iter63 = this.tokenList[iter63];
+        iter63 = this.tokens[iter63];
         iter63.write(output);
       }
     }
