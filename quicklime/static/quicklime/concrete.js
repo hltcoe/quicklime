@@ -9286,7 +9286,7 @@ Communication.prototype.getTokensForEntityMentionID = function(mentionId) {
   var tokens = [];
 
   for (var tokenIndex in entityMention.tokens.tokenIndexList) {
-    tokens.push(tokenization.tokenList[entityMention.tokens.tokenIndexList[tokenIndex]].text);
+    tokens.push(tokenization.tokenList.tokens[entityMention.tokens.tokenIndexList[tokenIndex]].text);
   }
   return tokens;
 };
