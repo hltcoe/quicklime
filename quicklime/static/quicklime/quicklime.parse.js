@@ -195,8 +195,8 @@ QL.drawDependencyParse = function(containerSelectorString, tokenization, depende
     }
   }
 
-  for (i = 0; i < tokenization.tokenList.length; i++) {
-    token = tokenization.tokenList[i];
+  for (i = 0; i < tokenization.tokenList.tokens.length; i++) {
+    token = tokenization.tokenList.tokens[i];
     if (token.tokenIndex in nodeSet) {
       g.addNode(token.tokenIndex, { label: token.text, nodeclass: "type-UNKNOWN" });
     }
