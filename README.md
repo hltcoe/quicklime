@@ -1,7 +1,9 @@
 QuickLime
 =========
 
-QuickLime is a web-based visualization and annotation tool for working with [Concrete](https://gitlab.hltcoe.jhu.edu/concrete/concrete) objects.
+QuickLime is a web-based visualization and annotation tool for working
+with [Concrete](https://gitlab.hltcoe.jhu.edu/concrete/concrete)
+objects.
 
 QuickLime includes:
 
@@ -11,18 +13,24 @@ QuickLime includes:
     * dependency parse graphs
     * Named Entity Recognition (NER) tags
     * Part Of Speech (POS) tags
-* a small Python server that hosts the QuickLime HTML/CSS/JS files and handles Thrift RPC calls
+* a small Python server that hosts the QuickLime HTML/CSS/JS files and
+  handles Thrift RPC calls
 
 concrete-js vs. QuickLime
 -------------------------
 
-The QuickLime project is a visualization and annotation tool that uses the [concrete-js](https://gitlab.hltcoe.jhu.edu/concrete/quicklime).   **concrete-js** is a low-level library for manipulating Concrete data-structures that does not touch the DOM.  The QuickLime repository includes a copy of the **concrete-js** library - you do not need to checkout the **concrete-js** repository in order to use QuickLime.
-
+The QuickLime project is a visualization and annotation tool that uses
+the [concrete-js](https://gitlab.hltcoe.jhu.edu/concrete/quicklime).
+**concrete-js** is a low-level library for manipulating Concrete
+data-structures that does not touch the DOM.  The QuickLime repository
+includes a copy of the **concrete-js** library - you do not need to
+checkout the **concrete-js** repository in order to use QuickLime.
 
 Installation
 ------------
 
-Install the Python webserver dependencies using [pip](http://www.pip-installer.org):
+Install the Python webserver dependencies using
+[pip](http://www.pip-installer.org):
 
     pip install bottle
     pip install git+https://github.com/charman/concrete-python.git#egg=concrete
