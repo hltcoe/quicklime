@@ -338,6 +338,11 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
       { type: 'SYM', labels: ['SYM', 'SYM'], bgColor: '#e4cbf6' },
       { type: 'UH', labels: ['UH', 'UH'], bgColor: '#e4cbf6' },
       { type: '__DOLLAR__', labels: ['$', '$'], bgColor: '#e4cbf6' },
+
+      // In/Out labels for POS annotation demo
+      // TODO: Remove
+      { type: 'In', labels: ['In', 'In'], bgColor: '#adf6a2' },
+      { type: 'Out', labels: ['Out', 'Out'], bgColor: '#e4cbf6' },
     ]
   };
 
