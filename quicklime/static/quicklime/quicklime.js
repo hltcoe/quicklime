@@ -170,11 +170,13 @@ QL.addCommunication = function(parentElementID, comm) {
     }
   }
 
-  for (var entityListIndex in comm.entitySets[0].entityList) {
-    var entity = comm.entitySets[0].entityList[entityListIndex];
-    for (var i; i < entity.mentionIdList.length; i++) {
-      entityMention = entity.mentionIdList[i];
-      $('#mention_' + entityMention.uuid.uuidString).addClass('coref_mention');
+  if (comm.entitySets) {
+    for (var entityListIndex in comm.entitySets[0].entityList) {
+      var entity = comm.entitySets[0].entityList[entityListIndex];
+      for (var i; i < entity.mentionIdList.length; i++) {
+        entityMention = entity.mentionIdList[i];
+        $('#mention_' + entityMention.uuid.uuidString).addClass('coref_mention');
+      }
     }
   }
 
@@ -186,42 +188,44 @@ QL.addCommunication = function(parentElementID, comm) {
  */
 QL.addEntityList = function(comm) {
   // Add list of entities, and list of mentions for each entity, to the DOM
-  for (var entityListIndex in comm.entitySets[0].entityList) {
-    var counter = parseInt(entityListIndex, 10) + 1;
-    var entityList = comm.entitySets[0].entityList[entityListIndex];
-    var entityList_div = $('<div>');
-    var entityCounter_span = $('<span>')
-      .addClass('entity_counter')
-      .addClass('entity_' + entityList.uuid.uuidString)
-      /* Tooltips are part of Bootstrap, which is currently disabled because of jQuery conflict
-      .attr('data-placement', 'top')
-      .attr('data-toggle', 'tooltip')
-      .attr('title', 'UUID ' + entityList.uuid.uuidString)
-      */
-      .html('Entity ' + counter);
-      /*
-      .tooltip();
-      */
-    entityList_div.append(entityCounter_span);
+  if (comm.entitySets) {
+    for (var entityListIndex in comm.entitySets[0].entityList) {
+      var counter = parseInt(entityListIndex, 10) + 1;
+      var entityList = comm.entitySets[0].entityList[entityListIndex];
+      var entityList_div = $('<div>');
+      var entityCounter_span = $('<span>')
+        .addClass('entity_counter')
+        .addClass('entity_' + entityList.uuid.uuidString)
+        /* Tooltips are part of Bootstrap, which is currently disabled because of jQuery conflict
+        .attr('data-placement', 'top')
+        .attr('data-toggle', 'tooltip')
+        .attr('title', 'UUID ' + entityList.uuid.uuidString)
+        */
+        .html('Entity ' + counter);
+        /*
+        .tooltip();
+        */
+      entityList_div.append(entityCounter_span);
 
-    var entityTotal_span = $('<span>')
-      .addClass('entity_total')
-      .html('(x' + entityList.mentionIdList.length + ')');
-    entityList_div.append(entityTotal_span);
+      var entityTotal_span = $('<span>')
+        .addClass('entity_total')
+        .html('(x' + entityList.mentionIdList.length + ')');
+      entityList_div.append(entityTotal_span);
 
-    var mentionId_ul = $('<ul class="list-inline">').addClass('entity_list');
-    for (var mentionIdListIndex in entityList.mentionIdList) {
-      var mentionId = entityList.mentionIdList[mentionIdListIndex];
-      var mentionId_li = $('<li>')
-        .html('<span class="coref_mention mention_' + mentionId.uuidString + '">' + comm.getTokensForEntityMentionID(mentionId).join(" ") + '</span>');
-      mentionId_ul.append(mentionId_li);
+      var mentionId_ul = $('<ul class="list-inline">').addClass('entity_list');
+      for (var mentionIdListIndex in entityList.mentionIdList) {
+        var mentionId = entityList.mentionIdList[mentionIdListIndex];
+        var mentionId_li = $('<li>')
+          .html('<span class="coref_mention mention_' + mentionId.uuidString + '">' + comm.getTokensForEntityMentionID(mentionId).join(" ") + '</span>');
+        mentionId_ul.append(mentionId_li);
 
-      // Add 'entity_ENTITY_UUID' class to each mention of that entity
-      $('.mention_' + mentionId.uuidString).addClass('entity_' + entityList.uuid.uuidString).addClass('coref_mention');
+        // Add 'entity_ENTITY_UUID' class to each mention of that entity
+        $('.mention_' + mentionId.uuidString).addClass('entity_' + entityList.uuid.uuidString).addClass('coref_mention');
+      }
+      entityList_div.append(mentionId_ul);
+
+      $('#entityList').append(entityList_div);
     }
-    entityList_div.append(mentionId_ul);
-
-    $('#entityList').append(entityList_div);
   }
 };
 
@@ -259,20 +263,22 @@ QL.addEntityMouseoverHighlighting = function(comm) {
   }
 
   // Add mouseover functions for all elements linked to an entity
-  for (var entityListIndex in comm.entitySets[0].entityList) {
-    var entity = comm.entitySets[0].entityList[entityListIndex];
-    $('.entity_' + entity.uuid.uuidString)
-      .mouseenter({ entity_selector: '.entity_' + entity.uuid.uuidString }, addHighlightToEntity)
-      .mouseleave({ entity_selector: '.entity_' + entity.uuid.uuidString }, removeHighlightFromEntity);
+  if (comm.entitySets) {
+    for (var entityListIndex in comm.entitySets[0].entityList) {
+      var entity = comm.entitySets[0].entityList[entityListIndex];
+      $('.entity_' + entity.uuid.uuidString)
+        .mouseenter({ entity_selector: '.entity_' + entity.uuid.uuidString }, addHighlightToEntity)
+        .mouseleave({ entity_selector: '.entity_' + entity.uuid.uuidString }, removeHighlightFromEntity);
 
-    // Add mouseover functions for all elements linked to a mention of an entity in entitySet.
-    // Mouseover functions will not be added any mentions - such as value mentions - that are
-    // not linked to an entity in entitySet.
-    for (var i = 0; i < entity.mentionIdList.length; i++) {
-      var entityMentionId = entity.mentionIdList[i];
-      $('.mention_' + entityMentionId.uuidString)
-        .mouseenter({ mention_selector: '.mention_'+entityMentionId.uuidString }, addHighlightToMention)
-        .mouseleave({ mention_selector: '.mention_'+entityMentionId.uuidString }, removeHighlightFromMention);
+      // Add mouseover functions for all elements linked to a mention of an entity in entitySet.
+      // Mouseover functions will not be added any mentions - such as value mentions - that are
+      // not linked to an entity in entitySet.
+      for (var i = 0; i < entity.mentionIdList.length; i++) {
+        var entityMentionId = entity.mentionIdList[i];
+        $('.mention_' + entityMentionId.uuidString)
+          .mouseenter({ mention_selector: '.mention_'+entityMentionId.uuidString }, addHighlightToMention)
+          .mouseleave({ mention_selector: '.mention_'+entityMentionId.uuidString }, removeHighlightFromMention);
+      }
     }
   }
 };
