@@ -30,9 +30,9 @@ Install the Python webserver dependencies using [pip](http://www.pip-installer.o
 Viewing a Communication
 -----------------------
 
-To view a Concrete Communication, run the **showme.py** script:
+To view a Concrete Communication, run the **qlook.py** script:
 
-    python showme.py CONCRETE_FILENAME
+    python qlook.py CONCRETE_FILENAME
 
 then point your browser at [http://localhost:8080](http://localhost:8080)
 
