@@ -44,7 +44,7 @@ To view a Concrete Communication, run the **qlook.py** script:
 
 then point your browser at [http://localhost:8080](http://localhost:8080)
 
-To change the port ```qlook.py`` uses, use the long form ```--port PORT``` or
+To change the port ```qlook.py``` uses, use the long form ```--port PORT``` or
 short form ```-p PORT``` flag.
 
 This script reads in a Concrete Communication and starts a small
