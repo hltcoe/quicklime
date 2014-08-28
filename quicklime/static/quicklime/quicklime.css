@@ -120,6 +120,10 @@ div .brat_sentence_container {
 .highlighted_entity.highlighted_mention {
     background-color: pink;
 }
+.selected_entity {
+    background-color: yellow;
+    border-top: 1px solid #DDDDDD;
+}
 .coref_mention {
     border-bottom: 3px solid #DDDDDD;
 }

@@ -12,9 +12,9 @@ Quicklime creates a DOM structure for a Communication:
             ...
           <div class="tokenization" id="tokenization_UUID">
             <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
-            <span class="token_padding"id=" tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
+            <span class="token_padding "id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
             <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
-            <span class="token_padding"id=" tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
+            <span class="token_padding" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
           ...
           <div class="brat_sentence_container" id="sentence_ner_container_[SENTENCE_UUID]">
             <div class="brat_sentence_label brat_ner_sentence_label">
@@ -155,6 +155,7 @@ QL.addCommunication = function(parentElementID, comm) {
         if (entityMention.tokens.tokenIndexList) {
           var total_tokens = entityMention.tokens.tokenIndexList.length;
           for (tokenIndex in entityMention.tokens.tokenIndexList) {
+            // TODO: Handle case where not all tokens in tokenIndexList are adjacent to one another
             $('#tokenization_' + entityMention.tokens.tokenizationId.uuidString + '_' + entityMention.tokens.tokenIndexList[tokenIndex])
               .addClass('mention')
               .addClass('mention_' + entityMention.uuid.uuidString);
@@ -262,20 +263,26 @@ QL.addEntityMouseoverHighlighting = function(comm) {
     $(event.data.mention_selector).removeClass("highlighted_mention");
   }
 
+  function toggleSelectedEntity(event) {
+    $(event.data.entity_selector).toggleClass("selected_entity");
+  }
+
   // Add mouseover functions for all elements linked to an entity
   if (comm.entitySets) {
     for (var entityListIndex in comm.entitySets[0].entityList) {
       var entity = comm.entitySets[0].entityList[entityListIndex];
       $('.entity_' + entity.uuid.uuidString)
+        .click({ entity_selector: '.entity_' + entity.uuid.uuidString }, toggleSelectedEntity)
         .mouseenter({ entity_selector: '.entity_' + entity.uuid.uuidString }, addHighlightToEntity)
         .mouseleave({ entity_selector: '.entity_' + entity.uuid.uuidString }, removeHighlightFromEntity);
 
       // Add mouseover functions for all elements linked to a mention of an entity in entitySet.
-      // Mouseover functions will not be added any mentions - such as value mentions - that are
+      // Mouseover functions will not be added to any mentions - such as value mentions - that are
       // not linked to an entity in entitySet.
       for (var i = 0; i < entity.mentionIdList.length; i++) {
         var entityMentionId = entity.mentionIdList[i];
         $('.mention_' + entityMentionId.uuidString)
+          .click({ entity_selector: '.entity_' + entity.uuid.uuidString }, toggleSelectedEntity)
           .mouseenter({ mention_selector: '.mention_'+entityMentionId.uuidString }, addHighlightToMention)
           .mouseleave({ mention_selector: '.mention_'+entityMentionId.uuidString }, removeHighlightFromMention);
       }
