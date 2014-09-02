@@ -153,4 +153,27 @@ ul.entity_list {
 .token {
 }
 .tokenization {
+    /* This 'float: left' prevents an issue with Chrome where the text in
+       a <div class="tokenization"> would not be displayed properly if
+       the sentence text word-wrapped.  Visually, the bottom of the
+       letters on one line would overlap the top of the letters on the
+       next line - almost as if the line-height was set to a negative
+       number.
+
+       In the DOM structure, the .tokenization <div> is nested inside
+       of a .sentence <div>:
+
+         <div class="sentence">
+           <div class="sentence_controls">
+           <div class="tokenization">
+
+       Using the Chrome Developer tools to investigate, Chrome is
+       assigning a line height (of 40px) to the inner .tokenization
+       <div> that is *larger* than the line-height (22px) for the
+       outer .sentence <div>.
+
+       This issue affects Chrome 37 and earlier, but not Firefox 32
+       and earlier or Safari 7 and earlier.
+     */
+    float: left;
 }
