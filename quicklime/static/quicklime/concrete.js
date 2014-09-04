@@ -9642,9 +9642,9 @@ UUID.prototype.write = function(output) {
 Communication.prototype.getEntityMentionWithUUID = function(uuid) {
   if (this.entityMentionSetList) {
     for (var entityMentionSetIndex in this.entityMentionSetList) {
-      if (this.entityMentionSetList[entityMentionSetIndex].mentionSet) {
-        for (var mentionSetIndex in this.entityMentionSetList[entityMentionSetIndex].mentionSet) {
-          var entityMention = this.entityMentionSetList[entityMentionSetIndex].mentionSet[mentionSetIndex];
+      if (this.entityMentionSetList[entityMentionSetIndex].mentionList) {
+        for (var mentionListIndex in this.entityMentionSetList[entityMentionSetIndex].mentionList) {
+          var entityMention = this.entityMentionSetList[entityMentionSetIndex].mentionList[mentionListIndex];
           if (entityMention.uuid.uuidString == uuid.uuidString) {
             return entityMention;
           }
@@ -9702,7 +9702,7 @@ Communication.prototype.getTokensForEntityMentionID = function(mentionId) {
   var tokens = [];
 
   for (var tokenIndex in entityMention.tokens.tokenIndexList) {
-    tokens.push(tokenization.tokenList.tokens[entityMention.tokens.tokenIndexList[tokenIndex]].text);
+    tokens.push(tokenization.tokenList.tokenList[entityMention.tokens.tokenIndexList[tokenIndex]].text);
   }
   return tokens;
 };
