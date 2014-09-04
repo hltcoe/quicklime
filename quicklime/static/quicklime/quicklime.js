@@ -53,8 +53,44 @@ QL.getCommunicationWithUUID = function(uuid) {
 };
 
 
-/**
- * @param {String} parentElementID
+/** Adds <div>/<span> elements and token text for a Communication to DOM
+ *
+ * Concrete Communications contain many layers of nested data
+ * structures, with lists of SectionSegmentations containing lists of
+ * Sections containing lists of SentenceSegmentations, etc.
+ *
+ * This function takes a Concrete Communication, and adds layers of
+ * nested <div>'s and <span>'s to the DOM that reflect the nested data
+ * structures in the Communication (with some extra nesting of <div>'s
+ * and <span>'s so that the HTML is rendered properly).
+ *
+ * For each Concrete object of type:
+ *   - SectionSegmentation
+ *   - Section
+ *   - SentenceSegmentation
+ *   - Sentence
+ *   - Tokenization
+ * there is a corresponding <div> with a DOM ID based on the UUID of
+ * that Concrete object.
+ *
+ * Each token string and each space between tokens is wrapped in its
+ * own <span>, and these <span>'s have DOM IDs determined by the
+ * Tokenization UUID and token index.
+ *
+ * This function also adds co-reference information to token <span>'s.
+ * For each EntityMention, this function finds the token <span>'s
+ * associated with the mention, and adds a unique DOM class name
+ * (based on the EntityMention's UUID) to each matching token <span>.
+ * The function also finds the Entity associated with each
+ * EntityMention, and adds a unique DOM class name for that Entity
+ * (based on the Entity's UUID) to each matching token <span>.
+ *
+ * A single token <span> may be assigned many DOM class names.  All
+ * these class names make it easy to do things like change the CSS
+ * properties (or attach a mouse callback function) to every token
+ * associated with an Entity or EntityMention.
+ *
+ * @param {String} parentElementID - DOM ID of element
  * @param {Communication} comm
  */
 QL.addCommunication = function(parentElementID, comm) {
