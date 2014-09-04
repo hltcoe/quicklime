@@ -9640,11 +9640,11 @@ UUID.prototype.write = function(output) {
 */
 
 Communication.prototype.getEntityMentionWithUUID = function(uuid) {
-  if (this.entityMentionSets) {
-    for (var entityMentionSetIndex in this.entityMentionSets) {
-      if (this.entityMentionSets[entityMentionSetIndex].mentionSet) {
-        for (var mentionSetIndex in this.entityMentionSets[entityMentionSetIndex].mentionSet) {
-          var entityMention = this.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
+  if (this.entityMentionSetList) {
+    for (var entityMentionSetIndex in this.entityMentionSetList) {
+      if (this.entityMentionSetList[entityMentionSetIndex].mentionSet) {
+        for (var mentionSetIndex in this.entityMentionSetList[entityMentionSetIndex].mentionSet) {
+          var entityMention = this.entityMentionSetList[entityMentionSetIndex].mentionSet[mentionSetIndex];
           if (entityMention.uuid.uuidString == uuid.uuidString) {
             return entityMention;
           }
@@ -9658,11 +9658,11 @@ Communication.prototype.getEntityMentionWithUUID = function(uuid) {
 
 
 Communication.prototype.getSentenceWithUUID = function(uuid) {
-  if (this.sectionSegmentations[0].sectionList) {
-    for (var sectionListIndex in this.sectionSegmentations[0].sectionList) {
-      if (this.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
-        for (var sentenceIndex in this.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
-          var sentence = this.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
+  if (this.sectionSegmentationList[0].sectionList) {
+    for (var sectionListIndex in this.sectionSegmentationList[0].sectionList) {
+      if (this.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList) {
+        for (var sentenceIndex in this.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList) {
+          var sentence = this.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList[sentenceIndex];
           if (sentence.uuid.uuidString == uuid.uuidString) {
             return sentence;
           }
@@ -9676,11 +9676,11 @@ Communication.prototype.getSentenceWithUUID = function(uuid) {
 
 
 Communication.prototype.getTokenizationWithUUID = function(uuid) {
-  if (this.sectionSegmentations[0].sectionList) {
-    for (var sectionListIndex in this.sectionSegmentations[0].sectionList) {
-      if (this.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
-        for (var sentenceIndex in this.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
-          var sentence = this.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
+  if (this.sectionSegmentationList[0].sectionList) {
+    for (var sectionListIndex in this.sectionSegmentationList[0].sectionList) {
+      if (this.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList) {
+        for (var sentenceIndex in this.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList) {
+          var sentence = this.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList[sentenceIndex];
           for (var tokenizationListIndex in sentence.tokenizationList) {
             if (sentence.tokenizationList[tokenizationListIndex].uuid.uuidString == uuid.uuidString) {
               return sentence.tokenizationList[tokenizationListIndex];
