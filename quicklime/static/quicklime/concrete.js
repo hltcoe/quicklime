@@ -9639,6 +9639,9 @@ UUID.prototype.write = function(output) {
   COMMUNICATION_FU
 */
 
+/**
+ * @param {String} uuid
+ */
 Communication.prototype.getEntityMentionWithUUID = function(uuid) {
   if (this.entityMentionSetList) {
     for (var entityMentionSetIndex in this.entityMentionSetList) {
@@ -9657,6 +9660,9 @@ Communication.prototype.getEntityMentionWithUUID = function(uuid) {
 };
 
 
+/**
+ * @param {String} uuid
+ */
 Communication.prototype.getSentenceWithUUID = function(uuid) {
   if (this.sectionSegmentationList[0].sectionList) {
     for (var sectionListIndex in this.sectionSegmentationList[0].sectionList) {
@@ -9675,6 +9681,9 @@ Communication.prototype.getSentenceWithUUID = function(uuid) {
 };
 
 
+/**
+ * @param {String} uuid
+ */
 Communication.prototype.getTokenizationWithUUID = function(uuid) {
   if (this.sectionSegmentationList[0].sectionList) {
     for (var sectionListIndex in this.sectionSegmentationList[0].sectionList) {
@@ -9695,6 +9704,10 @@ Communication.prototype.getTokenizationWithUUID = function(uuid) {
 };
 
 
+/**
+ * @param {String} mentionId
+ * @returns {Array} An array of token text strings
+ */
 Communication.prototype.getTokensForEntityMentionID = function(mentionId) {
   var entityMention = this.getEntityMentionWithUUID(mentionId);
   var tokenization = this.getTokenizationWithUUID(entityMention.tokens.tokenizationId);
@@ -9705,4 +9718,21 @@ Communication.prototype.getTokensForEntityMentionID = function(mentionId) {
     tokens.push(tokenization.tokenList.tokenList[entityMention.tokens.tokenIndexList[tokenIndex]].text);
   }
   return tokens;
+};
+
+
+/**
+ * @param {String} taggingType - A string specifying a TokenTagging.taggingType
+ * @returns {Array} A (possibly empty) array of TokenTagging objects
+ */
+Tokenization.prototype.getTokenTaggingsOfType = function(taggingType) {
+  var tokenTaggings = [];
+
+  for (var tokenTaggingIndex in this.tokenTaggingList) {
+    if (this.tokenTaggingList[tokenTaggingIndex].taggingType === taggingType) {
+      tokenTaggings.push(this.tokenTaggingList[tokenTaggingIndex]);
+    }
+  }
+
+  return tokenTaggings;
 };
