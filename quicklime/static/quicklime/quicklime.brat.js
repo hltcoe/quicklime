@@ -227,9 +227,12 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     sentence_text += tokenization.tokenList.tokenList[i].text + " ";
   }
 
+  // For now, we assume that there is only a single NER tagging
+  var nerTagList = tokenization.getTokenTaggingsOfType("NER")[0];
+
   var ner_tag_labels = [];
-  for (i = 0; i < tokenization.nerTagList.taggedTokenList.length; i++) {
-    var nerTag = tokenization.nerTagList.taggedTokenList[i];
+  for (i = 0; i < nerTagList.taggedTokenList.length; i++) {
+    var nerTag = nerTagList.taggedTokenList[i];
     var token = tokenization.tokenList.tokenList[nerTag.tokenIndex];
     var entityID = "T" + (i+1);
     if (nerTag.tag != "O" &&       // Stanford tag
@@ -353,9 +356,12 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     sentence_text += tokenization.tokenList.tokenList[i].text + " ";
   }
 
+  // For now, we assume that there is only a single POS tagging
+  var posTagList = tokenization.getTokenTaggingsOfType("POS")[0];
+
   var pos_tag_labels = [];
-  for (i = 0; i < tokenization.posTagList.taggedTokenList.length; i++) {
-    var posTag = tokenization.posTagList.taggedTokenList[i];
+  for (i = 0; i < posTagList.taggedTokenList.length; i++) {
+    var posTag = posTagList.taggedTokenList[i];
     var token = tokenization.tokenList.tokenList[posTag.tokenIndex];
     var entityID = "T" + (i+1);
     var start = token_offsets[posTag.tokenIndex].start;
@@ -445,7 +451,7 @@ QL.addSentenceBRATControls = function(comm) {
 
         var sentence_controls_div = $('#sentence_controls_' + sentence.uuid.uuidString);
 
-	if (tokenization.nerTagList) {
+	if (tokenization.getTokenTaggingsOfType("NER").length > 0) {
           var ner_tag_button = $('<button>')
             .addClass('btn btn-default btn-xs')
             .attr('id', 'sentence_ner_button_' + sentence.uuid.uuidString)
@@ -457,7 +463,7 @@ QL.addSentenceBRATControls = function(comm) {
           sentence_controls_div.append(ner_tag_button);
 	}
 
-	if (tokenization.posTagList) {
+	if (tokenization.getTokenTaggingsOfType("POS").length > 0) {
           var pos_tag_button = $('<button>')
             .addClass('btn btn-default btn-xs')
             .attr('id', 'sentence_pos_button_' + sentence.uuid.uuidString)

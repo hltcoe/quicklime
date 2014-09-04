@@ -6,16 +6,17 @@ Quicklime creates a DOM structure for a Communication:
     <div class="section" id="section_UUID">
       <div class="sentence_segmentation" id="sentence_segmentation_UUID">
         <div class="sentence" id="sentence_UUID">>
-          <div class="sentence_controls" id="sentence_controls_[SENTENCE_UUID]">
-            <button>
-            <button>
+          <div class="controls_and_tokenization_container clearfix">
+            <div class="sentence_controls" id="sentence_controls_[SENTENCE_UUID]">
+              <button>
+              <button>
+              ...
+            <div class="tokenization" id="tokenization_UUID">
+              <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
+              <span class="token_padding "id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
+              <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
+              <span class="token_padding" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
             ...
-          <div class="tokenization" id="tokenization_UUID">
-            <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
-            <span class="token_padding "id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
-            <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
-            <span class="token_padding" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
-          ...
           <div class="brat_sentence_container" id="sentence_ner_container_[SENTENCE_UUID]">
             <div class="brat_sentence_label brat_ner_sentence_label">
             <div class="brat_sentence" id="sentence_ner_[SENTENCE_UUID]">
@@ -83,11 +84,16 @@ QL.addCommunication = function(parentElementID, comm) {
         var sentence_div = $('<div>')
           .addClass('sentence')
           .attr('id', 'sentence_' + sentence.uuid.uuidString);
+
+        var controls_and_tokenization_container_div = $('<div>')
+          .addClass('controls_and_tokenization_container')
+          .addClass('clearfix');
+
         var sentence_controls_div = $('<div>')
           .addClass('sentence_controls')
           .attr('id', 'sentence_controls_' + sentence.uuid.uuidString);
 
-        sentence_div.append(sentence_controls_div);
+        controls_and_tokenization_container_div.append(sentence_controls_div);
 
         var tokenization_div = $('<div>').addClass('tokenization').attr('id', 'tokenization_' + tokenization.uuid.uuidString);
         for (tokenIndex in tokenization.tokenList.tokenList) {
@@ -103,7 +109,10 @@ QL.addCommunication = function(parentElementID, comm) {
           tokenization_div.append(token_span);
           tokenization_div.append(token_padding_span);
         }
-        sentence_div.append(tokenization_div);
+        controls_and_tokenization_container_div.append(tokenization_div);
+
+        sentence_div.append(controls_and_tokenization_container_div);
+
         sentence_div.append(
           $('<div>')
             .addClass('brat_sentence_container')
