@@ -202,9 +202,6 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
   var webFontURLs = [];
 
-  // Tag names and colors are copied from the BRAT configuration file for
-  // Stanford NLP:
-  //   brat-v1.3_Crunchy_Frog/configurations/Stanford-CoreNLP/visual.conf
   var collData = {
     entity_types: [
       { type: 'DATE', labels: ['Date', 'Date'], bgColor: '#9affe6' },
