@@ -23,7 +23,11 @@ Quicklime creates a DOM structure for a Communication:
             <div class="brat_sentence_label brat_pos_sentence_label">
             <div class="brat_sentence" id="sentence_pos_[SENTENCE_UUID]">
           <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]">
-            <div class="parse_label constituent_parse_label">
+            <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]_0">
+              <div class="parse_label constituent_parse_label_0">
+            <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]_1">
+              <div class="parse_label constituent_parse_label_1">
+            ...
           <div class="dagre_parse" id="dependency_parse_[SENTENCE_UUID]">
             <div class="dagre_parse" id="dependency_parse_[SENTENCE_UUID]_0">
               <div class="parse_label dependency_parse_label_0">
