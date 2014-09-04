@@ -39,10 +39,10 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
 
   var relationEntityCounter = 1;
   var relationEntityLabels = [];
-  for (entityMentionSetIndex in comm.entityMentionSets) {
-    if (comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-      for (entityMentionIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-        entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[entityMentionIndex];
+  for (entityMentionSetIndex in comm.entityMentionSetList) {
+    if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
+      for (entityMentionIndex in comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
+        entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[entityMentionIndex];
         if (entityMention.tokens.tokenizationId.uuidString == tokenizationUUID.uuidString) {
           if (entityMention.uuid.uuidString in relationEntitySet) {
             var entityID = "T" + relationEntityCounter;
@@ -222,18 +222,18 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
   var sentence_text = "";
   var token_offsets = [];
-  for (i = 0, total_tokens = tokenization.tokenList.tokens.length; i < total_tokens; i++) {
+  for (i = 0, total_tokens = tokenization.tokenList.tokenList.length; i < total_tokens; i++) {
     token_offsets.push({
       'start': sentence_text.length,
-      'ending': sentence_text.length + tokenization.tokenList.tokens[i].text.length
+      'ending': sentence_text.length + tokenization.tokenList.tokenList[i].text.length
     });
-    sentence_text += tokenization.tokenList.tokens[i].text + " ";
+    sentence_text += tokenization.tokenList.tokenList[i].text + " ";
   }
 
   var ner_tag_labels = [];
   for (i = 0; i < tokenization.nerTagList.taggedTokenList.length; i++) {
     var nerTag = tokenization.nerTagList.taggedTokenList[i];
-    var token = tokenization.tokenList.tokens[nerTag.tokenIndex];
+    var token = tokenization.tokenList.tokenList[nerTag.tokenIndex];
     var entityID = "T" + (i+1);
     if (nerTag.tag != "O" &&       // Stanford tag
         nerTag.tag != "OTHER" &&   // Serif tag
@@ -348,18 +348,18 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
   var sentence_text = "";
   var token_offsets = [];
-  for (i = 0, total_tokens = tokenization.tokenList.tokens.length; i < total_tokens; i++) {
+  for (i = 0, total_tokens = tokenization.tokenList.tokenList.length; i < total_tokens; i++) {
     token_offsets.push({
       'start': sentence_text.length,
-      'ending': sentence_text.length + tokenization.tokenList.tokens[i].text.length
+      'ending': sentence_text.length + tokenization.tokenList.tokenList[i].text.length
     });
-    sentence_text += tokenization.tokenList.tokens[i].text + " ";
+    sentence_text += tokenization.tokenList.tokenList[i].text + " ";
   }
 
   var pos_tag_labels = [];
   for (i = 0; i < tokenization.posTagList.taggedTokenList.length; i++) {
     var posTag = tokenization.posTagList.taggedTokenList[i];
-    var token = tokenization.tokenList.tokens[posTag.tokenIndex];
+    var token = tokenization.tokenList.tokenList[posTag.tokenIndex];
     var entityID = "T" + (i+1);
     var start = token_offsets[posTag.tokenIndex].start;
     var ending = token_offsets[posTag.tokenIndex].ending;
@@ -440,10 +440,10 @@ QL.addSentenceBRATControls = function(comm) {
     }
   }
 
-  for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
-    if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
-      for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
-        var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
+  for (var sectionListIndex in comm.sectionSegmentationList[0].sectionList) {
+    if (comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList) {
+      for (var sentenceIndex in comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList) {
+        var sentence = comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList[sentenceIndex];
         var tokenization = sentence.tokenizationList[0];
 
         var sentence_controls_div = $('#sentence_controls_' + sentence.uuid.uuidString);

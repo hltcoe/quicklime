@@ -98,10 +98,10 @@ QL.addSentenceParseControls = function(comm) {
     }
   }
 
-  for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
-    if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
-      for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
-        var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
+  for (var sectionListIndex in comm.sectionSegmentationList[0].sectionList) {
+    if (comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList) {
+      for (var sentenceIndex in comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList) {
+        var sentence = comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList[sentenceIndex];
         var tokenization = sentence.tokenizationList[0];
 
         var sentence_controls_div = $('#sentence_controls_' + sentence.uuid.uuidString);
@@ -195,8 +195,8 @@ QL.drawDependencyParse = function(containerSelectorString, tokenization, depende
     }
   }
 
-  for (i = 0; i < tokenization.tokenList.tokens.length; i++) {
-    token = tokenization.tokenList.tokens[i];
+  for (i = 0; i < tokenization.tokenList.tokenList.length; i++) {
+    token = tokenization.tokenList.tokenList[i];
     if (token.tokenIndex in nodeSet) {
       g.addNode(token.tokenIndex, { label: token.text, nodeclass: "type-UNKNOWN" });
     }

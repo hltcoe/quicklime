@@ -61,19 +61,19 @@ QL.addCommunication = function(parentElementID, comm) {
 
   // For now, we assume that there is only a single section segmentation
   var section_segmentation_div = $('<div>').addClass('section_segmention')
-    .attr('id', 'section_segmentation_' + comm.sectionSegmentations[0].uuid.uuidString);
+    .attr('id', 'section_segmentation_' + comm.sectionSegmentationList[0].uuid.uuidString);
 
   var tokenIndex;
 
-  for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
+  for (var sectionListIndex in comm.sectionSegmentationList[0].sectionList) {
     var section_div = $('<div>').addClass('section')
-      .attr('id', 'section_' + comm.sectionSegmentations[0].sectionList[sectionListIndex].uuid.uuidString);
+      .attr('id', 'section_' + comm.sectionSegmentationList[0].sectionList[sectionListIndex].uuid.uuidString);
     // For now, we assume that there is only a single sentence segmentation
     var sentence_segmentation_div = $('<div>').addClass('sentence_segmentation')
-      .attr('id', 'sentence_segmentation_' + comm.sectionSegmentations[0].uuid.uuidString);
-    if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
-      for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
-        var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
+      .attr('id', 'sentence_segmentation_' + comm.sectionSegmentationList[0].uuid.uuidString);
+    if (comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList) {
+      for (var sentenceIndex in comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList) {
+        var sentence = comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList[sentenceIndex];
         var tokenization = sentence.tokenizationList[0];
 
         var sentence_div = $('<div>')
@@ -86,8 +86,8 @@ QL.addCommunication = function(parentElementID, comm) {
         sentence_div.append(sentence_controls_div);
 
         var tokenization_div = $('<div>').addClass('tokenization').attr('id', 'tokenization_' + tokenization.uuid.uuidString);
-        for (tokenIndex in tokenization.tokenList.tokens) {
-          var token = tokenization.tokenList.tokens[tokenIndex];
+        for (tokenIndex in tokenization.tokenList.tokenList) {
+          var token = tokenization.tokenList.tokenList[tokenIndex];
           var token_span = $('<span>')
             .addClass('token')
             .attr('id', 'tokenization_' + tokenization.uuid.uuidString + "_" + token.tokenIndex)
@@ -148,10 +148,10 @@ QL.addCommunication = function(parentElementID, comm) {
 
   // Add mentionId's to tokens
   var entityMention;
-  for (var entityMentionSetIndex in comm.entityMentionSets) {
-    if (comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-      for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-        entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
+  for (var entityMentionSetIndex in comm.entityMentionSetList) {
+    if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
+      for (var mentionListIndex in comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
+        entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[mentionListIndex];
         if (entityMention.tokens.tokenIndexList) {
           var total_tokens = entityMention.tokens.tokenIndexList.length;
           for (tokenIndex in entityMention.tokens.tokenIndexList) {
@@ -171,9 +171,9 @@ QL.addCommunication = function(parentElementID, comm) {
     }
   }
 
-  if (comm.entitySets) {
-    for (var entityListIndex in comm.entitySets[0].entityList) {
-      var entity = comm.entitySets[0].entityList[entityListIndex];
+  if (comm.entitySetList) {
+    for (var entityListIndex in comm.entitySetList[0].entityList) {
+      var entity = comm.entitySetList[0].entityList[entityListIndex];
       for (var i; i < entity.mentionIdList.length; i++) {
         entityMention = entity.mentionIdList[i];
         $('#mention_' + entityMention.uuid.uuidString).addClass('coref_mention');
@@ -189,10 +189,10 @@ QL.addCommunication = function(parentElementID, comm) {
  */
 QL.addEntityList = function(comm) {
   // Add list of entities, and list of mentions for each entity, to the DOM
-  if (comm.entitySets) {
-    for (var entityListIndex in comm.entitySets[0].entityList) {
+  if (comm.entitySetList) {
+    for (var entityListIndex in comm.entitySetList[0].entityList) {
       var counter = parseInt(entityListIndex, 10) + 1;
-      var entityList = comm.entitySets[0].entityList[entityListIndex];
+      var entityList = comm.entitySetList[0].entityList[entityListIndex];
       var entityList_div = $('<div>');
       var entityCounter_span = $('<span>')
         .addClass('entity_counter')
@@ -268,9 +268,9 @@ QL.addEntityMouseoverHighlighting = function(comm) {
   }
 
   // Add mouseover functions for all elements linked to an entity
-  if (comm.entitySets) {
-    for (var entityListIndex in comm.entitySets[0].entityList) {
-      var entity = comm.entitySets[0].entityList[entityListIndex];
+  if (comm.entitySetList) {
+    for (var entityListIndex in comm.entitySetList[0].entityList) {
+      var entity = comm.entitySetList[0].entityList[entityListIndex];
       $('.entity_' + entity.uuid.uuidString)
         .click({ entity_selector: '.entity_' + entity.uuid.uuidString }, toggleSelectedEntity)
         .mouseenter({ entity_selector: '.entity_' + entity.uuid.uuidString }, addHighlightToEntity)
