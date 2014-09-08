@@ -90,7 +90,7 @@ QL.getCommunicationWithUUID = function(uuid) {
  * properties (or attach a mouse callback function) to every token
  * associated with an Entity or EntityMention.
  *
- * @param {String} parentElementID - DOM ID of element
+ * @param {String} parentElementID - DOM ID of element to attach Communication text to
  * @param {Communication} comm
  */
 QL.addCommunication = function(parentElementID, comm) {
@@ -241,49 +241,50 @@ QL.addCommunication = function(parentElementID, comm) {
 };
 
 
-/** Add a list of entities, and a list of mentions for each entity, to the DOM
+/** Add a list of entities, with their mentions, to the DOM
+ * @param {String} parentElementID - DOM ID of element to attach table to
  * @param {Communication} comm
  */
-QL.addEntityList = function(comm) {
+QL.addEntityTable = function(parentElementID, comm) {
   // TODO: Don't hard code the DOM ID
   if (comm.entitySetList) {
     // TODO: Iterate over all EntitySets, not just the first
     for (var entityListIndex in comm.entitySetList[0].entityList) {
       var counter = parseInt(entityListIndex, 10) + 1;
-      var entityList = comm.entitySetList[0].entityList[entityListIndex];
-      var entityList_div = $('<div>');
+      var entity = comm.entitySetList[0].entityList[entityListIndex];
+      var entity_div = $('<div>');
       var entityCounter_span = $('<span>')
         .addClass('entity_counter')
-        .addClass('entity_' + entityList.uuid.uuidString)
+        .addClass('entity_' + entity.uuid.uuidString)
         /* Tooltips are part of Bootstrap, which is currently disabled because of jQuery conflict
         .attr('data-placement', 'top')
         .attr('data-toggle', 'tooltip')
-        .attr('title', 'UUID ' + entityList.uuid.uuidString)
+        .attr('title', 'UUID ' + entity.uuid.uuidString)
         */
         .html('Entity ' + counter);
         /*
         .tooltip();
         */
-      entityList_div.append(entityCounter_span);
+      entity_div.append(entityCounter_span);
 
       var entityTotal_span = $('<span>')
         .addClass('entity_total')
-        .html('(x' + entityList.mentionIdList.length + ')');
-      entityList_div.append(entityTotal_span);
+        .html('(x' + entity.mentionIdList.length + ')');
+      entity_div.append(entityTotal_span);
 
       var mentionId_ul = $('<ul class="list-inline">').addClass('entity_list');
-      for (var mentionIdListIndex in entityList.mentionIdList) {
-        var mentionId = entityList.mentionIdList[mentionIdListIndex];
+      for (var mentionIdListIndex in entity.mentionIdList) {
+        var mentionId = entity.mentionIdList[mentionIdListIndex];
         var mentionId_li = $('<li>')
           .html('<span class="coref_mention mention_' + mentionId.uuidString + '">' + comm.getTokensForEntityMentionID(mentionId).join(" ") + '</span>');
         mentionId_ul.append(mentionId_li);
 
         // Add 'entity_ENTITY_UUID' class to each mention of that entity
-        $('.mention_' + mentionId.uuidString).addClass('entity_' + entityList.uuid.uuidString).addClass('coref_mention');
+        $('.mention_' + mentionId.uuidString).addClass('entity_' + entity.uuid.uuidString).addClass('coref_mention');
       }
-      entityList_div.append(mentionId_ul);
+      entity_div.append(mentionId_ul);
 
-      $('#entityList').append(entityList_div);
+      $('#' + parentElementID).append(entity_div);
     }
   }
 };
