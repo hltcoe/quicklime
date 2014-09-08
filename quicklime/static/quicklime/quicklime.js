@@ -228,13 +228,15 @@ QL.addCommunication = function(parentElementID, comm) {
   // Concrete, it is possible to have EntityMentions that are not tied
   // to any Entity.
   if (comm.entitySetList) {
-    for (var entityListIndex in comm.entitySetList[0].entityList) {
-      var entity = comm.entitySetList[0].entityList[entityListIndex];
-      for (var i = 0; i < entity.mentionIdList.length; i++) {
-        var entityMentionId = entity.mentionIdList[i];
-        $('.mention_' + entityMentionId.uuidString)
-          .addClass('coref_mention')
-          .addClass('entity_' + entity.uuid.uuidString);
+    for (var entitySetListIndex in comm.entitySetList) {
+      for (var entityListIndex in comm.entitySetList[entitySetListIndex].entityList) {
+        var entity = comm.entitySetList[entitySetListIndex].entityList[entityListIndex];
+        for (var i = 0; i < entity.mentionIdList.length; i++) {
+          var entityMentionId = entity.mentionIdList[i];
+          $('.mention_' + entityMentionId.uuidString)
+            .addClass('coref_mention')
+            .addClass('entity_' + entity.uuid.uuidString);
+        }
       }
     }
   }
