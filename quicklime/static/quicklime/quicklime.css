@@ -129,7 +129,7 @@ div .brat_sentence_container {
 }
 span.entity_counter {
     font-weight: bold;
-    padding-left: 2em;
+    margin-left: 2em;
 }
 span.entity_total {
     font-size: 0.8em;
