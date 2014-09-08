@@ -6,16 +6,17 @@ Quicklime creates a DOM structure for a Communication:
     <div class="section" id="section_UUID">
       <div class="sentence_segmentation" id="sentence_segmentation_UUID">
         <div class="sentence" id="sentence_UUID">>
-          <div class="sentence_controls" id="sentence_controls_[SENTENCE_UUID]">
-            <button>
-            <button>
+          <div class="controls_and_tokenization_container clearfix">
+            <div class="sentence_controls" id="sentence_controls_[SENTENCE_UUID]">
+              <button>
+              <button>
+              ...
+            <div class="tokenization" id="tokenization_UUID">
+              <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
+              <span class="token_padding "id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
+              <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
+              <span class="token_padding" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
             ...
-          <div class="tokenization" id="tokenization_UUID">
-            <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
-            <span class="token_padding "id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
-            <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
-            <span class="token_padding" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
-          ...
           <div class="brat_sentence_container" id="sentence_ner_container_[SENTENCE_UUID]">
             <div class="brat_sentence_label brat_ner_sentence_label">
             <div class="brat_sentence" id="sentence_ner_[SENTENCE_UUID]">
@@ -23,7 +24,11 @@ Quicklime creates a DOM structure for a Communication:
             <div class="brat_sentence_label brat_pos_sentence_label">
             <div class="brat_sentence" id="sentence_pos_[SENTENCE_UUID]">
           <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]">
-            <div class="parse_label constituent_parse_label">
+            <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]_0">
+              <div class="parse_label constituent_parse_label_0">
+            <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]_1">
+              <div class="parse_label constituent_parse_label_1">
+            ...
           <div class="dagre_parse" id="dependency_parse_[SENTENCE_UUID]">
             <div class="dagre_parse" id="dependency_parse_[SENTENCE_UUID]_0">
               <div class="parse_label dependency_parse_label_0">
@@ -48,8 +53,44 @@ QL.getCommunicationWithUUID = function(uuid) {
 };
 
 
-/**
- * @param {String} parentElementID
+/** Adds <div>/<span> elements and token text for a Communication to DOM
+ *
+ * Concrete Communications contain many layers of nested data
+ * structures, with lists of SectionSegmentations containing lists of
+ * Sections containing lists of SentenceSegmentations, etc.
+ *
+ * This function takes a Concrete Communication, and adds layers of
+ * nested <div>'s and <span>'s to the DOM that reflect the nested data
+ * structures in the Communication (with some extra nesting of <div>'s
+ * and <span>'s so that the HTML is rendered properly).
+ *
+ * For each Concrete object of type:
+ *   - SectionSegmentation
+ *   - Section
+ *   - SentenceSegmentation
+ *   - Sentence
+ *   - Tokenization
+ * there is a corresponding <div> with a DOM ID based on the UUID of
+ * that Concrete object.
+ *
+ * Each token string and each space between tokens is wrapped in its
+ * own <span>, and these <span>'s have DOM IDs determined by the
+ * Tokenization UUID and token index.
+ *
+ * This function also adds co-reference information to token <span>'s.
+ * For each EntityMention, this function finds the token <span>'s
+ * associated with the mention, and adds a unique DOM class name
+ * (based on the EntityMention's UUID) to each matching token <span>.
+ * The function also finds the Entity associated with each
+ * EntityMention, and adds a unique DOM class name for that Entity
+ * (based on the Entity's UUID) to each matching token <span>.
+ *
+ * A single token <span> may be assigned many DOM class names.  All
+ * these class names make it easy to do things like change the CSS
+ * properties (or attach a mouse callback function) to every token
+ * associated with an Entity or EntityMention.
+ *
+ * @param {String} parentElementID - DOM ID of element
  * @param {Communication} comm
  */
 QL.addCommunication = function(parentElementID, comm) {
@@ -61,33 +102,38 @@ QL.addCommunication = function(parentElementID, comm) {
 
   // For now, we assume that there is only a single section segmentation
   var section_segmentation_div = $('<div>').addClass('section_segmention')
-    .attr('id', 'section_segmentation_' + comm.sectionSegmentations[0].uuid.uuidString);
+    .attr('id', 'section_segmentation_' + comm.sectionSegmentationList[0].uuid.uuidString);
 
   var tokenIndex;
 
-  for (var sectionListIndex in comm.sectionSegmentations[0].sectionList) {
+  for (var sectionListIndex in comm.sectionSegmentationList[0].sectionList) {
     var section_div = $('<div>').addClass('section')
-      .attr('id', 'section_' + comm.sectionSegmentations[0].sectionList[sectionListIndex].uuid.uuidString);
+      .attr('id', 'section_' + comm.sectionSegmentationList[0].sectionList[sectionListIndex].uuid.uuidString);
     // For now, we assume that there is only a single sentence segmentation
     var sentence_segmentation_div = $('<div>').addClass('sentence_segmentation')
-      .attr('id', 'sentence_segmentation_' + comm.sectionSegmentations[0].uuid.uuidString);
-    if (comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation) {
-      for (var sentenceIndex in comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList) {
-        var sentence = comm.sectionSegmentations[0].sectionList[sectionListIndex].sentenceSegmentation[0].sentenceList[sentenceIndex];
+      .attr('id', 'sentence_segmentation_' + comm.sectionSegmentationList[0].uuid.uuidString);
+    if (comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList) {
+      for (var sentenceIndex in comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList) {
+        var sentence = comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList[sentenceIndex];
         var tokenization = sentence.tokenizationList[0];
 
         var sentence_div = $('<div>')
           .addClass('sentence')
           .attr('id', 'sentence_' + sentence.uuid.uuidString);
+
+        var controls_and_tokenization_container_div = $('<div>')
+          .addClass('controls_and_tokenization_container')
+          .addClass('clearfix');
+
         var sentence_controls_div = $('<div>')
           .addClass('sentence_controls')
           .attr('id', 'sentence_controls_' + sentence.uuid.uuidString);
 
-        sentence_div.append(sentence_controls_div);
+        controls_and_tokenization_container_div.append(sentence_controls_div);
 
         var tokenization_div = $('<div>').addClass('tokenization').attr('id', 'tokenization_' + tokenization.uuid.uuidString);
-        for (tokenIndex in tokenization.tokenList.tokens) {
-          var token = tokenization.tokenList.tokens[tokenIndex];
+        for (tokenIndex in tokenization.tokenList.tokenList) {
+          var token = tokenization.tokenList.tokenList[tokenIndex];
           var token_span = $('<span>')
             .addClass('token')
             .attr('id', 'tokenization_' + tokenization.uuid.uuidString + "_" + token.tokenIndex)
@@ -99,7 +145,10 @@ QL.addCommunication = function(parentElementID, comm) {
           tokenization_div.append(token_span);
           tokenization_div.append(token_padding_span);
         }
-        sentence_div.append(tokenization_div);
+        controls_and_tokenization_container_div.append(tokenization_div);
+
+        sentence_div.append(controls_and_tokenization_container_div);
+
         sentence_div.append(
           $('<div>')
             .addClass('brat_sentence_container')
@@ -148,10 +197,10 @@ QL.addCommunication = function(parentElementID, comm) {
 
   // Add mentionId's to tokens
   var entityMention;
-  for (var entityMentionSetIndex in comm.entityMentionSets) {
-    if (comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-      for (var mentionSetIndex in comm.entityMentionSets[entityMentionSetIndex].mentionSet) {
-        entityMention = comm.entityMentionSets[entityMentionSetIndex].mentionSet[mentionSetIndex];
+  for (var entityMentionSetIndex in comm.entityMentionSetList) {
+    if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
+      for (var mentionListIndex in comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
+        entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[mentionListIndex];
         if (entityMention.tokens.tokenIndexList) {
           var total_tokens = entityMention.tokens.tokenIndexList.length;
           for (tokenIndex in entityMention.tokens.tokenIndexList) {
@@ -171,9 +220,9 @@ QL.addCommunication = function(parentElementID, comm) {
     }
   }
 
-  if (comm.entitySets) {
-    for (var entityListIndex in comm.entitySets[0].entityList) {
-      var entity = comm.entitySets[0].entityList[entityListIndex];
+  if (comm.entitySetList) {
+    for (var entityListIndex in comm.entitySetList[0].entityList) {
+      var entity = comm.entitySetList[0].entityList[entityListIndex];
       for (var i; i < entity.mentionIdList.length; i++) {
         entityMention = entity.mentionIdList[i];
         $('#mention_' + entityMention.uuid.uuidString).addClass('coref_mention');
@@ -189,10 +238,10 @@ QL.addCommunication = function(parentElementID, comm) {
  */
 QL.addEntityList = function(comm) {
   // Add list of entities, and list of mentions for each entity, to the DOM
-  if (comm.entitySets) {
-    for (var entityListIndex in comm.entitySets[0].entityList) {
+  if (comm.entitySetList) {
+    for (var entityListIndex in comm.entitySetList[0].entityList) {
       var counter = parseInt(entityListIndex, 10) + 1;
-      var entityList = comm.entitySets[0].entityList[entityListIndex];
+      var entityList = comm.entitySetList[0].entityList[entityListIndex];
       var entityList_div = $('<div>');
       var entityCounter_span = $('<span>')
         .addClass('entity_counter')
@@ -268,9 +317,9 @@ QL.addEntityMouseoverHighlighting = function(comm) {
   }
 
   // Add mouseover functions for all elements linked to an entity
-  if (comm.entitySets) {
-    for (var entityListIndex in comm.entitySets[0].entityList) {
-      var entity = comm.entitySets[0].entityList[entityListIndex];
+  if (comm.entitySetList) {
+    for (var entityListIndex in comm.entitySetList[0].entityList) {
+      var entity = comm.entitySetList[0].entityList[entityListIndex];
       $('.entity_' + entity.uuid.uuidString)
         .click({ entity_selector: '.entity_' + entity.uuid.uuidString }, toggleSelectedEntity)
         .mouseenter({ entity_selector: '.entity_' + entity.uuid.uuidString }, addHighlightToEntity)
