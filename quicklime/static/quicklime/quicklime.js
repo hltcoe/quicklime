@@ -121,6 +121,10 @@ QL.addCommunication = function(parentElementID, comm) {
           .addClass('sentence')
           .attr('id', 'sentence_' + sentence.uuid.uuidString);
 
+        // Add the Bootstrap CSS class 'clearfix' to the
+        // 'controls_and_tokenization_container' <div>, so that the
+        // (floating) 'sentence_controls' and 'tokenization' <div>'s
+        // in the container don't affect other <div>'s
         var controls_and_tokenization_container_div = $('<div>')
           .addClass('controls_and_tokenization_container')
           .addClass('clearfix');
@@ -195,7 +199,7 @@ QL.addCommunication = function(parentElementID, comm) {
   }
   document_div.append(section_segmentation_div);
 
-  // Add mentionId's to tokens
+  // Add DOM classes for mentionId's to token <span>'s
   var entityMention;
   for (var entityMentionSetIndex in comm.entityMentionSetList) {
     if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
@@ -220,6 +224,10 @@ QL.addCommunication = function(parentElementID, comm) {
     }
   }
 
+  // Add DOM class "coref_mention" to any token <span>'s that are part
+  // of an EntityMention for an Entity in comm.entitySetList.  In
+  // Concrete, it is possible to have EntityMentions that are not tied
+  // to any Entity.
   if (comm.entitySetList) {
     for (var entityListIndex in comm.entitySetList[0].entityList) {
       var entity = comm.entitySetList[0].entityList[entityListIndex];
@@ -233,12 +241,13 @@ QL.addCommunication = function(parentElementID, comm) {
 };
 
 
-/**
+/** Add a list of entities, and a list of mentions for each entity, to the DOM
  * @param {Communication} comm
  */
 QL.addEntityList = function(comm) {
-  // Add list of entities, and list of mentions for each entity, to the DOM
+  // TODO: Don't hard code the DOM ID
   if (comm.entitySetList) {
+    // TODO: Iterate over all EntitySets, not just the first
     for (var entityListIndex in comm.entitySetList[0].entityList) {
       var counter = parseInt(entityListIndex, 10) + 1;
       var entityList = comm.entitySetList[0].entityList[entityListIndex];
@@ -280,8 +289,11 @@ QL.addEntityList = function(comm) {
 };
 
 
-/**
- * @param {Communication} comm
+/** Add mouseover event handlers for EntityMentions
+ *
+ * For each Entity in the given Communication, find all the token
+ * <span>'s associated with the EntityMentions for that Entity, and
+ * add mouseover event handlers to those <span>'s.
  */
 QL.addEntityMouseoverHighlighting = function(comm) {
   /**
@@ -340,8 +352,9 @@ QL.addEntityMouseoverHighlighting = function(comm) {
 };
 
 
-/**
+/** Function takes a token string, returns a "cleaned" version of that string
  * @param {String} tokenText
+ * @returns {String}
  */
 QL.cleanedTokenText = function(tokenText) {
   // Convert Penn Treebank-style symbols for brackets to bracket characters
