@@ -247,42 +247,54 @@ QL.addCommunication = function(parentElementID, comm) {
  * @param {Communication} comm
  */
 QL.addEntityTable = function(parentElementID, comm) {
-  // TODO: Don't hard code the DOM ID
   if (comm.entitySetList) {
-    // TODO: Iterate over all EntitySets, not just the first
-    for (var entityListIndex in comm.entitySetList[0].entityList) {
-      var counter = parseInt(entityListIndex, 10) + 1;
-      var entity = comm.entitySetList[0].entityList[entityListIndex];
-      var entity_div = $('<div>');
-      var entityCounter_span = $('<span>')
-        .addClass('entity_counter')
-        .addClass('entity_' + entity.uuid.uuidString)
-        /* Tooltips are part of Bootstrap, which is currently disabled because of jQuery conflict
-        .attr('data-placement', 'top')
-        .attr('data-toggle', 'tooltip')
-        .attr('title', 'UUID ' + entity.uuid.uuidString)
-        */
-        .html('Entity ' + counter);
-        /*
-        .tooltip();
-        */
-      entity_div.append(entityCounter_span);
+    var entityTable_div = $('<div>');
+    $('#' + parentElementID).append(entityTable_div);
 
-      var entityTotal_span = $('<span>')
-        .addClass('entity_total')
-        .html('(x' + entity.mentionIdList.length + ')');
-      entity_div.append(entityTotal_span);
-
-      var mentionId_ul = $('<ul class="list-inline">').addClass('entity_list');
-      for (var mentionIdListIndex in entity.mentionIdList) {
-        var mentionId = entity.mentionIdList[mentionIdListIndex];
-        var mentionId_li = $('<li>')
-          .html('<span class="coref_mention mention_' + mentionId.uuidString + '">' + comm.getTokensForEntityMentionID(mentionId).join(" ") + '</span>');
-        mentionId_ul.append(mentionId_li);
+    for (var entitySetListIndex in comm.entitySetList) {
+      var entityToolHeading = $('<h4>');
+      if (comm.entitySetList[entitySetListIndex].metadata) {
+        entityToolHeading.html(comm.entitySetList[entitySetListIndex].metadata.tool);
       }
-      entity_div.append(mentionId_ul);
+      else {
+        entityToolHeading.html('Unknown Entity Tool #' + entitySetListIndex);
+      }
+      entityTable_div.append(entityToolHeading);
 
-      $('#' + parentElementID).append(entity_div);
+      for (var entityListIndex in comm.entitySetList[entitySetListIndex].entityList) {
+        var counter = parseInt(entityListIndex, 10) + 1;
+        var entity = comm.entitySetList[entitySetListIndex].entityList[entityListIndex];
+        var entity_div = $('<div>');
+        var entityCounter_span = $('<span>')
+          .addClass('entity_counter')
+          .addClass('entity_' + entity.uuid.uuidString)
+          /* Tooltips are part of Bootstrap, which is currently disabled because of jQuery conflict
+          .attr('data-placement', 'top')
+          .attr('data-toggle', 'tooltip')
+          .attr('title', 'UUID ' + entity.uuid.uuidString)
+          */
+          .html('Entity ' + counter);
+          /*
+          .tooltip();
+          */
+        entity_div.append(entityCounter_span);
+
+        var entityTotal_span = $('<span>')
+          .addClass('entity_total')
+          .html('(x' + entity.mentionIdList.length + ')');
+        entity_div.append(entityTotal_span);
+
+        var mentionId_ul = $('<ul class="list-inline">').addClass('entity_list');
+        for (var mentionIdListIndex in entity.mentionIdList) {
+          var mentionId = entity.mentionIdList[mentionIdListIndex];
+          var mentionId_li = $('<li>')
+            .html('<span class="coref_mention mention_' + mentionId.uuidString + '">' + comm.getTokensForEntityMentionID(mentionId).join(" ") + '</span>');
+          mentionId_ul.append(mentionId_li);
+        }
+        entity_div.append(mentionId_ul);
+
+        entityTable_div.append(entity_div);
+      }
     }
   }
 };
@@ -329,22 +341,24 @@ QL.addEntityMouseoverHighlighting = function(comm) {
 
   // Add mouseover functions for all elements linked to an entity
   if (comm.entitySetList) {
-    for (var entityListIndex in comm.entitySetList[0].entityList) {
-      var entity = comm.entitySetList[0].entityList[entityListIndex];
-      $('.entity_' + entity.uuid.uuidString)
-        .click({ entity_selector: '.entity_' + entity.uuid.uuidString }, toggleSelectedEntity)
-        .mouseenter({ entity_selector: '.entity_' + entity.uuid.uuidString }, addHighlightToEntity)
-        .mouseleave({ entity_selector: '.entity_' + entity.uuid.uuidString }, removeHighlightFromEntity);
-
-      // Add mouseover functions for all elements linked to a mention of an entity in entitySet.
-      // Mouseover functions will not be added to any mentions - such as value mentions - that are
-      // not linked to an entity in entitySet.
-      for (var i = 0; i < entity.mentionIdList.length; i++) {
-        var entityMentionId = entity.mentionIdList[i];
-        $('.mention_' + entityMentionId.uuidString)
+    for (var entitySetListIndex in comm.entitySetList) {
+      for (var entityListIndex in comm.entitySetList[entitySetListIndex].entityList) {
+        var entity = comm.entitySetList[entitySetListIndex].entityList[entityListIndex];
+        $('.entity_' + entity.uuid.uuidString)
           .click({ entity_selector: '.entity_' + entity.uuid.uuidString }, toggleSelectedEntity)
-          .mouseenter({ mention_selector: '.mention_'+entityMentionId.uuidString }, addHighlightToMention)
-          .mouseleave({ mention_selector: '.mention_'+entityMentionId.uuidString }, removeHighlightFromMention);
+          .mouseenter({ entity_selector: '.entity_' + entity.uuid.uuidString }, addHighlightToEntity)
+          .mouseleave({ entity_selector: '.entity_' + entity.uuid.uuidString }, removeHighlightFromEntity);
+
+        // Add mouseover functions for all elements linked to a mention of an entity in entitySet.
+        // Mouseover functions will not be added to any mentions - such as value mentions - that are
+        // not linked to an entity in entitySet.
+        for (var i = 0; i < entity.mentionIdList.length; i++) {
+          var entityMentionId = entity.mentionIdList[i];
+          $('.mention_' + entityMentionId.uuidString)
+            .click({ entity_selector: '.entity_' + entity.uuid.uuidString }, toggleSelectedEntity)
+            .mouseenter({ mention_selector: '.mention_'+entityMentionId.uuidString }, addHighlightToMention)
+            .mouseleave({ mention_selector: '.mention_'+entityMentionId.uuidString }, removeHighlightFromMention);
+        }
       }
     }
   }
