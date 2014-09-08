@@ -200,11 +200,10 @@ QL.addCommunication = function(parentElementID, comm) {
   document_div.append(section_segmentation_div);
 
   // Add DOM classes for mentionId's to token <span>'s
-  var entityMention;
   for (var entityMentionSetIndex in comm.entityMentionSetList) {
     if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
       for (var mentionListIndex in comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
-        entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[mentionListIndex];
+        var entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[mentionListIndex];
         if (entityMention.tokens.tokenIndexList) {
           var total_tokens = entityMention.tokens.tokenIndexList.length;
           for (tokenIndex in entityMention.tokens.tokenIndexList) {
@@ -231,9 +230,11 @@ QL.addCommunication = function(parentElementID, comm) {
   if (comm.entitySetList) {
     for (var entityListIndex in comm.entitySetList[0].entityList) {
       var entity = comm.entitySetList[0].entityList[entityListIndex];
-      for (var i; i < entity.mentionIdList.length; i++) {
-        entityMention = entity.mentionIdList[i];
-        $('#mention_' + entityMention.uuid.uuidString).addClass('coref_mention');
+      for (var i = 0; i < entity.mentionIdList.length; i++) {
+        var entityMentionId = entity.mentionIdList[i];
+        $('.mention_' + entityMentionId.uuidString)
+          .addClass('coref_mention')
+          .addClass('entity_' + entity.uuid.uuidString);
       }
     }
   }
@@ -278,9 +279,6 @@ QL.addEntityTable = function(parentElementID, comm) {
         var mentionId_li = $('<li>')
           .html('<span class="coref_mention mention_' + mentionId.uuidString + '">' + comm.getTokensForEntityMentionID(mentionId).join(" ") + '</span>');
         mentionId_ul.append(mentionId_li);
-
-        // Add 'entity_ENTITY_UUID' class to each mention of that entity
-        $('.mention_' + mentionId.uuidString).addClass('entity_' + entity.uuid.uuidString).addClass('coref_mention');
       }
       entity_div.append(mentionId_ul);
 
