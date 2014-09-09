@@ -88,8 +88,8 @@
      var comm = client.readComm();
 
      QL.addCommunication('communication_one', comm);
-     QL.addSentenceParseControls(comm);
-     QL.addSentenceBRATControls(comm);
+     QL.addTokenizationParseControls(comm);
+     QL.addTokenizationBRATControls(comm);
      QL.addEntityTable('entityTable', comm);
      QL.addEntityMouseoverHighlighting(comm);
    });

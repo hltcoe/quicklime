@@ -51,20 +51,20 @@ div.dagre_parse {
    CSS rules for BRAT
  */
 
-.brat_sentence text {
+.brat_tokenization text {
     font-size: 15px;
 }
-.brat_sentence .arcs text {
+.brat_tokenization .arcs text {
     font-size: 9px;
 }
-.brat_sentence .span text {
+.brat_tokenization .span text {
     font-size: 10px;
 }
 /* BRAT adds the 'hasSVG' class to the <div> */
-div .brat_sentence.hasSVG {
+div .brat_tokenization.hasSVG {
 }
 
-div .brat_sentence_label {
+div .brat_tokenization_label {
     /* The color #81A4FC is the BRAT border color */
     border-top: 1px solid #81A4FC;
     border-left: 1px solid #81A4FC;
@@ -72,14 +72,14 @@ div .brat_sentence_label {
     background-color: pink;
     padding-left: 0.5em;
 }
-div .brat_ner_sentence_label {
+div .brat_ner_tokenization_label {
     background-color: pink;
 }
-div .brat_pos_sentence_label {
+div .brat_pos_tokenization_label {
     background-color: #ccdaf6;
 }
 
-div .brat_sentence_container {
+div .brat_tokenization_container {
     margin-top: 0.75em;
     margin-bottom: 1.25em;
 }
@@ -148,7 +148,7 @@ ul.entity_list {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
-.sentence_controls {
+.tokenization_controls {
     float: left;
 }
 .token {
@@ -165,7 +165,7 @@ ul.entity_list {
        of a .sentence <div>:
 
          <div class="sentence">
-           <div class="sentence_controls">
+           <div class="tokenization_controls">
            <div class="tokenization">
 
        Using the Chrome Developer tools to investigate, Chrome is

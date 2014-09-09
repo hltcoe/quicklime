@@ -184,7 +184,7 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
 
   var webFontURLs = [];
 
-  Util.embed('ace_relations_' + sentence.uuid.uuidString, collData, docData, webFontURLs);
+  Util.embed('ace_relations_' + tokenization.uuid.uuidString, collData, docData, webFontURLs);
 };
 
 
@@ -247,7 +247,7 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
   var docData = { text: sentence_text, entities: ner_tag_labels };
 
-  Util.embed('sentence_ner_' + sentence.uuid.uuidString, collData, docData, webFontURLs);
+  Util.embed('tokenization_ner_' + tokenization.uuid.uuidString, collData, docData, webFontURLs);
 };
 
 
@@ -378,7 +378,7 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
   Util.embed(
     // id of the div element where brat should embed the visualisations
-    'sentence_pos_' + sentence.uuid.uuidString,
+    'tokenization_pos_' + tokenization.uuid.uuidString,
     // object containing collection data
     collData,
     // object containing document data
@@ -391,9 +391,9 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
 
 /*
-Add buttons to sentence_control <div>'s:
+Add buttons to tokenization_control <div>'s:
 
-    <div class="sentence_controls" id="sentence_controls_[SENTENCE_UUID]">
+    <div class="tokenization_controls" id="tokenization_controls_[TOKENIZATION_UUID]">
 +     <button>
 +     <button>
 +     ...
@@ -401,18 +401,18 @@ Add buttons to sentence_control <div>'s:
 /**
  * @param {Communication} comm
  */
-QL.addSentenceBRATControls = function(comm) {
+QL.addTokenizationBRATControls = function(comm) {
   /**
    * @param {MouseEvent} event
    */
   function addOrToggleNERTags(event) {
-    if (QL.hasNERTags(event.data.sentence_uuid)) {
-      QL.toggleNERTags(event.data.sentence_uuid);
+    if (QL.hasNERTags(event.data.tokenization_uuid)) {
+      QL.toggleNERTags(event.data.tokenization_uuid);
     }
     else {
       QL.addNERTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
-      $('#sentence_ner_button_' + event.data.sentence_uuid.uuidString).addClass('active');
-      $("#sentence_ner_container_" + event.data.sentence_uuid.uuidString).show();
+      $('#tokenization_ner_button_' + event.data.tokenization_uuid.uuidString).addClass('active');
+      $("#tokenization_ner_container_" + event.data.tokenization_uuid.uuidString).show();
     }
   }
 
@@ -420,13 +420,13 @@ QL.addSentenceBRATControls = function(comm) {
    * @param {MouseEvent} event
    */
   function addOrTogglePOSTags(event) {
-    if (QL.hasPOSTags(event.data.sentence_uuid)) {
-      QL.togglePOSTags(event.data.sentence_uuid);
+    if (QL.hasPOSTags(event.data.tokenization_uuid)) {
+      QL.togglePOSTags(event.data.tokenization_uuid);
     }
     else {
       QL.addPOSTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
-      $('#sentence_pos_button_' + event.data.sentence_uuid.uuidString).addClass('active');
-      $("#sentence_pos_container_" + event.data.sentence_uuid.uuidString).show();
+      $('#tokenization_pos_button_' + event.data.tokenization_uuid.uuidString).addClass('active');
+      $("#tokenization_pos_container_" + event.data.tokenization_uuid.uuidString).show();
     }
   }
 
@@ -434,12 +434,12 @@ QL.addSentenceBRATControls = function(comm) {
    * @param {MouseEvent} event
    */
   function addOrToggleACERelations(event) {
-    if (QL.hasACERelations(event.data.sentence_uuid)) {
-      QL.toggleACERelations(event.data.sentence_uuid);
+    if (QL.hasACERelations(event.data.tokenization_uuid)) {
+      QL.toggleACERelations(event.data.tokenization_uuid);
     }
     else {
       QL.addACERelations(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
-      $('#ace_relations_button_' + event.data.sentence_uuid.uuidString).addClass('active');
+      $('#ace_relations_button_' + event.data.tokenization_uuid.uuidString).addClass('active');
     }
   }
 
@@ -449,52 +449,52 @@ QL.addSentenceBRATControls = function(comm) {
         var sentence = comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList[sentenceIndex];
         var tokenization = sentence.tokenizationList[0];
 
-        var sentence_controls_div = $('#sentence_controls_' + sentence.uuid.uuidString);
+        var tokenization_controls_div = $('#tokenization_controls_' + tokenization.uuid.uuidString);
 
 	if (tokenization.getTokenTaggingsOfType("NER").length > 0) {
           var ner_tag_button = $('<button>')
             .addClass('btn btn-default btn-xs')
-            .attr('id', 'sentence_ner_button_' + sentence.uuid.uuidString)
+            .attr('id', 'tokenization_ner_button_' + tokenization.uuid.uuidString)
             .attr('type', 'button')
             .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
                    addOrToggleNERTags)
             .css('margin-right', '1em')
             .html("NER");
-          sentence_controls_div.append(ner_tag_button);
+          tokenization_controls_div.append(ner_tag_button);
 	}
 
 	if (tokenization.getTokenTaggingsOfType("POS").length > 0) {
           var pos_tag_button = $('<button>')
             .addClass('btn btn-default btn-xs')
-            .attr('id', 'sentence_pos_button_' + sentence.uuid.uuidString)
+            .attr('id', 'tokenization_pos_button_' + tokenization.uuid.uuidString)
             .attr('type', 'button')
             .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
                    addOrTogglePOSTags)
             .css('margin-right', '1em')
             .html("POS");
-          sentence_controls_div.append(pos_tag_button);
+          tokenization_controls_div.append(pos_tag_button);
 	}
 
 	var relation_button = $('<button>')
           .addClass('btn btn-default btn-xs')
-          .attr('id', 'ace_relations_button_' + sentence.uuid.uuidString)
+          .attr('id', 'ace_relations_button_' + tokenization.uuid.uuidString)
           .attr('type', 'button')
           .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
                  addOrToggleACERelations)
           .css('margin-right', '1em')
           .html("Rel");
-//        sentence_controls_div.append(relation_button);
+//        tokenization_controls_div.append(relation_button);
       }
     }
   }
 };
 
 /**
- * @param {String} sentenceUUID
+ * @param {String} tokenizationUUID
  * @returns {Boolean}
  */
-QL.hasACERelations = function(sentenceUUID) {
-  if ($("#ace_relations_" + sentenceUUID.uuidString + " svg").length > 0) {
+QL.hasACERelations = function(tokenizationUUID) {
+  if ($("#ace_relations_" + tokenizationUUID.uuidString + " svg").length > 0) {
     return true;
   }
   else {
@@ -504,11 +504,11 @@ QL.hasACERelations = function(sentenceUUID) {
 
 
 /**
- * @param {String} sentenceUUID
+ * @param {String} tokenizationUUID
  * @returns {Boolean}
  */
-QL.hasNERTags = function(sentenceUUID) {
-  if ($("#sentence_ner_" + sentenceUUID.uuidString + " svg").length > 0) {
+QL.hasNERTags = function(tokenizationUUID) {
+  if ($("#tokenization_ner_" + tokenizationUUID.uuidString + " svg").length > 0) {
     return true;
   }
   else {
@@ -518,11 +518,11 @@ QL.hasNERTags = function(sentenceUUID) {
 
 
 /**
- * @param {String} sentenceUUID
+ * @param {String} tokenizationUUID
  * @returns {Boolean}
  */
-QL.hasPOSTags = function(sentenceUUID) {
-  if ($("#sentence_pos_" + sentenceUUID.uuidString + " svg").length > 0) {
+QL.hasPOSTags = function(tokenizationUUID) {
+  if ($("#tokenization_pos_" + tokenizationUUID.uuidString + " svg").length > 0) {
     return true;
   }
   else {
@@ -532,45 +532,45 @@ QL.hasPOSTags = function(sentenceUUID) {
 
 
 /**
- * @param {String} sentenceUUID
+ * @param {String} tokenizationUUID
  */
-QL.toggleACERelations = function(sentenceUUID) {
-  if ($("#ace_relations_" + sentenceUUID.uuidString).css('display') == 'none') {
-    $('#ace_relations_button_' + sentenceUUID.uuidString).addClass('active');
-    $("#ace_relations_" + sentenceUUID.uuidString).show();
+QL.toggleACERelations = function(tokenizationUUID) {
+  if ($("#ace_relations_" + tokenizationUUID.uuidString).css('display') == 'none') {
+    $('#ace_relations_button_' + tokenizationUUID.uuidString).addClass('active');
+    $("#ace_relations_" + tokenizationUUID.uuidString).show();
   }
   else {
-    $('#ace_relations_button_' + sentenceUUID.uuidString).removeClass('active');
-    $("#ace_relations_" + sentenceUUID.uuidString).hide();
+    $('#ace_relations_button_' + tokenizationUUID.uuidString).removeClass('active');
+    $("#ace_relations_" + tokenizationUUID.uuidString).hide();
   }
 };
 
 
 /**
- * @param {String} sentenceUUID
+ * @param {String} tokenizationUUID
  */
-QL.toggleNERTags = function(sentenceUUID) {
-  if ($("#sentence_ner_container_" + sentenceUUID.uuidString).css('display') == 'none') {
-    $('#sentence_ner_button_' + sentenceUUID.uuidString).addClass('active');
-    $("#sentence_ner_container_" + sentenceUUID.uuidString).show();
+QL.toggleNERTags = function(tokenizationUUID) {
+  if ($("#tokenization_ner_container_" + tokenizationUUID.uuidString).css('display') == 'none') {
+    $('#tokenization_ner_button_' + tokenizationUUID.uuidString).addClass('active');
+    $("#tokenization_ner_container_" + tokenizationUUID.uuidString).show();
   }
   else {
-    $('#sentence_ner_button_' + sentenceUUID.uuidString).removeClass('active');
-    $("#sentence_ner_container_" + sentenceUUID.uuidString).hide();
+    $('#tokenization_ner_button_' + tokenizationUUID.uuidString).removeClass('active');
+    $("#tokenization_ner_container_" + tokenizationUUID.uuidString).hide();
   }
 };
 
 
 /**
- * @param {String} sentenceUUID
+ * @param {String} tokenizationUUID
  */
-QL.togglePOSTags = function(sentenceUUID) {
-  if ($("#sentence_pos_container_" + sentenceUUID.uuidString).css('display') == 'none') {
-    $('#sentence_pos_button_' + sentenceUUID.uuidString).addClass('active');
-    $("#sentence_pos_container_" + sentenceUUID.uuidString).show();
+QL.togglePOSTags = function(tokenizationUUID) {
+  if ($("#tokenization_pos_container_" + tokenizationUUID.uuidString).css('display') == 'none') {
+    $('#tokenization_pos_button_' + tokenizationUUID.uuidString).addClass('active');
+    $("#tokenization_pos_container_" + tokenizationUUID.uuidString).show();
   }
   else {
-    $('#sentence_pos_button_' + sentenceUUID.uuidString).removeClass('active');
-    $("#sentence_pos_container_" + sentenceUUID.uuidString).hide();
+    $('#tokenization_pos_button_' + tokenizationUUID.uuidString).removeClass('active');
+    $("#tokenization_pos_container_" + tokenizationUUID.uuidString).hide();
   }
 };

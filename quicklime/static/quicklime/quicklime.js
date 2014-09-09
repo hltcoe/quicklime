@@ -7,7 +7,7 @@ Quicklime creates a DOM structure for a Communication:
       <div class="sentence_segmentation" id="sentence_segmentation_UUID">
         <div class="sentence" id="sentence_UUID">>
           <div class="controls_and_tokenization_container clearfix">
-            <div class="sentence_controls" id="sentence_controls_[SENTENCE_UUID]">
+            <div class="tokenization_controls" id="tokenization_controls_[TOKENIZATION_UUID]">
               <button>
               <button>
               ...
@@ -17,22 +17,22 @@ Quicklime creates a DOM structure for a Communication:
               <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
               <span class="token_padding" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
             ...
-          <div class="brat_sentence_container" id="sentence_ner_container_[SENTENCE_UUID]">
-            <div class="brat_sentence_label brat_ner_sentence_label">
-            <div class="brat_sentence" id="sentence_ner_[SENTENCE_UUID]">
-          <div class="brat_sentence_container" id="sentence_pos_container_[SENTENCE_UUID]">
-            <div class="brat_sentence_label brat_pos_sentence_label">
-            <div class="brat_sentence" id="sentence_pos_[SENTENCE_UUID]">
-          <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]">
-            <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]_0">
+          <div class="brat_tokenization_container" id="tokenization_ner_container_[TOKENIZATION_UUID]">
+            <div class="brat_tokenization_label brat_ner_tokenization_label">
+            <div class="brat_tokenization" id="tokenization_ner_[TOKENIZATION_UUID]">
+          <div class="brat_tokenization_container" id="tokenization_pos_container_[TOKENIZATION_UUID]">
+            <div class="brat_tokenization_label brat_pos_tokenization_label">
+            <div class="brat_tokenization" id="tokenization_pos_[TOKENIZATION_UUID]">
+          <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]">
+            <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]_0">
               <div class="parse_label constituent_parse_label_0">
-            <div class="dagre_parse" id="constituent_parse_[SENTENCE_UUID]_1">
+            <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]_1">
               <div class="parse_label constituent_parse_label_1">
             ...
-          <div class="dagre_parse" id="dependency_parse_[SENTENCE_UUID]">
-            <div class="dagre_parse" id="dependency_parse_[SENTENCE_UUID]_0">
+          <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]">
+            <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]_0">
               <div class="parse_label dependency_parse_label_0">
-            <div class="dagre_parse" id="dependency_parse_[SENTENCE_UUID]_1">
+            <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]_1">
               <div class="parse_label dependency_parse_label_1">
             ...
 */
@@ -123,17 +123,17 @@ QL.addCommunication = function(parentElementID, comm) {
 
         // Add the Bootstrap CSS class 'clearfix' to the
         // 'controls_and_tokenization_container' <div>, so that the
-        // (floating) 'sentence_controls' and 'tokenization' <div>'s
+        // (floating) 'tokenization_controls' and 'tokenization' <div>'s
         // in the container don't affect other <div>'s
         var controls_and_tokenization_container_div = $('<div>')
           .addClass('controls_and_tokenization_container')
           .addClass('clearfix');
 
-        var sentence_controls_div = $('<div>')
-          .addClass('sentence_controls')
-          .attr('id', 'sentence_controls_' + sentence.uuid.uuidString);
+        var tokenization_controls_div = $('<div>')
+          .addClass('tokenization_controls')
+          .attr('id', 'tokenization_controls_' + tokenization.uuid.uuidString);
 
-        controls_and_tokenization_container_div.append(sentence_controls_div);
+        controls_and_tokenization_container_div.append(tokenization_controls_div);
 
         var tokenization_div = $('<div>').addClass('tokenization').attr('id', 'tokenization_' + tokenization.uuid.uuidString);
         for (tokenIndex in tokenization.tokenList.tokenList) {
@@ -155,41 +155,41 @@ QL.addCommunication = function(parentElementID, comm) {
 
         sentence_div.append(
           $('<div>')
-            .addClass('brat_sentence_container')
-            .attr('id', 'sentence_ner_container_' + sentence.uuid.uuidString)
+            .addClass('brat_tokenization_container')
+            .attr('id', 'tokenization_ner_container_' + tokenization.uuid.uuidString)
             .css("display", "none")
             .append(
               $('<div>')
-                .addClass('brat_sentence_label brat_ner_sentence_label')
+                .addClass('brat_tokenization_label brat_ner_tokenization_label')
                 .html("NER")
             )
             .append(
               $('<div>')
-                .addClass('brat_sentence')
-                .attr('id', 'sentence_ner_' + sentence.uuid.uuidString)));
+                .addClass('brat_tokenization')
+                .attr('id', 'tokenization_ner_' + tokenization.uuid.uuidString)));
         sentence_div.append(
           $('<div>')
-            .addClass('brat_sentence_container')
-            .attr('id', 'sentence_pos_container_' + sentence.uuid.uuidString)
+            .addClass('brat_tokenization_container')
+            .attr('id', 'tokenization_pos_container_' + tokenization.uuid.uuidString)
             .css("display", "none")
             .append(
               $('<div>')
-                .addClass('brat_sentence_label brat_pos_sentence_label')
+                .addClass('brat_tokenization_label brat_pos_tokenization_label')
                 .html("POS")
             )
             .append(
               $('<div>')
-                .addClass('brat_sentence')
-                .attr('id', 'sentence_pos_' + sentence.uuid.uuidString)));
+                .addClass('brat_tokenization')
+                .attr('id', 'tokenization_pos_' + tokenization.uuid.uuidString)));
         sentence_div.append($('<div>')
           .addClass('dagre_parse')
-          .attr('id', 'constituent_parse_' + sentence.uuid.uuidString));
+          .attr('id', 'constituent_parse_' + tokenization.uuid.uuidString));
         sentence_div.append($('<div>')
           .addClass('dagre_parse')
-          .attr('id', 'dependency_parse_' + sentence.uuid.uuidString));
+          .attr('id', 'dependency_parse_' + tokenization.uuid.uuidString));
         sentence_div.append($('<div>')
           .addClass('dagre_parse')
-          .attr('id', 'ace_relations_' + sentence.uuid.uuidString));
+          .attr('id', 'ace_relations_' + tokenization.uuid.uuidString));
 
         sentence_segmentation_div.append(sentence_div);
       }
