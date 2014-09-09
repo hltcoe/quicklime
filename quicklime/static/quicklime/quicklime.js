@@ -205,15 +205,17 @@ QL.addCommunication = function(parentElementID, comm) {
       for (var mentionListIndex in comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
         var entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[mentionListIndex];
         if (entityMention.tokens.tokenIndexList) {
-          var total_tokens = entityMention.tokens.tokenIndexList.length;
-          for (tokenIndex in entityMention.tokens.tokenIndexList) {
-            // TODO: Handle case where not all tokens in tokenIndexList are adjacent to one another
-            $('#tokenization_' + entityMention.tokens.tokenizationId.uuidString + '_' + entityMention.tokens.tokenIndexList[tokenIndex])
+          var tokenIndexList = entityMention.tokens.tokenIndexList;
+          var total_tokens = tokenIndexList.length;
+          for (tokenIndex in tokenIndexList) {
+            $('#tokenization_' + entityMention.tokens.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
               .addClass('mention')
               .addClass('mention_' + entityMention.uuid.uuidString);
             // For multi-word mentions, the spaces between tokens are treated as part of the mention
-            if (tokenIndex < total_tokens-1) {
-              $('#tokenization_padding_' + entityMention.tokens.tokenizationId.uuidString + '_' + entityMention.tokens.tokenIndexList[tokenIndex])
+            if (tokenIndex < total_tokens-1 &&
+                tokenIndexList[tokenIndex]+1 === tokenIndexList[parseInt(tokenIndex)+1])
+            {
+              $('#tokenization_padding_' + entityMention.tokens.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
                 .addClass('mention')
                 .addClass('mention_' + entityMention.uuid.uuidString);
             }
@@ -307,6 +309,8 @@ QL.addEntityTable = function(parentElementID, comm) {
  * For each Entity in the given Communication, find all the token
  * <span>'s associated with the EntityMentions for that Entity, and
  * add mouseover event handlers to those <span>'s.
+ *
+ * @param {Communication} comm
  */
 QL.addEntityMouseoverHighlighting = function(comm) {
   /**
