@@ -125,7 +125,7 @@ QL.addTokenizationParseControls = function(comm) {
           for (var constituentParseIndex in tokenization.parseList) {
             var constituent_parse_button = $('<button>')
               .addClass('btn btn-default btn-xs')
-              .attr('id', 'constituent_parse_button_' + tokenization.uuid.uuidString)
+              .attr('id', 'constituent_parse_button_' + tokenization.uuid.uuidString + "_" + constituentParseIndex)
               .attr('type', 'button')
               .click({comm_uuid: comm.uuid,
                       tokenization_uuid: tokenization.uuid,
