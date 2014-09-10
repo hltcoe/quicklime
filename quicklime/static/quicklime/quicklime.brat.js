@@ -1,13 +1,25 @@
-// DANGER: Monkeypatching
+// DANGER: Monkeypatching BRAT
 //
+// Instead of monkeypatching, we could modify the local copy of the
+// BRAT source, but that makes merging changes from the BRAT Git repo
+// a little more difficult.
+
 // Prevent BRAT from trying to load webfonts by disabling two
 // functions in the Util module from 'brat/client/src/util.js'.
-//
-// [Instead of monkeypatching, we could modify the local copy
-// of the BRAT source, but that makes merging changes from the
-// BRAT Git repo a little more difficult]
 Util.areFontsLoaded = function() { return true; };
 Util.loadFonts = function(webFontURLs, dispatcher) { };
+
+// The BRAT visualizer.js script tries to detect the Chrome browser
+// using:
+//   $.browser.chrome
+//
+// but jQuery's browser function has been deprecated since jQuery 1.3,
+// and was removed in jQuery 1.9:
+//   http://jquery.com/upgrade-guide/1.9/#jquery-browser-removed
+//
+// We set $.browser to an empty object, so that $.browser.chrome
+// evaluates to undefined instead of generating an error message.
+$.browser = {};
 
 
 /**
