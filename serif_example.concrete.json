@@ -1,7 +1,7 @@
 {
-  "entityMentionSets": [
+  "entityMentionSetList": [
     {
-      "mentionSet": [
+      "mentionList": [
         {
           "entityType": "PER",
           "phraseType": "PhraseType.NAME",
@@ -17,11 +17,11 @@
               1
             ],
             "tokenizationId": {
-              "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+              "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
             }
           },
           "uuid": {
-            "uuidString": "98dfb149-354a-4baf-9ef2-c3a188cf0460"
+            "uuidString": "35489bbe-e4c4-4f2a-bf5b-2363885cfe03"
           }
         },
         {
@@ -39,11 +39,11 @@
               6
             ],
             "tokenizationId": {
-              "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+              "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
             }
           },
           "uuid": {
-            "uuidString": "6251c404-4423-4ff5-b04c-e1704ced1aee"
+            "uuidString": "60bd98a6-81cb-485f-83e5-ff42dfaff80b"
           }
         },
         {
@@ -60,11 +60,11 @@
               0
             ],
             "tokenizationId": {
-              "uuidString": "ef601a1f-90a5-4225-aacf-3702d9bdc21f"
+              "uuidString": "dc585f74-19e3-4cdb-acab-b88320e71780"
             }
           },
           "uuid": {
-            "uuidString": "dda22dcd-9698-4ed4-8acb-3a30ec4af683"
+            "uuidString": "6e76351a-7d81-41d8-8eaf-98d3e5d734d4"
           }
         },
         {
@@ -81,24 +81,25 @@
               3
             ],
             "tokenizationId": {
-              "uuidString": "ef601a1f-90a5-4225-aacf-3702d9bdc21f"
+              "uuidString": "dc585f74-19e3-4cdb-acab-b88320e71780"
             }
           },
           "uuid": {
-            "uuidString": "29689ba7-ef4f-4a96-9bcd-076f6008ae3f"
+            "uuidString": "a89d7d21-554e-48cf-8ade-0d55b46659d9"
           }
         }
       ],
       "metadata": {
-        "timestamp": 1404929408,
+        "kBest": 1,
+        "timestamp": 1410378152,
         "tool": "Serif: names"
       },
       "uuid": {
-        "uuidString": "8e396feb-fcb0-43ba-8fe3-67475b1fefe2"
+        "uuidString": "798492b4-45f8-4715-8973-1055fc19e8ba"
       }
     },
     {
-      "mentionSet": [
+      "mentionList": [
         {
           "entityType": "TIMEX2.TIME",
           "phraseType": "PhraseType.OTHER",
@@ -116,24 +117,25 @@
               17
             ],
             "tokenizationId": {
-              "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+              "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
             }
           },
           "uuid": {
-            "uuidString": "64bf2807-09b0-46e1-b7cd-44844992ac4b"
+            "uuidString": "2789bb51-13d9-4db5-aa39-cb73635d7aba"
           }
         }
       ],
       "metadata": {
-        "timestamp": 1404929408,
+        "kBest": 1,
+        "timestamp": 1410378152,
         "tool": "Serif: values"
       },
       "uuid": {
-        "uuidString": "ed4cd119-99b9-4420-a64c-685eaa6a85d0"
+        "uuidString": "e436dade-7870-483d-b9a4-2e8f99e30f69"
       }
     },
     {
-      "mentionSet": [
+      "mentionList": [
         {
           "entityType": "PER",
           "phraseType": "PhraseType.APPOSITIVE",
@@ -155,11 +157,11 @@
               7
             ],
             "tokenizationId": {
-              "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+              "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
             }
           },
           "uuid": {
-            "uuidString": "4cd2a421-db85-4ec6-99b0-d78b92d4d100"
+            "uuidString": "5ba0d9c5-628f-4cae-b920-6ccf0a04e1c1"
           }
         },
         {
@@ -177,11 +179,11 @@
               1
             ],
             "tokenizationId": {
-              "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+              "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
             }
           },
           "uuid": {
-            "uuidString": "b104063c-5278-4654-9c53-8666b757672c"
+            "uuidString": "32befa8f-23f3-4185-9ad5-dfe6affb1091"
           }
         },
         {
@@ -201,11 +203,11 @@
               6
             ],
             "tokenizationId": {
-              "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+              "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
             }
           },
           "uuid": {
-            "uuidString": "6c8320c9-2261-47aa-a0a7-73fa64b66850"
+            "uuidString": "8834298c-9d97-4698-a47c-b32477152110"
           }
         },
         {
@@ -223,11 +225,11 @@
               6
             ],
             "tokenizationId": {
-              "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+              "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
             }
           },
           "uuid": {
-            "uuidString": "c484996b-b397-4af7-bb32-6e065f0d7091"
+            "uuidString": "6facf24a-d84e-4454-930a-1fb8677c68f8"
           }
         },
         {
@@ -252,11 +254,11 @@
               17
             ],
             "tokenizationId": {
-              "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+              "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
             }
           },
           "uuid": {
-            "uuidString": "15738508-4974-454f-bdea-d412c401d162"
+            "uuidString": "a3c91331-f8d2-4ff1-942e-b55e0b82c6b7"
           }
         },
         {
@@ -279,11 +281,11 @@
               17
             ],
             "tokenizationId": {
-              "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+              "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
             }
           },
           "uuid": {
-            "uuidString": "7d4e59a7-cf5e-4b44-aff4-062780f9b28f"
+            "uuidString": "2e64f34f-0eef-45d9-8c46-3d27d2d0340b"
           }
         },
         {
@@ -303,11 +305,11 @@
               17
             ],
             "tokenizationId": {
-              "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+              "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
             }
           },
           "uuid": {
-            "uuidString": "57db6eb6-895d-4d11-8757-4d7a97f77a52"
+            "uuidString": "13796145-e217-4e89-99b2-9d345be79e5e"
           }
         },
         {
@@ -325,11 +327,11 @@
               15
             ],
             "tokenizationId": {
-              "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+              "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
             }
           },
           "uuid": {
-            "uuidString": "ccba15f9-2fdf-4386-ac7f-8f34ea8a9f29"
+            "uuidString": "c36fa92b-ec35-45f3-b2d9-e93c2b9d6bd0"
           }
         },
         {
@@ -346,11 +348,11 @@
               17
             ],
             "tokenizationId": {
-              "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+              "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
             }
           },
           "uuid": {
-            "uuidString": "6dce5ea4-9081-4fdb-8fc2-9893e11d578b"
+            "uuidString": "4700b15b-09ee-4c94-88fd-68a0a9b4c56a"
           }
         },
         {
@@ -367,11 +369,11 @@
               0
             ],
             "tokenizationId": {
-              "uuidString": "b03f0866-1857-446e-a879-f6882425cd2e"
+              "uuidString": "30df807a-359b-4cbf-982a-e79a40b89a20"
             }
           },
           "uuid": {
-            "uuidString": "db2d6ec0-1cc2-416c-9b8c-4ae01be2d4fb"
+            "uuidString": "399f887d-1ce8-4a3d-898a-076581b432f3"
           }
         },
         {
@@ -391,11 +393,11 @@
               3
             ],
             "tokenizationId": {
-              "uuidString": "ef601a1f-90a5-4225-aacf-3702d9bdc21f"
+              "uuidString": "dc585f74-19e3-4cdb-acab-b88320e71780"
             }
           },
           "uuid": {
-            "uuidString": "f38c206f-542d-4aea-9ac0-517eb225ce68"
+            "uuidString": "d23bd11d-d4d2-466c-8a55-7be99b8512e8"
           }
         },
         {
@@ -412,11 +414,11 @@
               0
             ],
             "tokenizationId": {
-              "uuidString": "ef601a1f-90a5-4225-aacf-3702d9bdc21f"
+              "uuidString": "dc585f74-19e3-4cdb-acab-b88320e71780"
             }
           },
           "uuid": {
-            "uuidString": "a1fb7484-2314-46c6-acf6-392d8888e173"
+            "uuidString": "710142e0-f5eb-4b7b-ab24-8763c592113d"
           }
         },
         {
@@ -433,11 +435,11 @@
               2
             ],
             "tokenizationId": {
-              "uuidString": "ef601a1f-90a5-4225-aacf-3702d9bdc21f"
+              "uuidString": "dc585f74-19e3-4cdb-acab-b88320e71780"
             }
           },
           "uuid": {
-            "uuidString": "c17bed15-14a4-4677-b45c-e6023b5df1c4"
+            "uuidString": "a837dea2-426d-40ca-859f-882d94474dcf"
           }
         },
         {
@@ -454,81 +456,83 @@
               5
             ],
             "tokenizationId": {
-              "uuidString": "ef601a1f-90a5-4225-aacf-3702d9bdc21f"
+              "uuidString": "dc585f74-19e3-4cdb-acab-b88320e71780"
             }
           },
           "uuid": {
-            "uuidString": "99edf488-5fba-43ad-8fdb-20f93eb58a7e"
+            "uuidString": "ee4cfa36-39d9-40b3-8081-db2f09ddd30e"
           }
         }
       ],
       "metadata": {
-        "timestamp": 1404929408,
+        "kBest": 1,
+        "timestamp": 1410378152,
         "tool": "Serif: mentions"
       },
       "uuid": {
-        "uuidString": "f3bf82cd-d139-4d87-9dea-405cc3cb92f5"
+        "uuidString": "da45431e-c09c-4291-b49c-dbe18cb4b733"
       }
     }
   ],
-  "entitySets": [
+  "entitySetList": [
     {
       "entityList": [
         {
           "mentionIdList": [
             {
-              "uuidString": "b104063c-5278-4654-9c53-8666b757672c"
+              "uuidString": "32befa8f-23f3-4185-9ad5-dfe6affb1091"
             },
             {
-              "uuidString": "4cd2a421-db85-4ec6-99b0-d78b92d4d100"
+              "uuidString": "5ba0d9c5-628f-4cae-b920-6ccf0a04e1c1"
             },
             {
-              "uuidString": "6c8320c9-2261-47aa-a0a7-73fa64b66850"
+              "uuidString": "8834298c-9d97-4698-a47c-b32477152110"
             },
             {
-              "uuidString": "db2d6ec0-1cc2-416c-9b8c-4ae01be2d4fb"
+              "uuidString": "399f887d-1ce8-4a3d-898a-076581b432f3"
             },
             {
-              "uuidString": "a1fb7484-2314-46c6-acf6-392d8888e173"
+              "uuidString": "710142e0-f5eb-4b7b-ab24-8763c592113d"
             }
           ],
           "type": "PER",
           "uuid": {
-            "uuidString": "c31bc21e-a1bd-4a01-9980-de480595ff19"
+            "uuidString": "c38b4856-0cec-40cc-823d-b01f50fc35d1"
           }
         },
         {
           "mentionIdList": [
             {
-              "uuidString": "c484996b-b397-4af7-bb32-6e065f0d7091"
+              "uuidString": "6facf24a-d84e-4454-930a-1fb8677c68f8"
             }
           ],
           "type": "ORG",
           "uuid": {
-            "uuidString": "ce5c8ffe-cde3-4699-8b9e-db1ad3303e74"
+            "uuidString": "89ddbb3e-0404-440d-a2d8-b18bc45a3448"
           }
         },
         {
           "mentionIdList": [
             {
-              "uuidString": "f38c206f-542d-4aea-9ac0-517eb225ce68"
+              "uuidString": "d23bd11d-d4d2-466c-8a55-7be99b8512e8"
             },
             {
-              "uuidString": "c17bed15-14a4-4677-b45c-e6023b5df1c4"
+              "uuidString": "a837dea2-426d-40ca-859f-882d94474dcf"
             }
           ],
           "type": "PER",
           "uuid": {
-            "uuidString": "4522bf04-90d2-4d2e-b32b-6aaa2d3bacc4"
+            "uuidString": "d368b96d-38ab-4cdc-b9eb-d27cccb060fa"
           }
         }
       ],
       "metadata": {
-        "timestamp": 1404929408,
+        "kBest": 1,
+        "timestamp": 1410378152,
         "tool": "Serif: doc-entities"
       },
       "uuid": {
-        "uuidString": "a106edb7-0350-44aa-bd6d-80faf21088c5"
+        "uuidString": "b68738b3-9ca2-4fe6-810d-3e12184a93db"
       }
     },
     {
@@ -536,46 +540,51 @@
         {
           "mentionIdList": [
             {
-              "uuidString": "64bf2807-09b0-46e1-b7cd-44844992ac4b"
+              "uuidString": "2789bb51-13d9-4db5-aa39-cb73635d7aba"
             }
           ],
           "type": "TIMEX2.TIME",
           "uuid": {
-            "uuidString": "17b8d42e-8330-4cb4-b964-d7a334e3beeb"
+            "uuidString": "fa30e5fe-7688-4f60-8296-162071793506"
           }
         }
       ],
       "metadata": {
-        "timestamp": 1404929408,
+        "kBest": 1,
+        "timestamp": 1410378152,
         "tool": "Serif: doc-values"
       },
       "uuid": {
-        "uuidString": "fd8b10fb-fe21-48c3-bb89-fca69907559e"
+        "uuidString": "b3c5c560-2b9e-4b28-93a8-30a1b7a3ec33"
       }
     }
   ],
   "id": "serif_example.xml",
-  "sectionSegmentations": [
+  "metadata": {
+    "kBest": 1,
+    "timestamp": 1410378152,
+    "tool": "concrete_serif v3.4.0pre"
+  },
+  "sectionSegmentationList": [
     {
       "metadata": {
-        "timestamp": 1404929408,
+        "kBest": 1,
+        "timestamp": 1410378152,
         "tool": "Serif: zoning"
       },
       "sectionList": [
         {
           "kind": "SectionKind.PASSAGE",
-          "sentenceSegmentation": [
+          "sentenceSegmentationList": [
             {
               "metadata": {
-                "timestamp": 1404929408,
+                "kBest": 1,
+                "timestamp": 1410378152,
                 "tool": "Serif: sent-break"
-              },
-              "sectionId": {
-                "uuidString": "002fbbf5-83f4-47f4-859d-9c8cfd81ee32"
               },
               "sentenceList": [],
               "uuid": {
-                "uuidString": "ff698c1f-d79d-48fc-95ba-90aa097b0f87"
+                "uuidString": "1973ea1f-9d66-4452-98ad-c9173f61f0ca"
               }
             }
           ],
@@ -584,19 +593,17 @@
             "start": 81
           },
           "uuid": {
-            "uuidString": "002fbbf5-83f4-47f4-859d-9c8cfd81ee32"
+            "uuidString": "112e90f4-cf85-417b-8417-e8864b9e5eb2"
           }
         },
         {
           "kind": "SectionKind.PASSAGE",
-          "sentenceSegmentation": [
+          "sentenceSegmentationList": [
             {
               "metadata": {
-                "timestamp": 1404929408,
+                "kBest": 1,
+                "timestamp": 1410378152,
                 "tool": "Serif: sent-break"
-              },
-              "sectionId": {
-                "uuidString": "b9fba373-e45d-4343-bf2e-2a2a4fee9542"
               },
               "sentenceList": [
                 {
@@ -608,806 +615,617 @@
                     {
                       "kind": 1,
                       "metadata": {
-                        "timestamp": 1404929408,
+                        "kBest": 1,
+                        "timestamp": 1410378152,
                         "tool": "Serif: tokens"
                       },
-                      "nerTagList": {
-                        "metadata": {
-                          "timestamp": 1404929408,
-                          "tool": "Serif: names"
-                        },
-                        "taggedTokenList": [
-                          {
-                            "confidence": 1.0,
-                            "tag": "PER",
-                            "tokenIndex": 0
-                          },
-                          {
-                            "confidence": 1.0,
-                            "tag": "PER",
-                            "tokenIndex": 1
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 2
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 3
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 4
-                          },
-                          {
-                            "confidence": 1.0,
-                            "tag": "ORG",
-                            "tokenIndex": 5
-                          },
-                          {
-                            "confidence": 1.0,
-                            "tag": "ORG",
-                            "tokenIndex": 6
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 7
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 8
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 9
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 10
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 11
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 12
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 13
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 14
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 15
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 16
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 17
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 18
-                          }
-                        ],
-                        "uuid": {
-                          "uuidString": "b5cf9434-3a4e-44fe-9ab6-e47dbb341fc8"
-                        }
-                      },
-                      "parse": {
-                        "constituentList": [
-                          {
-                            "childList": [
-                              1,
-                              23,
-                              53
-                            ],
-                            "headChildIndex": -1,
-                            "id": 0,
-                            "tag": "S"
-                          },
-                          {
-                            "childList": [
-                              2,
-                              7,
-                              9,
-                              21
-                            ],
-                            "headChildIndex": -1,
-                            "id": 1,
-                            "tag": "NP"
-                          },
-                          {
-                            "childList": [
-                              3,
-                              5
-                            ],
-                            "headChildIndex": -1,
-                            "id": 2,
-                            "tag": "NPP"
-                          },
-                          {
-                            "childList": [
-                              4
-                            ],
-                            "headChildIndex": -1,
-                            "id": 3,
-                            "tag": "NNP"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 4,
-                            "tag": "john",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                0
+                      "parseList": [
+                        {
+                          "constituentList": [
+                            {
+                              "childList": [
+                                1,
+                                23,
+                                53
                               ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              6
-                            ],
-                            "headChildIndex": -1,
-                            "id": 5,
-                            "tag": "NNP"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 6,
-                            "tag": "smith",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                1
+                              "headChildIndex": -1,
+                              "id": 0,
+                              "tag": "S"
+                            },
+                            {
+                              "childList": [
+                                2,
+                                7,
+                                9,
+                                21
                               ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              8
-                            ],
-                            "headChildIndex": -1,
-                            "id": 7,
-                            "tag": ","
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 8,
-                            "tag": ",",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                2
-                              ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              10,
-                              13
-                            ],
-                            "headChildIndex": -1,
-                            "id": 9,
-                            "tag": "NP"
-                          },
-                          {
-                            "childList": [
-                              11
-                            ],
-                            "headChildIndex": -1,
-                            "id": 10,
-                            "tag": "NPA"
-                          },
-                          {
-                            "childList": [
-                              12
-                            ],
-                            "headChildIndex": -1,
-                            "id": 11,
-                            "tag": "NN"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 12,
-                            "tag": "manager",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                3
-                              ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              14,
-                              16
-                            ],
-                            "headChildIndex": -1,
-                            "id": 13,
-                            "tag": "PP"
-                          },
-                          {
-                            "childList": [
-                              15
-                            ],
-                            "headChildIndex": -1,
-                            "id": 14,
-                            "tag": "IN"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 15,
-                            "tag": "of",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                4
-                              ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              17,
-                              19
-                            ],
-                            "headChildIndex": -1,
-                            "id": 16,
-                            "tag": "NPP"
-                          },
-                          {
-                            "childList": [
-                              18
-                            ],
-                            "headChildIndex": -1,
-                            "id": 17,
-                            "tag": "NNP"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 18,
-                            "tag": "acme",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
+                              "headChildIndex": -1,
+                              "id": 1,
+                              "tag": "NP"
+                            },
+                            {
+                              "childList": [
+                                3,
                                 5
                               ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+                              "headChildIndex": -1,
+                              "id": 2,
+                              "tag": "NPP"
+                            },
+                            {
+                              "childList": [
+                                4
+                              ],
+                              "headChildIndex": -1,
+                              "id": 3,
+                              "tag": "NNP"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 4,
+                              "tag": "john",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  0
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
                               }
-                            }
-                          },
-                          {
-                            "childList": [
-                              20
-                            ],
-                            "headChildIndex": -1,
-                            "id": 19,
-                            "tag": "NNP"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 20,
-                            "tag": "inc",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
+                            },
+                            {
+                              "childList": [
                                 6
                               ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+                              "headChildIndex": -1,
+                              "id": 5,
+                              "tag": "NNP"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 6,
+                              "tag": "smith",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  1
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
                               }
-                            }
-                          },
-                          {
-                            "childList": [
-                              22
-                            ],
-                            "headChildIndex": -1,
-                            "id": 21,
-                            "tag": ","
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 22,
-                            "tag": ",",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                7
-                              ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              24,
-                              26
-                            ],
-                            "headChildIndex": -1,
-                            "id": 23,
-                            "tag": "VP"
-                          },
-                          {
-                            "childList": [
-                              25
-                            ],
-                            "headChildIndex": -1,
-                            "id": 24,
-                            "tag": "VBD"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 25,
-                            "tag": "was",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
+                            },
+                            {
+                              "childList": [
                                 8
                               ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+                              "headChildIndex": -1,
+                              "id": 7,
+                              "tag": ","
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 8,
+                              "tag": ",",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  2
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
                               }
-                            }
-                          },
-                          {
-                            "childList": [
-                              27,
-                              30
-                            ],
-                            "headChildIndex": -1,
-                            "id": 26,
-                            "tag": "NP"
-                          },
-                          {
-                            "childList": [
-                              28
-                            ],
-                            "headChildIndex": -1,
-                            "id": 27,
-                            "tag": "NPA"
-                          },
-                          {
-                            "childList": [
-                              29
-                            ],
-                            "headChildIndex": -1,
-                            "id": 28,
-                            "tag": "NN"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 29,
-                            "tag": "bit",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                9
-                              ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              31,
-                              33
-                            ],
-                            "headChildIndex": -1,
-                            "id": 30,
-                            "tag": "PP"
-                          },
-                          {
-                            "childList": [
-                              32
-                            ],
-                            "headChildIndex": -1,
-                            "id": 31,
-                            "tag": "IN"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 32,
-                            "tag": "by",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                10
-                              ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              34,
-                              39
-                            ],
-                            "headChildIndex": -1,
-                            "id": 33,
-                            "tag": "NP"
-                          },
-                          {
-                            "childList": [
-                              35,
-                              37
-                            ],
-                            "headChildIndex": -1,
-                            "id": 34,
-                            "tag": "NPA"
-                          },
-                          {
-                            "childList": [
-                              36
-                            ],
-                            "headChildIndex": -1,
-                            "id": 35,
-                            "tag": "DT"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 36,
-                            "tag": "a",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                11
-                              ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              38
-                            ],
-                            "headChildIndex": -1,
-                            "id": 37,
-                            "tag": "NN"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 38,
-                            "tag": "dog",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                12
-                              ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              40,
-                              42
-                            ],
-                            "headChildIndex": -1,
-                            "id": 39,
-                            "tag": "PP"
-                          },
-                          {
-                            "childList": [
-                              41
-                            ],
-                            "headChildIndex": -1,
-                            "id": 40,
-                            "tag": "IN"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 41,
-                            "tag": "on",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
+                            },
+                            {
+                              "childList": [
+                                10,
                                 13
                               ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              43,
-                              48,
-                              50
-                            ],
-                            "headChildIndex": -1,
-                            "id": 42,
-                            "tag": "NP"
-                          },
-                          {
-                            "childList": [
-                              44,
-                              46
-                            ],
-                            "headChildIndex": -1,
-                            "id": 43,
-                            "tag": "DATE"
-                          },
-                          {
-                            "childList": [
-                              45
-                            ],
-                            "headChildIndex": -1,
-                            "id": 44,
-                            "tag": "DATE-NNP"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 45,
-                            "tag": "march",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                14
+                              "headChildIndex": -1,
+                              "id": 9,
+                              "tag": "NP"
+                            },
+                            {
+                              "childList": [
+                                11
                               ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              47
-                            ],
-                            "headChildIndex": -1,
-                            "id": 46,
-                            "tag": "JJ"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 47,
-                            "tag": "10th",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                15
+                              "headChildIndex": -1,
+                              "id": 10,
+                              "tag": "NPA"
+                            },
+                            {
+                              "childList": [
+                                12
                               ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+                              "headChildIndex": -1,
+                              "id": 11,
+                              "tag": "NN"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 12,
+                              "tag": "manager",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  3
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
                               }
-                            }
-                          },
-                          {
-                            "childList": [
-                              49
-                            ],
-                            "headChildIndex": -1,
-                            "id": 48,
-                            "tag": ","
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 49,
-                            "tag": ",",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
+                            },
+                            {
+                              "childList": [
+                                14,
                                 16
                               ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              51
-                            ],
-                            "headChildIndex": -1,
-                            "id": 50,
-                            "tag": "NPA"
-                          },
-                          {
-                            "childList": [
-                              52
-                            ],
-                            "headChildIndex": -1,
-                            "id": 51,
-                            "tag": "CD"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 52,
-                            "tag": "2013",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                17
+                              "headChildIndex": -1,
+                              "id": 13,
+                              "tag": "PP"
+                            },
+                            {
+                              "childList": [
+                                15
                               ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+                              "headChildIndex": -1,
+                              "id": 14,
+                              "tag": "IN"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 15,
+                              "tag": "of",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  4
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
                               }
-                            }
-                          },
-                          {
-                            "childList": [
-                              54
-                            ],
-                            "headChildIndex": -1,
-                            "id": 53,
-                            "tag": "."
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 54,
-                            "tag": ".",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
+                            },
+                            {
+                              "childList": [
+                                17,
+                                19
+                              ],
+                              "headChildIndex": -1,
+                              "id": 16,
+                              "tag": "NPP"
+                            },
+                            {
+                              "childList": [
                                 18
                               ],
-                              "tokenizationId": {
-                                "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+                              "headChildIndex": -1,
+                              "id": 17,
+                              "tag": "NNP"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 18,
+                              "tag": "acme",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  5
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                20
+                              ],
+                              "headChildIndex": -1,
+                              "id": 19,
+                              "tag": "NNP"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 20,
+                              "tag": "inc",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  6
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                22
+                              ],
+                              "headChildIndex": -1,
+                              "id": 21,
+                              "tag": ","
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 22,
+                              "tag": ",",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  7
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                24,
+                                26
+                              ],
+                              "headChildIndex": -1,
+                              "id": 23,
+                              "tag": "VP"
+                            },
+                            {
+                              "childList": [
+                                25
+                              ],
+                              "headChildIndex": -1,
+                              "id": 24,
+                              "tag": "VBD"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 25,
+                              "tag": "was",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  8
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                27,
+                                30
+                              ],
+                              "headChildIndex": -1,
+                              "id": 26,
+                              "tag": "NP"
+                            },
+                            {
+                              "childList": [
+                                28
+                              ],
+                              "headChildIndex": -1,
+                              "id": 27,
+                              "tag": "NPA"
+                            },
+                            {
+                              "childList": [
+                                29
+                              ],
+                              "headChildIndex": -1,
+                              "id": 28,
+                              "tag": "NN"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 29,
+                              "tag": "bit",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  9
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                31,
+                                33
+                              ],
+                              "headChildIndex": -1,
+                              "id": 30,
+                              "tag": "PP"
+                            },
+                            {
+                              "childList": [
+                                32
+                              ],
+                              "headChildIndex": -1,
+                              "id": 31,
+                              "tag": "IN"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 32,
+                              "tag": "by",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  10
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                34,
+                                39
+                              ],
+                              "headChildIndex": -1,
+                              "id": 33,
+                              "tag": "NP"
+                            },
+                            {
+                              "childList": [
+                                35,
+                                37
+                              ],
+                              "headChildIndex": -1,
+                              "id": 34,
+                              "tag": "NPA"
+                            },
+                            {
+                              "childList": [
+                                36
+                              ],
+                              "headChildIndex": -1,
+                              "id": 35,
+                              "tag": "DT"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 36,
+                              "tag": "a",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  11
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                38
+                              ],
+                              "headChildIndex": -1,
+                              "id": 37,
+                              "tag": "NN"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 38,
+                              "tag": "dog",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  12
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                40,
+                                42
+                              ],
+                              "headChildIndex": -1,
+                              "id": 39,
+                              "tag": "PP"
+                            },
+                            {
+                              "childList": [
+                                41
+                              ],
+                              "headChildIndex": -1,
+                              "id": 40,
+                              "tag": "IN"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 41,
+                              "tag": "on",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  13
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                43,
+                                48,
+                                50
+                              ],
+                              "headChildIndex": -1,
+                              "id": 42,
+                              "tag": "NP"
+                            },
+                            {
+                              "childList": [
+                                44,
+                                46
+                              ],
+                              "headChildIndex": -1,
+                              "id": 43,
+                              "tag": "DATE"
+                            },
+                            {
+                              "childList": [
+                                45
+                              ],
+                              "headChildIndex": -1,
+                              "id": 44,
+                              "tag": "DATE-NNP"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 45,
+                              "tag": "march",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  14
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                47
+                              ],
+                              "headChildIndex": -1,
+                              "id": 46,
+                              "tag": "JJ"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 47,
+                              "tag": "10th",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  15
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                49
+                              ],
+                              "headChildIndex": -1,
+                              "id": 48,
+                              "tag": ","
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 49,
+                              "tag": ",",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  16
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                51
+                              ],
+                              "headChildIndex": -1,
+                              "id": 50,
+                              "tag": "NPA"
+                            },
+                            {
+                              "childList": [
+                                52
+                              ],
+                              "headChildIndex": -1,
+                              "id": 51,
+                              "tag": "CD"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 52,
+                              "tag": "2013",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  17
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                54
+                              ],
+                              "headChildIndex": -1,
+                              "id": 53,
+                              "tag": "."
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 54,
+                              "tag": ".",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  18
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
+                                }
                               }
                             }
+                          ],
+                          "metadata": {
+                            "kBest": 1,
+                            "timestamp": 1410378152,
+                            "tool": "Serif: parse"
+                          },
+                          "uuid": {
+                            "uuidString": "19e3c550-12ee-40ac-9324-71e4d6ed0613"
                           }
-                        ],
-                        "metadata": {
-                          "timestamp": 1404929408,
-                          "tool": "Serif: parse"
-                        },
-                        "uuid": {
-                          "uuidString": "695df846-42ba-4a58-a246-12fe798d0190"
                         }
-                      },
-                      "posTagList": {
-                        "metadata": {
-                          "timestamp": 1404929408,
-                          "tool": "Serif: part-of-speech"
-                        },
-                        "taggedTokenList": [
-                          {
-                            "tag": "NNP",
-                            "tokenIndex": 0
-                          },
-                          {
-                            "tag": "NNP",
-                            "tokenIndex": 1
-                          },
-                          {
-                            "tag": ",",
-                            "tokenIndex": 2
-                          },
-                          {
-                            "tag": "NN",
-                            "tokenIndex": 3
-                          },
-                          {
-                            "tag": "IN",
-                            "tokenIndex": 4
-                          },
-                          {
-                            "tag": "NNP",
-                            "tokenIndex": 5
-                          },
-                          {
-                            "tag": "NNP",
-                            "tokenIndex": 6
-                          },
-                          {
-                            "tag": ",",
-                            "tokenIndex": 7
-                          },
-                          {
-                            "tag": "VBD",
-                            "tokenIndex": 8
-                          },
-                          {
-                            "tag": "NN",
-                            "tokenIndex": 9
-                          },
-                          {
-                            "tag": "IN",
-                            "tokenIndex": 10
-                          },
-                          {
-                            "tag": "DT",
-                            "tokenIndex": 11
-                          },
-                          {
-                            "tag": "NN",
-                            "tokenIndex": 12
-                          },
-                          {
-                            "tag": "IN",
-                            "tokenIndex": 13
-                          },
-                          {
-                            "tag": "DATE-NNP",
-                            "tokenIndex": 14
-                          },
-                          {
-                            "tag": "JJ",
-                            "tokenIndex": 15
-                          },
-                          {
-                            "tag": ",",
-                            "tokenIndex": 16
-                          },
-                          {
-                            "tag": "CD",
-                            "tokenIndex": 17
-                          },
-                          {
-                            "tag": ".",
-                            "tokenIndex": 18
-                          }
-                        ],
-                        "uuid": {
-                          "uuidString": "c3f6ad32-6185-4800-bbf1-305227747a4a"
-                        }
-                      },
+                      ],
                       "tokenList": {
-                        "tokens": [
+                        "tokenList": [
                           {
                             "text": "John",
                             "textSpan": {
@@ -1562,18 +1380,217 @@
                           }
                         ]
                       },
+                      "tokenTaggingList": [
+                        {
+                          "metadata": {
+                            "kBest": 1,
+                            "timestamp": 1410378152,
+                            "tool": "Serif: part-of-speech"
+                          },
+                          "taggedTokenList": [
+                            {
+                              "tag": "NNP",
+                              "tokenIndex": 0
+                            },
+                            {
+                              "tag": "NNP",
+                              "tokenIndex": 1
+                            },
+                            {
+                              "tag": ",",
+                              "tokenIndex": 2
+                            },
+                            {
+                              "tag": "NN",
+                              "tokenIndex": 3
+                            },
+                            {
+                              "tag": "IN",
+                              "tokenIndex": 4
+                            },
+                            {
+                              "tag": "NNP",
+                              "tokenIndex": 5
+                            },
+                            {
+                              "tag": "NNP",
+                              "tokenIndex": 6
+                            },
+                            {
+                              "tag": ",",
+                              "tokenIndex": 7
+                            },
+                            {
+                              "tag": "VBD",
+                              "tokenIndex": 8
+                            },
+                            {
+                              "tag": "NN",
+                              "tokenIndex": 9
+                            },
+                            {
+                              "tag": "IN",
+                              "tokenIndex": 10
+                            },
+                            {
+                              "tag": "DT",
+                              "tokenIndex": 11
+                            },
+                            {
+                              "tag": "NN",
+                              "tokenIndex": 12
+                            },
+                            {
+                              "tag": "IN",
+                              "tokenIndex": 13
+                            },
+                            {
+                              "tag": "DATE-NNP",
+                              "tokenIndex": 14
+                            },
+                            {
+                              "tag": "JJ",
+                              "tokenIndex": 15
+                            },
+                            {
+                              "tag": ",",
+                              "tokenIndex": 16
+                            },
+                            {
+                              "tag": "CD",
+                              "tokenIndex": 17
+                            },
+                            {
+                              "tag": ".",
+                              "tokenIndex": 18
+                            }
+                          ],
+                          "taggingType": "POS",
+                          "uuid": {
+                            "uuidString": "c7b79459-33cf-4136-8140-c140a63b17c9"
+                          }
+                        },
+                        {
+                          "metadata": {
+                            "kBest": 1,
+                            "timestamp": 1410378152,
+                            "tool": "Serif: names"
+                          },
+                          "taggedTokenList": [
+                            {
+                              "confidence": 1.0,
+                              "tag": "PER",
+                              "tokenIndex": 0
+                            },
+                            {
+                              "confidence": 1.0,
+                              "tag": "PER",
+                              "tokenIndex": 1
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 2
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 3
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 4
+                            },
+                            {
+                              "confidence": 1.0,
+                              "tag": "ORG",
+                              "tokenIndex": 5
+                            },
+                            {
+                              "confidence": 1.0,
+                              "tag": "ORG",
+                              "tokenIndex": 6
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 7
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 8
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 9
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 10
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 11
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 12
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 13
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 14
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 15
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 16
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 17
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 18
+                            }
+                          ],
+                          "taggingType": "NER",
+                          "uuid": {
+                            "uuidString": "2f76a890-5e19-4ba1-8a77-792c67105581"
+                          }
+                        }
+                      ],
                       "uuid": {
-                        "uuidString": "fde92ff4-5f90-4a69-ac95-cb33ff9d3918"
+                        "uuidString": "69dc6589-5621-4a11-803e-61fa8171cda1"
                       }
                     }
                   ],
                   "uuid": {
-                    "uuidString": "e12d0dfe-af5b-4ec0-9330-61cfc8e6b630"
+                    "uuidString": "3835dbd4-09f1-49cb-a3a1-7fc92cc2b792"
                   }
                 }
               ],
               "uuid": {
-                "uuidString": "34bb2c47-4c73-4253-ab96-69fce211534f"
+                "uuidString": "a87ecc4f-cd04-4e89-87a8-684fdd7ee65b"
               }
             }
           ],
@@ -1582,19 +1599,17 @@
             "start": 85
           },
           "uuid": {
-            "uuidString": "b9fba373-e45d-4343-bf2e-2a2a4fee9542"
+            "uuidString": "511a744b-81ea-4093-8a90-9cf374119ff9"
           }
         },
         {
           "kind": "SectionKind.PASSAGE",
-          "sentenceSegmentation": [
+          "sentenceSegmentationList": [
             {
               "metadata": {
-                "timestamp": 1404929408,
+                "kBest": 1,
+                "timestamp": 1410378152,
                 "tool": "Serif: sent-break"
-              },
-              "sectionId": {
-                "uuidString": "b0539bf1-5cf4-4d16-b4c8-301418694e93"
               },
               "sentenceList": [
                 {
@@ -1606,166 +1621,121 @@
                     {
                       "kind": 1,
                       "metadata": {
-                        "timestamp": 1404929408,
+                        "kBest": 1,
+                        "timestamp": 1410378152,
                         "tool": "Serif: tokens"
                       },
-                      "nerTagList": {
-                        "metadata": {
-                          "timestamp": 1404929408,
-                          "tool": "Serif: names"
-                        },
-                        "taggedTokenList": [
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 0
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 1
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 2
-                          }
-                        ],
-                        "uuid": {
-                          "uuidString": "43e2a013-b62d-4607-9454-cc9100de0303"
-                        }
-                      },
-                      "parse": {
-                        "constituentList": [
-                          {
-                            "childList": [
-                              1,
-                              4,
-                              7
-                            ],
-                            "headChildIndex": -1,
-                            "id": 0,
-                            "tag": "S"
-                          },
-                          {
-                            "childList": [
-                              2
-                            ],
-                            "headChildIndex": -1,
-                            "id": 1,
-                            "tag": "NPA"
-                          },
-                          {
-                            "childList": [
-                              3
-                            ],
-                            "headChildIndex": -1,
-                            "id": 2,
-                            "tag": "PRP"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 3,
-                            "tag": "he",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                0
+                      "parseList": [
+                        {
+                          "constituentList": [
+                            {
+                              "childList": [
+                                1,
+                                4,
+                                7
                               ],
-                              "tokenizationId": {
-                                "uuidString": "b03f0866-1857-446e-a879-f6882425cd2e"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              5
-                            ],
-                            "headChildIndex": -1,
-                            "id": 4,
-                            "tag": "VP"
-                          },
-                          {
-                            "childList": [
-                              6
-                            ],
-                            "headChildIndex": -1,
-                            "id": 5,
-                            "tag": "VBD"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 6,
-                            "tag": "died",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                1
-                              ],
-                              "tokenizationId": {
-                                "uuidString": "b03f0866-1857-446e-a879-f6882425cd2e"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              8
-                            ],
-                            "headChildIndex": -1,
-                            "id": 7,
-                            "tag": "."
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 8,
-                            "tag": "!",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
+                              "headChildIndex": -1,
+                              "id": 0,
+                              "tag": "S"
+                            },
+                            {
+                              "childList": [
                                 2
                               ],
-                              "tokenizationId": {
-                                "uuidString": "b03f0866-1857-446e-a879-f6882425cd2e"
+                              "headChildIndex": -1,
+                              "id": 1,
+                              "tag": "NPA"
+                            },
+                            {
+                              "childList": [
+                                3
+                              ],
+                              "headChildIndex": -1,
+                              "id": 2,
+                              "tag": "PRP"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 3,
+                              "tag": "he",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  0
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "30df807a-359b-4cbf-982a-e79a40b89a20"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                5
+                              ],
+                              "headChildIndex": -1,
+                              "id": 4,
+                              "tag": "VP"
+                            },
+                            {
+                              "childList": [
+                                6
+                              ],
+                              "headChildIndex": -1,
+                              "id": 5,
+                              "tag": "VBD"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 6,
+                              "tag": "died",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  1
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "30df807a-359b-4cbf-982a-e79a40b89a20"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                8
+                              ],
+                              "headChildIndex": -1,
+                              "id": 7,
+                              "tag": "."
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 8,
+                              "tag": "!",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  2
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "30df807a-359b-4cbf-982a-e79a40b89a20"
+                                }
                               }
                             }
-                          }
-                        ],
-                        "metadata": {
-                          "timestamp": 1404929408,
-                          "tool": "Serif: parse"
-                        },
-                        "uuid": {
-                          "uuidString": "4f290e59-1c28-4ebd-b9a7-005e61f5ac01"
-                        }
-                      },
-                      "posTagList": {
-                        "metadata": {
-                          "timestamp": 1404929408,
-                          "tool": "Serif: part-of-speech"
-                        },
-                        "taggedTokenList": [
-                          {
-                            "tag": "PRP",
-                            "tokenIndex": 0
+                          ],
+                          "metadata": {
+                            "kBest": 1,
+                            "timestamp": 1410378152,
+                            "tool": "Serif: parse"
                           },
-                          {
-                            "tag": "VBD",
-                            "tokenIndex": 1
-                          },
-                          {
-                            "tag": ".",
-                            "tokenIndex": 2
+                          "uuid": {
+                            "uuidString": "b69e92a6-7bff-4f0a-89e6-a46b8adba4be"
                           }
-                        ],
-                        "uuid": {
-                          "uuidString": "59414232-2e89-47b2-afe1-95f1a5446085"
                         }
-                      },
+                      ],
                       "tokenList": {
-                        "tokens": [
+                        "tokenList": [
                           {
                             "text": "He",
                             "textSpan": {
@@ -1792,18 +1762,73 @@
                           }
                         ]
                       },
+                      "tokenTaggingList": [
+                        {
+                          "metadata": {
+                            "kBest": 1,
+                            "timestamp": 1410378152,
+                            "tool": "Serif: part-of-speech"
+                          },
+                          "taggedTokenList": [
+                            {
+                              "tag": "PRP",
+                              "tokenIndex": 0
+                            },
+                            {
+                              "tag": "VBD",
+                              "tokenIndex": 1
+                            },
+                            {
+                              "tag": ".",
+                              "tokenIndex": 2
+                            }
+                          ],
+                          "taggingType": "POS",
+                          "uuid": {
+                            "uuidString": "0538ff62-7088-46ce-8e4f-d264d866847a"
+                          }
+                        },
+                        {
+                          "metadata": {
+                            "kBest": 1,
+                            "timestamp": 1410378152,
+                            "tool": "Serif: names"
+                          },
+                          "taggedTokenList": [
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 0
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 1
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 2
+                            }
+                          ],
+                          "taggingType": "NER",
+                          "uuid": {
+                            "uuidString": "dfcd8c9a-4f65-4e10-b709-9808a728f6c5"
+                          }
+                        }
+                      ],
                       "uuid": {
-                        "uuidString": "b03f0866-1857-446e-a879-f6882425cd2e"
+                        "uuidString": "30df807a-359b-4cbf-982a-e79a40b89a20"
                       }
                     }
                   ],
                   "uuid": {
-                    "uuidString": "3dced4ff-bc5c-47d9-a3c4-1487bf10035c"
+                    "uuidString": "d3d9eccc-af0b-4d1f-bf4a-328fe4f2f6fb"
                   }
                 }
               ],
               "uuid": {
-                "uuidString": "2bf69642-9820-4d46-97f9-70449c1c34ae"
+                "uuidString": "65a737d8-97eb-4671-9c74-c56568488d2e"
               }
             }
           ],
@@ -1812,19 +1837,17 @@
             "start": 165
           },
           "uuid": {
-            "uuidString": "b0539bf1-5cf4-4d16-b4c8-301418694e93"
+            "uuidString": "1261f8ef-de31-4b58-8d74-16a801d59800"
           }
         },
         {
           "kind": "SectionKind.PASSAGE",
-          "sentenceSegmentation": [
+          "sentenceSegmentationList": [
             {
               "metadata": {
-                "timestamp": 1404929408,
+                "kBest": 1,
+                "timestamp": 1410378152,
                 "tool": "Serif: sent-break"
-              },
-              "sectionId": {
-                "uuidString": "a05ecb04-9ddc-490d-973f-a948b17fa011"
               },
               "sentenceList": [
                 {
@@ -1836,330 +1859,249 @@
                     {
                       "kind": 1,
                       "metadata": {
-                        "timestamp": 1404929408,
+                        "kBest": 1,
+                        "timestamp": 1410378152,
                         "tool": "Serif: tokens"
                       },
-                      "nerTagList": {
-                        "metadata": {
-                          "timestamp": 1404929408,
-                          "tool": "Serif: names"
-                        },
-                        "taggedTokenList": [
-                          {
-                            "confidence": 1.0,
-                            "tag": "PER",
-                            "tokenIndex": 0
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 1
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 2
-                          },
-                          {
-                            "confidence": 1.0,
-                            "tag": "PER",
-                            "tokenIndex": 3
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 4
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 5
-                          },
-                          {
-                            "confidence": 0.0,
-                            "tag": "NONE",
-                            "tokenIndex": 6
-                          }
-                        ],
-                        "uuid": {
-                          "uuidString": "77f45668-c0d5-4f08-b079-e873a4656b40"
-                        }
-                      },
-                      "parse": {
-                        "constituentList": [
-                          {
-                            "childList": [
-                              1,
-                              13,
-                              19
-                            ],
-                            "headChildIndex": -1,
-                            "id": 0,
-                            "tag": "S"
-                          },
-                          {
-                            "childList": [
-                              2,
-                              8,
-                              10
-                            ],
-                            "headChildIndex": -1,
-                            "id": 1,
-                            "tag": "NPA"
-                          },
-                          {
-                            "childList": [
-                              3,
-                              6
-                            ],
-                            "headChildIndex": -1,
-                            "id": 2,
-                            "tag": "NPPOS"
-                          },
-                          {
-                            "childList": [
-                              4
-                            ],
-                            "headChildIndex": -1,
-                            "id": 3,
-                            "tag": "NPP"
-                          },
-                          {
-                            "childList": [
-                              5
-                            ],
-                            "headChildIndex": -1,
-                            "id": 4,
-                            "tag": "NNP"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 5,
-                            "tag": "john",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                0
+                      "parseList": [
+                        {
+                          "constituentList": [
+                            {
+                              "childList": [
+                                1,
+                                13,
+                                19
                               ],
-                              "tokenizationId": {
-                                "uuidString": "ef601a1f-90a5-4225-aacf-3702d9bdc21f"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              7
-                            ],
-                            "headChildIndex": -1,
-                            "id": 6,
-                            "tag": "POS"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 7,
-                            "tag": "'s",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                1
+                              "headChildIndex": -1,
+                              "id": 0,
+                              "tag": "S"
+                            },
+                            {
+                              "childList": [
+                                2,
+                                8,
+                                10
                               ],
-                              "tokenizationId": {
-                                "uuidString": "ef601a1f-90a5-4225-aacf-3702d9bdc21f"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              9
-                            ],
-                            "headChildIndex": -1,
-                            "id": 8,
-                            "tag": "NN"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 9,
-                            "tag": "daughter",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                2
-                              ],
-                              "tokenizationId": {
-                                "uuidString": "ef601a1f-90a5-4225-aacf-3702d9bdc21f"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              11
-                            ],
-                            "headChildIndex": -1,
-                            "id": 10,
-                            "tag": "NPP"
-                          },
-                          {
-                            "childList": [
-                              12
-                            ],
-                            "headChildIndex": -1,
-                            "id": 11,
-                            "tag": "NNP"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 12,
-                            "tag": "mary",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                3
-                              ],
-                              "tokenizationId": {
-                                "uuidString": "ef601a1f-90a5-4225-aacf-3702d9bdc21f"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              14,
-                              16
-                            ],
-                            "headChildIndex": -1,
-                            "id": 13,
-                            "tag": "VP"
-                          },
-                          {
-                            "childList": [
-                              15
-                            ],
-                            "headChildIndex": -1,
-                            "id": 14,
-                            "tag": "VBD"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 15,
-                            "tag": "expressed",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                4
-                              ],
-                              "tokenizationId": {
-                                "uuidString": "ef601a1f-90a5-4225-aacf-3702d9bdc21f"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              17
-                            ],
-                            "headChildIndex": -1,
-                            "id": 16,
-                            "tag": "NPA"
-                          },
-                          {
-                            "childList": [
-                              18
-                            ],
-                            "headChildIndex": -1,
-                            "id": 17,
-                            "tag": "NN"
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 18,
-                            "tag": "sorrow",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
-                                5
-                              ],
-                              "tokenizationId": {
-                                "uuidString": "ef601a1f-90a5-4225-aacf-3702d9bdc21f"
-                              }
-                            }
-                          },
-                          {
-                            "childList": [
-                              20
-                            ],
-                            "headChildIndex": -1,
-                            "id": 19,
-                            "tag": "."
-                          },
-                          {
-                            "childList": [],
-                            "headChildIndex": -1,
-                            "id": 20,
-                            "tag": ".",
-                            "tokenSequence": {
-                              "anchorTokenIndex": -1,
-                              "tokenIndexList": [
+                              "headChildIndex": -1,
+                              "id": 1,
+                              "tag": "NPA"
+                            },
+                            {
+                              "childList": [
+                                3,
                                 6
                               ],
-                              "tokenizationId": {
-                                "uuidString": "ef601a1f-90a5-4225-aacf-3702d9bdc21f"
+                              "headChildIndex": -1,
+                              "id": 2,
+                              "tag": "NPPOS"
+                            },
+                            {
+                              "childList": [
+                                4
+                              ],
+                              "headChildIndex": -1,
+                              "id": 3,
+                              "tag": "NPP"
+                            },
+                            {
+                              "childList": [
+                                5
+                              ],
+                              "headChildIndex": -1,
+                              "id": 4,
+                              "tag": "NNP"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 5,
+                              "tag": "john",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  0
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "dc585f74-19e3-4cdb-acab-b88320e71780"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                7
+                              ],
+                              "headChildIndex": -1,
+                              "id": 6,
+                              "tag": "POS"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 7,
+                              "tag": "'s",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  1
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "dc585f74-19e3-4cdb-acab-b88320e71780"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                9
+                              ],
+                              "headChildIndex": -1,
+                              "id": 8,
+                              "tag": "NN"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 9,
+                              "tag": "daughter",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  2
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "dc585f74-19e3-4cdb-acab-b88320e71780"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                11
+                              ],
+                              "headChildIndex": -1,
+                              "id": 10,
+                              "tag": "NPP"
+                            },
+                            {
+                              "childList": [
+                                12
+                              ],
+                              "headChildIndex": -1,
+                              "id": 11,
+                              "tag": "NNP"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 12,
+                              "tag": "mary",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  3
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "dc585f74-19e3-4cdb-acab-b88320e71780"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                14,
+                                16
+                              ],
+                              "headChildIndex": -1,
+                              "id": 13,
+                              "tag": "VP"
+                            },
+                            {
+                              "childList": [
+                                15
+                              ],
+                              "headChildIndex": -1,
+                              "id": 14,
+                              "tag": "VBD"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 15,
+                              "tag": "expressed",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  4
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "dc585f74-19e3-4cdb-acab-b88320e71780"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                17
+                              ],
+                              "headChildIndex": -1,
+                              "id": 16,
+                              "tag": "NPA"
+                            },
+                            {
+                              "childList": [
+                                18
+                              ],
+                              "headChildIndex": -1,
+                              "id": 17,
+                              "tag": "NN"
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 18,
+                              "tag": "sorrow",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  5
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "dc585f74-19e3-4cdb-acab-b88320e71780"
+                                }
+                              }
+                            },
+                            {
+                              "childList": [
+                                20
+                              ],
+                              "headChildIndex": -1,
+                              "id": 19,
+                              "tag": "."
+                            },
+                            {
+                              "childList": [],
+                              "headChildIndex": -1,
+                              "id": 20,
+                              "tag": ".",
+                              "tokenSequence": {
+                                "anchorTokenIndex": -1,
+                                "tokenIndexList": [
+                                  6
+                                ],
+                                "tokenizationId": {
+                                  "uuidString": "dc585f74-19e3-4cdb-acab-b88320e71780"
+                                }
                               }
                             }
+                          ],
+                          "metadata": {
+                            "kBest": 1,
+                            "timestamp": 1410378152,
+                            "tool": "Serif: parse"
+                          },
+                          "uuid": {
+                            "uuidString": "7362cc20-36b9-40d9-96f4-a9d970f02620"
                           }
-                        ],
-                        "metadata": {
-                          "timestamp": 1404929408,
-                          "tool": "Serif: parse"
-                        },
-                        "uuid": {
-                          "uuidString": "6244d581-cfea-4bf7-9233-46d8a1968273"
                         }
-                      },
-                      "posTagList": {
-                        "metadata": {
-                          "timestamp": 1404929408,
-                          "tool": "Serif: part-of-speech"
-                        },
-                        "taggedTokenList": [
-                          {
-                            "tag": "NNP",
-                            "tokenIndex": 0
-                          },
-                          {
-                            "tag": "POS",
-                            "tokenIndex": 1
-                          },
-                          {
-                            "tag": "NN",
-                            "tokenIndex": 2
-                          },
-                          {
-                            "tag": "NNP",
-                            "tokenIndex": 3
-                          },
-                          {
-                            "tag": "VBD",
-                            "tokenIndex": 4
-                          },
-                          {
-                            "tag": "NN",
-                            "tokenIndex": 5
-                          },
-                          {
-                            "tag": ".",
-                            "tokenIndex": 6
-                          }
-                        ],
-                        "uuid": {
-                          "uuidString": "67eb6e0d-a821-408c-9fa7-24620a082ff9"
-                        }
-                      },
+                      ],
                       "tokenList": {
-                        "tokens": [
+                        "tokenList": [
                           {
                             "text": "John",
                             "textSpan": {
@@ -2218,18 +2160,109 @@
                           }
                         ]
                       },
+                      "tokenTaggingList": [
+                        {
+                          "metadata": {
+                            "kBest": 1,
+                            "timestamp": 1410378152,
+                            "tool": "Serif: part-of-speech"
+                          },
+                          "taggedTokenList": [
+                            {
+                              "tag": "NNP",
+                              "tokenIndex": 0
+                            },
+                            {
+                              "tag": "POS",
+                              "tokenIndex": 1
+                            },
+                            {
+                              "tag": "NN",
+                              "tokenIndex": 2
+                            },
+                            {
+                              "tag": "NNP",
+                              "tokenIndex": 3
+                            },
+                            {
+                              "tag": "VBD",
+                              "tokenIndex": 4
+                            },
+                            {
+                              "tag": "NN",
+                              "tokenIndex": 5
+                            },
+                            {
+                              "tag": ".",
+                              "tokenIndex": 6
+                            }
+                          ],
+                          "taggingType": "POS",
+                          "uuid": {
+                            "uuidString": "a52e93bd-06ca-4f20-ac57-007a9fe2201f"
+                          }
+                        },
+                        {
+                          "metadata": {
+                            "kBest": 1,
+                            "timestamp": 1410378152,
+                            "tool": "Serif: names"
+                          },
+                          "taggedTokenList": [
+                            {
+                              "confidence": 1.0,
+                              "tag": "PER",
+                              "tokenIndex": 0
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 1
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 2
+                            },
+                            {
+                              "confidence": 1.0,
+                              "tag": "PER",
+                              "tokenIndex": 3
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 4
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 5
+                            },
+                            {
+                              "confidence": 0.0,
+                              "tag": "NONE",
+                              "tokenIndex": 6
+                            }
+                          ],
+                          "taggingType": "NER",
+                          "uuid": {
+                            "uuidString": "e9ae4f5a-532b-43ac-b085-e27f8689e087"
+                          }
+                        }
+                      ],
                       "uuid": {
-                        "uuidString": "ef601a1f-90a5-4225-aacf-3702d9bdc21f"
+                        "uuidString": "dc585f74-19e3-4cdb-acab-b88320e71780"
                       }
                     }
                   ],
                   "uuid": {
-                    "uuidString": "e2c1b016-df91-458b-8b35-bcfc073ac079"
+                    "uuidString": "842af76f-abb2-414c-852f-d34d8fe9889c"
                   }
                 }
               ],
               "uuid": {
-                "uuidString": "aa5a2703-bc6f-4d99-b387-01aaa6de8694"
+                "uuidString": "10976c49-d01a-4daa-a99a-80423f1a7c6b"
               }
             }
           ],
@@ -2238,24 +2271,25 @@
             "start": 183
           },
           "uuid": {
-            "uuidString": "a05ecb04-9ddc-490d-973f-a948b17fa011"
+            "uuidString": "42572766-4be3-4500-b920-2b3d000ee1c9"
           }
         }
       ],
       "uuid": {
-        "uuidString": "fddc615d-927e-4f27-aaed-56c8e3a09e93"
+        "uuidString": "94c7604b-e2df-404c-b839-bdefa69d769b"
       }
     }
   ],
-  "situationMentionSets": [
+  "situationMentionSetList": [
     {
       "mentionList": [],
       "metadata": {
-        "timestamp": 1404929408,
+        "kBest": 1,
+        "timestamp": 1410378152,
         "tool": "Serif: situation-mentions"
       },
       "uuid": {
-        "uuidString": "4097a47e-427a-4b72-94d5-267a7953af14"
+        "uuidString": "8f4b48d5-e680-47b7-9b98-0d689cf43d3f"
       }
     },
     {
@@ -2264,13 +2298,13 @@
           "argumentList": [
             {
               "entityMentionId": {
-                "uuidString": "6c8320c9-2261-47aa-a0a7-73fa64b66850"
+                "uuidString": "8834298c-9d97-4698-a47c-b32477152110"
               },
               "role": "Role.RELATION_SOURCE_ROLE"
             },
             {
               "entityMentionId": {
-                "uuidString": "c484996b-b397-4af7-bb32-6e065f0d7091"
+                "uuidString": "6facf24a-d84e-4454-930a-1fb8677c68f8"
               },
               "role": "Role.RELATION_TARGET_ROLE"
             }
@@ -2278,20 +2312,20 @@
           "situationType": "SituationType.STATE",
           "stateType": "ORG-AFF.Employment",
           "uuid": {
-            "uuidString": "7c26be48-4588-46d0-9369-9d9a16a693f9"
+            "uuidString": "1d283a4b-5896-4221-894d-59b0c7fe0ca5"
           }
         },
         {
           "argumentList": [
             {
               "entityMentionId": {
-                "uuidString": "a1fb7484-2314-46c6-acf6-392d8888e173"
+                "uuidString": "710142e0-f5eb-4b7b-ab24-8763c592113d"
               },
               "role": "Role.RELATION_SOURCE_ROLE"
             },
             {
               "entityMentionId": {
-                "uuidString": "c17bed15-14a4-4677-b45c-e6023b5df1c4"
+                "uuidString": "a837dea2-426d-40ca-859f-882d94474dcf"
               },
               "role": "Role.RELATION_TARGET_ROLE"
             }
@@ -2299,16 +2333,17 @@
           "situationType": "SituationType.STATE",
           "stateType": "PER-SOC.Family",
           "uuid": {
-            "uuidString": "86868491-c9cc-40ae-8ad4-19a22ab46a96"
+            "uuidString": "70a53771-8c54-425a-bef1-f520f976225d"
           }
         }
       ],
       "metadata": {
-        "timestamp": 1404929408,
+        "kBest": 1,
+        "timestamp": 1410378152,
         "tool": "Serif: relations"
       },
       "uuid": {
-        "uuidString": "1ec4cfa9-5acc-4e10-9b3f-06c06319c664"
+        "uuidString": "e5158321-948e-4b80-a7ed-a33d7771a4a6"
       }
     },
     {
@@ -2317,7 +2352,7 @@
           "argumentList": [
             {
               "entityMentionId": {
-                "uuidString": "db2d6ec0-1cc2-416c-9b8c-4ae01be2d4fb"
+                "uuidString": "399f887d-1ce8-4a3d-898a-076581b432f3"
               },
               "role": "Victim"
             }
@@ -2331,47 +2366,51 @@
               1
             ],
             "tokenizationId": {
-              "uuidString": "b03f0866-1857-446e-a879-f6882425cd2e"
+              "uuidString": "30df807a-359b-4cbf-982a-e79a40b89a20"
             }
           },
           "uuid": {
-            "uuidString": "dfc165a7-178f-4974-9ea2-ddfa33467ef5"
+            "uuidString": "7a1ef851-27c4-4f59-98eb-c4c0f528466d"
           }
         }
       ],
       "metadata": {
-        "timestamp": 1404929408,
+        "kBest": 1,
+        "timestamp": 1410378152,
         "tool": "Serif: events"
       },
       "uuid": {
-        "uuidString": "0f1308c3-1573-4e1a-836f-07197248ebb1"
+        "uuidString": "42f2398e-2114-4ad6-b222-0dff836d954a"
       }
     }
   ],
-  "situationSets": [
+  "situationSetList": [
     {
       "metadata": {
-        "timestamp": 1404929408,
+        "kBest": 1,
+        "timestamp": 1410378152,
         "tool": "Serif: situations"
       },
       "situationList": [],
       "uuid": {
-        "uuidString": "ae6b7b14-ba79-4a1c-bf73-859fc29424e3"
+        "uuidString": "20a11c4f-ea43-48eb-9661-ee9b61e56191"
       }
     },
     {
       "metadata": {
-        "timestamp": 1404929408,
+        "kBest": 1,
+        "timestamp": 1410378152,
         "tool": "Serif: relations"
       },
       "situationList": [],
       "uuid": {
-        "uuidString": "a9f7c5ad-45a7-41e5-9a4e-5f9a1235d0b3"
+        "uuidString": "91c06661-4847-48ac-869f-a7dd11e02488"
       }
     },
     {
       "metadata": {
-        "timestamp": 1404929408,
+        "kBest": 1,
+        "timestamp": 1410378152,
         "tool": "Serif: events"
       },
       "situationList": [
@@ -2379,7 +2418,7 @@
           "argumentList": [
             {
               "entityId": {
-                "uuidString": "c31bc21e-a1bd-4a01-9980-de480595ff19"
+                "uuidString": "c38b4856-0cec-40cc-823d-b01f50fc35d1"
               },
               "role": "Victim"
             }
@@ -2389,24 +2428,24 @@
             {
               "justificationType": "JustificationType.DIRECT_MENTION",
               "mentionId": {
-                "uuidString": "dfc165a7-178f-4974-9ea2-ddfa33467ef5"
+                "uuidString": "7a1ef851-27c4-4f59-98eb-c4c0f528466d"
               }
             }
           ],
           "situationType": "SituationType.EVENT",
           "uuid": {
-            "uuidString": "703abb74-c3ed-4023-a1de-abba395d4ec2"
+            "uuidString": "65af0eca-4a8d-4534-b69b-abbb9f4066e3"
           }
         }
       ],
       "uuid": {
-        "uuidString": "f3340790-4ab1-48fe-bfc7-bdeeb4b1a265"
+        "uuidString": "89f297cc-73ee-472d-a424-311ef8293572"
       }
     }
   ],
   "text": "<DOC id=\"dog-bites-man\" type=\"other\">\n<HEADLINE>\nDog Bites Man\n</HEADLINE>\n<TEXT>\n<P>\nJohn Smith, manager of ACME INC, was bit by a dog on March 10th, 2013.\n</P>\n<P>\nHe died!\n</P>\n<P>\nJohn's daughter Mary expressed sorrow.\n</P>\n</TEXT>\n</DOC>\n",
   "type": "CommunicationType.OTHER",
   "uuid": {
-    "uuidString": "bbec4d11-2e38-4bbc-8839-c6858086cc25"
+    "uuidString": "26b55ae8-7416-4236-87ed-12cbd6aea288"
   }
 }
