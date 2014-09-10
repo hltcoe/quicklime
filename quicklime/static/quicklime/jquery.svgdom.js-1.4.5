@@ -234,6 +234,18 @@ if (div.getElementsByTagName('*').length > 0) { // Make sure no comments are fou
 	};
 }
 
+// [CTH, 2014-09-10]  Disable function to prevent conflict with Bootstrap
+//
+// This function is called from jQuery's Sizzle.tokenize() function if
+// we use the Bootstrap JS library, but doesn't seem to be called otherwise.
+// Sizzle.tokenize() only passes a single argument to this function, so this
+// function ALWAYS GENERATES AN ERROR.  The SVG for jQuery library was
+// updated for jQuery 1.7 on 2012-04-28, and the jQuery internals have
+// (presumably) changed since then.
+//
+// Disabling this function doesn't affect any of the BRAT functionality we're
+// *currently* using.
+/* 
 $.expr.preFilter.CLASS = function(match, curLoop, inplace, result, not, isXML) {
 	match = ' ' + match[1].replace(/\\/g, '') + ' ';
 	if (isXML) {
@@ -263,6 +275,8 @@ $.expr.preFilter.CLASS = function(match, curLoop, inplace, result, not, isXML) {
 	}
 	return false;
 };
+*/
+// [/CTH]
 
 $.expr.filter.CLASS = function(elem, match) {
 	var className = (!$.svg.isSVGElem(elem) ? elem.className :
