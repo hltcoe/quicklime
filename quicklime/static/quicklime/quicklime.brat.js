@@ -48,9 +48,9 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
     situationMentionList,
     situationMentionSetIndex;
 
-  for (situationMentionSetIndex in comm.situationMentionSets) {
-    if (comm.situationMentionSets[situationMentionSetIndex].mentionList) {
-      situationMentionList = comm.situationMentionSets[situationMentionSetIndex].mentionList;
+  for (situationMentionSetIndex in comm.situationMentionSetList) {
+    if (comm.situationMentionSetList[situationMentionSetIndex].mentionList) {
+      situationMentionList = comm.situationMentionSetList[situationMentionSetIndex].mentionList;
       for (situationMentionIndex in situationMentionList) {
         situationMention = situationMentionList[situationMentionIndex];
         for (argumentIndex in situationMention.argumentList) {
@@ -80,10 +80,10 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
   }
 
   var relationLabels = [];
-  for (situationMentionSetIndex in comm.situationMentionSets) {
-    if (comm.situationMentionSets[situationMentionSetIndex].mentionList) {
-      if (comm.situationMentionSets[situationMentionSetIndex].metadata.tool == 'Serif: relations') {
-        situationMentionList = comm.situationMentionSets[situationMentionSetIndex].mentionList;
+  for (situationMentionSetIndex in comm.situationMentionSetList) {
+    if (comm.situationMentionSetList[situationMentionSetIndex].mentionList) {
+      if (comm.situationMentionSetList[situationMentionSetIndex].metadata.tool == 'Serif: relations') {
+        situationMentionList = comm.situationMentionSetList[situationMentionSetIndex].mentionList;
         for (situationMentionIndex in situationMentionList) {
           situationMention = situationMentionList[situationMentionIndex];
           if (situationMention.situationType == 300) {
@@ -506,7 +506,7 @@ QL.addTokenizationBRATControls = function(comm) {
                  addOrToggleACERelations)
           .css('margin-right', '1em')
           .html("Rel");
-//        tokenization_controls_div.append(relation_button);
+        tokenization_controls_div.append(relation_button);
       }
     }
   }
