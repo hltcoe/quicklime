@@ -1,3 +1,14 @@
+// DANGER: Monkeypatching
+//
+// Prevent BRAT from trying to load webfonts by disabling two
+// functions in the Util module from 'brat/client/src/util.js'.
+//
+// [Instead of monkeypatching, we could modify the local copy
+// of the BRAT source, but that makes merging changes from the
+// BRAT Git repo a little more difficult]
+Util.areFontsLoaded = function() { return true; };
+Util.loadFonts = function(webFontURLs, dispatcher) { };
+
 
 /**
  * @param {String} communicationUUID
