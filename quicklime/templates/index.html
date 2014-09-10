@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>quicklime</title>
+  <title>QuickLime</title>
   <meta charset='UTF-8'>
 
   <link rel="stylesheet" href="static/quicklime/bootstrap-3.2.0/css/bootstrap.css"/>
@@ -9,58 +9,22 @@
   <link rel="stylesheet" href="static/quicklime/brat/static/style-vis.css"/>
   <link rel="stylesheet" href="static/quicklime/quicklime.css"/>
 
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <!--
-  JavaScript library issues
-  =========================
-
-  BRAT comes bundled with jQuery 1.7.1.
-  BRAT also comes bundled with jQuery SVG 1.4.3 (http://keith-wood.name/svg.html),
-    released on 2010-01-23, while version 1.4.5 of jQuery SVG - which added
-    support for jQuery 1.7 - was released on 2012-04-28.
-  Bootstrap 3.1.1 requires jQuery >= 1.9.
-
-  When using certain combinations of JavaScript files, clicking on the
-  body of the web page generates an error message in (BRAT bundled)
-  jquery.svgdom.min.js:
-     TypeError: 'undefined' is not an object (evaluating 'b[i]')
-
-  Library combinations that cause error:
-     good   jQuery 1.7.1,  Bootstrap 3.1.1, jQuery SVG 1.4.3
-    Error   jQuery 1.11.0, Bootstrap 3.1.1, jQuery SVG 1.4.3
-    Error   jQuery 1.11.0, Bootstrap 3.1.1, jQuery SVG 1.4.5
-     good   jQuery 1.11.0, NO Bootstrap,    jQuery SVG 1.4.3
-     good   jQuery 1.7.1,  NO Bootstrap,    jQuery SVG 1.4.3
-    Error   jQuery 1.11.0, Bootstrap 3.1.1, NO jQuery SVG
-
-
-  The BRAT visualizer.js script tries to detect the Chrome browser
-  using:
-    $.browser.chrome
-
-  but jQuery's browser function has been deprecated since jQuery 1.3,
-  and was removed in jQuery 1.9:
-
-    http://jquery.com/upgrade-guide/1.9/#jquery-browser-removed
-
-
-  As of 2014-04-15:
-  - using jQuery 1.7.1, disabled Bootstrap CSS as we are currently
-    only using the Bootstrap CSS/images and not any JavaScript
-  -->
-
-  <script src="static/quicklime/brat/client/lib/jquery-1.7.1.min.js"></script>
-
-  <!--
-  <script src="static/quicklime/jquery-1.11.0.min.js"></script>
-  <script src="static/quicklime/bootstrap/js/bootstrap.js"></script>
+  <script src="static/quicklime/bootstrap-3.2.0/js/bootstrap.js"></script>
   -->
   <script src="static/quicklime/d3/3.4.4/d3.js"></script>
   <script src="static/quicklime/dagre-d3/0.1.5/dagre-d3.js"></script>
 
   <!-- === BRAT SCRIPTS === -->
-  <!-- SVG for jQuery v1.4.3.  http://keith-wood.name/svg.html -->
-  <script src="static/quicklime/brat/client/lib/jquery.svg.min.js"></script>
-  <script src="static/quicklime/brat/client/lib/jquery.svgdom.min.js"></script>
+  <!-- SVG for jQuery: http://keith-wood.name/svg.html
+
+       BRAT comes bundled with v1.4.3 of SVG for jQuery, which is incompatible
+       with jQuery v1.7.2 and later.  We use SVG for jQuery v1.4.5, which was
+       released on 2012-04-28 as a compatibility fix for jQuery 1.7.
+  -->
+  <script src="static/quicklime/jquery.svg.min.js-1.4.5"></script>
+  <script src="static/quicklime/jquery.svgdom.min.js-1.4.5"></script>
 
   <!-- BRAT helper modules -->
   <script src="static/quicklime/brat/client/src/configuration.js"></script>
