@@ -1,5 +1,5 @@
 
-/**
+/** Create and display a constituent parse diagram
  * @param {String} communicationUUID
  * @param {String} tokenizationUUID
  * @param {Number} constituentParseIndex
@@ -30,7 +30,7 @@ QL.addConstituentParse = function(communicationUUID, tokenizationUUID, constitue
 };
 
 
-/**
+/** Create and display a dependency parse diagram
  * @param {String} communicationUUID
  * @param {String} tokenizationUUID
  * @param {Number} dependencyParseIndex
@@ -63,19 +63,25 @@ QL.addDependencyParse = function(communicationUUID, tokenizationUUID, dependency
 
 
 
-/*
-Add buttons to tokenization_control <div>'s:
-
-    <div class="tokenization_controls" id="tokenization_controls_[TOKENIZATION_UUID]">
-+     <button>
-+     <button>
-+     ...
-*/
-/**
+/** Add buttons for toggling display of parse trees
+ *
+ *  For each constituent and dependency parse in the Communication, add a button
+ *  that toggles the display of the parse diagram.  The buttons are appended to
+ *  the 'tokenization_controls' <div> for the respective Tokenization.
+ *
+ *  The '+' button indicates which objects are added to the DOM:
+ *     <div class="tokenization_controls" id="tokenization_controls_[TOKENIZATION_UUID]">
+ *   +   <button id="constituent_parse_button_[TOKENIZATION_UUID]_0>
+ *   +   <button id="constituent_parse_button_[TOKENIZATION_UUID]_1>
+ *   +   ...
+ *   +   <button id="dependency_parse_button_[TOKENIZATION_UUID]_0>
+ *   +   <button id="dependency_parse_button_[TOKENIZATION_UUID]_1>
+ *   +   ...
+ *
  * @param {Communication} comm
  */
 QL.addTokenizationParseControls = function(comm) {
-  /**
+  /** Event handler for toggling constituent parse diagrams
    * @param {MouseEvent} event
    */
   function addOrToggleConstituentParse(event) {
@@ -94,7 +100,7 @@ QL.addTokenizationParseControls = function(comm) {
     }
   }
 
-  /**
+  /** Event handler for toggling dependency parse diagrams
    * @param {MouseEvent} event
    */
   function addOrToggleDependencyParse(event) {
@@ -158,7 +164,7 @@ QL.addTokenizationParseControls = function(comm) {
 };
 
 
-/**
+/** Draw constituent parse diagram
  * @param {String} containerSelectorString
  * @param {Tokenization} tokenization
  */
@@ -193,7 +199,7 @@ QL.drawConstituentParse = function(containerSelectorString, tokenization, consti
 };
 
 
-/**
+/** Draw dependency parse diagram
  * @param {String} containerSelectorString
  * @param {Tokenization} tokenization
  * @param {Number} dependencyParseIndex
@@ -234,7 +240,7 @@ QL.drawDependencyParse = function(containerSelectorString, tokenization, depende
 };
 
 
-/**
+/** Draw parse diagram
  * @param {String} containerSelectorString
  * @param {dagre3.Digraph} digraph
  * @param {Number} [nodeSep=20] - Distance between nodes, in pixels
@@ -266,8 +272,10 @@ QL.drawParse = function(containerSelectorString, digraph, nodeSep) {
 };
 
 
-/**
+/** Check if constituent parse diagram has already been added to DOM
  * @param {String} tokenizationUUID
+ * @param {Number} constituentParseIndex
+ * @returns {Boolean}
  */
 QL.domHasConstituentParse = function(tokenizationUUID, constituentParseIndex) {
   if ($("#constituent_parse_" + tokenizationUUID.uuidString + "_" + constituentParseIndex + " svg").length > 0) {
@@ -279,9 +287,10 @@ QL.domHasConstituentParse = function(tokenizationUUID, constituentParseIndex) {
 };
 
 
-/**
+/** Check if dependency parse diagram has already been added to DOM
  * @param {String} tokenizationUUID
  * @param {Number} dependencyParseIndex
+ * @returns {Boolean}
  */
 QL.domHasDependencyParse = function(tokenizationUUID, dependencyParseIndex) {
   if ($("#dependency_parse_" + tokenizationUUID.uuidString + "_" + dependencyParseIndex + " svg").length > 0) {
@@ -293,8 +302,10 @@ QL.domHasDependencyParse = function(tokenizationUUID, dependencyParseIndex) {
 };
 
 
-/**
+/** Toggle display of constituent parse diagram
  * @param {String} tokenizationUUID
+ * @param {Number} constituentParseIndex
+ * @returns {Boolean}
  */
 QL.toggleConstituentParse = function(tokenizationUUID, constituentParseIndex) {
   if ($("#constituent_parse_" + tokenizationUUID.uuidString + "_" + constituentParseIndex).css('display') == 'none') {
@@ -308,7 +319,7 @@ QL.toggleConstituentParse = function(tokenizationUUID, constituentParseIndex) {
 };
 
 
-/**
+/** Toggle display of dependency parse diagram
  * @param {String} tokenizationUUID
  * @param {Number} dependencyParseIndex
  */
