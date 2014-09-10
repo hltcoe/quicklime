@@ -272,15 +272,11 @@ QL.addEntityTable = function(parentElementID, comm) {
         var entityCounter_span = $('<span>')
           .addClass('entity_counter')
           .addClass('entity_' + entity.uuid.uuidString)
-          /* Tooltips are part of Bootstrap, which is currently disabled because of jQuery conflict
           .attr('data-placement', 'top')
           .attr('data-toggle', 'tooltip')
           .attr('title', 'UUID ' + entity.uuid.uuidString)
-          */
-          .html('Entity ' + counter);
-          /*
+          .html('Entity ' + counter)
           .tooltip();
-          */
         entity_div.append(entityCounter_span);
 
         var entityTotal_span = $('<span>')
