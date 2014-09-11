@@ -482,6 +482,21 @@ QL.addTokenizationBRATControls = function(comm) {
     }
   }
 
+  /** Returns a boolean indicating if a Communication has SituationMention data from 'Serif: relations'
+   * @param {Communication} comm
+   * @returns {Boolean}
+   */
+  function commHasSerifRelationsData(comm) {
+    for (var i in comm.situationMentionSetList) {
+      if (comm.situationMentionSetList[i].metadata.tool === "Serif: relations") {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  var hasSerifRelationsData = commHasSerifRelationsData(comm);
+
   for (var sectionListIndex in comm.sectionSegmentationList[0].sectionList) {
     if (comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList) {
       for (var sentenceIndex in comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList) {
@@ -514,15 +529,17 @@ QL.addTokenizationBRATControls = function(comm) {
           tokenization_controls_div.append(pos_tag_button);
 	}
 
-	var relation_button = $('<button>')
-          .addClass('btn btn-default btn-xs')
-          .attr('id', 'ace_relations_button_' + tokenization.uuid.uuidString)
-          .attr('type', 'button')
-          .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
-                 addOrToggleACERelations)
-          .css('margin-right', '1em')
-          .html("Rel");
-        tokenization_controls_div.append(relation_button);
+        if (hasSerifRelationsData) {
+          var relation_button = $('<button>')
+            .addClass('btn btn-default btn-xs')
+            .attr('id', 'ace_relations_button_' + tokenization.uuid.uuidString)
+            .attr('type', 'button')
+            .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
+                   addOrToggleACERelations)
+            .css('margin-right', '1em')
+            .html("Rel");
+          tokenization_controls_div.append(relation_button);
+        }
       }
     }
   }
