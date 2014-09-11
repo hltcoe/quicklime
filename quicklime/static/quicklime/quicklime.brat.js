@@ -27,7 +27,7 @@ $.browser = {};
  * @param {String} sentenceUUID
  * @param {String} tokenizationUUID
  */
-QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID) {
+QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var comm = QL.getCommunicationWithUUID(communicationUUID);
   var sentence = comm.getSentenceWithUUID(sentenceUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
@@ -472,12 +472,12 @@ QL.addTokenizationBRATControls = function(comm) {
   /**
    * @param {MouseEvent} event
    */
-  function addOrToggleACERelations(event) {
-    if (QL.hasACERelations(event.data.tokenization_uuid)) {
-      QL.toggleACERelations(event.data.tokenization_uuid);
+  function addOrToggleSerifACERelations(event) {
+    if (QL.hasSerifACERelations(event.data.tokenization_uuid)) {
+      QL.toggleSerifACERelations(event.data.tokenization_uuid);
     }
     else {
-      QL.addACERelations(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+      QL.addSerifACERelations(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
       $('#ace_relations_button_' + event.data.tokenization_uuid.uuidString).addClass('active');
     }
   }
@@ -535,7 +535,7 @@ QL.addTokenizationBRATControls = function(comm) {
             .attr('id', 'ace_relations_button_' + tokenization.uuid.uuidString)
             .attr('type', 'button')
             .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
-                   addOrToggleACERelations)
+                   addOrToggleSerifACERelations)
             .css('margin-right', '1em')
             .html("Rel");
           tokenization_controls_div.append(relation_button);
@@ -549,7 +549,7 @@ QL.addTokenizationBRATControls = function(comm) {
  * @param {String} tokenizationUUID
  * @returns {Boolean}
  */
-QL.hasACERelations = function(tokenizationUUID) {
+QL.hasSerifACERelations = function(tokenizationUUID) {
   if ($("#ace_relations_" + tokenizationUUID.uuidString + " svg").length > 0) {
     return true;
   }
@@ -590,7 +590,7 @@ QL.hasPOSTags = function(tokenizationUUID) {
 /**
  * @param {String} tokenizationUUID
  */
-QL.toggleACERelations = function(tokenizationUUID) {
+QL.toggleSerifACERelations = function(tokenizationUUID) {
   if ($("#ace_relations_" + tokenizationUUID.uuidString).css('display') == 'none') {
     $('#ace_relations_button_' + tokenizationUUID.uuidString).addClass('active');
     $("#ace_relations_" + tokenizationUUID.uuidString).show();
