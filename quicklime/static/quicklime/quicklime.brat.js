@@ -22,7 +22,16 @@ Util.loadFonts = function(webFontURLs, dispatcher) { };
 $.browser = {};
 
 
+
+QL.SERIF_RELATIONS = "Serif: relations";
+
+
 /** Create and display a Serif ACE relations diagram
+ *
+ *  While the NER and POS diagrams use the token strings from
+ *  Token.text, the Serif ACE relations diagram [currently] uses the
+ *  token strings specified by the string offsets in Token.textSpan.
+ *
  * @param {String} communicationUUID
  * @param {String} sentenceUUID
  * @param {String} tokenizationUUID
@@ -36,8 +45,8 @@ QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenization
   sentence_text = sentence_text.replace(/\n/g, " ");
 
   // "Set" of EntityMention uuidStrings where the EntityMention is part of a SituationMention
-  // created by 'Serif: relations'
-  var relationEntityMentionSet = QL.getRelationEntityMentionSet(comm, "Serif: relations");
+  // created by Serif Relations
+  var relationEntityMentionSet = QL.getRelationEntityMentionSet(comm, QL.SERIF_RELATIONS);
 
   var
     argumentIndex,
@@ -74,12 +83,12 @@ QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenization
 
   // Iterate over all SituationMentions in a Communication, create
   // 'BRAT relation labels' for any SituationMention created by the
-  // 'Serif: relations' tool that has a situationType of
+  // Serif Relations tool that has a situationType of
   // "SituationType.STATE"
   var relationLabels = [];
   for (situationMentionSetIndex in comm.situationMentionSetList) {
     if (comm.situationMentionSetList[situationMentionSetIndex].mentionList) {
-      if (comm.situationMentionSetList[situationMentionSetIndex].metadata.tool === "Serif: relations") {
+      if (comm.situationMentionSetList[situationMentionSetIndex].metadata.tool === QL.SERIF_RELATIONS) {
         situationMentionList = comm.situationMentionSetList[situationMentionSetIndex].mentionList;
         for (situationMentionIndex in situationMentionList) {
           situationMention = situationMentionList[situationMentionIndex];
@@ -483,9 +492,9 @@ QL.addTokenizationBRATControls = function(comm) {
     return false;
   }
 
-  /**
+  /** Get a flat array of all Tokenization objects in the Communication
    * @params {Communication} comm
-   * @returns {Array} an Array of Tokenization objects
+   * @returns {Array} The Tokenization objects
    */
   function getAllTokenizations(comm) {
     var tokenizations = [];
@@ -505,10 +514,8 @@ QL.addTokenizationBRATControls = function(comm) {
         }
       }
     }
-
     return tokenizations;
   }
-
 
   /** Get the Tokenizations that contain EntityMentions that are part of
    *  a SituationMention created by the specified tool
@@ -517,7 +524,7 @@ QL.addTokenizationBRATControls = function(comm) {
    * @params {String} toolname - Name of tool that created the SituationMentions
    * @returns {Object} Object keys are uuidStrings of matching Tokenizations
    */
-  function getTokenizationsWithSerifRelations(comm, toolname) {
+  function getTokenizationsWithSituationMentions(comm, toolname) {
     var tokenizationsWithSerifRelations = {};
     var relationEntityMentionSet = QL.getRelationEntityMentionSet(comm, toolname);
 
@@ -531,12 +538,11 @@ QL.addTokenizationBRATControls = function(comm) {
         }
       }
     }
-
     return tokenizationsWithSerifRelations;
   }
 
-  var hasSerifRelationsData = commHasSituationMentionData(comm, "Serif: relations");
-  var tokenizationsWithSerifRelations = getTokenizationsWithSerifRelations(comm, "Serif: relations");
+  var hasSerifRelationsData = commHasSituationMentionData(comm, QL.SERIF_RELATIONS);
+  var tokenizationsWithSerifRelations = getTokenizationsWithSituationMentions(comm, QL.SERIF_RELATIONS);
 
   for (var sectionListIndex in comm.sectionSegmentationList[0].sectionList) {
     var section = comm.sectionSegmentationList[0].sectionList[sectionListIndex];
@@ -616,7 +622,6 @@ QL.getRelationEntityMentionSet = function(comm, toolname) {
       }
     }
   }
-
   return relationEntityMentionSet;
 }
 
