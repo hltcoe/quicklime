@@ -213,7 +213,7 @@ QL.addCommunication = function(parentElementID, comm) {
               .addClass('mention_' + entityMention.uuid.uuidString);
             // For multi-word mentions, the spaces between tokens are treated as part of the mention
             if (tokenIndex < total_tokens-1 &&
-                tokenIndexList[tokenIndex]+1 === tokenIndexList[parseInt(tokenIndex)+1])
+                tokenIndexList[tokenIndex]+1 === tokenIndexList[parseInt(tokenIndex, 10)+1])
             {
               $('#tokenization_padding_' + entityMention.tokens.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
                 .addClass('mention')
