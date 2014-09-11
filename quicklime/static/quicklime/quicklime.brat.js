@@ -22,7 +22,7 @@ Util.loadFonts = function(webFontURLs, dispatcher) { };
 $.browser = {};
 
 
-/**
+/** Create and display a Serif ACE relations diagram
  * @param {String} communicationUUID
  * @param {String} sentenceUUID
  * @param {String} tokenizationUUID
@@ -225,7 +225,7 @@ QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenization
 };
 
 
-/**
+/** Create and display an NER token tagging diagram
  * @param {String} communicationUUID
  * @param {String} sentenceUUID
  * @param {String} tokenizationUUID
@@ -288,7 +288,7 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 };
 
 
-/**
+/** Create and display a POS token tagging diagram
  * @param {String} communicationUUID
  * @param {String} sentenceUUID
  * @param {String} tokenizationUUID
@@ -427,15 +427,18 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
 
 
-/*
-Add buttons to tokenization_control <div>'s:
-
-    <div class="tokenization_controls" id="tokenization_controls_[TOKENIZATION_UUID]">
-+     <button>
-+     <button>
-+     ...
- */
-/**
+/** Add buttons for toggling display of BRAT visualizations
+ *
+ *  The buttons are appended to the 'tokenization_controls' <div> for
+ *  the respective Tokenizatin.
+ *
+ *  The '+' button indicates which objects are added to the DOM:
+ *     <div class="tokenization_controls" id="tokenization_controls_[TOKENIZATION_UUID]">
+ *   +   <button id="tokenization_ner_button_[TOKENIZATION_UUID]">
+ *   +   <button id="tokenization_pos_button_[TOKENIZATION_UUID]">
+ *   +   <button id="ace_relations_button_[TOKENIZATION_UUID]">
+ *   +   ...
+ *
  * @param {Communication} comm
  */
 QL.addTokenizationBRATControls = function(comm) {
@@ -543,7 +546,8 @@ QL.addTokenizationBRATControls = function(comm) {
   }
 };
 
-/**
+
+/** Check if Serif ACE relations diagram has already been added to DOM
  * @param {String} tokenizationUUID
  * @returns {Boolean}
  */
@@ -557,7 +561,7 @@ QL.hasSerifACERelations = function(tokenizationUUID) {
 };
 
 
-/**
+/** Check if NER token tagging diagram has already been added to DOM
  * @param {String} tokenizationUUID
  * @returns {Boolean}
  */
@@ -571,7 +575,7 @@ QL.hasNERTags = function(tokenizationUUID) {
 };
 
 
-/**
+/** Check if POS token tagging diagram has already been added to DOM
  * @param {String} tokenizationUUID
  * @returns {Boolean}
  */
@@ -585,7 +589,7 @@ QL.hasPOSTags = function(tokenizationUUID) {
 };
 
 
-/**
+/** Toggle display of Serif ACE relations diagram
  * @param {String} tokenizationUUID
  */
 QL.toggleSerifACERelations = function(tokenizationUUID) {
@@ -600,7 +604,7 @@ QL.toggleSerifACERelations = function(tokenizationUUID) {
 };
 
 
-/**
+/** Toggle display of NER token tagging diagram
  * @param {String} tokenizationUUID
  */
 QL.toggleNERTags = function(tokenizationUUID) {
@@ -615,7 +619,7 @@ QL.toggleNERTags = function(tokenizationUUID) {
 };
 
 
-/**
+/** Toggle display of POS token tagging diagram
  * @param {String} tokenizationUUID
  */
 QL.togglePOSTags = function(tokenizationUUID) {
