@@ -35,9 +35,9 @@ QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenization
   var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
   sentence_text = sentence_text.replace(/\n/g, " ");
 
-  // "Set" of EntityMention uuidStrings in this tokenization where the
-  // EntityMention is part of a relation
-  var relationEntityMentionSet = {};
+  // "Set" of EntityMention uuidStrings where the EntityMention is part of a SituationMention
+  // created by 'Serif: relations'
+  var relationEntityMentionSet = QL.getRelationEntityMentionSet(comm, "Serif: relations");
 
   var
     argumentIndex,
@@ -48,20 +48,6 @@ QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenization
     situationMentionIndex,
     situationMentionList,
     situationMentionSetIndex;
-
-  // Iterate over all SituationMentions in the Communication, record
-  // which EntityMentions are in a SituationMention argumentList
-  for (situationMentionSetIndex in comm.situationMentionSetList) {
-    if (comm.situationMentionSetList[situationMentionSetIndex].mentionList) {
-      situationMentionList = comm.situationMentionSetList[situationMentionSetIndex].mentionList;
-      for (situationMentionIndex in situationMentionList) {
-        situationMention = situationMentionList[situationMentionIndex];
-        for (argumentIndex in situationMention.argumentList) {
-          relationEntityMentionSet[situationMention.argumentList[argumentIndex].entityMentionId.uuidString] = true;
-        }
-      }
-    }
-  }
 
   // Iterate over all EntityMentions in the Communication, create
   // 'BRAT entity labels' for any EntityMention that is in the
@@ -442,7 +428,7 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
  * @param {Communication} comm
  */
 QL.addTokenizationBRATControls = function(comm) {
-  /**
+  /** Event handler for toggling an NER token tagging diagram
    * @param {MouseEvent} event
    */
   function addOrToggleNERTags(event) {
@@ -456,7 +442,7 @@ QL.addTokenizationBRATControls = function(comm) {
     }
   }
 
-  /**
+  /** Event handler for toggling a POS token tagging diagram
    * @param {MouseEvent} event
    */
   function addOrTogglePOSTags(event) {
@@ -470,7 +456,7 @@ QL.addTokenizationBRATControls = function(comm) {
     }
   }
 
-  /**
+  /** Event handler for toggling a Serif ACE relations diagram
    * @param {MouseEvent} event
    */
   function addOrToggleSerifACERelations(event) {
@@ -483,25 +469,80 @@ QL.addTokenizationBRATControls = function(comm) {
     }
   }
 
-  /** Returns a boolean indicating if a Communication has SituationMention data from 'Serif: relations'
+  /** Returns a boolean iff a Communication has SituationMention data from the specified tool
    * @param {Communication} comm
+   * @param {String} toolname
    * @returns {Boolean}
    */
-  function commHasSerifRelationsData(comm) {
+  function commHasSituationMentionData(comm, toolname) {
     for (var i in comm.situationMentionSetList) {
-      if (comm.situationMentionSetList[i].metadata.tool === "Serif: relations") {
+      if (comm.situationMentionSetList[i].metadata.tool === toolname) {
         return true;
       }
     }
     return false;
   }
 
-  var hasSerifRelationsData = commHasSerifRelationsData(comm);
+  /**
+   * @params {Communication} comm
+   * @returns {Array} an Array of Tokenization objects
+   */
+  function getAllTokenizations(comm) {
+    var tokenizations = [];
+
+    for (var sectionSegmentionListIndex in comm.sectionSegmentationList) {
+      var sectionSegmentation = comm.sectionSegmentationList[sectionSegmentationListIndex];
+      for (var sectionListIndex in sectionSegmentation.sectionList) {
+        var section = sectionSegmentation.sectionList[sectionListIndex];
+        for (var sentenceSegmentationIndex in section.sentenceSegmentationList) {
+          var sentenceSegmentation = section.sentenceSegmentationList[sentenceSegmentationIndex];
+          for (var sentenceIndex in sentenceSegmentation.sentenceList) {
+            var sentence = sentenceSegmentation.sentenceList[sentenceIndex];
+            for (var tokenizationIndex in sentence.tokenizationList) {
+              tokenizations.push(sentence.tokenizationList[tokenizationIndex]);
+            }
+          }
+        }
+      }
+    }
+
+    return tokenizations;
+  }
+
+
+  /** Get the Tokenizations that contain EntityMentions that are part of
+   *  a SituationMention created by the specified tool
+   *
+   * @params {Communication} comm
+   * @params {String} toolname - Name of tool that created the SituationMentions
+   * @returns {Object} Object keys are uuidStrings of matching Tokenizations
+   */
+  function getTokenizationsWithSerifRelations(comm, toolname) {
+    var tokenizationsWithSerifRelations = {};
+    var relationEntityMentionSet = QL.getRelationEntityMentionSet(comm, toolname);
+
+    for (var entityMentionSetIndex in comm.entityMentionSetList) {
+      if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
+        for (var entityMentionIndex in comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
+          entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[entityMentionIndex];
+          if (entityMention.uuid.uuidString in relationEntityMentionSet) {
+            tokenizationsWithSerifRelations[entityMention.tokens.tokenizationId.uuidString] = true;
+          }
+        }
+      }
+    }
+
+    return tokenizationsWithSerifRelations;
+  }
+
+  var hasSerifRelationsData = commHasSituationMentionData(comm, "Serif: relations");
+  var tokenizationsWithSerifRelations = getTokenizationsWithSerifRelations(comm, "Serif: relations");
 
   for (var sectionListIndex in comm.sectionSegmentationList[0].sectionList) {
-    if (comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList) {
-      for (var sentenceIndex in comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList) {
-        var sentence = comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList[sentenceIndex];
+    var section = comm.sectionSegmentationList[0].sectionList[sectionListIndex];
+    if (section.sentenceSegmentationList) {
+      for (var sentenceIndex in section.sentenceSegmentationList[0].sentenceList) {
+        var sentence = section.sentenceSegmentationList[0].sentenceList[sentenceIndex];
         var tokenization = sentence.tokenizationList[0];
 
         var tokenization_controls_div = $('#tokenization_controls_' + tokenization.uuid.uuidString);
@@ -539,12 +580,45 @@ QL.addTokenizationBRATControls = function(comm) {
                    addOrToggleSerifACERelations)
             .css('margin-right', '1em')
             .html("Rel");
+
+          if (!tokenizationsWithSerifRelations[tokenization.uuid.uuidString]) {
+            relation_button.prop('disabled', true);
+          }
           tokenization_controls_div.append(relation_button);
         }
       }
     }
   }
 };
+
+
+/** Iterate over all SituationMentions in the Communication, record
+ *  which EntityMentions are in a SituationMention argumentList created
+ *  by the specified toolname
+ *
+ * @params {Communication} comm
+ * @params {String} toolname
+ * @returns {Object} An object whose keys are the uuidStrings for relevant EntityMentions
+ */
+QL.getRelationEntityMentionSet = function(comm, toolname) {
+  var relationEntityMentionSet = {};
+
+  for (situationMentionSetIndex in comm.situationMentionSetList) {
+    if (comm.situationMentionSetList[situationMentionSetIndex].mentionList) {
+      if (comm.situationMentionSetList[situationMentionSetIndex].metadata.tool === toolname) {
+        situationMentionList = comm.situationMentionSetList[situationMentionSetIndex].mentionList;
+        for (situationMentionIndex in situationMentionList) {
+          situationMention = situationMentionList[situationMentionIndex];
+          for (argumentIndex in situationMention.argumentList) {
+            relationEntityMentionSet[situationMention.argumentList[argumentIndex].entityMentionId.uuidString] = true;
+          }
+        }
+      }
+    }
+  }
+
+  return relationEntityMentionSet;
+}
 
 
 /** Check if Serif ACE relations diagram has already been added to DOM
