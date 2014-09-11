@@ -67,7 +67,6 @@ QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenization
   // 'BRAT entity labels' for any EntityMention that is in the
   // specified Tokenization and also in a SituationMention
   // argumentList
-  var relationEntityCounter = 1;
   var relationEntityLabels = [];
   for (entityMentionSetIndex in comm.entityMentionSetList) {
     if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
@@ -75,8 +74,6 @@ QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenization
         entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[entityMentionIndex];
         if (entityMention.tokens.tokenizationId.uuidString === tokenizationUUID.uuidString) {
           if (entityMention.uuid.uuidString in relationEntityMentionSet) {
-            var entityID = "T" + relationEntityCounter;
-            relationEntityCounter += 1;
             var start = entityMention.tokens.textSpan.start - sentence.textSpan.start;
             var ending = entityMention.tokens.textSpan.ending - sentence.textSpan.start;
             relationEntityLabels.push(
@@ -90,8 +87,9 @@ QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenization
   }
 
   // Iterate over all SituationMentions in a Communication, create
-  // 'BRAT relation labels' for any SituationMention that has a
-  // situationType of "SituationType.STATE"
+  // 'BRAT relation labels' for any SituationMention created by the
+  // 'Serif: relations' tool that has a situationType of
+  // "SituationType.STATE"
   var relationLabels = [];
   for (situationMentionSetIndex in comm.situationMentionSetList) {
     if (comm.situationMentionSetList[situationMentionSetIndex].mentionList) {
