@@ -35,8 +35,9 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
   var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
   sentence_text = sentence_text.replace(/\n/g, " ");
 
-  // Set of entities in this sentence that are part of a relation
-  var relationEntitySet = {};
+  // "Set" of EntityMention uuidStrings in this tokenization where the
+  // EntityMention is part of a relation
+  var relationEntityMentionSet = {};
 
   var
     argumentIndex,
@@ -48,48 +49,62 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
     situationMentionList,
     situationMentionSetIndex;
 
+  // Iterate over all SituationMentions in the Communication, record
+  // which EntityMentions are in a SituationMention argumentList
   for (situationMentionSetIndex in comm.situationMentionSetList) {
     if (comm.situationMentionSetList[situationMentionSetIndex].mentionList) {
       situationMentionList = comm.situationMentionSetList[situationMentionSetIndex].mentionList;
       for (situationMentionIndex in situationMentionList) {
         situationMention = situationMentionList[situationMentionIndex];
         for (argumentIndex in situationMention.argumentList) {
-          relationEntitySet[situationMention.argumentList[argumentIndex].entityMentionId.uuidString] = true;
+          relationEntityMentionSet[situationMention.argumentList[argumentIndex].entityMentionId.uuidString] = true;
         }
       }
     }
   }
 
+  // Iterate over all EntityMentions in the Communication, create
+  // 'BRAT entity labels' for any EntityMention that is in the
+  // specified Tokenization and also in a SituationMention
+  // argumentList
   var relationEntityCounter = 1;
   var relationEntityLabels = [];
   for (entityMentionSetIndex in comm.entityMentionSetList) {
     if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
       for (entityMentionIndex in comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
         entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[entityMentionIndex];
-        if (entityMention.tokens.tokenizationId.uuidString == tokenizationUUID.uuidString) {
-          if (entityMention.uuid.uuidString in relationEntitySet) {
+        if (entityMention.tokens.tokenizationId.uuidString === tokenizationUUID.uuidString) {
+          if (entityMention.uuid.uuidString in relationEntityMentionSet) {
             var entityID = "T" + relationEntityCounter;
             relationEntityCounter += 1;
             var start = entityMention.tokens.textSpan.start - sentence.textSpan.start;
             var ending = entityMention.tokens.textSpan.ending - sentence.textSpan.start;
-            relationEntityLabels.push([entityMention.uuid.uuidString, entityMention.entityType.toString(), [[start, ending]]]);
+            relationEntityLabels.push(
+              [entityMention.uuid.uuidString,
+               entityMention.entityType,
+               [[start, ending]]]);
           }
         }
       }
     }
   }
 
+  // Iterate over all SituationMentions in a Communication, create
+  // 'BRAT relation labels' for any SituationMention that has a
+  // situationType of "SituationType.STATE"
   var relationLabels = [];
   for (situationMentionSetIndex in comm.situationMentionSetList) {
     if (comm.situationMentionSetList[situationMentionSetIndex].mentionList) {
-      if (comm.situationMentionSetList[situationMentionSetIndex].metadata.tool == 'Serif: relations') {
+      if (comm.situationMentionSetList[situationMentionSetIndex].metadata.tool === "Serif: relations") {
         situationMentionList = comm.situationMentionSetList[situationMentionSetIndex].mentionList;
         for (situationMentionIndex in situationMentionList) {
           situationMention = situationMentionList[situationMentionIndex];
-          if (situationMention.situationType == 300) {
-            relationLabels.push([situationMention.uuid.uuidString, situationMention.stateType.toString(), [
-              ['Left', situationMention.argumentList[0].entityMentionId.uuidString],
-              ['Right', situationMention.argumentList[1].entityMentionId.uuidString]]]);
+          if (situationMention.situationType === "SituationType.STATE") {
+            relationLabels.push(
+              [situationMention.uuid.uuidString,
+               situationMention.stateType,
+               [['Left', situationMention.argumentList[0].entityMentionId.uuidString],
+                ['Right', situationMention.argumentList[1].entityMentionId.uuidString]]]);
           }
         }
       }
@@ -104,60 +119,21 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
       // function on the object passed in as the 'type' field:
       //   var splitType = arcType.match(/^(.*?)(\d*)$/);
       // and an error will occur if that object is a number.
-      { type: '1', labels: ['PER', 'Person'], bgColor: '#ffccaa' },
-      { type: '2', labels: ['ORG', 'Organization'], bgColor: '#8fb2ff' },
-      { type: '3', labels: ['GPE', 'Geo-Political Entity'], bgColor: '#7fe2ff' },
-      { type: '4', labels: ['OTH', 'Other'], bgColor: '#F9F247' },
-      { type: '6', labels: ['FAC', 'Facility'], bgColor: '#aaaaee' },
-      { type: '7', labels: ['VEH', 'Vehicle'], bgColor: '#ccccee' },
-      { type: '8', labels: ['WEA', 'Weaopn'], bgColor: 'darkgray' },
-      { type: '9', labels: ['LOC', 'Location'], bgColor: '#6fffdf' },
-      { type: '10', labels: ['TIME', 'Time'], bgColor: '#F9F247' },
-      { type: '23', labels: ['JT', 'Job Title'], bgColor: '#F9F247' },
+      { type: 'Crime', labels: ['CRI', 'Crime'], bgColor: 'darkgray' },
+      { type: 'FAC', labels: ['FAC', 'Facility'], bgColor: '#aaaaee' },
+      { type: 'GPE', labels: ['GPE', 'Geo-Political Entity'], bgColor: '#7fe2ff' },
+      { type: 'Job-Title', labels: ['JT', 'Job Title'], bgColor: '#F9F247' },
+      { type: 'LOC', labels: ['LOC', 'Location'], bgColor: '#6fffdf' },
+      { type: 'ORG', labels: ['ORG', 'Organization'], bgColor: '#8fb2ff' },
+      { type: 'PER', labels: ['PER', 'Person'], bgColor: '#ffccaa' },
+      { type: 'TIMEX2.TIME', labels: ['TIME', 'Time'], bgColor: '#F9F247' },
+      { type: 'VEH', labels: ['VEH', 'Vehicle'], bgColor: '#ccccee' },
+      { type: 'WEA', labels: ['WEA', 'Weaopn'], bgColor: 'darkgray' },
     ],
     relation_types: [
+      // The values of the 'type' strings below come from Serif
       {
-        type: '41',
-        labels: ['Loc', 'Located in'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-      {
-        type: '42',
-        labels: ['Near', 'Near'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-      {
-        type: '43',
-        labels: ['Part', 'Part of Whole'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-      {
-        type: '57',
-        labels: ['Business with', 'Business Relationship'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-      {
-        type: '58',
-        labels: ['Family of', 'Family Relationship'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-      {
-        type: '60',
+        type: 'ART.User-Owner-Inventor-Manufacturer',
         labels: ['Owned by', 'Owner/Inventor/Manufacturer'],
         color: '#e30834',
         dashArray: '3-3',
@@ -165,7 +141,7 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
                 { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
       },
       {
-        type: '62',
+        type: 'GEN-AFF.Org-Location',
         labels: ['Located at', 'Organization Location'],
         color: '#e30834',
         dashArray: '3-3',
@@ -173,7 +149,7 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
                 { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
       },
       {
-        type: '63',
+        type: 'ORG-AFF.Employment',
         labels: ['Employed by', 'Organization Affiliation - Employment'],
         color: '#e30834',
         dashArray: '3-3',
@@ -181,7 +157,7 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
                 { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
       },
       {
-        type: '69',
+        type: 'ORG-AFF.Membership',
         labels: ['Member of', 'Organization Affiliation - Member'],
         color: '#e30834',
         dashArray: '3-3',
@@ -189,8 +165,48 @@ QL.addACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID)
                 { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
       },
       {
-        type: '71',
+        type: 'PART-WHOLE.Geographical',
         labels: ['Located in', 'Geographical part/whole'],
+        color: '#e30834',
+        dashArray: '3-3',
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+      },
+      {
+        type: 'PART-WHOLE.Subsidiary',
+        labels: ['Part', 'Part of Whole'],
+        color: '#e30834',
+        dashArray: '3-3',
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+      },
+      {
+        type: 'PER-SOC.Business',
+        labels: ['Business with', 'Business Relationship'],
+        color: '#e30834',
+        dashArray: '3-3',
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+      },
+      {
+        type: 'PER-SOC.Family',
+        labels: ['Family of', 'Family Relationship'],
+        color: '#e30834',
+        dashArray: '3-3',
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+      },
+      {
+        type: 'PHYS.Located',
+        labels: ['Loc', 'Located in'],
+        color: '#e30834',
+        dashArray: '3-3',
+        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+      },
+      {
+        type: 'PHYS.Near',
+        labels: ['Near', 'Near'],
         color: '#e30834',
         dashArray: '3-3',
         args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
