@@ -94,6 +94,34 @@ QL.getCommunicationWithUUID = function(uuid) {
  * @param {Communication} comm
  */
 QL.addCommunication = function(parentElementID, comm) {
+
+  /** Add DOM class(es) to token <span>'s identified by TokenRefSequence
+   *  To specify multiple classes, create a single string with the class
+   *  names separated by spaces.
+   *
+   * @param {TokenRefSequence} tokenRefSequence
+   * @param {String} className - DOM class(es) to be added to token <span>'s
+   */
+  function addDOMClassForTokenRefSequence(tokenRefSequence, className) {
+    if (tokenRefSequence.tokenIndexList) {
+      var tokenIndexList = tokenRefSequence.tokenIndexList;
+      var total_tokens = tokenRefSequence.tokenIndexList.length;
+
+      for (tokenIndex in tokenIndexList) {
+        $('#tokenization_' + tokenRefSequence.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
+          .addClass(className);
+
+        // For multi-word mentions, the spaces between tokens are treated as part of the mention
+        if (tokenIndex < total_tokens-1 &&
+            tokenIndexList[tokenIndex]+1 === tokenIndexList[parseInt(tokenIndex, 10)+1])
+        {
+          $('#tokenization_padding_' + entityMention.tokens.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
+            .addClass(className);
+        }
+      }
+    }
+  }
+
   QL._communications[comm.uuid.uuidString] = comm;
 
   var parent_element = $('#' + parentElementID);
@@ -204,23 +232,7 @@ QL.addCommunication = function(parentElementID, comm) {
     if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
       for (var mentionListIndex in comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
         var entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[mentionListIndex];
-        if (entityMention.tokens.tokenIndexList) {
-          var tokenIndexList = entityMention.tokens.tokenIndexList;
-          var total_tokens = tokenIndexList.length;
-          for (tokenIndex in tokenIndexList) {
-            $('#tokenization_' + entityMention.tokens.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
-              .addClass('mention')
-              .addClass('mention_' + entityMention.uuid.uuidString);
-            // For multi-word mentions, the spaces between tokens are treated as part of the mention
-            if (tokenIndex < total_tokens-1 &&
-                tokenIndexList[tokenIndex]+1 === tokenIndexList[parseInt(tokenIndex, 10)+1])
-            {
-              $('#tokenization_padding_' + entityMention.tokens.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
-                .addClass('mention')
-                .addClass('mention_' + entityMention.uuid.uuidString);
-            }
-          }
-        }
+        addDOMClassForTokenRefSequence(entityMention.tokens, "mention mention_" + entityMention.uuid.uuidString);
       }
     }
   }
