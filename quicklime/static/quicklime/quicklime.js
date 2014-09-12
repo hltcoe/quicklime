@@ -115,7 +115,7 @@ QL.addCommunication = function(parentElementID, comm) {
         if (tokenIndex < total_tokens-1 &&
             tokenIndexList[tokenIndex]+1 === tokenIndexList[parseInt(tokenIndex, 10)+1])
         {
-          $('#tokenization_padding_' + entityMention.tokens.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
+          $('#tokenization_padding_' + tokenRefSequence.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
             .addClass(className);
         }
       }
