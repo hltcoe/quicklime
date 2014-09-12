@@ -104,7 +104,8 @@ QL.addCommunication = function(parentElementID, comm) {
    */
   function addDOMClassForTokenRefSequence(tokenRefSequence, className) {
     if (tokenRefSequence.tokenIndexList) {
-      var tokenIndexList = tokenRefSequence.tokenIndexList;
+      // Unlike Array.sort(), Underscore's sortBy() sorts arrays of numbers *numerically*
+      var tokenIndexList = _.sortBy(tokenRefSequence.tokenIndexList);
       var total_tokens = tokenRefSequence.tokenIndexList.length;
 
       for (var tokenIndex in tokenIndexList) {
