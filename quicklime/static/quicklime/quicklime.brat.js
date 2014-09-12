@@ -609,13 +609,13 @@ QL.addTokenizationBRATControls = function(comm) {
 QL.getRelationEntityMentionSet = function(comm, toolname) {
   var relationEntityMentionSet = {};
 
-  for (situationMentionSetIndex in comm.situationMentionSetList) {
+  for (var situationMentionSetIndex in comm.situationMentionSetList) {
     if (comm.situationMentionSetList[situationMentionSetIndex].mentionList) {
       if (comm.situationMentionSetList[situationMentionSetIndex].metadata.tool === toolname) {
         situationMentionList = comm.situationMentionSetList[situationMentionSetIndex].mentionList;
-        for (situationMentionIndex in situationMentionList) {
+        for (var situationMentionIndex in situationMentionList) {
           situationMention = situationMentionList[situationMentionIndex];
-          for (argumentIndex in situationMention.argumentList) {
+          for (var argumentIndex in situationMention.argumentList) {
             relationEntityMentionSet[situationMention.argumentList[argumentIndex].entityMentionId.uuidString] = true;
           }
         }
@@ -623,7 +623,7 @@ QL.getRelationEntityMentionSet = function(comm, toolname) {
     }
   }
   return relationEntityMentionSet;
-}
+};
 
 
 /** Check if Serif ACE relations diagram has already been added to DOM

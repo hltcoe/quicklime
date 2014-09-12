@@ -107,7 +107,7 @@ QL.addCommunication = function(parentElementID, comm) {
       var tokenIndexList = tokenRefSequence.tokenIndexList;
       var total_tokens = tokenRefSequence.tokenIndexList.length;
 
-      for (tokenIndex in tokenIndexList) {
+      for (var tokenIndex in tokenIndexList) {
         $('#tokenization_' + tokenRefSequence.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
           .addClass(className);
 
