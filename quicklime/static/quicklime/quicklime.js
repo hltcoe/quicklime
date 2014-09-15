@@ -123,6 +123,7 @@ QL.addCommunication = function(parentElementID, comm) {
     }
   }
 
+  // Add Communication to set of communications (a global variable) in QL namespace
   QL._communications[comm.uuid.uuidString] = comm;
 
   var parent_element = $('#' + parentElementID);
@@ -130,20 +131,27 @@ QL.addCommunication = function(parentElementID, comm) {
   parent_element.append(document_div);
 
   // For now, we assume that there is only a single section segmentation
+  var sectionSegmentation = comm.sectionSegmentationList[0];
+
   var section_segmentation_div = $('<div>').addClass('section_segmention')
-    .attr('id', 'section_segmentation_' + comm.sectionSegmentationList[0].uuid.uuidString);
+    .attr('id', 'section_segmentation_' + sectionSegmentation.uuid.uuidString);
 
-  var tokenIndex;
-
-  for (var sectionListIndex in comm.sectionSegmentationList[0].sectionList) {
+  for (var sectionListIndex in sectionSegmentation.sectionList) {
+    var section = sectionSegmentation.sectionList[sectionListIndex];
     var section_div = $('<div>').addClass('section')
-      .attr('id', 'section_' + comm.sectionSegmentationList[0].sectionList[sectionListIndex].uuid.uuidString);
+      .attr('id', 'section_' + section.uuid.uuidString);
+
     // For now, we assume that there is only a single sentence segmentation
+    var sentenceSegmentation = section.sentenceSegmentationList[0];
+
     var sentence_segmentation_div = $('<div>').addClass('sentence_segmentation')
-      .attr('id', 'sentence_segmentation_' + comm.sectionSegmentationList[0].uuid.uuidString);
-    if (comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList) {
-      for (var sentenceIndex in comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList) {
-        var sentence = comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList[sentenceIndex];
+      .attr('id', 'sentence_segmentation_' + sentenceSegmentation.uuid.uuidString);
+
+    if (section.sentenceSegmentationList) {
+      for (var sentenceIndex in sentenceSegmentation.sentenceList) {
+        var sentence = sentenceSegmentation.sentenceList[sentenceIndex];
+
+        // For now, we assume that there is only a single tokenization
         var tokenization = sentence.tokenizationList[0];
 
         var sentence_div = $('<div>')
@@ -165,7 +173,7 @@ QL.addCommunication = function(parentElementID, comm) {
         controls_and_tokenization_container_div.append(tokenization_controls_div);
 
         var tokenization_div = $('<div>').addClass('tokenization').attr('id', 'tokenization_' + tokenization.uuid.uuidString);
-        for (tokenIndex in tokenization.tokenList.tokenList) {
+        for (var tokenIndex in tokenization.tokenList.tokenList) {
           var token = tokenization.tokenList.tokenList[tokenIndex];
           var token_span = $('<span>')
             .addClass('token')
