@@ -241,7 +241,7 @@ QL.addCommunication = function(parentElementID, comm) {
     if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
       for (var mentionListIndex in comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
         var entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[mentionListIndex];
-        addDOMClassForTokenRefSequence(entityMention.tokens, "mention mention_" + entityMention.uuid.uuidString);
+        addDOMClassForTokenRefSequence(entityMention.tokens, "entity_mention entity_mention_" + entityMention.uuid.uuidString);
       }
     }
   }
@@ -256,7 +256,7 @@ QL.addCommunication = function(parentElementID, comm) {
         var entity = comm.entitySetList[entitySetListIndex].entityList[entityListIndex];
         for (var i = 0; i < entity.mentionIdList.length; i++) {
           var entityMentionId = entity.mentionIdList[i];
-          $('.mention_' + entityMentionId.uuidString)
+          $('.entity_mention_' + entityMentionId.uuidString)
             .addClass('coref_mention')
             .addClass('entity_' + entity.uuid.uuidString);
         }
@@ -309,7 +309,7 @@ QL.addEntityTable = function(parentElementID, comm) {
         for (var mentionIdListIndex in entity.mentionIdList) {
           var mentionId = entity.mentionIdList[mentionIdListIndex];
           var mentionId_li = $('<li>')
-            .html('<span class="coref_mention mention_' + mentionId.uuidString + '">' + comm.getTokensForEntityMentionID(mentionId).join(" ") + '</span>');
+            .html('<span class="coref_mention entity_mention_' + mentionId.uuidString + '">' + comm.getTokensForEntityMentionID(mentionId).join(" ") + '</span>');
           mentionId_ul.append(mentionId_li);
         }
         entity_div.append(mentionId_ul);
@@ -377,10 +377,10 @@ QL.addEntityMouseoverHighlighting = function(comm) {
         // not linked to an entity in entitySet.
         for (var i = 0; i < entity.mentionIdList.length; i++) {
           var entityMentionId = entity.mentionIdList[i];
-          $('.mention_' + entityMentionId.uuidString)
+          $('.entity_mention_' + entityMentionId.uuidString)
             .click({ entity_selector: '.entity_' + entity.uuid.uuidString }, toggleSelectedEntity)
-            .mouseenter({ mention_selector: '.mention_'+entityMentionId.uuidString }, addHighlightToMention)
-            .mouseleave({ mention_selector: '.mention_'+entityMentionId.uuidString }, removeHighlightFromMention);
+            .mouseenter({ mention_selector: '.entity_mention_'+entityMentionId.uuidString }, addHighlightToMention)
+            .mouseleave({ mention_selector: '.entity_mention_'+entityMentionId.uuidString }, removeHighlightFromMention);
         }
       }
     }
