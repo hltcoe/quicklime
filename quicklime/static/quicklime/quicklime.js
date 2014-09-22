@@ -388,6 +388,70 @@ QL.addEntityMouseoverHighlighting = function(comm) {
 };
 
 
+/** Add a "table" listing SituationMentions in a Communication
+ * @param {String} parentElementID - DOM ID of element to attach Communication text to
+ * @param {Communication} comm
+ */
+QL.addSituationMentionTable = function(parentElementID, comm) {
+  if (comm.situationMentionSetList) {
+    var situationMentionTable_div = $('<div>');
+    $('#' + parentElementID).append(situationMentionTable_div);
+
+    for (var smsIndex in comm.situationMentionSetList) {
+      var situationMentionSet = comm.situationMentionSetList[smsIndex];
+
+      var situationMentionToolHeading = $('<h4>');
+      if (situationMentionSet.metadata) {
+        situationMentionToolHeading.html(situationMentionSet.metadata.tool);
+      }
+      else {
+        situationMentionToolHeading.html('Unknown Situation Mention Tool #' + smsIndex);
+      }
+      situationMentionTable_div.append(situationMentionToolHeading);
+
+      var situationMentionList_ul = $('<ul>').addClass('entity_list');
+      for (var situationMentionIndex in situationMentionSet.mentionList) {
+        var situationMention = situationMentionSet.mentionList[situationMentionIndex];
+        var situationMention_li = $('<li>')
+          .append(
+            $('<span>')
+              .addClass('situation_mention_' + situationMention.uuid.uuidString)
+              .html(situationMention.situationType));
+        for (var argumentListIndex in situationMention.argumentList) {
+          var mentionArgument = situationMention.argumentList[argumentListIndex];
+          if (mentionArgument.entityMentionId) {
+            var entityMention = comm.getEntityMentionWithUUID(mentionArgument.entityMentionId);
+            situationMention_li.append(
+              $('<span>')
+                .addClass('entity_mention entity_mention_' + mentionArgument.entityMentionId.uuidString)
+                .html('<br>' + QL.getTextForTokenRefSequence(comm, entityMention.tokens)));
+            if (mentionArgument.role) {
+              situationMention_li.append(
+                $('<span>')
+                  .html(" (" + mentionArgument.role + ") "));
+            }
+          }
+          else if (mentionArgument.situationMentionId) {
+            var situationMention = comm.getSituationMentionWithUUID(mentionArgument.situationMentionId);
+            situationMention_li.append(
+              $('<span>')
+                .addClass('situation_mention situation_mention_' + mentionArgument.situationMentionId.uuidString)
+                .html('<br>' + QL.getTextForTokenRefSequence(comm, situationMention.tokens)));
+            if (mentionArgument.role) {
+              situationMention_li.append(
+                $('<span>')
+                  .html(" (" + mentionArgument.role + ") "));
+            }
+          }
+        }
+        situationMentionList_ul.append(situationMention_li);
+      }
+      situationMentionTable_div.append(situationMentionList_ul);
+    }
+  }
+};
+
+
 /** Function takes a token string, returns a "cleaned" version of that string
  * @param {String} tokenText
  * @returns {String}
@@ -411,4 +475,27 @@ QL.cleanedTokenText = function(tokenText) {
     default:
       return tokenText;
   }
+};
+
+
+/** Returns a single string for the tokens pointed to by the TokenRefSequence.
+ *  If not all tokens in the TokenRefSequence are adjacent, the HTML entity
+ *  for '...' will be inserted where there are gaps.
+ *
+ * @param {Communication} comm
+ * @param {TokenRefSequence] tokenRefSequence
+ * @returns {String}
+ */
+QL.getTextForTokenRefSequence = function(comm, tokenRefSequence) {
+  var tokenization = comm.getTokenizationWithUUID(tokenRefSequence.tokenizationId);
+
+  var text = "";
+  for (var i=0, total_tokens=tokenRefSequence.tokenIndexList.length; i < total_tokens; i++) {
+    text += tokenization.tokenList.tokenList[tokenRefSequence.tokenIndexList[i]].text + " ";
+    if (i < total_tokens-1 && tokenRefSequence.tokenIndexList[i]+1 !== tokenRefSequence.tokenIndexList[i+1]) {
+      text += "&hellip; ";
+    }
+  }
+
+  return text;
 };
