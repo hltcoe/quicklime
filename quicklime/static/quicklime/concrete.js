@@ -9682,6 +9682,29 @@ Communication.prototype.getSentenceWithUUID = function(uuid) {
 
 
 /**
+ * @param {UUID} uuid
+ * @returns {SituationMention|null}
+ */
+Communication.prototype.getSituationMentionWithUUID = function(uuid) {
+  if (this.situationMentionSetList) {
+    for (var situationMentionSetIndex in this.situationMentionSetList) {
+      var situationMentionSet = this.situationMentionSetList[situationMentionSetIndex];
+      for (var mentionListIndex in situationMentionSet.mentionList) {
+        var mention = situationMentionSet.mentionList[mentionListIndex];
+        if (mention.uuid.uuidString === uuid.uuidString) {
+          return mention;
+        }
+      }
+    }
+  }
+  // TODO: Error handling if no matching UUID could be found
+  console.log("ERROR: No SituationMention found with UUID " + uuid.uuidString);
+  return null;
+};
+
+
+
+/**
  * @param {String} uuid
  */
 Communication.prototype.getTokenizationWithUUID = function(uuid) {
