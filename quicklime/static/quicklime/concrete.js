@@ -9639,8 +9639,9 @@ UUID.prototype.write = function(output) {
   COMMUNICATION_FU
 */
 
-/**
- * @param {String} uuid
+/** Return the EntityMention (or null) with the specified UUID
+ * @param {UUID} uuid
+ * @returns {EntityMention|null}
  */
 Communication.prototype.getEntityMentionWithUUID = function(uuid) {
   if (this.entityMentionSetList) {
@@ -9657,20 +9658,31 @@ Communication.prototype.getEntityMentionWithUUID = function(uuid) {
   }
   // TODO: Error handling if no matching UUID could be found
   console.log("ERROR: No EntityMention found with UUID " + uuid.uuidString);
+  return null;
 };
 
 
-/**
- * @param {String} uuid
+/** Return the Sentence (or null) with the specified UUID
+ * @param {UUID} uuid
+ @ @returns {Sentence|null}
  */
 Communication.prototype.getSentenceWithUUID = function(uuid) {
-  if (this.sectionSegmentationList[0].sectionList) {
-    for (var sectionListIndex in this.sectionSegmentationList[0].sectionList) {
-      if (this.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList) {
-        for (var sentenceIndex in this.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList) {
-          var sentence = this.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList[sentenceIndex];
-          if (sentence.uuid.uuidString == uuid.uuidString) {
-            return sentence;
+  if (this.sectionSegmentationList) {
+    for (var sectionSegmentationListIndex in this.sectionSegmentationList) {
+      var sectionSegmentation = this.sectionSegmentationList[sectionSegmentationListIndex];
+      if (sectionSegmentation.sectionList) {
+        for (var sectionListIndex in sectionSegmentation.sectionList) {
+          var sectionList = sectionSegmentation.sectionList[sectionListIndex];
+          if (sectionList.sentenceSegmentationList) {
+            for (var sentenceSegmentationListIndex in sectionList.sentenceSegmentationList) {
+              var sentenceSegmentation = sectionList.sentenceSegmentationList[sentenceSegmentationListIndex];
+              for (var sentenceIndex in sentenceSegmentation.sentenceList) {
+                var sentence = sentenceSegmentation.sentenceList[sentenceIndex];
+                if (sentence.uuid.uuidString == uuid.uuidString) {
+                  return sentence;
+                }
+              }
+            }
           }
         }
       }
@@ -9678,10 +9690,11 @@ Communication.prototype.getSentenceWithUUID = function(uuid) {
   }
   // TODO: Error handling if no matching UUID could be found
   console.log("ERROR: No Tokenization found with UUID " + uuid.uuidString);
+  return null;
 };
 
 
-/**
+/** Return the SituationMention (or null) with the specified UUID
  * @param {UUID} uuid
  * @returns {SituationMention|null}
  */
@@ -9704,18 +9717,28 @@ Communication.prototype.getSituationMentionWithUUID = function(uuid) {
 
 
 
-/**
- * @param {String} uuid
+/** Return the Tokenization (or null) with the specified UUID
+ * @param {UUID} uuid
+ * @returns {Tokenization|null}
  */
 Communication.prototype.getTokenizationWithUUID = function(uuid) {
-  if (this.sectionSegmentationList[0].sectionList) {
-    for (var sectionListIndex in this.sectionSegmentationList[0].sectionList) {
-      if (this.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList) {
-        for (var sentenceIndex in this.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList) {
-          var sentence = this.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList[sentenceIndex];
-          for (var tokenizationListIndex in sentence.tokenizationList) {
-            if (sentence.tokenizationList[tokenizationListIndex].uuid.uuidString == uuid.uuidString) {
-              return sentence.tokenizationList[tokenizationListIndex];
+  if (this.sectionSegmentationList) {
+    for (var sectionSegmentationListIndex in this.sectionSegmentationList) {
+      var sectionSegmentation = this.sectionSegmentationList[sectionSegmentationListIndex];
+      if (sectionSegmentation.sectionList) {
+        for (var sectionListIndex in sectionSegmentation.sectionList) {
+          var sectionList = sectionSegmentation.sectionList[sectionListIndex];
+          if (sectionList.sentenceSegmentationList) {
+            for (var sentenceSegmentationListIndex in sectionList.sentenceSegmentationList) {
+              var sentenceSegmentation = sectionList.sentenceSegmentationList[sentenceSegmentationListIndex];
+              for (var sentenceIndex in sentenceSegmentation.sentenceList) {
+                var sentence = sentenceSegmentation.sentenceList[sentenceIndex];
+                for (var tokenizationListIndex in sentence.tokenizationList) {
+                  if (sentence.tokenizationList[tokenizationListIndex].uuid.uuidString == uuid.uuidString) {
+                    return sentence.tokenizationList[tokenizationListIndex];
+                  }
+                }
+              }
             }
           }
         }
@@ -9724,11 +9747,12 @@ Communication.prototype.getTokenizationWithUUID = function(uuid) {
   }
   // TODO: Error handling if no matching UUID could be found
   console.log("ERROR: No Tokenization found with UUID " + uuid.uuidString);
+  return null;
 };
 
 
-/**
- * @param {String} mentionId
+/** Get list of token text strings for the EntityMention specified by the UUID
+ * @param {UUID} mentionId
  * @returns {Array} An array of token text strings
  */
 Communication.prototype.getTokensForEntityMentionID = function(mentionId) {
@@ -9744,7 +9768,7 @@ Communication.prototype.getTokensForEntityMentionID = function(mentionId) {
 };
 
 
-/**
+/** Get all TokenTaggings with the specified taggingType
  * @param {String} taggingType - A string specifying a TokenTagging.taggingType
  * @returns {Array} A (possibly empty) array of TokenTagging objects
  */
