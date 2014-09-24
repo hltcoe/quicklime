@@ -67,11 +67,39 @@
     <h2>Sentences</h2>
     <div id="communication_one"></div>
 
-    <h2>Entities</h2>
-    <div id="entityTable"></div>
+    <p>
 
-    <h2>Situation Mentions</h2>
-    <div id="situationMentionTable"></div>
-  </div>
+    <div class="panel-group">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#collapseEntities">
+              Entities
+            </a>
+          </h4>
+        </div>
+        <div id="collapseEntities" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <div id="entityTable"></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#collapseSituationMentions">
+              Situation Mentions
+            </a>
+          </h4>
+        </div>
+        <div id="collapseSituationMentions" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <div id="situationMentionTable"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.container-fluid -->
 </body>
 </html>
