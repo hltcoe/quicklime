@@ -19,12 +19,14 @@
   <!-- SVG for jQuery: http://keith-wood.name/svg.html
 
        BRAT comes bundled with v1.4.3 of SVG for jQuery, which is incompatible
-       with jQuery v1.7.2 and later.  We use a *customized* version of SVG for
-       jQuery v1.4.5.  Version 1.4.5  was released on 2012-04-28 as a
-       compatibility fix for jQuery 1.7.
+       with jQuery v1.7.2 and later.  We are using the jQuery SVG files from
+       a fork of the project:
+         https://github.com/twitwi/svg
+
+       This fork is compatible with jQuery 1.8+, but not jQuery 1.7.
   -->
-  <script src="static/quicklime/jquery.svg.js-1.4.5"></script>
-  <script src="static/quicklime/jquery.svgdom.js-1.4.5"></script>
+  <script src="static/quicklime/jquery.svg.js"></script>
+  <script src="static/quicklime/jquery.svgdom.js"></script>
 
   <!-- BRAT helper modules -->
   <script src="static/quicklime/brat/client/src/configuration.js"></script>
