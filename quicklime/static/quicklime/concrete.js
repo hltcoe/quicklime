@@ -9639,6 +9639,30 @@ UUID.prototype.write = function(output) {
   COMMUNICATION_FU
 */
 
+/** Return the Entity (or null) that has an EntityMention with the specified UUID
+ * @param {UUID} uuid
+ * @returns {Entity|null}
+ */
+Communication.prototype.getEntityForEntityMentionUUID = function(uuid) {
+  if (this.entitySetList) {
+    for (var entitySetIndex in this.entitySetList) {
+      var entityList = this.entitySetList[entitySetIndex].entityList;
+      for (var entityIndex in entityList) {
+        var entity = entityList[entityIndex];
+        for (var entityMentionIndex in entity.mentionIdList) {
+          if (entity.mentionIdList[entityMentionIndex].uuidString === uuid.uuidString) {
+            return entity;
+          }
+        }
+      }
+    }
+  }
+  // TODO: Error handling if no matching UUID could be found
+  console.log("WARNING: No Entity found for EntityMention with UUID " + uuid.uuidString);
+  return null;
+};
+
+
 /** Return the EntityMention (or null) with the specified UUID
  * @param {UUID} uuid
  * @returns {EntityMention|null}
