@@ -421,10 +421,16 @@ QL.addSituationMentionTable = function(parentElementID, comm) {
           var mentionArgument = situationMention.argumentList[argumentListIndex];
           if (mentionArgument.entityMentionId) {
             var entityMention = comm.getEntityMentionWithUUID(mentionArgument.entityMentionId);
-            situationMention_li.append(
-              $('<span>')
-                .addClass('entity_mention entity_mention_' + mentionArgument.entityMentionId.uuidString)
-                .html('<br>' + QL.getTextForTokenRefSequence(comm, entityMention.tokens)));
+            var entity = comm.getEntityForEntityMentionUUID(mentionArgument.entityMentionId);
+
+            var entityMention_span = $('<span>')
+              .addClass('entity_mention entity_mention_' + mentionArgument.entityMentionId.uuidString)
+              .html('<br>' + QL.getTextForTokenRefSequence(comm, entityMention.tokens));
+            if (entity) {
+              entityMention_span.addClass('entity entity_' + entity.uuid.uuidString);
+            }
+            situationMention_li.append(entityMention_span);
+
             if (mentionArgument.role) {
               situationMention_li.append(
                 $('<span>')
