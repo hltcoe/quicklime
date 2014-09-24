@@ -1,8 +1,8 @@
 ﻿/* http://keith-wood.name/svg.html
    jQuery DOM compatibility for jQuery SVG v1.4.5.
    Written by Keith Wood (kbwood{at}iinet.com.au) April 2009.
-   Dual licensed under the GPL (http://dev.jquery.com/browser/trunk/jquery/GPL-LICENSE.txt) and 
-   MIT (http://dev.jquery.com/browser/trunk/jquery/MIT-LICENSE.txt) licenses. 
+   Dual licensed under the GPL (http://dev.jquery.com/browser/trunk/jquery/GPL-LICENSE.txt) and
+   MIT (http://dev.jquery.com/browser/trunk/jquery/MIT-LICENSE.txt) licenses.
    Please attribute the author if you use it. */
 
 (function($) { // Hide scope, no $ conflict
@@ -171,7 +171,7 @@ if ($.cssProps) {
 		};
 	}($.css);
 }
-  
+
 /* Determine if any nodes are SVG nodes. */
 function anySVG(checkSet) {
 	for (var i = 0; i < checkSet.length; i++) {
@@ -245,7 +245,7 @@ if (div.getElementsByTagName('*').length > 0) { // Make sure no comments are fou
 //
 // Disabling this function doesn't affect any of the BRAT functionality we're
 // *currently* using.
-/* 
+/*
 $.expr.preFilter.CLASS = function(match, curLoop, inplace, result, not, isXML) {
 	match = ' ' + match[1].replace(/\\/g, '') + ' ';
 	if (isXML) {
@@ -278,6 +278,16 @@ $.expr.preFilter.CLASS = function(match, curLoop, inplace, result, not, isXML) {
 */
 // [/CTH]
 
+// [CTH, 2014-09-24]  Disable functions to prevent conflict with Bootstrap
+//
+// jQuery SVG 1.4.5 is compatible with jQuery 1.7.  In jQuery 1.8, the
+// (internal) API's for creating custom filters changed, and the
+// 'match' object is no longer being passed to filter functions:
+//   http://stackoverflow.com/questions/11624345/getting-the-match-object-in-a-custom-filter-selector-in-jquery-1-8
+//
+// Disabling this function doesn't affect any of the BRAT functionality we're
+// *currently* using.
+/*
 $.expr.filter.CLASS = function(elem, match) {
 	var className = (!$.svg.isSVGElem(elem) ? elem.className :
 		(elem.className ? elem.className.baseVal : elem.getAttribute('class')));
@@ -301,6 +311,8 @@ $.expr.filter.ATTR = function(origFilterAttr) {
 		return filter;
 	};
 }($.expr.filter.ATTR);
+*/
+// [/CTH]
 
 /*
 	In the removeData function (line 1881, v1.7.2):
