@@ -382,11 +382,12 @@ Communication = function(args) {
   this.metadata = null;
   this.keyValueMap = null;
   this.lidList = null;
-  this.sectionSegmentationList = null;
+  this.sectionList = null;
   this.entityMentionSetList = null;
   this.entitySetList = null;
   this.situationMentionSetList = null;
   this.situationSetList = null;
+  this.originalText = null;
   this.sound = null;
   this.tweetInfo = null;
   this.emailInfo = null;
@@ -419,8 +420,8 @@ Communication = function(args) {
     if (args.lidList !== undefined) {
       this.lidList = args.lidList;
     }
-    if (args.sectionSegmentationList !== undefined) {
-      this.sectionSegmentationList = args.sectionSegmentationList;
+    if (args.sectionList !== undefined) {
+      this.sectionList = args.sectionList;
     }
     if (args.entityMentionSetList !== undefined) {
       this.entityMentionSetList = args.entityMentionSetList;
@@ -433,6 +434,9 @@ Communication = function(args) {
     }
     if (args.situationSetList !== undefined) {
       this.situationSetList = args.situationSetList;
+    }
+    if (args.originalText !== undefined) {
+      this.originalText = args.originalText;
     }
     if (args.sound !== undefined) {
       this.sound = args.sound;
@@ -567,7 +571,7 @@ Communication.prototype.read = function(input) {
       if (ftype == Thrift.Type.LIST) {
         var _size15 = 0;
         var _rtmp319;
-        this.sectionSegmentationList = [];
+        this.sectionList = [];
         var _etype18 = 0;
         _rtmp319 = input.readListBegin();
         _etype18 = _rtmp319.etype;
@@ -575,9 +579,9 @@ Communication.prototype.read = function(input) {
         for (var _i20 = 0; _i20 < _size15; ++_i20)
         {
           var elem21 = null;
-          elem21 = new SectionSegmentation();
+          elem21 = new Section();
           elem21.read(input);
-          this.sectionSegmentationList.push(elem21);
+          this.sectionList.push(elem21);
         }
         input.readListEnd();
       } else {
@@ -664,6 +668,13 @@ Communication.prototype.read = function(input) {
           this.situationSetList.push(elem49);
         }
         input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 16:
+      if (ftype == Thrift.Type.STRING) {
+        this.originalText = input.readString().value;
       } else {
         input.skip(ftype);
       }
@@ -775,14 +786,14 @@ Communication.prototype.write = function(output) {
     output.writeListEnd();
     output.writeFieldEnd();
   }
-  if (this.sectionSegmentationList !== null && this.sectionSegmentationList !== undefined) {
-    output.writeFieldBegin('sectionSegmentationList', Thrift.Type.LIST, 11);
-    output.writeListBegin(Thrift.Type.STRUCT, this.sectionSegmentationList.length);
-    for (var iter53 in this.sectionSegmentationList)
+  if (this.sectionList !== null && this.sectionList !== undefined) {
+    output.writeFieldBegin('sectionList', Thrift.Type.LIST, 11);
+    output.writeListBegin(Thrift.Type.STRUCT, this.sectionList.length);
+    for (var iter53 in this.sectionList)
     {
-      if (this.sectionSegmentationList.hasOwnProperty(iter53))
+      if (this.sectionList.hasOwnProperty(iter53))
       {
-        iter53 = this.sectionSegmentationList[iter53];
+        iter53 = this.sectionList[iter53];
         iter53.write(output);
       }
     }
@@ -843,6 +854,11 @@ Communication.prototype.write = function(output) {
       }
     }
     output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.originalText !== null && this.originalText !== undefined) {
+    output.writeFieldBegin('originalText', Thrift.Type.STRING, 16);
+    output.writeString(this.originalText);
     output.writeFieldEnd();
   }
   if (this.sound !== null && this.sound !== undefined) {
@@ -3315,7 +3331,6 @@ Digest.prototype.write = function(output) {
 AnnotationMetadata = function(args) {
   this.tool = null;
   this.timestamp = null;
-  this.confidence = null;
   this.digest = null;
   this.dependencies = null;
   this.kBest = 1;
@@ -3325,9 +3340,6 @@ AnnotationMetadata = function(args) {
     }
     if (args.timestamp !== undefined) {
       this.timestamp = args.timestamp;
-    }
-    if (args.confidence !== undefined) {
-      this.confidence = args.confidence;
     }
     if (args.digest !== undefined) {
       this.digest = args.digest;
@@ -3364,13 +3376,6 @@ AnnotationMetadata.prototype.read = function(input) {
       case 2:
       if (ftype == Thrift.Type.I64) {
         this.timestamp = input.readI64().value;
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 3:
-      if (ftype == Thrift.Type.DOUBLE) {
-        this.confidence = input.readDouble().value;
       } else {
         input.skip(ftype);
       }
@@ -3417,11 +3422,6 @@ AnnotationMetadata.prototype.write = function(output) {
   if (this.timestamp !== null && this.timestamp !== undefined) {
     output.writeFieldBegin('timestamp', Thrift.Type.I64, 2);
     output.writeI64(this.timestamp);
-    output.writeFieldEnd();
-  }
-  if (this.confidence !== null && this.confidence !== undefined) {
-    output.writeFieldBegin('confidence', Thrift.Type.DOUBLE, 3);
-    output.writeDouble(this.confidence);
     output.writeFieldEnd();
   }
   if (this.digest !== null && this.digest !== undefined) {
@@ -3472,7 +3472,7 @@ NITFInfo = function(args) {
   this.guid = null;
   this.headline = null;
   this.kicker = null;
-  this.leadParagraph = null;
+  this.leadParagraphList = null;
   this.locationList = null;
   this.nameList = null;
   this.newsDesk = null;
@@ -3483,7 +3483,7 @@ NITFInfo = function(args) {
   this.onlineLocationList = null;
   this.onlineOrganizationList = null;
   this.onlinePeople = null;
-  this.onlineSection = null;
+  this.onlineSectionList = null;
   this.onlineTitleList = null;
   this.organizationList = null;
   this.page = null;
@@ -3562,8 +3562,8 @@ NITFInfo = function(args) {
     if (args.kicker !== undefined) {
       this.kicker = args.kicker;
     }
-    if (args.leadParagraph !== undefined) {
-      this.leadParagraph = args.leadParagraph;
+    if (args.leadParagraphList !== undefined) {
+      this.leadParagraphList = args.leadParagraphList;
     }
     if (args.locationList !== undefined) {
       this.locationList = args.locationList;
@@ -3595,8 +3595,8 @@ NITFInfo = function(args) {
     if (args.onlinePeople !== undefined) {
       this.onlinePeople = args.onlinePeople;
     }
-    if (args.onlineSection !== undefined) {
-      this.onlineSection = args.onlineSection;
+    if (args.onlineSectionList !== undefined) {
+      this.onlineSectionList = args.onlineSectionList;
     }
     if (args.onlineTitleList !== undefined) {
       this.onlineTitleList = args.onlineTitleList;
@@ -3845,17 +3845,10 @@ NITFInfo.prototype.read = function(input) {
       }
       break;
       case 21:
-      if (ftype == Thrift.Type.STRING) {
-        this.leadParagraph = input.readString().value;
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 22:
       if (ftype == Thrift.Type.LIST) {
         var _size21 = 0;
         var _rtmp325;
-        this.locationList = [];
+        this.leadParagraphList = [];
         var _etype24 = 0;
         _rtmp325 = input.readListBegin();
         _etype24 = _rtmp325.etype;
@@ -3864,18 +3857,18 @@ NITFInfo.prototype.read = function(input) {
         {
           var elem27 = null;
           elem27 = input.readString().value;
-          this.locationList.push(elem27);
+          this.leadParagraphList.push(elem27);
         }
         input.readListEnd();
       } else {
         input.skip(ftype);
       }
       break;
-      case 23:
+      case 22:
       if (ftype == Thrift.Type.LIST) {
         var _size28 = 0;
         var _rtmp332;
-        this.nameList = [];
+        this.locationList = [];
         var _etype31 = 0;
         _rtmp332 = input.readListBegin();
         _etype31 = _rtmp332.etype;
@@ -3884,7 +3877,27 @@ NITFInfo.prototype.read = function(input) {
         {
           var elem34 = null;
           elem34 = input.readString().value;
-          this.nameList.push(elem34);
+          this.locationList.push(elem34);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 23:
+      if (ftype == Thrift.Type.LIST) {
+        var _size35 = 0;
+        var _rtmp339;
+        this.nameList = [];
+        var _etype38 = 0;
+        _rtmp339 = input.readListBegin();
+        _etype38 = _rtmp339.etype;
+        _size35 = _rtmp339.size;
+        for (var _i40 = 0; _i40 < _size35; ++_i40)
+        {
+          var elem41 = null;
+          elem41 = input.readString().value;
+          this.nameList.push(elem41);
         }
         input.readListEnd();
       } else {
@@ -3907,18 +3920,18 @@ NITFInfo.prototype.read = function(input) {
       break;
       case 26:
       if (ftype == Thrift.Type.LIST) {
-        var _size35 = 0;
-        var _rtmp339;
+        var _size42 = 0;
+        var _rtmp346;
         this.onlineDescriptorList = [];
-        var _etype38 = 0;
-        _rtmp339 = input.readListBegin();
-        _etype38 = _rtmp339.etype;
-        _size35 = _rtmp339.size;
-        for (var _i40 = 0; _i40 < _size35; ++_i40)
+        var _etype45 = 0;
+        _rtmp346 = input.readListBegin();
+        _etype45 = _rtmp346.etype;
+        _size42 = _rtmp346.size;
+        for (var _i47 = 0; _i47 < _size42; ++_i47)
         {
-          var elem41 = null;
-          elem41 = input.readString().value;
-          this.onlineDescriptorList.push(elem41);
+          var elem48 = null;
+          elem48 = input.readString().value;
+          this.onlineDescriptorList.push(elem48);
         }
         input.readListEnd();
       } else {
@@ -3941,29 +3954,9 @@ NITFInfo.prototype.read = function(input) {
       break;
       case 29:
       if (ftype == Thrift.Type.LIST) {
-        var _size42 = 0;
-        var _rtmp346;
-        this.onlineLocationList = [];
-        var _etype45 = 0;
-        _rtmp346 = input.readListBegin();
-        _etype45 = _rtmp346.etype;
-        _size42 = _rtmp346.size;
-        for (var _i47 = 0; _i47 < _size42; ++_i47)
-        {
-          var elem48 = null;
-          elem48 = input.readString().value;
-          this.onlineLocationList.push(elem48);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 30:
-      if (ftype == Thrift.Type.LIST) {
         var _size49 = 0;
         var _rtmp353;
-        this.onlineOrganizationList = [];
+        this.onlineLocationList = [];
         var _etype52 = 0;
         _rtmp353 = input.readListBegin();
         _etype52 = _rtmp353.etype;
@@ -3972,18 +3965,18 @@ NITFInfo.prototype.read = function(input) {
         {
           var elem55 = null;
           elem55 = input.readString().value;
-          this.onlineOrganizationList.push(elem55);
+          this.onlineLocationList.push(elem55);
         }
         input.readListEnd();
       } else {
         input.skip(ftype);
       }
       break;
-      case 31:
+      case 30:
       if (ftype == Thrift.Type.LIST) {
         var _size56 = 0;
         var _rtmp360;
-        this.onlinePeople = [];
+        this.onlineOrganizationList = [];
         var _etype59 = 0;
         _rtmp360 = input.readListBegin();
         _etype59 = _rtmp360.etype;
@@ -3992,25 +3985,18 @@ NITFInfo.prototype.read = function(input) {
         {
           var elem62 = null;
           elem62 = input.readString().value;
-          this.onlinePeople.push(elem62);
+          this.onlineOrganizationList.push(elem62);
         }
         input.readListEnd();
       } else {
         input.skip(ftype);
       }
       break;
-      case 32:
-      if (ftype == Thrift.Type.STRING) {
-        this.onlineSection = input.readString().value;
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 33:
+      case 31:
       if (ftype == Thrift.Type.LIST) {
         var _size63 = 0;
         var _rtmp367;
-        this.onlineTitleList = [];
+        this.onlinePeople = [];
         var _etype66 = 0;
         _rtmp367 = input.readListBegin();
         _etype66 = _rtmp367.etype;
@@ -4019,18 +4005,18 @@ NITFInfo.prototype.read = function(input) {
         {
           var elem69 = null;
           elem69 = input.readString().value;
-          this.onlineTitleList.push(elem69);
+          this.onlinePeople.push(elem69);
         }
         input.readListEnd();
       } else {
         input.skip(ftype);
       }
       break;
-      case 34:
+      case 32:
       if (ftype == Thrift.Type.LIST) {
         var _size70 = 0;
         var _rtmp374;
-        this.organizationList = [];
+        this.onlineSectionList = [];
         var _etype73 = 0;
         _rtmp374 = input.readListBegin();
         _etype73 = _rtmp374.etype;
@@ -4039,7 +4025,47 @@ NITFInfo.prototype.read = function(input) {
         {
           var elem76 = null;
           elem76 = input.readString().value;
-          this.organizationList.push(elem76);
+          this.onlineSectionList.push(elem76);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 33:
+      if (ftype == Thrift.Type.LIST) {
+        var _size77 = 0;
+        var _rtmp381;
+        this.onlineTitleList = [];
+        var _etype80 = 0;
+        _rtmp381 = input.readListBegin();
+        _etype80 = _rtmp381.etype;
+        _size77 = _rtmp381.size;
+        for (var _i82 = 0; _i82 < _size77; ++_i82)
+        {
+          var elem83 = null;
+          elem83 = input.readString().value;
+          this.onlineTitleList.push(elem83);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 34:
+      if (ftype == Thrift.Type.LIST) {
+        var _size84 = 0;
+        var _rtmp388;
+        this.organizationList = [];
+        var _etype87 = 0;
+        _rtmp388 = input.readListBegin();
+        _etype87 = _rtmp388.etype;
+        _size84 = _rtmp388.size;
+        for (var _i89 = 0; _i89 < _size84; ++_i89)
+        {
+          var elem90 = null;
+          elem90 = input.readString().value;
+          this.organizationList.push(elem90);
         }
         input.readListEnd();
       } else {
@@ -4055,18 +4081,18 @@ NITFInfo.prototype.read = function(input) {
       break;
       case 36:
       if (ftype == Thrift.Type.LIST) {
-        var _size77 = 0;
-        var _rtmp381;
+        var _size91 = 0;
+        var _rtmp395;
         this.peopleList = [];
-        var _etype80 = 0;
-        _rtmp381 = input.readListBegin();
-        _etype80 = _rtmp381.etype;
-        _size77 = _rtmp381.size;
-        for (var _i82 = 0; _i82 < _size77; ++_i82)
+        var _etype94 = 0;
+        _rtmp395 = input.readListBegin();
+        _etype94 = _rtmp395.etype;
+        _size91 = _rtmp395.size;
+        for (var _i96 = 0; _i96 < _size91; ++_i96)
         {
-          var elem83 = null;
-          elem83 = input.readString().value;
-          this.peopleList.push(elem83);
+          var elem97 = null;
+          elem97 = input.readString().value;
+          this.peopleList.push(elem97);
         }
         input.readListEnd();
       } else {
@@ -4131,49 +4157,9 @@ NITFInfo.prototype.read = function(input) {
       break;
       case 45:
       if (ftype == Thrift.Type.LIST) {
-        var _size84 = 0;
-        var _rtmp388;
-        this.taxonomicClassifierList = [];
-        var _etype87 = 0;
-        _rtmp388 = input.readListBegin();
-        _etype87 = _rtmp388.etype;
-        _size84 = _rtmp388.size;
-        for (var _i89 = 0; _i89 < _size84; ++_i89)
-        {
-          var elem90 = null;
-          elem90 = input.readString().value;
-          this.taxonomicClassifierList.push(elem90);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 46:
-      if (ftype == Thrift.Type.LIST) {
-        var _size91 = 0;
-        var _rtmp395;
-        this.titleList = [];
-        var _etype94 = 0;
-        _rtmp395 = input.readListBegin();
-        _etype94 = _rtmp395.etype;
-        _size91 = _rtmp395.size;
-        for (var _i96 = 0; _i96 < _size91; ++_i96)
-        {
-          var elem97 = null;
-          elem97 = input.readString().value;
-          this.titleList.push(elem97);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 47:
-      if (ftype == Thrift.Type.LIST) {
         var _size98 = 0;
         var _rtmp3102;
-        this.typesOfMaterialList = [];
+        this.taxonomicClassifierList = [];
         var _etype101 = 0;
         _rtmp3102 = input.readListBegin();
         _etype101 = _rtmp3102.etype;
@@ -4182,7 +4168,47 @@ NITFInfo.prototype.read = function(input) {
         {
           var elem104 = null;
           elem104 = input.readString().value;
-          this.typesOfMaterialList.push(elem104);
+          this.taxonomicClassifierList.push(elem104);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 46:
+      if (ftype == Thrift.Type.LIST) {
+        var _size105 = 0;
+        var _rtmp3109;
+        this.titleList = [];
+        var _etype108 = 0;
+        _rtmp3109 = input.readListBegin();
+        _etype108 = _rtmp3109.etype;
+        _size105 = _rtmp3109.size;
+        for (var _i110 = 0; _i110 < _size105; ++_i110)
+        {
+          var elem111 = null;
+          elem111 = input.readString().value;
+          this.titleList.push(elem111);
+        }
+        input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 47:
+      if (ftype == Thrift.Type.LIST) {
+        var _size112 = 0;
+        var _rtmp3116;
+        this.typesOfMaterialList = [];
+        var _etype115 = 0;
+        _rtmp3116 = input.readListBegin();
+        _etype115 = _rtmp3116.etype;
+        _size112 = _rtmp3116.size;
+        for (var _i117 = 0; _i117 < _size112; ++_i117)
+        {
+          var elem118 = null;
+          elem118 = input.readString().value;
+          this.typesOfMaterialList.push(elem118);
         }
         input.readListEnd();
       } else {
@@ -4237,12 +4263,12 @@ NITFInfo.prototype.write = function(output) {
   if (this.biographicalCategoryList !== null && this.biographicalCategoryList !== undefined) {
     output.writeFieldBegin('biographicalCategoryList', Thrift.Type.LIST, 5);
     output.writeListBegin(Thrift.Type.STRING, this.biographicalCategoryList.length);
-    for (var iter105 in this.biographicalCategoryList)
+    for (var iter119 in this.biographicalCategoryList)
     {
-      if (this.biographicalCategoryList.hasOwnProperty(iter105))
+      if (this.biographicalCategoryList.hasOwnProperty(iter119))
       {
-        iter105 = this.biographicalCategoryList[iter105];
-        output.writeString(iter105);
+        iter119 = this.biographicalCategoryList[iter119];
+        output.writeString(iter119);
       }
     }
     output.writeListEnd();
@@ -4296,12 +4322,12 @@ NITFInfo.prototype.write = function(output) {
   if (this.descriptorList !== null && this.descriptorList !== undefined) {
     output.writeFieldBegin('descriptorList', Thrift.Type.LIST, 15);
     output.writeListBegin(Thrift.Type.STRING, this.descriptorList.length);
-    for (var iter106 in this.descriptorList)
+    for (var iter120 in this.descriptorList)
     {
-      if (this.descriptorList.hasOwnProperty(iter106))
+      if (this.descriptorList.hasOwnProperty(iter120))
       {
-        iter106 = this.descriptorList[iter106];
-        output.writeString(iter106);
+        iter120 = this.descriptorList[iter120];
+        output.writeString(iter120);
       }
     }
     output.writeListEnd();
@@ -4315,12 +4341,12 @@ NITFInfo.prototype.write = function(output) {
   if (this.generalOnlineDescriptorList !== null && this.generalOnlineDescriptorList !== undefined) {
     output.writeFieldBegin('generalOnlineDescriptorList', Thrift.Type.LIST, 17);
     output.writeListBegin(Thrift.Type.STRING, this.generalOnlineDescriptorList.length);
-    for (var iter107 in this.generalOnlineDescriptorList)
+    for (var iter121 in this.generalOnlineDescriptorList)
     {
-      if (this.generalOnlineDescriptorList.hasOwnProperty(iter107))
+      if (this.generalOnlineDescriptorList.hasOwnProperty(iter121))
       {
-        iter107 = this.generalOnlineDescriptorList[iter107];
-        output.writeString(iter107);
+        iter121 = this.generalOnlineDescriptorList[iter121];
+        output.writeString(iter121);
       }
     }
     output.writeListEnd();
@@ -4341,20 +4367,29 @@ NITFInfo.prototype.write = function(output) {
     output.writeString(this.kicker);
     output.writeFieldEnd();
   }
-  if (this.leadParagraph !== null && this.leadParagraph !== undefined) {
-    output.writeFieldBegin('leadParagraph', Thrift.Type.STRING, 21);
-    output.writeString(this.leadParagraph);
+  if (this.leadParagraphList !== null && this.leadParagraphList !== undefined) {
+    output.writeFieldBegin('leadParagraphList', Thrift.Type.LIST, 21);
+    output.writeListBegin(Thrift.Type.STRING, this.leadParagraphList.length);
+    for (var iter122 in this.leadParagraphList)
+    {
+      if (this.leadParagraphList.hasOwnProperty(iter122))
+      {
+        iter122 = this.leadParagraphList[iter122];
+        output.writeString(iter122);
+      }
+    }
+    output.writeListEnd();
     output.writeFieldEnd();
   }
   if (this.locationList !== null && this.locationList !== undefined) {
     output.writeFieldBegin('locationList', Thrift.Type.LIST, 22);
     output.writeListBegin(Thrift.Type.STRING, this.locationList.length);
-    for (var iter108 in this.locationList)
+    for (var iter123 in this.locationList)
     {
-      if (this.locationList.hasOwnProperty(iter108))
+      if (this.locationList.hasOwnProperty(iter123))
       {
-        iter108 = this.locationList[iter108];
-        output.writeString(iter108);
+        iter123 = this.locationList[iter123];
+        output.writeString(iter123);
       }
     }
     output.writeListEnd();
@@ -4363,12 +4398,12 @@ NITFInfo.prototype.write = function(output) {
   if (this.nameList !== null && this.nameList !== undefined) {
     output.writeFieldBegin('nameList', Thrift.Type.LIST, 23);
     output.writeListBegin(Thrift.Type.STRING, this.nameList.length);
-    for (var iter109 in this.nameList)
+    for (var iter124 in this.nameList)
     {
-      if (this.nameList.hasOwnProperty(iter109))
+      if (this.nameList.hasOwnProperty(iter124))
       {
-        iter109 = this.nameList[iter109];
-        output.writeString(iter109);
+        iter124 = this.nameList[iter124];
+        output.writeString(iter124);
       }
     }
     output.writeListEnd();
@@ -4387,12 +4422,12 @@ NITFInfo.prototype.write = function(output) {
   if (this.onlineDescriptorList !== null && this.onlineDescriptorList !== undefined) {
     output.writeFieldBegin('onlineDescriptorList', Thrift.Type.LIST, 26);
     output.writeListBegin(Thrift.Type.STRING, this.onlineDescriptorList.length);
-    for (var iter110 in this.onlineDescriptorList)
+    for (var iter125 in this.onlineDescriptorList)
     {
-      if (this.onlineDescriptorList.hasOwnProperty(iter110))
+      if (this.onlineDescriptorList.hasOwnProperty(iter125))
       {
-        iter110 = this.onlineDescriptorList[iter110];
-        output.writeString(iter110);
+        iter125 = this.onlineDescriptorList[iter125];
+        output.writeString(iter125);
       }
     }
     output.writeListEnd();
@@ -4411,12 +4446,12 @@ NITFInfo.prototype.write = function(output) {
   if (this.onlineLocationList !== null && this.onlineLocationList !== undefined) {
     output.writeFieldBegin('onlineLocationList', Thrift.Type.LIST, 29);
     output.writeListBegin(Thrift.Type.STRING, this.onlineLocationList.length);
-    for (var iter111 in this.onlineLocationList)
+    for (var iter126 in this.onlineLocationList)
     {
-      if (this.onlineLocationList.hasOwnProperty(iter111))
+      if (this.onlineLocationList.hasOwnProperty(iter126))
       {
-        iter111 = this.onlineLocationList[iter111];
-        output.writeString(iter111);
+        iter126 = this.onlineLocationList[iter126];
+        output.writeString(iter126);
       }
     }
     output.writeListEnd();
@@ -4425,12 +4460,12 @@ NITFInfo.prototype.write = function(output) {
   if (this.onlineOrganizationList !== null && this.onlineOrganizationList !== undefined) {
     output.writeFieldBegin('onlineOrganizationList', Thrift.Type.LIST, 30);
     output.writeListBegin(Thrift.Type.STRING, this.onlineOrganizationList.length);
-    for (var iter112 in this.onlineOrganizationList)
+    for (var iter127 in this.onlineOrganizationList)
     {
-      if (this.onlineOrganizationList.hasOwnProperty(iter112))
+      if (this.onlineOrganizationList.hasOwnProperty(iter127))
       {
-        iter112 = this.onlineOrganizationList[iter112];
-        output.writeString(iter112);
+        iter127 = this.onlineOrganizationList[iter127];
+        output.writeString(iter127);
       }
     }
     output.writeListEnd();
@@ -4439,31 +4474,40 @@ NITFInfo.prototype.write = function(output) {
   if (this.onlinePeople !== null && this.onlinePeople !== undefined) {
     output.writeFieldBegin('onlinePeople', Thrift.Type.LIST, 31);
     output.writeListBegin(Thrift.Type.STRING, this.onlinePeople.length);
-    for (var iter113 in this.onlinePeople)
+    for (var iter128 in this.onlinePeople)
     {
-      if (this.onlinePeople.hasOwnProperty(iter113))
+      if (this.onlinePeople.hasOwnProperty(iter128))
       {
-        iter113 = this.onlinePeople[iter113];
-        output.writeString(iter113);
+        iter128 = this.onlinePeople[iter128];
+        output.writeString(iter128);
       }
     }
     output.writeListEnd();
     output.writeFieldEnd();
   }
-  if (this.onlineSection !== null && this.onlineSection !== undefined) {
-    output.writeFieldBegin('onlineSection', Thrift.Type.STRING, 32);
-    output.writeString(this.onlineSection);
+  if (this.onlineSectionList !== null && this.onlineSectionList !== undefined) {
+    output.writeFieldBegin('onlineSectionList', Thrift.Type.LIST, 32);
+    output.writeListBegin(Thrift.Type.STRING, this.onlineSectionList.length);
+    for (var iter129 in this.onlineSectionList)
+    {
+      if (this.onlineSectionList.hasOwnProperty(iter129))
+      {
+        iter129 = this.onlineSectionList[iter129];
+        output.writeString(iter129);
+      }
+    }
+    output.writeListEnd();
     output.writeFieldEnd();
   }
   if (this.onlineTitleList !== null && this.onlineTitleList !== undefined) {
     output.writeFieldBegin('onlineTitleList', Thrift.Type.LIST, 33);
     output.writeListBegin(Thrift.Type.STRING, this.onlineTitleList.length);
-    for (var iter114 in this.onlineTitleList)
+    for (var iter130 in this.onlineTitleList)
     {
-      if (this.onlineTitleList.hasOwnProperty(iter114))
+      if (this.onlineTitleList.hasOwnProperty(iter130))
       {
-        iter114 = this.onlineTitleList[iter114];
-        output.writeString(iter114);
+        iter130 = this.onlineTitleList[iter130];
+        output.writeString(iter130);
       }
     }
     output.writeListEnd();
@@ -4472,12 +4516,12 @@ NITFInfo.prototype.write = function(output) {
   if (this.organizationList !== null && this.organizationList !== undefined) {
     output.writeFieldBegin('organizationList', Thrift.Type.LIST, 34);
     output.writeListBegin(Thrift.Type.STRING, this.organizationList.length);
-    for (var iter115 in this.organizationList)
+    for (var iter131 in this.organizationList)
     {
-      if (this.organizationList.hasOwnProperty(iter115))
+      if (this.organizationList.hasOwnProperty(iter131))
       {
-        iter115 = this.organizationList[iter115];
-        output.writeString(iter115);
+        iter131 = this.organizationList[iter131];
+        output.writeString(iter131);
       }
     }
     output.writeListEnd();
@@ -4491,12 +4535,12 @@ NITFInfo.prototype.write = function(output) {
   if (this.peopleList !== null && this.peopleList !== undefined) {
     output.writeFieldBegin('peopleList', Thrift.Type.LIST, 36);
     output.writeListBegin(Thrift.Type.STRING, this.peopleList.length);
-    for (var iter116 in this.peopleList)
+    for (var iter132 in this.peopleList)
     {
-      if (this.peopleList.hasOwnProperty(iter116))
+      if (this.peopleList.hasOwnProperty(iter132))
       {
-        iter116 = this.peopleList[iter116];
-        output.writeString(iter116);
+        iter132 = this.peopleList[iter132];
+        output.writeString(iter132);
       }
     }
     output.writeListEnd();
@@ -4545,12 +4589,12 @@ NITFInfo.prototype.write = function(output) {
   if (this.taxonomicClassifierList !== null && this.taxonomicClassifierList !== undefined) {
     output.writeFieldBegin('taxonomicClassifierList', Thrift.Type.LIST, 45);
     output.writeListBegin(Thrift.Type.STRING, this.taxonomicClassifierList.length);
-    for (var iter117 in this.taxonomicClassifierList)
+    for (var iter133 in this.taxonomicClassifierList)
     {
-      if (this.taxonomicClassifierList.hasOwnProperty(iter117))
+      if (this.taxonomicClassifierList.hasOwnProperty(iter133))
       {
-        iter117 = this.taxonomicClassifierList[iter117];
-        output.writeString(iter117);
+        iter133 = this.taxonomicClassifierList[iter133];
+        output.writeString(iter133);
       }
     }
     output.writeListEnd();
@@ -4559,12 +4603,12 @@ NITFInfo.prototype.write = function(output) {
   if (this.titleList !== null && this.titleList !== undefined) {
     output.writeFieldBegin('titleList', Thrift.Type.LIST, 46);
     output.writeListBegin(Thrift.Type.STRING, this.titleList.length);
-    for (var iter118 in this.titleList)
+    for (var iter134 in this.titleList)
     {
-      if (this.titleList.hasOwnProperty(iter118))
+      if (this.titleList.hasOwnProperty(iter134))
       {
-        iter118 = this.titleList[iter118];
-        output.writeString(iter118);
+        iter134 = this.titleList[iter134];
+        output.writeString(iter134);
       }
     }
     output.writeListEnd();
@@ -4573,12 +4617,12 @@ NITFInfo.prototype.write = function(output) {
   if (this.typesOfMaterialList !== null && this.typesOfMaterialList !== undefined) {
     output.writeFieldBegin('typesOfMaterialList', Thrift.Type.LIST, 47);
     output.writeListBegin(Thrift.Type.STRING, this.typesOfMaterialList.length);
-    for (var iter119 in this.typesOfMaterialList)
+    for (var iter135 in this.typesOfMaterialList)
     {
-      if (this.typesOfMaterialList.hasOwnProperty(iter119))
+      if (this.typesOfMaterialList.hasOwnProperty(iter135))
       {
-        iter119 = this.typesOfMaterialList[iter119];
-        output.writeString(iter119);
+        iter135 = this.typesOfMaterialList[iter135];
+        output.writeString(iter135);
       }
     }
     output.writeListEnd();
@@ -4919,18 +4963,18 @@ Justification.prototype.write = function(output) {
 };
 
 TimeML = function(args) {
-  this.timemlClass = null;
-  this.timemlTense = null;
-  this.timemlAspect = null;
+  this.timeMLClass = null;
+  this.timeMLTense = null;
+  this.timeMLAspect = null;
   if (args) {
-    if (args.timemlClass !== undefined) {
-      this.timemlClass = args.timemlClass;
+    if (args.timeMLClass !== undefined) {
+      this.timeMLClass = args.timeMLClass;
     }
-    if (args.timemlTense !== undefined) {
-      this.timemlTense = args.timemlTense;
+    if (args.timeMLTense !== undefined) {
+      this.timeMLTense = args.timeMLTense;
     }
-    if (args.timemlAspect !== undefined) {
-      this.timemlAspect = args.timemlAspect;
+    if (args.timeMLAspect !== undefined) {
+      this.timeMLAspect = args.timeMLAspect;
     }
   }
 };
@@ -4950,21 +4994,21 @@ TimeML.prototype.read = function(input) {
     {
       case 1:
       if (ftype == Thrift.Type.STRING) {
-        this.timemlClass = input.readString().value;
+        this.timeMLClass = input.readString().value;
       } else {
         input.skip(ftype);
       }
       break;
       case 2:
       if (ftype == Thrift.Type.STRING) {
-        this.timemlTense = input.readString().value;
+        this.timeMLTense = input.readString().value;
       } else {
         input.skip(ftype);
       }
       break;
       case 3:
       if (ftype == Thrift.Type.STRING) {
-        this.timemlAspect = input.readString().value;
+        this.timeMLAspect = input.readString().value;
       } else {
         input.skip(ftype);
       }
@@ -4980,19 +5024,19 @@ TimeML.prototype.read = function(input) {
 
 TimeML.prototype.write = function(output) {
   output.writeStructBegin('TimeML');
-  if (this.timemlClass !== null && this.timemlClass !== undefined) {
-    output.writeFieldBegin('timemlClass', Thrift.Type.STRING, 1);
-    output.writeString(this.timemlClass);
+  if (this.timeMLClass !== null && this.timeMLClass !== undefined) {
+    output.writeFieldBegin('timeMLClass', Thrift.Type.STRING, 1);
+    output.writeString(this.timeMLClass);
     output.writeFieldEnd();
   }
-  if (this.timemlTense !== null && this.timemlTense !== undefined) {
-    output.writeFieldBegin('timemlTense', Thrift.Type.STRING, 2);
-    output.writeString(this.timemlTense);
+  if (this.timeMLTense !== null && this.timeMLTense !== undefined) {
+    output.writeFieldBegin('timeMLTense', Thrift.Type.STRING, 2);
+    output.writeString(this.timeMLTense);
     output.writeFieldEnd();
   }
-  if (this.timemlAspect !== null && this.timemlAspect !== undefined) {
-    output.writeFieldBegin('timemlAspect', Thrift.Type.STRING, 3);
-    output.writeString(this.timemlAspect);
+  if (this.timeMLAspect !== null && this.timeMLAspect !== undefined) {
+    output.writeFieldBegin('timeMLAspect', Thrift.Type.STRING, 3);
+    output.writeString(this.timeMLAspect);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -5003,13 +5047,10 @@ TimeML.prototype.write = function(output) {
 Situation = function(args) {
   this.uuid = null;
   this.situationType = null;
+  this.situationKind = null;
   this.argumentList = null;
   this.mentionIdList = null;
   this.justificationList = null;
-  this.eventType = null;
-  this.stateType = null;
-  this.temporalFactType = null;
-  this.situationKindLemma = null;
   this.timeML = null;
   this.intensity = null;
   this.polarity = null;
@@ -5021,6 +5062,9 @@ Situation = function(args) {
     if (args.situationType !== undefined) {
       this.situationType = args.situationType;
     }
+    if (args.situationKind !== undefined) {
+      this.situationKind = args.situationKind;
+    }
     if (args.argumentList !== undefined) {
       this.argumentList = args.argumentList;
     }
@@ -5029,18 +5073,6 @@ Situation = function(args) {
     }
     if (args.justificationList !== undefined) {
       this.justificationList = args.justificationList;
-    }
-    if (args.eventType !== undefined) {
-      this.eventType = args.eventType;
-    }
-    if (args.stateType !== undefined) {
-      this.stateType = args.stateType;
-    }
-    if (args.temporalFactType !== undefined) {
-      this.temporalFactType = args.temporalFactType;
-    }
-    if (args.situationKindLemma !== undefined) {
-      this.situationKindLemma = args.situationKindLemma;
     }
     if (args.timeML !== undefined) {
       this.timeML = args.timeML;
@@ -5081,6 +5113,13 @@ Situation.prototype.read = function(input) {
       case 2:
       if (ftype == Thrift.Type.STRING) {
         this.situationType = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 50:
+      if (ftype == Thrift.Type.STRING) {
+        this.situationKind = input.readString().value;
       } else {
         input.skip(ftype);
       }
@@ -5148,34 +5187,6 @@ Situation.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 50:
-      if (ftype == Thrift.Type.STRING) {
-        this.eventType = input.readString().value;
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 51:
-      if (ftype == Thrift.Type.STRING) {
-        this.stateType = input.readString().value;
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 52:
-      if (ftype == Thrift.Type.STRING) {
-        this.temporalFactType = input.readString().value;
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 53:
-      if (ftype == Thrift.Type.STRING) {
-        this.situationKindLemma = input.readString().value;
-      } else {
-        input.skip(ftype);
-      }
-      break;
       case 54:
       if (ftype == Thrift.Type.STRUCT) {
         this.timeML = new TimeML();
@@ -5226,6 +5237,11 @@ Situation.prototype.write = function(output) {
     output.writeString(this.situationType);
     output.writeFieldEnd();
   }
+  if (this.situationKind !== null && this.situationKind !== undefined) {
+    output.writeFieldBegin('situationKind', Thrift.Type.STRING, 50);
+    output.writeString(this.situationKind);
+    output.writeFieldEnd();
+  }
   if (this.argumentList !== null && this.argumentList !== undefined) {
     output.writeFieldBegin('argumentList', Thrift.Type.LIST, 3);
     output.writeListBegin(Thrift.Type.STRUCT, this.argumentList.length);
@@ -5266,26 +5282,6 @@ Situation.prototype.write = function(output) {
       }
     }
     output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  if (this.eventType !== null && this.eventType !== undefined) {
-    output.writeFieldBegin('eventType', Thrift.Type.STRING, 50);
-    output.writeString(this.eventType);
-    output.writeFieldEnd();
-  }
-  if (this.stateType !== null && this.stateType !== undefined) {
-    output.writeFieldBegin('stateType', Thrift.Type.STRING, 51);
-    output.writeString(this.stateType);
-    output.writeFieldEnd();
-  }
-  if (this.temporalFactType !== null && this.temporalFactType !== undefined) {
-    output.writeFieldBegin('temporalFactType', Thrift.Type.STRING, 52);
-    output.writeString(this.temporalFactType);
-    output.writeFieldEnd();
-  }
-  if (this.situationKindLemma !== null && this.situationKindLemma !== undefined) {
-    output.writeFieldBegin('situationKindLemma', Thrift.Type.STRING, 53);
-    output.writeString(this.situationKindLemma);
     output.writeFieldEnd();
   }
   if (this.timeML !== null && this.timeML !== undefined) {
@@ -5508,10 +5504,8 @@ SituationMention = function(args) {
   this.uuid = null;
   this.text = null;
   this.situationType = null;
+  this.situationKind = null;
   this.argumentList = null;
-  this.eventType = null;
-  this.stateType = null;
-  this.situationKindLemma = null;
   this.intensity = null;
   this.polarity = null;
   this.tokens = null;
@@ -5526,17 +5520,11 @@ SituationMention = function(args) {
     if (args.situationType !== undefined) {
       this.situationType = args.situationType;
     }
+    if (args.situationKind !== undefined) {
+      this.situationKind = args.situationKind;
+    }
     if (args.argumentList !== undefined) {
       this.argumentList = args.argumentList;
-    }
-    if (args.eventType !== undefined) {
-      this.eventType = args.eventType;
-    }
-    if (args.stateType !== undefined) {
-      this.stateType = args.stateType;
-    }
-    if (args.situationKindLemma !== undefined) {
-      this.situationKindLemma = args.situationKindLemma;
     }
     if (args.intensity !== undefined) {
       this.intensity = args.intensity;
@@ -5588,6 +5576,13 @@ SituationMention.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
+      case 50:
+      if (ftype == Thrift.Type.STRING) {
+        this.situationKind = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
       case 4:
       if (ftype == Thrift.Type.LIST) {
         var _size48 = 0;
@@ -5605,27 +5600,6 @@ SituationMention.prototype.read = function(input) {
           this.argumentList.push(elem54);
         }
         input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 50:
-      if (ftype == Thrift.Type.STRING) {
-        this.eventType = input.readString().value;
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 51:
-      if (ftype == Thrift.Type.STRING) {
-        this.stateType = input.readString().value;
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 53:
-      if (ftype == Thrift.Type.STRING) {
-        this.situationKindLemma = input.readString().value;
       } else {
         input.skip(ftype);
       }
@@ -5685,6 +5659,11 @@ SituationMention.prototype.write = function(output) {
     output.writeString(this.situationType);
     output.writeFieldEnd();
   }
+  if (this.situationKind !== null && this.situationKind !== undefined) {
+    output.writeFieldBegin('situationKind', Thrift.Type.STRING, 50);
+    output.writeString(this.situationKind);
+    output.writeFieldEnd();
+  }
   if (this.argumentList !== null && this.argumentList !== undefined) {
     output.writeFieldBegin('argumentList', Thrift.Type.LIST, 4);
     output.writeListBegin(Thrift.Type.STRUCT, this.argumentList.length);
@@ -5697,21 +5676,6 @@ SituationMention.prototype.write = function(output) {
       }
     }
     output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  if (this.eventType !== null && this.eventType !== undefined) {
-    output.writeFieldBegin('eventType', Thrift.Type.STRING, 50);
-    output.writeString(this.eventType);
-    output.writeFieldEnd();
-  }
-  if (this.stateType !== null && this.stateType !== undefined) {
-    output.writeFieldBegin('stateType', Thrift.Type.STRING, 51);
-    output.writeString(this.stateType);
-    output.writeFieldEnd();
-  }
-  if (this.situationKindLemma !== null && this.situationKindLemma !== undefined) {
-    output.writeFieldBegin('situationKindLemma', Thrift.Type.STRING, 53);
-    output.writeString(this.situationKindLemma);
     output.writeFieldEnd();
   }
   if (this.intensity !== null && this.intensity !== undefined) {
@@ -6000,6 +5964,7 @@ Token = function(args) {
   this.tokenIndex = null;
   this.text = null;
   this.textSpan = null;
+  this.rawTextSpan = null;
   this.audioSpan = null;
   if (args) {
     if (args.tokenIndex !== undefined) {
@@ -6010,6 +5975,9 @@ Token = function(args) {
     }
     if (args.textSpan !== undefined) {
       this.textSpan = args.textSpan;
+    }
+    if (args.rawTextSpan !== undefined) {
+      this.rawTextSpan = args.rawTextSpan;
     }
     if (args.audioSpan !== undefined) {
       this.audioSpan = args.audioSpan;
@@ -6052,6 +6020,14 @@ Token.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
+      case 4:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.rawTextSpan = new TextSpan();
+        this.rawTextSpan.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
       case 5:
       if (ftype == Thrift.Type.STRUCT) {
         this.audioSpan = new AudioSpan();
@@ -6086,6 +6062,11 @@ Token.prototype.write = function(output) {
     this.textSpan.write(output);
     output.writeFieldEnd();
   }
+  if (this.rawTextSpan !== null && this.rawTextSpan !== undefined) {
+    output.writeFieldBegin('rawTextSpan', Thrift.Type.STRUCT, 4);
+    this.rawTextSpan.write(output);
+    output.writeFieldEnd();
+  }
   if (this.audioSpan !== null && this.audioSpan !== undefined) {
     output.writeFieldBegin('audioSpan', Thrift.Type.STRUCT, 5);
     this.audioSpan.write(output);
@@ -6101,6 +6082,7 @@ TokenRefSequence = function(args) {
   this.anchorTokenIndex = -1;
   this.tokenizationId = null;
   this.textSpan = null;
+  this.rawTextSpan = null;
   this.audioSpan = null;
   if (args) {
     if (args.tokenIndexList !== undefined) {
@@ -6114,6 +6096,9 @@ TokenRefSequence = function(args) {
     }
     if (args.textSpan !== undefined) {
       this.textSpan = args.textSpan;
+    }
+    if (args.rawTextSpan !== undefined) {
+      this.rawTextSpan = args.rawTextSpan;
     }
     if (args.audioSpan !== undefined) {
       this.audioSpan = args.audioSpan;
@@ -6179,6 +6164,14 @@ TokenRefSequence.prototype.read = function(input) {
       break;
       case 5:
       if (ftype == Thrift.Type.STRUCT) {
+        this.rawTextSpan = new TextSpan();
+        this.rawTextSpan.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 6:
+      if (ftype == Thrift.Type.STRUCT) {
         this.audioSpan = new AudioSpan();
         this.audioSpan.read(input);
       } else {
@@ -6225,8 +6218,13 @@ TokenRefSequence.prototype.write = function(output) {
     this.textSpan.write(output);
     output.writeFieldEnd();
   }
+  if (this.rawTextSpan !== null && this.rawTextSpan !== undefined) {
+    output.writeFieldBegin('rawTextSpan', Thrift.Type.STRUCT, 5);
+    this.rawTextSpan.write(output);
+    output.writeFieldEnd();
+  }
   if (this.audioSpan !== null && this.audioSpan !== undefined) {
-    output.writeFieldBegin('audioSpan', Thrift.Type.STRUCT, 5);
+    output.writeFieldBegin('audioSpan', Thrift.Type.STRUCT, 6);
     this.audioSpan.write(output);
     output.writeFieldEnd();
   }
@@ -7509,18 +7507,22 @@ Tokenization.prototype.write = function(output) {
 
 Sentence = function(args) {
   this.uuid = null;
-  this.tokenizationList = null;
+  this.tokenization = null;
   this.textSpan = null;
+  this.rawTextSpan = null;
   this.audioSpan = null;
   if (args) {
     if (args.uuid !== undefined) {
       this.uuid = args.uuid;
     }
-    if (args.tokenizationList !== undefined) {
-      this.tokenizationList = args.tokenizationList;
+    if (args.tokenization !== undefined) {
+      this.tokenization = args.tokenization;
     }
     if (args.textSpan !== undefined) {
       this.textSpan = args.textSpan;
+    }
+    if (args.rawTextSpan !== undefined) {
+      this.rawTextSpan = args.rawTextSpan;
     }
     if (args.audioSpan !== undefined) {
       this.audioSpan = args.audioSpan;
@@ -7550,22 +7552,9 @@ Sentence.prototype.read = function(input) {
       }
       break;
       case 2:
-      if (ftype == Thrift.Type.LIST) {
-        var _size88 = 0;
-        var _rtmp392;
-        this.tokenizationList = [];
-        var _etype91 = 0;
-        _rtmp392 = input.readListBegin();
-        _etype91 = _rtmp392.etype;
-        _size88 = _rtmp392.size;
-        for (var _i93 = 0; _i93 < _size88; ++_i93)
-        {
-          var elem94 = null;
-          elem94 = new Tokenization();
-          elem94.read(input);
-          this.tokenizationList.push(elem94);
-        }
-        input.readListEnd();
+      if (ftype == Thrift.Type.STRUCT) {
+        this.tokenization = new Tokenization();
+        this.tokenization.read(input);
       } else {
         input.skip(ftype);
       }
@@ -7579,6 +7568,14 @@ Sentence.prototype.read = function(input) {
       }
       break;
       case 4:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.rawTextSpan = new TextSpan();
+        this.rawTextSpan.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 5:
       if (ftype == Thrift.Type.STRUCT) {
         this.audioSpan = new AudioSpan();
         this.audioSpan.read(input);
@@ -7602,18 +7599,9 @@ Sentence.prototype.write = function(output) {
     this.uuid.write(output);
     output.writeFieldEnd();
   }
-  if (this.tokenizationList !== null && this.tokenizationList !== undefined) {
-    output.writeFieldBegin('tokenizationList', Thrift.Type.LIST, 2);
-    output.writeListBegin(Thrift.Type.STRUCT, this.tokenizationList.length);
-    for (var iter95 in this.tokenizationList)
-    {
-      if (this.tokenizationList.hasOwnProperty(iter95))
-      {
-        iter95 = this.tokenizationList[iter95];
-        iter95.write(output);
-      }
-    }
-    output.writeListEnd();
+  if (this.tokenization !== null && this.tokenization !== undefined) {
+    output.writeFieldBegin('tokenization', Thrift.Type.STRUCT, 2);
+    this.tokenization.write(output);
     output.writeFieldEnd();
   }
   if (this.textSpan !== null && this.textSpan !== undefined) {
@@ -7621,116 +7609,14 @@ Sentence.prototype.write = function(output) {
     this.textSpan.write(output);
     output.writeFieldEnd();
   }
+  if (this.rawTextSpan !== null && this.rawTextSpan !== undefined) {
+    output.writeFieldBegin('rawTextSpan', Thrift.Type.STRUCT, 4);
+    this.rawTextSpan.write(output);
+    output.writeFieldEnd();
+  }
   if (this.audioSpan !== null && this.audioSpan !== undefined) {
-    output.writeFieldBegin('audioSpan', Thrift.Type.STRUCT, 4);
+    output.writeFieldBegin('audioSpan', Thrift.Type.STRUCT, 5);
     this.audioSpan.write(output);
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-SentenceSegmentation = function(args) {
-  this.uuid = null;
-  this.metadata = null;
-  this.sentenceList = null;
-  if (args) {
-    if (args.uuid !== undefined) {
-      this.uuid = args.uuid;
-    }
-    if (args.metadata !== undefined) {
-      this.metadata = args.metadata;
-    }
-    if (args.sentenceList !== undefined) {
-      this.sentenceList = args.sentenceList;
-    }
-  }
-};
-SentenceSegmentation.prototype = {};
-SentenceSegmentation.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.uuid = new UUID();
-        this.uuid.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.metadata = new AnnotationMetadata();
-        this.metadata.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 3:
-      if (ftype == Thrift.Type.LIST) {
-        var _size96 = 0;
-        var _rtmp3100;
-        this.sentenceList = [];
-        var _etype99 = 0;
-        _rtmp3100 = input.readListBegin();
-        _etype99 = _rtmp3100.etype;
-        _size96 = _rtmp3100.size;
-        for (var _i101 = 0; _i101 < _size96; ++_i101)
-        {
-          var elem102 = null;
-          elem102 = new Sentence();
-          elem102.read(input);
-          this.sentenceList.push(elem102);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-SentenceSegmentation.prototype.write = function(output) {
-  output.writeStructBegin('SentenceSegmentation');
-  if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
-    this.uuid.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.metadata !== null && this.metadata !== undefined) {
-    output.writeFieldBegin('metadata', Thrift.Type.STRUCT, 2);
-    this.metadata.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.sentenceList !== null && this.sentenceList !== undefined) {
-    output.writeFieldBegin('sentenceList', Thrift.Type.LIST, 3);
-    output.writeListBegin(Thrift.Type.STRUCT, this.sentenceList.length);
-    for (var iter103 in this.sentenceList)
-    {
-      if (this.sentenceList.hasOwnProperty(iter103))
-      {
-        iter103 = this.sentenceList[iter103];
-        iter103.write(output);
-      }
-    }
-    output.writeListEnd();
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -7740,8 +7626,9 @@ SentenceSegmentation.prototype.write = function(output) {
 
 Section = function(args) {
   this.uuid = null;
-  this.sentenceSegmentationList = null;
+  this.sentenceList = null;
   this.textSpan = null;
+  this.rawTextSpan = null;
   this.audioSpan = null;
   this.kind = null;
   this.label = null;
@@ -7750,11 +7637,14 @@ Section = function(args) {
     if (args.uuid !== undefined) {
       this.uuid = args.uuid;
     }
-    if (args.sentenceSegmentationList !== undefined) {
-      this.sentenceSegmentationList = args.sentenceSegmentationList;
+    if (args.sentenceList !== undefined) {
+      this.sentenceList = args.sentenceList;
     }
     if (args.textSpan !== undefined) {
       this.textSpan = args.textSpan;
+    }
+    if (args.rawTextSpan !== undefined) {
+      this.rawTextSpan = args.rawTextSpan;
     }
     if (args.audioSpan !== undefined) {
       this.audioSpan = args.audioSpan;
@@ -7794,19 +7684,19 @@ Section.prototype.read = function(input) {
       break;
       case 2:
       if (ftype == Thrift.Type.LIST) {
-        var _size104 = 0;
-        var _rtmp3108;
-        this.sentenceSegmentationList = [];
-        var _etype107 = 0;
-        _rtmp3108 = input.readListBegin();
-        _etype107 = _rtmp3108.etype;
-        _size104 = _rtmp3108.size;
-        for (var _i109 = 0; _i109 < _size104; ++_i109)
+        var _size88 = 0;
+        var _rtmp392;
+        this.sentenceList = [];
+        var _etype91 = 0;
+        _rtmp392 = input.readListBegin();
+        _etype91 = _rtmp392.etype;
+        _size88 = _rtmp392.size;
+        for (var _i93 = 0; _i93 < _size88; ++_i93)
         {
-          var elem110 = null;
-          elem110 = new SentenceSegmentation();
-          elem110.read(input);
-          this.sentenceSegmentationList.push(elem110);
+          var elem94 = null;
+          elem94 = new Sentence();
+          elem94.read(input);
+          this.sentenceList.push(elem94);
         }
         input.readListEnd();
       } else {
@@ -7821,6 +7711,14 @@ Section.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
+      case 4:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.rawTextSpan = new TextSpan();
+        this.rawTextSpan.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
       case 9:
       if (ftype == Thrift.Type.STRUCT) {
         this.audioSpan = new AudioSpan();
@@ -7829,34 +7727,34 @@ Section.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 4:
+      case 5:
       if (ftype == Thrift.Type.STRING) {
         this.kind = input.readString().value;
       } else {
         input.skip(ftype);
       }
       break;
-      case 5:
+      case 6:
       if (ftype == Thrift.Type.STRING) {
         this.label = input.readString().value;
       } else {
         input.skip(ftype);
       }
       break;
-      case 6:
+      case 7:
       if (ftype == Thrift.Type.LIST) {
-        var _size111 = 0;
-        var _rtmp3115;
+        var _size95 = 0;
+        var _rtmp399;
         this.numberList = [];
-        var _etype114 = 0;
-        _rtmp3115 = input.readListBegin();
-        _etype114 = _rtmp3115.etype;
-        _size111 = _rtmp3115.size;
-        for (var _i116 = 0; _i116 < _size111; ++_i116)
+        var _etype98 = 0;
+        _rtmp399 = input.readListBegin();
+        _etype98 = _rtmp399.etype;
+        _size95 = _rtmp399.size;
+        for (var _i100 = 0; _i100 < _size95; ++_i100)
         {
-          var elem117 = null;
-          elem117 = input.readI32().value;
-          this.numberList.push(elem117);
+          var elem101 = null;
+          elem101 = input.readI32().value;
+          this.numberList.push(elem101);
         }
         input.readListEnd();
       } else {
@@ -7879,15 +7777,15 @@ Section.prototype.write = function(output) {
     this.uuid.write(output);
     output.writeFieldEnd();
   }
-  if (this.sentenceSegmentationList !== null && this.sentenceSegmentationList !== undefined) {
-    output.writeFieldBegin('sentenceSegmentationList', Thrift.Type.LIST, 2);
-    output.writeListBegin(Thrift.Type.STRUCT, this.sentenceSegmentationList.length);
-    for (var iter118 in this.sentenceSegmentationList)
+  if (this.sentenceList !== null && this.sentenceList !== undefined) {
+    output.writeFieldBegin('sentenceList', Thrift.Type.LIST, 2);
+    output.writeListBegin(Thrift.Type.STRUCT, this.sentenceList.length);
+    for (var iter102 in this.sentenceList)
     {
-      if (this.sentenceSegmentationList.hasOwnProperty(iter118))
+      if (this.sentenceList.hasOwnProperty(iter102))
       {
-        iter118 = this.sentenceSegmentationList[iter118];
-        iter118.write(output);
+        iter102 = this.sentenceList[iter102];
+        iter102.write(output);
       }
     }
     output.writeListEnd();
@@ -7898,137 +7796,35 @@ Section.prototype.write = function(output) {
     this.textSpan.write(output);
     output.writeFieldEnd();
   }
+  if (this.rawTextSpan !== null && this.rawTextSpan !== undefined) {
+    output.writeFieldBegin('rawTextSpan', Thrift.Type.STRUCT, 4);
+    this.rawTextSpan.write(output);
+    output.writeFieldEnd();
+  }
   if (this.audioSpan !== null && this.audioSpan !== undefined) {
     output.writeFieldBegin('audioSpan', Thrift.Type.STRUCT, 9);
     this.audioSpan.write(output);
     output.writeFieldEnd();
   }
   if (this.kind !== null && this.kind !== undefined) {
-    output.writeFieldBegin('kind', Thrift.Type.STRING, 4);
+    output.writeFieldBegin('kind', Thrift.Type.STRING, 5);
     output.writeString(this.kind);
     output.writeFieldEnd();
   }
   if (this.label !== null && this.label !== undefined) {
-    output.writeFieldBegin('label', Thrift.Type.STRING, 5);
+    output.writeFieldBegin('label', Thrift.Type.STRING, 6);
     output.writeString(this.label);
     output.writeFieldEnd();
   }
   if (this.numberList !== null && this.numberList !== undefined) {
-    output.writeFieldBegin('numberList', Thrift.Type.LIST, 6);
+    output.writeFieldBegin('numberList', Thrift.Type.LIST, 7);
     output.writeListBegin(Thrift.Type.I32, this.numberList.length);
-    for (var iter119 in this.numberList)
+    for (var iter103 in this.numberList)
     {
-      if (this.numberList.hasOwnProperty(iter119))
+      if (this.numberList.hasOwnProperty(iter103))
       {
-        iter119 = this.numberList[iter119];
-        output.writeI32(iter119);
-      }
-    }
-    output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  output.writeFieldStop();
-  output.writeStructEnd();
-  return;
-};
-
-SectionSegmentation = function(args) {
-  this.uuid = null;
-  this.metadata = null;
-  this.sectionList = null;
-  if (args) {
-    if (args.uuid !== undefined) {
-      this.uuid = args.uuid;
-    }
-    if (args.metadata !== undefined) {
-      this.metadata = args.metadata;
-    }
-    if (args.sectionList !== undefined) {
-      this.sectionList = args.sectionList;
-    }
-  }
-};
-SectionSegmentation.prototype = {};
-SectionSegmentation.prototype.read = function(input) {
-  input.readStructBegin();
-  while (true)
-  {
-    var ret = input.readFieldBegin();
-    var fname = ret.fname;
-    var ftype = ret.ftype;
-    var fid = ret.fid;
-    if (ftype == Thrift.Type.STOP) {
-      break;
-    }
-    switch (fid)
-    {
-      case 1:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.uuid = new UUID();
-        this.uuid.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 2:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.metadata = new AnnotationMetadata();
-        this.metadata.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 3:
-      if (ftype == Thrift.Type.LIST) {
-        var _size120 = 0;
-        var _rtmp3124;
-        this.sectionList = [];
-        var _etype123 = 0;
-        _rtmp3124 = input.readListBegin();
-        _etype123 = _rtmp3124.etype;
-        _size120 = _rtmp3124.size;
-        for (var _i125 = 0; _i125 < _size120; ++_i125)
-        {
-          var elem126 = null;
-          elem126 = new Section();
-          elem126.read(input);
-          this.sectionList.push(elem126);
-        }
-        input.readListEnd();
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      default:
-        input.skip(ftype);
-    }
-    input.readFieldEnd();
-  }
-  input.readStructEnd();
-  return;
-};
-
-SectionSegmentation.prototype.write = function(output) {
-  output.writeStructBegin('SectionSegmentation');
-  if (this.uuid !== null && this.uuid !== undefined) {
-    output.writeFieldBegin('uuid', Thrift.Type.STRUCT, 1);
-    this.uuid.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.metadata !== null && this.metadata !== undefined) {
-    output.writeFieldBegin('metadata', Thrift.Type.STRUCT, 2);
-    this.metadata.write(output);
-    output.writeFieldEnd();
-  }
-  if (this.sectionList !== null && this.sectionList !== undefined) {
-    output.writeFieldBegin('sectionList', Thrift.Type.LIST, 3);
-    output.writeListBegin(Thrift.Type.STRUCT, this.sectionList.length);
-    for (var iter127 in this.sectionList)
-    {
-      if (this.sectionList.hasOwnProperty(iter127))
-      {
-        iter127 = this.sectionList[iter127];
-        iter127.write(output);
+        iter103 = this.numberList[iter103];
+        output.writeI32(iter103);
       }
     }
     output.writeListEnd();
@@ -9691,22 +9487,14 @@ Communication.prototype.getEntityMentionWithUUID = function(uuid) {
  @ @returns {Sentence|null}
  */
 Communication.prototype.getSentenceWithUUID = function(uuid) {
-  if (this.sectionSegmentationList) {
-    for (var sectionSegmentationListIndex in this.sectionSegmentationList) {
-      var sectionSegmentation = this.sectionSegmentationList[sectionSegmentationListIndex];
-      if (sectionSegmentation.sectionList) {
-        for (var sectionListIndex in sectionSegmentation.sectionList) {
-          var sectionList = sectionSegmentation.sectionList[sectionListIndex];
-          if (sectionList.sentenceSegmentationList) {
-            for (var sentenceSegmentationListIndex in sectionList.sentenceSegmentationList) {
-              var sentenceSegmentation = sectionList.sentenceSegmentationList[sentenceSegmentationListIndex];
-              for (var sentenceIndex in sentenceSegmentation.sentenceList) {
-                var sentence = sentenceSegmentation.sentenceList[sentenceIndex];
-                if (sentence.uuid.uuidString == uuid.uuidString) {
-                  return sentence;
-                }
-              }
-            }
+  if (this.sectionList) {
+    for (var sectionListIndex in this.sectionList) {
+      var section = this.sectionList[sectionListIndex];
+      if (section.sentenceList) {
+        for (var sentenceIndex in section.sentenceList) {
+          var sentence = section.sentenceList[sentenceIndex];
+          if (sentence.uuid.uuidString == uuid.uuidString) {
+            return sentence;
           }
         }
       }
@@ -9746,24 +9534,14 @@ Communication.prototype.getSituationMentionWithUUID = function(uuid) {
  * @returns {Tokenization|null}
  */
 Communication.prototype.getTokenizationWithUUID = function(uuid) {
-  if (this.sectionSegmentationList) {
-    for (var sectionSegmentationListIndex in this.sectionSegmentationList) {
-      var sectionSegmentation = this.sectionSegmentationList[sectionSegmentationListIndex];
-      if (sectionSegmentation.sectionList) {
-        for (var sectionListIndex in sectionSegmentation.sectionList) {
-          var sectionList = sectionSegmentation.sectionList[sectionListIndex];
-          if (sectionList.sentenceSegmentationList) {
-            for (var sentenceSegmentationListIndex in sectionList.sentenceSegmentationList) {
-              var sentenceSegmentation = sectionList.sentenceSegmentationList[sentenceSegmentationListIndex];
-              for (var sentenceIndex in sentenceSegmentation.sentenceList) {
-                var sentence = sentenceSegmentation.sentenceList[sentenceIndex];
-                for (var tokenizationListIndex in sentence.tokenizationList) {
-                  if (sentence.tokenizationList[tokenizationListIndex].uuid.uuidString == uuid.uuidString) {
-                    return sentence.tokenizationList[tokenizationListIndex];
-                  }
-                }
-              }
-            }
+  if (this.sectionList) {
+    for (var sectionListIndex in this.sectionList) {
+      var section = this.sectionList[sectionListIndex];
+      if (section.sentenceList) {
+        for (var sentenceIndex in section.sentenceList) {
+          var sentence = section.sentenceList[sentenceIndex];
+          if (sentence.tokenization && sentence.tokenization.uuid.uuidString == uuid.uuidString) {
+            return sentence.tokenization;
           }
         }
       }
