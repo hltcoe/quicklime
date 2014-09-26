@@ -92,13 +92,11 @@ QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenization
         situationMentionList = comm.situationMentionSetList[situationMentionSetIndex].mentionList;
         for (situationMentionIndex in situationMentionList) {
           situationMention = situationMentionList[situationMentionIndex];
-          if (situationMention.situationType === "SituationType.STATE") {
-            relationLabels.push(
-              [situationMention.uuid.uuidString,
-               situationMention.stateType,
-               [['Left', situationMention.argumentList[0].entityMentionId.uuidString],
-                ['Right', situationMention.argumentList[1].entityMentionId.uuidString]]]);
-          }
+          relationLabels.push(
+            [situationMention.uuid.uuidString,
+             situationMention.situationType,
+             [['Left', situationMention.argumentList[0].entityMentionId.uuidString],
+              ['Right', situationMention.argumentList[1].entityMentionId.uuidString]]]);
         }
       }
     }
@@ -499,19 +497,10 @@ QL.addTokenizationBRATControls = function(comm) {
   function getAllTokenizations(comm) {
     var tokenizations = [];
 
-    for (var sectionSegmentionListIndex in comm.sectionSegmentationList) {
-      var sectionSegmentation = comm.sectionSegmentationList[sectionSegmentationListIndex];
-      for (var sectionListIndex in sectionSegmentation.sectionList) {
-        var section = sectionSegmentation.sectionList[sectionListIndex];
-        for (var sentenceSegmentationIndex in section.sentenceSegmentationList) {
-          var sentenceSegmentation = section.sentenceSegmentationList[sentenceSegmentationIndex];
-          for (var sentenceIndex in sentenceSegmentation.sentenceList) {
-            var sentence = sentenceSegmentation.sentenceList[sentenceIndex];
-            for (var tokenizationIndex in sentence.tokenizationList) {
-              tokenizations.push(sentence.tokenizationList[tokenizationIndex]);
-            }
-          }
-        }
+    for (var sectionIndex in comm.sectionList) {
+      for (var sentenceIndex in comm.sectionList[sectionIndex].sentenceList) {
+        var sentence = comm.sectionList[sectionIndex].sentenceList[sentenceIndex];
+        tokenizations.push(sentence.tokenization);
       }
     }
     return tokenizations;
@@ -544,12 +533,12 @@ QL.addTokenizationBRATControls = function(comm) {
   var hasSerifRelationsData = commHasSituationMentionData(comm, QL.SERIF_RELATIONS);
   var tokenizationsWithSerifRelations = getTokenizationsWithSituationMentions(comm, QL.SERIF_RELATIONS);
 
-  for (var sectionListIndex in comm.sectionSegmentationList[0].sectionList) {
-    var section = comm.sectionSegmentationList[0].sectionList[sectionListIndex];
-    if (section.sentenceSegmentationList) {
-      for (var sentenceIndex in section.sentenceSegmentationList[0].sentenceList) {
-        var sentence = section.sentenceSegmentationList[0].sentenceList[sentenceIndex];
-        var tokenization = sentence.tokenizationList[0];
+  for (var sectionIndex in comm.sectionList) {
+    var section = comm.sectionList[sectionIndex];
+    if (section.sentenceList) {
+      for (var sentenceIndex in section.sentenceList) {
+        var sentence = section.sentenceList[sentenceIndex];
+        var tokenization = sentence.tokenization;
 
         var tokenization_controls_div = $('#tokenization_controls_' + tokenization.uuid.uuidString);
 

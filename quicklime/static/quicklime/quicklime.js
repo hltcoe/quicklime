@@ -2,39 +2,37 @@
 Quicklime creates a DOM structure for a Communication:
 
 <div class="communication" id="communication_UUID">>
-  <div class="section_segmentation" id="section_segmentation_UUID">
-    <div class="section" id="section_UUID">
-      <div class="sentence_segmentation" id="sentence_segmentation_UUID">
-        <div class="sentence" id="sentence_UUID">>
-          <div class="controls_and_tokenization_container clearfix">
-            <div class="tokenization_controls" id="tokenization_controls_[TOKENIZATION_UUID]">
-              <button>
-              <button>
-              ...
-            <div class="tokenization" id="tokenization_UUID">
-              <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
-              <span class="token_padding "id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
-              <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
-              <span class="token_padding" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
-            ...
-          <div class="brat_tokenization_container" id="tokenization_ner_container_[TOKENIZATION_UUID]">
-            <div class="brat_tokenization_label brat_ner_tokenization_label">
-            <div class="brat_tokenization" id="tokenization_ner_[TOKENIZATION_UUID]">
-          <div class="brat_tokenization_container" id="tokenization_pos_container_[TOKENIZATION_UUID]">
-            <div class="brat_tokenization_label brat_pos_tokenization_label">
-            <div class="brat_tokenization" id="tokenization_pos_[TOKENIZATION_UUID]">
-          <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]">
-            <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]_0">
-              <div class="parse_label constituent_parse_label_0">
-            <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]_1">
-              <div class="parse_label constituent_parse_label_1">
-            ...
-          <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]">
-            <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]_0">
-              <div class="parse_label dependency_parse_label_0">
-            <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]_1">
-              <div class="parse_label dependency_parse_label_1">
-            ...
+  <div class="section" id="section_UUID">
+    <div class="sentence" id="sentence_UUID">>
+      <div class="controls_and_tokenization_container clearfix">
+        <div class="tokenization_controls" id="tokenization_controls_[TOKENIZATION_UUID]">
+          <button>
+          <button>
+          ...
+        <div class="tokenization" id="tokenization_UUID">
+          <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
+          <span class="token_padding "id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
+          <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
+          <span class="token_padding" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
+        ...
+      <div class="brat_tokenization_container" id="tokenization_ner_container_[TOKENIZATION_UUID]">
+        <div class="brat_tokenization_label brat_ner_tokenization_label">
+        <div class="brat_tokenization" id="tokenization_ner_[TOKENIZATION_UUID]">
+      <div class="brat_tokenization_container" id="tokenization_pos_container_[TOKENIZATION_UUID]">
+        <div class="brat_tokenization_label brat_pos_tokenization_label">
+        <div class="brat_tokenization" id="tokenization_pos_[TOKENIZATION_UUID]">
+      <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]">
+        <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]_0">
+          <div class="parse_label constituent_parse_label_0">
+        <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]_1">
+          <div class="parse_label constituent_parse_label_1">
+        ...
+      <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]">
+        <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]_0">
+          <div class="parse_label dependency_parse_label_0">
+        <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]_1">
+          <div class="parse_label dependency_parse_label_1">
+        ...
 */
 
 
@@ -55,9 +53,8 @@ QL.getCommunicationWithUUID = function(uuid) {
 
 /** Adds <div>/<span> elements and token text for a Communication to DOM
  *
- * Concrete Communications contain many layers of nested data
- * structures, with lists of SectionSegmentations containing lists of
- * Sections containing lists of SentenceSegmentations, etc.
+ * Concrete Communications can contain a list of Sections, and each
+ * Section can contain al ist of Sentences.
  *
  * This function takes a Concrete Communication, and adds layers of
  * nested <div>'s and <span>'s to the DOM that reflect the nested data
@@ -65,9 +62,7 @@ QL.getCommunicationWithUUID = function(uuid) {
  * and <span>'s so that the HTML is rendered properly).
  *
  * For each Concrete object of type:
- *   - SectionSegmentation
  *   - Section
- *   - SentenceSegmentation
  *   - Sentence
  *   - Tokenization
  * there is a corresponding <div> with a DOM ID based on the UUID of
@@ -130,29 +125,15 @@ QL.addCommunication = function(parentElementID, comm) {
   var document_div = $('<div>').addClass('communication').attr('id', 'communication_' + comm.uuid.uuidString);
   parent_element.append(document_div);
 
-  // For now, we assume that there is only a single section segmentation
-  var sectionSegmentation = comm.sectionSegmentationList[0];
-
-  var section_segmentation_div = $('<div>').addClass('section_segmention')
-    .attr('id', 'section_segmentation_' + sectionSegmentation.uuid.uuidString);
-
-  for (var sectionListIndex in sectionSegmentation.sectionList) {
-    var section = sectionSegmentation.sectionList[sectionListIndex];
+  for (var sectionListIndex in comm.sectionList) {
+    var section = comm.sectionList[sectionListIndex];
     var section_div = $('<div>').addClass('section')
       .attr('id', 'section_' + section.uuid.uuidString);
 
-    // For now, we assume that there is only a single sentence segmentation
-    var sentenceSegmentation = section.sentenceSegmentationList[0];
-
-    var sentence_segmentation_div = $('<div>').addClass('sentence_segmentation')
-      .attr('id', 'sentence_segmentation_' + sentenceSegmentation.uuid.uuidString);
-
-    if (section.sentenceSegmentationList) {
-      for (var sentenceIndex in sentenceSegmentation.sentenceList) {
-        var sentence = sentenceSegmentation.sentenceList[sentenceIndex];
-
-        // For now, we assume that there is only a single tokenization
-        var tokenization = sentence.tokenizationList[0];
+    if (section.sentenceList) {
+      for (var sentenceIndex in section.sentenceList) {
+        var sentence = section.sentenceList[sentenceIndex];
+        var tokenization = sentence.tokenization;
 
         var sentence_div = $('<div>')
           .addClass('sentence')
@@ -227,14 +208,11 @@ QL.addCommunication = function(parentElementID, comm) {
         sentence_div.append($('<div>')
           .addClass('dagre_parse')
           .attr('id', 'ace_relations_' + tokenization.uuid.uuidString));
-
-        sentence_segmentation_div.append(sentence_div);
       }
-      section_div.append(sentence_segmentation_div);
+      section_div.append(sentence_div);
     }
-    section_segmentation_div.append(section_div);
+    document_div.append(section_div);
   }
-  document_div.append(section_segmentation_div);
 
   // Add DOM classes for mentionId's to token <span>'s
   for (var entityMentionSetIndex in comm.entityMentionSetList) {

@@ -119,11 +119,11 @@ QL.addTokenizationParseControls = function(comm) {
     }
   }
 
-  for (var sectionListIndex in comm.sectionSegmentationList[0].sectionList) {
-    if (comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList) {
-      for (var sentenceIndex in comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList) {
-        var sentence = comm.sectionSegmentationList[0].sectionList[sectionListIndex].sentenceSegmentationList[0].sentenceList[sentenceIndex];
-        var tokenization = sentence.tokenizationList[0];
+  for (var sectionIndex in comm.sectionList) {
+    if (comm.sectionList[sectionIndex].sentenceList) {
+      for (var sentenceIndex in comm.sectionList[sectionIndex].sentenceList) {
+        var sentence = comm.sectionList[sectionIndex].sentenceList[sentenceIndex];
+        var tokenization = sentence.tokenization;
 
         var tokenization_controls_div = $('#tokenization_controls_' + tokenization.uuid.uuidString);
 
