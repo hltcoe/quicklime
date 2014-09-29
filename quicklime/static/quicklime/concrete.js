@@ -7183,13 +7183,9 @@ TokenLattice.prototype.write = function(output) {
 
 TokenList = function(args) {
   this.tokenList = null;
-  this.reconstructedText = null;
   if (args) {
     if (args.tokenList !== undefined) {
       this.tokenList = args.tokenList;
-    }
-    if (args.reconstructedText !== undefined) {
-      this.reconstructedText = args.reconstructedText;
     }
   }
 };
@@ -7228,13 +7224,9 @@ TokenList.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 2:
-      if (ftype == Thrift.Type.STRING) {
-        this.reconstructedText = input.readString().value;
-      } else {
+      case 0:
         input.skip(ftype);
-      }
-      break;
+        break;
       default:
         input.skip(ftype);
     }
@@ -7258,11 +7250,6 @@ TokenList.prototype.write = function(output) {
       }
     }
     output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  if (this.reconstructedText !== null && this.reconstructedText !== undefined) {
-    output.writeFieldBegin('reconstructedText', Thrift.Type.STRING, 2);
-    output.writeString(this.reconstructedText);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -9584,4 +9571,18 @@ Tokenization.prototype.getTokenTaggingsOfType = function(taggingType) {
   }
 
   return tokenTaggings;
+};
+
+
+/** Return the TaggedToken (or null) with the specified tokenIndex
+ * @param {Number} tokenIndex
+ * @returns {Entity|null}
+ */
+TokenTagging.prototype.getTaggedTokenWithTokenIndex = function(tokenIndex) {
+  for (var i = 0; i < this.taggedTokenList.length; i++) {
+    if (this.taggedTokenList[i].tokenIndex === tokenIndex) {
+      return this.taggedTokenList[i];
+    }
+  }
+  return null;
 };
