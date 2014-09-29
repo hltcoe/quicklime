@@ -258,13 +258,13 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   }
 
   // For now, we assume that there is only a single NER tagging
-  var nerTagList = tokenization.getTokenTaggingsOfType("NER")[0];
+  var nerTokenTagging = tokenization.getTokenTaggingsOfType("NER")[0];
 
   var ner_tag_labels = [];
-  for (i = 0; i < nerTagList.taggedTokenList.length; i++) {
-    var nerTag = nerTagList.taggedTokenList[i];
+  for (i = 0; i < nerTokenTagging.taggedTokenList.length; i++) {
+    var nerTag = nerTokenTagging.taggedTokenList[i];
     var token = tokenization.tokenList.tokenList[nerTag.tokenIndex];
-    var entityID = "T" + (i+1);
+    var entityID = "T" + nerTag.tokenIndex;
     if (nerTag.tag != "O" &&       // Stanford tag
         nerTag.tag != "OTHER" &&   // Serif tag
         nerTag.tag != "NONE")      // Serif tag
@@ -387,13 +387,13 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   }
 
   // For now, we assume that there is only a single POS tagging
-  var posTagList = tokenization.getTokenTaggingsOfType("POS")[0];
+  var posTokenTagging = tokenization.getTokenTaggingsOfType("POS")[0];
 
   var pos_tag_labels = [];
-  for (i = 0; i < posTagList.taggedTokenList.length; i++) {
-    var posTag = posTagList.taggedTokenList[i];
+  for (i = 0; i < posTokenTagging.taggedTokenList.length; i++) {
+    var posTag = posTokenTagging.taggedTokenList[i];
     var token = tokenization.tokenList.tokenList[posTag.tokenIndex];
-    var entityID = "T" + (i+1);
+    var entityID = "T" + posTag.tokenIndex;
     var start = token_offsets[posTag.tokenIndex].start;
     var ending = token_offsets[posTag.tokenIndex].ending;
     pos_tag_labels.push([entityID, posTag.tag, [[start, ending]]]);
