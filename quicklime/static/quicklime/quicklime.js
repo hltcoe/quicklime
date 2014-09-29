@@ -129,13 +129,14 @@ QL.addCommunication = function(parentElementID, comm) {
     var section = comm.sectionList[sectionListIndex];
     var section_div = $('<div>').addClass('section')
       .attr('id', 'section_' + section.uuid.uuidString);
+    var sentence_div;
 
     if (section.sentenceList) {
       for (var sentenceIndex in section.sentenceList) {
         var sentence = section.sentenceList[sentenceIndex];
         var tokenization = sentence.tokenization;
 
-        var sentence_div = $('<div>')
+        sentence_div = $('<div>')
           .addClass('sentence')
           .attr('id', 'sentence_' + sentence.uuid.uuidString);
 
@@ -416,13 +417,13 @@ QL.addSituationMentionTable = function(parentElementID, comm) {
             }
           }
           else if (mentionArgument.situationMentionId) {
-            var situationMention = comm.getSituationMentionWithUUID(mentionArgument.situationMentionId);
+            var argumentSituationMention = comm.getSituationMentionWithUUID(mentionArgument.situationMentionId);
             situationMention_li.append(
               $('<span>')
                 .addClass('situation_mention situation_mention_' + mentionArgument.situationMentionId.uuidString)
-                .html('<br>' + QL.getTextForTokenRefSequence(comm, situationMention.tokens)));
+                .html('<br>' + QL.getTextForTokenRefSequence(comm, argumentSituationMention.tokens)));
             if (mentionArgument.role) {
-              situationMention_li.append(
+              argumentSituationMention_li.append(
                 $('<span>')
                   .html(" (" + mentionArgument.role + ") "));
             }
