@@ -53,6 +53,10 @@
      var client = new CommunicationServiceClient(protocol);
      var comm = client.readComm();
 
+     $('#save_button').click(function() {
+       client.writeComm(comm);
+     });
+
      QL.addCommunication('communication_one', comm);
      QL.addTokenizationParseControls(comm);
      QL.addTokenizationBRATControls(comm);
@@ -64,6 +68,10 @@
 </head>
 <body>
   <div class="container-fluid">
+    <button id="save_button" type="button" class="btn btn-default">Save</button>
+
+    <p>
+
     <h2>Sentences</h2>
     <div id="communication_one"></div>
 
