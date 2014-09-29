@@ -406,7 +406,34 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     entities : pos_tag_labels,
   };
 
-  Util.embed(
+
+  /* Double-clicking on a token tag label changes the token text to 'fOO'
+   * PROOF-OF-CONCEPT code for changing TokenTaggings
+   */
+  var makeItFoo = function(event) {
+    var target = $(event.target);
+
+    var parent = target.parent('g.span');
+    if (parent) {
+      var text = parent.find('text');
+      if (text && text[0]) {
+        // Update text shown in SVG canvas
+        text[0].textContent = 'fOO';
+
+        // data_span_id is created by concatenating 'T' with the token index, e.g. 'T0', 'T1'
+        var data_span_id = target.attr('data-span-id');
+        var token_index = parseInt(data_span_id.slice(1), 10);
+
+        // posTokenTagging is defined in the enclosing scope
+        var tagged_token = posTokenTagging.getTaggedTokenWithTokenIndex(token_index);
+        if (tagged_token) {
+          tagged_token.tag = 'fOO';
+        }
+      }
+    }
+  };
+
+  var dispatcher = Util.embed(
     // id of the div element where brat should embed the visualisations
     'tokenization_pos_' + tokenization.uuid.uuidString,
     // object containing collection data
@@ -416,6 +443,8 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     // Array containing locations of the visualisation fonts
     webFontURLs
   );
+
+  dispatcher.on('dblclick', makeItFoo);
 };
 
 
