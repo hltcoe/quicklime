@@ -84,6 +84,12 @@ div .brat_tokenization_container {
     margin-bottom: 1.25em;
 }
 
+span.token_label {
+    border: 0.75px solid #333333;
+    cursor: pointer;
+    padding-left: 2px;
+    padding-right: 2px;
+}
 
 
 /* ------------------------------------------------------
