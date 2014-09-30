@@ -503,7 +503,7 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     webFontURLs
   );
 
-  dispatcher.on('dblclick', showPOSPopover);
+  dispatcher.on('click', showPOSPopover);
 
   $('#' + brat_container_id).on('click', 'span.token_label', updateTokenLabel);
 };
