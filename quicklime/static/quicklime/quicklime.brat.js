@@ -370,9 +370,10 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
       { type: '__DOLLAR__', labels: ['$', '$'], bgColor: '#e4cbf6' },
 
       // In/Out labels for POS annotation demo
-      // TODO: Remove
+      /*
       { type: 'In', labels: ['In', 'In'], bgColor: '#adf6a2' },
       { type: 'Out', labels: ['Out', 'Out'], bgColor: '#e4cbf6' },
+      */
     ]
   };
 
@@ -406,36 +407,76 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     entities : pos_tag_labels,
   };
 
+  var brat_container_id = 'tokenization_pos_' + tokenization.uuid.uuidString;
 
-  /* Double-clicking on a token tag label changes the token text to 'fOO'
-   * PROOF-OF-CONCEPT code for changing TokenTaggings
+  /** Create a popover menu with POS labels for token tags
    */
-  var makeItFoo = function(event) {
+  var showPOSPopover = function(event) {
     var target = $(event.target);
 
-    var parent = target.parent('g.span');
-    if (parent) {
-      var text = parent.find('text');
+    var brat_span = target.parent('g.span');
+    if (brat_span) {
+      var text = brat_span.find('text');
       if (text && text[0]) {
-        // Update text shown in SVG canvas
-        text[0].textContent = 'fOO';
-
         // data_span_id is created by concatenating 'T' with the token index, e.g. 'T0', 'T1'
         var data_span_id = target.attr('data-span-id');
         var token_index = parseInt(data_span_id.slice(1), 10);
 
-        // posTokenTagging is defined in the enclosing scope
-        var tagged_token = posTokenTagging.getTaggedTokenWithTokenIndex(token_index);
-        if (tagged_token) {
-          tagged_token.tag = 'fOO';
+        var popover_html = '<div class="token_label_container" data-span-id="' + data_span_id +
+          '" data-token-index="' + token_index + '">';
+        // collData is defined in the enclosing scope
+        for (var i=0, l=collData.entity_types.length; i < l; i++) {
+          var label_text = collData.entity_types[i].labels[0];
+          var label_color = collData.entity_types[i].bgColor;
+          popover_html += '<span class="token_label" style="background-color: ' + label_color + '">' + label_text + '</span> ';
         }
+        popover_html += '</div>';
+
+        // We must specify a container for the popover - otherwise,
+        // Bootstrap will try to insert the DOM element for the
+        // tooltip in the SVG container, and the tooltip will not be
+        // displayed.
+        text.popover({content: popover_html, container: '#'+brat_container_id, html: true, placement: 'top'});
+        text.popover('toggle');
+      }
+    }
+  };
+
+  /** Update a token's POS label when someone uses the menu created by showPOSPopover()
+   */
+  var updateTokenLabel = function(event) {
+    var token_label_container = $(event.target).parent('div.token_label_container');
+    var data_span_id = token_label_container.attr('data-span-id');
+    var token_index = parseInt(token_label_container.attr('data-token-index'), 10);
+    var token_label = $(this).text();
+
+    // posTokenTagging is defined in the enclosing scope
+    var tagged_token = posTokenTagging.getTaggedTokenWithTokenIndex(token_index);
+    if (tagged_token) {
+      tagged_token.tag = token_label;
+    }
+
+    // BRAT attaches the 'data-span-id' attribute to the <rect>
+    var brat_span_rect = $('rect[data-span-id="' + data_span_id + '"]');
+
+    var brat_span = brat_span_rect.parent('g.span');
+    if (brat_span) {
+      var text = brat_span.find('text');
+      if (text && text[0]) {
+        // Update text shown in SVG canvas
+        text[0].textContent = token_label;
+
+        // Update color of SVG rectangle to match color of menu label
+        brat_span_rect.attr('fill', $(this).css('background-color'));
+
+        // TODO: Update rectangle size
       }
     }
   };
 
   var dispatcher = Util.embed(
     // id of the div element where brat should embed the visualisations
-    'tokenization_pos_' + tokenization.uuid.uuidString,
+    brat_container_id,
     // object containing collection data
     collData,
     // object containing document data
@@ -444,7 +485,9 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     webFontURLs
   );
 
-  dispatcher.on('dblclick', makeItFoo);
+  dispatcher.on('dblclick', showPOSPopover);
+
+  $('#' + brat_container_id).on('click', 'span.token_label', updateTokenLabel);
 };
 
 
