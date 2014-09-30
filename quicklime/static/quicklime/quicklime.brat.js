@@ -410,6 +410,24 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var brat_container_id = 'tokenization_pos_' + tokenization.uuid.uuidString;
 
   /** Create a popover menu with POS labels for token tags
+   *
+   * The SVG DOM for the BRAT labels looks like:
+   *
+   *   <g class="span">
+   *     <rect x="9.5" y="-30.75" width="24.84000015258789"
+   *        height="10.765625" class="span_NNP span_default" fill="#a4bced"
+   *        stroke="#000000" rx="2" ry="1" data-span-id="T2"
+   *        data-fragment-id="0"></rect>
+   *     <text x="22.5" y="-22.25" fill="#000000">NNP</text>
+   *     <path d="M0,-14.984375C0,-18.984375
+   *        22.5,-14.984375 22.5,-18.984375C22.5,-14.984375
+   *        44.36279296875,-18.984375 44.36279296875,-14.984375"
+   *        class="curly" stroke="#1a3d85"></path>
+   *   </g>
+   *
+   * where the <rect> is the colored box, the <text> is the actual
+   * token text, the <path> is the "curly bracket" that goes from the
+   * colored box to the word that is being labeled.
    */
   var showPOSPopover = function(event) {
     var target = $(event.target);
@@ -434,7 +452,7 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
         // We must specify a container for the popover - otherwise,
         // Bootstrap will try to insert the DOM element for the
-        // tooltip in the SVG container, and the tooltip will not be
+        // popover in the SVG container, and the tooltip will not be
         // displayed.
         text.popover({content: popover_html, container: '#'+brat_container_id, html: true, placement: 'top'});
         text.popover('toggle');
