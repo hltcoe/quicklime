@@ -711,7 +711,6 @@ QL.showTokenTaggingPopover = function(event, brat_container_id, collData) {
 
       var popover_html = '<div class="token_label_container" data-span-id="' + data_span_id +
         '" data-token-index="' + token_index + '">';
-      // collData is defined in the enclosing scope
       for (var i=0, l=collData.entity_types.length; i < l; i++) {
         var label_text = collData.entity_types[i].labels[0];
         var label_color = collData.entity_types[i].bgColor;
@@ -808,7 +807,6 @@ QL.updateTokenLabel = function(event) {
   var token_index = parseInt(token_label_container.attr('data-token-index'), 10);
   var token_label = $(this).text();
 
-  // posTokenTagging is defined in the enclosing scope
   var tagged_token = event.data.tokenTagging.getTaggedTokenWithTokenIndex(token_index);
   if (tagged_token) {
     tagged_token.tag = token_label;
