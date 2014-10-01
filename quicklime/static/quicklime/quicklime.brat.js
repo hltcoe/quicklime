@@ -280,6 +280,18 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
       var ending = token_offsets[nerTag.tokenIndex].ending;
       ner_tag_labels.push([entityID, nerTag.tag, [[start, ending]]]);
     }
+    else if (token.text != "." &&
+             token.text != "," &&
+             token.text != "?" &&
+             token.text != "!" &&
+             token.text != "``" &&
+             token.text != "''")
+    {
+      // Create "empty" NER label for tokens that are not punctuation
+      var start = token_offsets[nerTag.tokenIndex].start;
+      var ending = token_offsets[nerTag.tokenIndex].ending;
+      ner_tag_labels.push([entityID, "___", [[start, ending]]]);
+    }
   }
 
   var docData = { text: sentence_text, entities: ner_tag_labels };
