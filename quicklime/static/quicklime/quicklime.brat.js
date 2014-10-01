@@ -450,11 +450,33 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
         }
         popover_html += '</div>';
 
-        // We must specify a container for the popover - otherwise,
-        // Bootstrap will try to insert the DOM element for the
-        // popover in the SVG container, and the tooltip will not be
+        // Bootstrap adds the 'aria-describedby' attribute when we create a popover
+        var current_popover_id = text.attr('aria-describedby');
+        if (current_popover_id) {
+          // Destroy all popovers for this SVG container EXCEPT popover for current text element
+          $('#' + brat_container_id + ' .popup').each(function() {
+            if ($(this).id !== current_popover_id) {
+              $(this).popover('destroy');
+            }
+          });
+        }
+        else {
+          // Destroy all popovers for this SVG container
+          $('#' + brat_container_id + ' text').popover('destroy');
+        }
+
+        // We must specify a container for the popover that is outside
+        // of the <svg> element - otherwise, Bootstrap will try to
+        // insert the DOM element for the popover in the SVG container
+        // after the <text> element, and the tooltip will not be
         // displayed.
-        text.popover({content: popover_html, container: '#'+brat_container_id, html: true, placement: 'top'});
+        text.popover({
+          container: '#'+brat_container_id,
+          content: popover_html,
+          html: true,
+          placement: 'top'
+        });
+
         text.popover('toggle');
       }
     }
