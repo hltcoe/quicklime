@@ -678,27 +678,34 @@ QL.hasPOSTags = function(tokenizationUUID) {
 };
 
 
-/** Create a popover menu with POS labels for token tags
+/** Create a popover TokenTagging menu when clicking on labels in BRAT visualization
  *
- * The SVG DOM for the BRAT labels looks like:
+ * NOTE: QL.showTokenTaggingPopover() and QL.updateTokenLabel() are tightly coupled
  *
- *   <g class="span">
- *     <rect x="9.5" y="-30.75" width="24.84000015258789"
- *        height="10.765625" class="span_NNP span_default" fill="#a4bced"
- *        stroke="#000000" rx="2" ry="1" data-span-id="T2"
- *        data-fragment-id="0"></rect>
- *     <text x="22.5" y="-22.25" fill="#000000">NNP</text>
- *     <path d="M0,-14.984375C0,-18.984375
- *        22.5,-14.984375 22.5,-18.984375C22.5,-14.984375
- *        44.36279296875,-18.984375 44.36279296875,-14.984375"
- *        class="curly" stroke="#1a3d85"></path>
- *   </g>
- *
- * where the <rect> is the colored box, the <text> is the actual
- * token text, the <path> is the "curly bracket" that goes from the
- * colored box to the word that is being labeled.
+ * @param {MouseEvent} event
+ * @param {String} brat_container_id - DOM ID of element containing the BRAT SVG
+ * @param {Object} collData - Collection data in the format used by BRAT's Util.embed()
  */
 QL.showTokenTaggingPopover = function(event, brat_container_id, collData) {
+  /* The SVG DOM for the BRAT labels looks like:
+   *
+   *   <g class="span">
+   *     <rect x="9.5" y="-30.75" width="24.84000015258789"
+   *        height="10.765625" class="span_NNP span_default" fill="#a4bced"
+   *        stroke="#000000" rx="2" ry="1" data-span-id="T2"
+   *        data-fragment-id="0"></rect>
+   *     <text x="22.5" y="-22.25" fill="#000000">NNP</text>
+   *     <path d="M0,-14.984375C0,-18.984375
+   *        22.5,-14.984375 22.5,-18.984375C22.5,-14.984375
+   *        44.36279296875,-18.984375 44.36279296875,-14.984375"
+   *        class="curly" stroke="#1a3d85"></path>
+   *   </g>
+   *
+   * where the <rect> is the colored box, the <text> is the actual
+   * token text, the <path> is the "curly bracket" that goes from the
+   * colored box to the word that is being labeled.
+   */
+
   var target = $(event.target);
 
   var brat_span = target.parent('g.span');
@@ -796,7 +803,9 @@ QL.togglePOSTags = function(tokenizationUUID) {
 };
 
 
-/** Update a token's POS label when clicking on a menu created by QL.showTokenTaggingPopover()
+/** Update a TokenTag in response to clicking on a menu created by QL.showTokenTaggingPopover()
+ *
+ * NOTE: QL.showTokenTaggingPopover() and QL.updateTokenLabel() are tightly coupled
  *
  * @param {MouseEvent} event - This event must have a data.tokenTagging field that
  *                             points to a Concrete TokenTagging instance
