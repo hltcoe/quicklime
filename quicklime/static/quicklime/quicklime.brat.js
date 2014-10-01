@@ -234,6 +234,7 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
   var collData = {
     entity_types: [
+      /*
       { type: 'DATE', labels: ['Date', 'Date'], bgColor: '#9affe6' },
       { type: 'DURATION', labels: ['Duration', 'Dur'], bgColor: '#9affe6' },
       { type: 'LOCATION', labels: ['Location', 'Loc'], bgColor: '#95dfff' },
@@ -244,6 +245,12 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
       { type: 'PERSON', labels: ['Person', 'Pers'], bgColor: '#ffccaa' },
       { type: 'SET', labels: ['Set', 'Set'], bgColor: '#ff7c95' },
       { type: 'TIME', labels: ['Time', 'Time'], bgColor: '#9affe6' },
+      */
+      { type: 'GPE', labels: ['GPE', 'GPE'], bgColor: '#ff7c95' },
+      { type: 'ORG', labels: ['ORG', 'ORG'], bgColor: '#8fb2ff' },
+      { type: 'NONE', labels: ['NONE', 'NONE'], bgColor: '#ffffff'},
+      { type: 'PER', labels: ['PER', 'PER'], bgColor: '#ffccaa' },
+      { type: 'VEH', labels: ['VEH', 'VEH'], bgColor: '#df99ff' },
     ]
   };
 
