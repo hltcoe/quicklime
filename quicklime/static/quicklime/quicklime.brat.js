@@ -481,13 +481,18 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     if (brat_span) {
       var text = brat_span.find('text');
       if (text && text[0]) {
+        var text_width_0 = text.width();
+
         // Update text shown in SVG canvas
         text[0].textContent = token_label;
 
+        // Update width, horizontal position of SVG rectangle for updated text
+        var dtw = text.width() - text_width_0;
+        brat_span_rect.attr('width', parseInt(brat_span_rect.attr('width'), 10) + dtw);
+        brat_span_rect.attr('x', parseInt(brat_span_rect.attr('x'), 10) - dtw / 2);
+
         // Update color of SVG rectangle to match color of menu label
         brat_span_rect.attr('fill', $(this).css('background-color'));
-
-        // TODO: Update rectangle size
       }
     }
   };
