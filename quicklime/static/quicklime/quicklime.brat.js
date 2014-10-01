@@ -406,77 +406,8 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
   var brat_container_id = 'tokenization_pos_' + tokenization.uuid.uuidString;
 
-  /** Create a popover menu with POS labels for token tags
-   *
-   * The SVG DOM for the BRAT labels looks like:
-   *
-   *   <g class="span">
-   *     <rect x="9.5" y="-30.75" width="24.84000015258789"
-   *        height="10.765625" class="span_NNP span_default" fill="#a4bced"
-   *        stroke="#000000" rx="2" ry="1" data-span-id="T2"
-   *        data-fragment-id="0"></rect>
-   *     <text x="22.5" y="-22.25" fill="#000000">NNP</text>
-   *     <path d="M0,-14.984375C0,-18.984375
-   *        22.5,-14.984375 22.5,-18.984375C22.5,-14.984375
-   *        44.36279296875,-18.984375 44.36279296875,-14.984375"
-   *        class="curly" stroke="#1a3d85"></path>
-   *   </g>
-   *
-   * where the <rect> is the colored box, the <text> is the actual
-   * token text, the <path> is the "curly bracket" that goes from the
-   * colored box to the word that is being labeled.
-   */
   var showPOSPopover = function(event) {
-    var target = $(event.target);
-
-    var brat_span = target.parent('g.span');
-    if (brat_span) {
-      var text = brat_span.find('text');
-      if (text && text[0]) {
-        // data_span_id is created by concatenating 'T' with the token index, e.g. 'T0', 'T1'
-        var data_span_id = target.attr('data-span-id');
-        var token_index = parseInt(data_span_id.slice(1), 10);
-
-        var popover_html = '<div class="token_label_container" data-span-id="' + data_span_id +
-          '" data-token-index="' + token_index + '">';
-        // collData is defined in the enclosing scope
-        for (var i=0, l=collData.entity_types.length; i < l; i++) {
-          var label_text = collData.entity_types[i].labels[0];
-          var label_color = collData.entity_types[i].bgColor;
-          popover_html += '<span class="token_label" style="background-color: ' + label_color + '">' + label_text + '</span> ';
-        }
-        popover_html += '</div>';
-
-        // Bootstrap adds the 'aria-describedby' attribute when we create a popover
-        var current_popover_id = text.attr('aria-describedby');
-        if (current_popover_id) {
-          // Destroy all popovers for this SVG container EXCEPT popover for current text element
-          $('#' + brat_container_id + ' .popup').each(function() {
-            if ($(this).id !== current_popover_id) {
-              $(this).popover('destroy');
-            }
-          });
-        }
-        else {
-          // Destroy all popovers for this SVG container
-          $('#' + brat_container_id + ' text').popover('destroy');
-        }
-
-        // We must specify a container for the popover that is outside
-        // of the <svg> element - otherwise, Bootstrap will try to
-        // insert the DOM element for the popover in the SVG container
-        // after the <text> element, and the tooltip will not be
-        // displayed.
-        text.popover({
-          container: '#'+brat_container_id,
-          content: popover_html,
-          html: true,
-          placement: 'top'
-        });
-
-        text.popover('toggle');
-      }
-    }
+    QL.showTokenTaggingPopover(event, brat_container_id, collData);
   };
 
   var dispatcher = Util.embed(
@@ -738,6 +669,80 @@ QL.hasPOSTags = function(tokenizationUUID) {
 };
 
 
+/** Create a popover menu with POS labels for token tags
+ *
+ * The SVG DOM for the BRAT labels looks like:
+ *
+ *   <g class="span">
+ *     <rect x="9.5" y="-30.75" width="24.84000015258789"
+ *        height="10.765625" class="span_NNP span_default" fill="#a4bced"
+ *        stroke="#000000" rx="2" ry="1" data-span-id="T2"
+ *        data-fragment-id="0"></rect>
+ *     <text x="22.5" y="-22.25" fill="#000000">NNP</text>
+ *     <path d="M0,-14.984375C0,-18.984375
+ *        22.5,-14.984375 22.5,-18.984375C22.5,-14.984375
+ *        44.36279296875,-18.984375 44.36279296875,-14.984375"
+ *        class="curly" stroke="#1a3d85"></path>
+ *   </g>
+ *
+ * where the <rect> is the colored box, the <text> is the actual
+ * token text, the <path> is the "curly bracket" that goes from the
+ * colored box to the word that is being labeled.
+ */
+QL.showTokenTaggingPopover = function(event, brat_container_id, collData) {
+  var target = $(event.target);
+
+  var brat_span = target.parent('g.span');
+  if (brat_span) {
+    var text = brat_span.find('text');
+    if (text && text[0]) {
+      // data_span_id is created by concatenating 'T' with the token index, e.g. 'T0', 'T1'
+      var data_span_id = target.attr('data-span-id');
+      var token_index = parseInt(data_span_id.slice(1), 10);
+
+      var popover_html = '<div class="token_label_container" data-span-id="' + data_span_id +
+        '" data-token-index="' + token_index + '">';
+      // collData is defined in the enclosing scope
+      for (var i=0, l=collData.entity_types.length; i < l; i++) {
+        var label_text = collData.entity_types[i].labels[0];
+        var label_color = collData.entity_types[i].bgColor;
+        popover_html += '<span class="token_label" style="background-color: ' + label_color + '">' + label_text + '</span> ';
+      }
+      popover_html += '</div>';
+
+      // Bootstrap adds the 'aria-describedby' attribute when we create a popover
+      var current_popover_id = text.attr('aria-describedby');
+      if (current_popover_id) {
+        // Destroy all popovers for this SVG container EXCEPT popover for current text element
+        $('#' + brat_container_id + ' .popup').each(function() {
+          if ($(this).id !== current_popover_id) {
+            $(this).popover('destroy');
+          }
+        });
+      }
+      else {
+        // Destroy all popovers for this SVG container
+        $('#' + brat_container_id + ' text').popover('destroy');
+      }
+
+      // We must specify a container for the popover that is outside
+      // of the <svg> element - otherwise, Bootstrap will try to
+      // insert the DOM element for the popover in the SVG container
+      // after the <text> element, and the tooltip will not be
+      // displayed.
+      text.popover({
+        container: '#'+brat_container_id,
+        content: popover_html,
+        html: true,
+        placement: 'top'
+      });
+
+      text.popover('toggle');
+    }
+  }
+};
+
+
 /** Toggle display of Serif ACE relations diagram
  * @param {String} tokenizationUUID
  */
@@ -782,10 +787,11 @@ QL.togglePOSTags = function(tokenizationUUID) {
   }
 };
 
-/** Update a token's POS label when someone uses the menu created by showPOSPopover()
+
+/** Update a token's POS label when clicking on a menu created by QL.showTokenTaggingPopover()
  *
- * @param {MouseEvent} - This event must have a data.tokenTagging field that points
- *                        to a Concrete TokenTagging instance
+ * @param {MouseEvent} event - This event must have a data.tokenTagging field that
+ *                             points to a Concrete TokenTagging instance
  */
 QL.updateTokenLabel = function(event) {
   var token_label_container = $(event.target).parent('div.token_label_container');
