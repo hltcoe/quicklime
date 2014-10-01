@@ -298,82 +298,60 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   // Tag names and colors are copied from the BRAT configuration file for
   // Stanford NLP:
   //   brat-v1.3_Crunchy_Frog/configurations/Stanford-CoreNLP/visual.conf
+  var colors = {
+    blue: '#a4bced',
+    brownish: '#ffe8be',
+    green: '#adf6a2',
+    greyish_blue: '#ccdaf6',
+    light_grey: '#e3e3e3',
+    violet: '#e4cbf6',
+    yellowish: '#fffda8',
+    white: '#ffffff'
+  };
   var collData = {
     entity_types: [
-      // Coordination, white
       { type: 'CC', labels: ['CC', 'CC'], bgColor: '#F9F247' },
+      { type: 'CD', labels: ['CD', 'CD'], bgColor: colors.greyish_blue },
+      { type: 'DATE-NNP', labels: ['NNP', 'NNP'], bgColor: colors.blue },
+      { type: 'DT', labels: ['DT', 'DT'], bgColor: colors.greyish_blue },
+      { type: 'EX', labels: ['EX', 'EX'], bgColor: colors.violet },
+      { type: 'FW', labels: ['FW', 'FW'], bgColor: colors.violet },
+      { type: 'IN', labels: ['IN', 'IN'], bgColor: colors.brownish },
+      { type: 'JJ', labels: ['JJ', 'JJ'], bgColor: colors.yellowish },
+      { type: 'JJR', labels: ['JJR', 'JJR'], bgColor: colors.yellowish },
+      { type: 'JJS', labels: ['JJS', 'JJS'], bgColor: colors.yellowish },
+      { type: 'LS', labels: ['LS', 'LS'], bgColor: colors.violet },
+      { type: 'MD', labels: ['MD', 'MD'], bgColor: colors.green },
+      { type: 'NN', labels: ['NN', 'NN'], bgColor: colors.blue },
+      { type: 'NNP', labels: ['NNP', 'NNP'], bgColor: colors.blue },
+      { type: 'NNPS', labels: ['NNPS', 'NNPS'], bgColor: colors.blue },
+      { type: 'NNS', labels: ['NNS', 'NNS'], bgColor: colors.blue },
+      { type: 'PDT', labels: ['PDT', 'PDT'], bgColor: colors.greyish_blue },
+      { type: 'POS', labels: ['POS', 'POS'], bgColor: colors.violet },
+      { type: 'PRP', labels: ['PRP', 'PRP'], bgColor: colors.greyish_blue },
+      { type: 'PRP__DOLLAR__', labels: ['PRP$', 'PRP$'], bgColor: colors.greyish_blue },
+      { type: 'RB', labels: ['RB', 'RB'], bgColor: colors.yellowish },
+      { type: 'RBR', labels: ['RBR', 'RBR'], bgColor: colors.yellowish },
+      { type: 'RBS', labels: ['RBS', 'RBS'], bgColor: colors.yellowish },
+      { type: 'RP', labels: ['RP', 'RP'], bgColor: colors.violet },
+      { type: 'SYM', labels: ['SYM', 'SYM'], bgColor: colors.violet },
+      { type: 'TO', labels: ['TO', 'TO'], bgColor: colors.brownish },
+      { type: 'UH', labels: ['UH', 'UH'], bgColor: colors.violet },
+      { type: 'VB', labels: ['VB', 'VB'], bgColor: colors.green },
+      { type: 'VBD', labels: ['VBD', 'VBD'], bgColor: colors.green },
+      { type: 'VBG', labels: ['VBG', 'VBG'], bgColor: colors.green },
+      { type: 'VBN', labels: ['VBN', 'VBN'], bgColor: colors.green },
+      { type: 'VBP', labels: ['VBP', 'VBP'], bgColor: colors.green },
+      { type: 'VBZ', labels: ['VBZ', 'VBZ'], bgColor: colors.green },
+      { type: 'WDT', labels: ['WDT', 'WDT'], bgColor: colors.greyish_blue },
+      { type: 'WP', labels: ['WP', 'WP'], bgColor: colors.greyish_blue },
+      { type: 'WP__DOLLAR__', labels: ['WP$', 'WP$'], bgColor: colors.greyish_blue },
+      { type: 'WRB', labels: ['WRB', 'WRB'], bgColor: colors.yellowish },
 
-      // Punctuation, light grey
-      /*
-      { type: '-LRB-', labels: '-LRB-', bgColor: '#e3e3e3' },
-      { type: '-RRB-', labels: '-RRB-', bgColor: '#e3e3e3' },
-      { type: '__BACKTICK____BACKTICK__', labels: '``', bgColor: '#e3e3e3' },
-      { type: '__COLON__', labels: ':', bgColor: '#e3e3e3' },
-      { type: '__COMMA__', labels: ',', bgColor: '#e3e3e3' },
-      { type: '__DOT__', labels: '.', bgColor: '#e3e3e3' },
-      { type: '__DOUBLEQUOTE__', labels: '"', bgColor: '#e3e3e3' },
-      { type: '__SINGLEQUOTE__', labels: "'", bgColor: '#e3e3e3' },
-      */
-
-      // Adjectives, yellowish
-      { type: 'JJ', labels: ['JJ', 'JJ'], bgColor: '#fffda8' },
-      { type: 'JJR', labels: ['JJR', 'JJR'], bgColor: '#fffda8' },
-      { type: 'JJS', labels: ['JJS', 'JJS'], bgColor: '#fffda8' },
-
-      // Adverbs, yellowish
-      { type: 'RB', labels: ['RB', 'RB'], bgColor: '#fffda8' },
-      { type: 'RBR', labels: ['RBR', 'RBR'], bgColor: '#fffda8' },
-      { type: 'RBS', labels: ['RBS', 'RBS'], bgColor: '#fffda8' },
-      { type: 'WRB', labels: ['WRB', 'WRB'], bgColor: '#fffda8' },
-
-      // Determiners, greyish blue
-      { type: 'DT', labels: ['DT', 'DT'], bgColor: '#ccadf6' },
-      { type: 'PDT', labels: ['PDT', 'PDT'], bgColor: '#ccdaf6' },
-      { type: 'WDT', labels: ['WDT', 'WDT'], bgColor: '#ccdaf6' },
-
-      // Number, greyish blue
-      { type: 'CD', labels: ['CD', 'CD'], bgColor: '#ccdaf6' },
-
-      // Nouns, blue
-      { type: 'NN', labels: ['NN', 'NN'], bgColor: '#a4bced' },
-      { type: 'NNP', labels: ['NNP', 'NNP'], bgColor: '#a4bced' },
-      { type: 'NNPS', labels: ['NNPS', 'NNPS'], bgColor: '#a4bced' },
-      { type: 'NNS', labels: ['NNS', 'NNS'], bgColor: '#a4bced' },
-
-      // Pronoun, greyish blue
-      { type: 'PRP', labels: ['PRP', 'PRP'], bgColor: '#ccdaf6' },
-      { type: 'PRP__DOLLAR__', labels: ['PRP$', 'PRP$'], bgColor: '#ccdaf6' },
-      { type: 'WP', labels: ['WP', 'WP'], bgColor: '#ccdaf6' },
-      { type: 'WP__DOLLAR__', labels: ['WP$', 'WP$'], bgColor: '#ccdaf6' },
-
-      // Prepositions, brownish
-      { type: 'IN', labels: ['IN', 'IN'], bgColor: '#ffe8be' },
-      { type: 'TO', labels: ['TO', 'TO'], bgColor: '#ffe8be' },
-
-      // Verbs, green
-      { type: 'MD', labels: ['MD', 'MD'], bgColor: '#adf6a2' },
-      { type: 'VB', labels: ['VB', 'VB'], bgColor: '#adf6a2' },
-      { type: 'VBD', labels: ['VBD', 'VBD'], bgColor: '#adf6a2' },
-      { type: 'VBG', labels: ['VBG', 'VBG'], bgColor: '#adf6a2' },
-      { type: 'VBN', labels: ['VBN', 'VBN'], bgColor: '#adf6a2' },
-      { type: 'VBP', labels: ['VBP', 'VBP'], bgColor: '#adf6a2' },
-      { type: 'VBZ', labels: ['VBZ', 'VBZ'], bgColor: '#adf6a2' },
-
-      // Misc., violet
-      { type: 'EX', labels: ['EX', 'EX'], bgColor: '#e4cbf6' },
-      { type: 'FW', labels: ['FW', 'FW'], bgColor: '#e4cbf6' },
-      { type: 'LS', labels: ['LS', 'LS'], bgColor: '#e4cbf6' },
-      { type: 'POS', labels: ['POS', 'POS'], bgColor: '#e4cbf6' },
-      { type: 'RP', labels: ['RP', 'RP'], bgColor: '#e4cbf6' },
-      { type: 'SYM', labels: ['SYM', 'SYM'], bgColor: '#e4cbf6' },
-      { type: 'UH', labels: ['UH', 'UH'], bgColor: '#e4cbf6' },
-      { type: '__DOLLAR__', labels: ['$', '$'], bgColor: '#e4cbf6' },
-
-      // In/Out labels for POS annotation demo
-      /*
-      { type: 'In', labels: ['In', 'In'], bgColor: '#adf6a2' },
-      { type: 'Out', labels: ['Out', 'Out'], bgColor: '#e4cbf6' },
-      */
+      { type: '__DOLLAR__', labels: ['$', '$'], bgColor: colors.white },
+      { type: '?', labels: ['?', '?'], bgColor: colors.white },
+      { type: '.', labels: ['.', '.'], bgColor: colors.white },
+      { type: ',', labels: [',', ','], bgColor: colors.white },
     ]
   };
 
