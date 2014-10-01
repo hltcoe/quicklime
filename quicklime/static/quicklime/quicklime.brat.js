@@ -296,7 +296,22 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
   var docData = { text: sentence_text, entities: ner_tag_labels };
 
-  Util.embed('tokenization_ner_' + tokenization.uuid.uuidString, collData, docData, webFontURLs);
+  var brat_container_id = 'tokenization_ner_' + tokenization.uuid.uuidString;
+
+  var showNERPopover = function(event) {
+    QL.showTokenTaggingPopover(event, brat_container_id, collData);
+  };
+
+  var dispatcher = Util.embed('tokenization_ner_' + tokenization.uuid.uuidString, collData, docData, webFontURLs);
+
+  dispatcher.on('click', showNERPopover);
+
+  $('#' + brat_container_id).on(
+    'click',
+    'span.token_label',
+    { tokenTagging: nerTokenTagging },
+    QL.updateTokenLabel
+  );
 };
 
 
