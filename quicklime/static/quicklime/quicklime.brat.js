@@ -269,7 +269,7 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   // For now, we assume that there is only a single NER tagging
   var nerTokenTagging = tokenization.getTokenTaggingsOfType("NER")[0];
 
-  var ner_tag_labels = [];
+  var ner_tag_labels = [], start, ending;
   for (i = 0; i < nerTokenTagging.taggedTokenList.length; i++) {
     var nerTag = nerTokenTagging.taggedTokenList[i];
     var token = tokenization.tokenList.tokenList[nerTag.tokenIndex];
@@ -278,8 +278,8 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
         nerTag.tag != "OTHER" &&   // Serif tag
         nerTag.tag != "NONE")      // Serif tag
     {
-      var start = token_offsets[nerTag.tokenIndex].start;
-      var ending = token_offsets[nerTag.tokenIndex].ending;
+      start = token_offsets[nerTag.tokenIndex].start;
+      ending = token_offsets[nerTag.tokenIndex].ending;
       ner_tag_labels.push([entityID, nerTag.tag, [[start, ending]]]);
     }
     else if (token.text != "." &&
@@ -290,8 +290,8 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
              token.text != "''")
     {
       // Create "empty" NER label for tokens that are not punctuation
-      var start = token_offsets[nerTag.tokenIndex].start;
-      var ending = token_offsets[nerTag.tokenIndex].ending;
+      start = token_offsets[nerTag.tokenIndex].start;
+      ending = token_offsets[nerTag.tokenIndex].ending;
       ner_tag_labels.push([entityID, "___", [[start, ending]]]);
     }
   }
