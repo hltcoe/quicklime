@@ -214,7 +214,9 @@ QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenization
 
   var webFontURLs = [];
 
-  Util.embed('ace_relations_' + tokenization.uuid.uuidString, collData, docData, webFontURLs);
+  var brat_container_id = 'ace_relations_' + tokenization.uuid.uuidString;
+
+  Util.embed(brat_container_id, collData, docData, webFontURLs);
 };
 
 
@@ -294,7 +296,10 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     }
   }
 
-  var docData = { text: sentence_text, entities: ner_tag_labels };
+  var docData = {
+    text: sentence_text,
+    entities: ner_tag_labels
+  };
 
   var brat_container_id = 'tokenization_ner_' + tokenization.uuid.uuidString;
 
@@ -302,7 +307,7 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     QL.showTokenTaggingPopover(event, brat_container_id, collData);
   };
 
-  var dispatcher = Util.embed('tokenization_ner_' + tokenization.uuid.uuidString, collData, docData, webFontURLs);
+  var dispatcher = Util.embed(brat_container_id, collData, docData, webFontURLs);
 
   dispatcher.on('click', showNERPopover);
 
@@ -413,9 +418,7 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   }
 
   var docData = {
-    // Our text of choice
     text     : sentence_text,
-    // The entities entry holds all entity annotations
     entities : pos_tag_labels,
   };
 
@@ -425,16 +428,7 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     QL.showTokenTaggingPopover(event, brat_container_id, collData);
   };
 
-  var dispatcher = Util.embed(
-    // id of the div element where brat should embed the visualisations
-    brat_container_id,
-    // object containing collection data
-    collData,
-    // object containing document data
-    docData,
-    // Array containing locations of the visualisation fonts
-    webFontURLs
-  );
+  var dispatcher = Util.embed(brat_container_id, collData, docData, webFontURLs);
 
   dispatcher.on('click', showPOSPopover);
 
