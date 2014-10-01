@@ -479,43 +479,6 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     }
   };
 
-  /** Update a token's POS label when someone uses the menu created by showPOSPopover()
-   */
-  var updateTokenLabel = function(event) {
-    var token_label_container = $(event.target).parent('div.token_label_container');
-    var data_span_id = token_label_container.attr('data-span-id');
-    var token_index = parseInt(token_label_container.attr('data-token-index'), 10);
-    var token_label = $(this).text();
-
-    // posTokenTagging is defined in the enclosing scope
-    var tagged_token = posTokenTagging.getTaggedTokenWithTokenIndex(token_index);
-    if (tagged_token) {
-      tagged_token.tag = token_label;
-    }
-
-    // BRAT attaches the 'data-span-id' attribute to the <rect>
-    var brat_span_rect = $('rect[data-span-id="' + data_span_id + '"]');
-
-    var brat_span = brat_span_rect.parent('g.span');
-    if (brat_span) {
-      var text = brat_span.find('text');
-      if (text && text[0]) {
-        var text_width_0 = text.width();
-
-        // Update text shown in SVG canvas
-        text[0].textContent = token_label;
-
-        // Update width, horizontal position of SVG rectangle for updated text
-        var dtw = text.width() - text_width_0;
-        brat_span_rect.attr('width', parseInt(brat_span_rect.attr('width'), 10) + dtw);
-        brat_span_rect.attr('x', parseInt(brat_span_rect.attr('x'), 10) - dtw / 2);
-
-        // Update color of SVG rectangle to match color of menu label
-        brat_span_rect.attr('fill', $(this).css('background-color'));
-      }
-    }
-  };
-
   var dispatcher = Util.embed(
     // id of the div element where brat should embed the visualisations
     brat_container_id,
@@ -529,9 +492,13 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
 
   dispatcher.on('click', showPOSPopover);
 
-  $('#' + brat_container_id).on('click', 'span.token_label', updateTokenLabel);
+  $('#' + brat_container_id).on(
+    'click',
+    'span.token_label',
+    { tokenTagging: posTokenTagging },
+    QL.updateTokenLabel
+  );
 };
-
 
 
 /** Add buttons for toggling display of BRAT visualizations
@@ -812,5 +779,45 @@ QL.togglePOSTags = function(tokenizationUUID) {
   else {
     $('#tokenization_pos_button_' + tokenizationUUID.uuidString).removeClass('active');
     $("#tokenization_pos_container_" + tokenizationUUID.uuidString).hide();
+  }
+};
+
+/** Update a token's POS label when someone uses the menu created by showPOSPopover()
+ *
+ * @param {MouseEvent} - This event must have a data.tokenTagging field that points
+ *                        to a Concrete TokenTagging instance
+ */
+QL.updateTokenLabel = function(event) {
+  var token_label_container = $(event.target).parent('div.token_label_container');
+  var data_span_id = token_label_container.attr('data-span-id');
+  var token_index = parseInt(token_label_container.attr('data-token-index'), 10);
+  var token_label = $(this).text();
+
+  // posTokenTagging is defined in the enclosing scope
+  var tagged_token = event.data.tokenTagging.getTaggedTokenWithTokenIndex(token_index);
+  if (tagged_token) {
+    tagged_token.tag = token_label;
+  }
+
+  // BRAT attaches the 'data-span-id' attribute to the <rect>
+  var brat_span_rect = $('rect[data-span-id="' + data_span_id + '"]');
+
+  var brat_span = brat_span_rect.parent('g.span');
+  if (brat_span) {
+    var text = brat_span.find('text');
+    if (text && text[0]) {
+      var text_width_0 = text.width();
+
+      // Update text shown in SVG canvas
+      text[0].textContent = token_label;
+
+      // Update width, horizontal position of SVG rectangle for updated text
+      var dtw = text.width() - text_width_0;
+      brat_span_rect.attr('width', parseInt(brat_span_rect.attr('width'), 10) + dtw);
+      brat_span_rect.attr('x', parseInt(brat_span_rect.attr('x'), 10) - dtw / 2);
+
+      // Update color of SVG rectangle to match color of menu label
+      brat_span_rect.attr('fill', $(this).css('background-color'));
+    }
   }
 };
