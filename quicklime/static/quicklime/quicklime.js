@@ -42,8 +42,8 @@ var QL = {
 };
 
 
-/**
- * @param {String} uuid
+/** Get Communication with UUID from set of Communications already in memory
+ * @param {UUID} uuid
  * @returns {Communication}
  */
 QL.getCommunicationWithUUID = function(uuid) {
