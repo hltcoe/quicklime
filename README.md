@@ -1,11 +1,11 @@
-QuickLime
+Quicklime
 =========
 
-QuickLime is a web-based visualization and annotation tool for working
+Quicklime is a web-based visualization and annotation tool for working
 with [Concrete](https://gitlab.hltcoe.jhu.edu/concrete/concrete)
 objects.
 
-QuickLime includes:
+Quicklime includes:
 
 * JavaScript libraries for visualizing NLP data, including:
     * constituency parse trees
@@ -13,18 +13,18 @@ QuickLime includes:
     * dependency parse graphs
     * Named Entity Recognition (NER) tags
     * Part Of Speech (POS) tags
-* a small Python server that hosts the QuickLime HTML/CSS/JS files and
+* a small Python server that hosts the Quicklime HTML/CSS/JS files and
   handles Thrift RPC calls
 
-concrete-js vs. QuickLime
+concrete-js vs. Quicklime
 -------------------------
 
-The QuickLime project is a visualization and annotation tool that uses
+The Quicklime project is a visualization and annotation tool that uses
 the [concrete-js](https://gitlab.hltcoe.jhu.edu/concrete/quicklime).
 **concrete-js** is a low-level library for manipulating Concrete
-data-structures that does not touch the DOM.  The QuickLime repository
+data-structures that does not touch the DOM.  The Quicklime repository
 includes a copy of the **concrete-js** library - you do not need to
-checkout the **concrete-js** repository in order to use QuickLime.
+checkout the **concrete-js** repository in order to use Quicklime.
 
 Installation
 ------------
