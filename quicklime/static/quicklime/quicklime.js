@@ -272,11 +272,7 @@ QL.addEntityTable = function(parentElementID, comm) {
         var entityCounter_span = $('<span>')
           .addClass('entity_counter')
           .addClass('entity_' + entity.uuid.uuidString)
-          .attr('data-placement', 'top')
-          .attr('data-toggle', 'tooltip')
-          .attr('title', 'UUID ' + entity.uuid.uuidString)
-          .html('Entity ' + counter)
-          .tooltip();
+          .html('Entity ' + counter);
         entity_div.append(entityCounter_span);
 
         var entityTotal_span = $('<span>')
