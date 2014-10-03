@@ -257,15 +257,26 @@ QL.addEntityTable = function(parentElementID, comm) {
     $('#' + parentElementID).append(entityTable_div);
 
     for (var entitySetListIndex in comm.entitySetList) {
-      var entityToolHeading = $('<h4>');
+      var entitySetPanel_div = $('<div>').addClass('panel panel-default');
+
+      var entityToolHeading = $('<a>')
+        .attr('data-toggle', 'collapse')
+        .attr('href', '#collapseEntitySet_' + comm.entitySetList[entitySetListIndex].uuid.uuidString);
       if (comm.entitySetList[entitySetListIndex].metadata) {
         entityToolHeading.html(comm.entitySetList[entitySetListIndex].metadata.tool);
       }
       else {
         entityToolHeading.html('Unknown Entity Tool #' + entitySetListIndex);
       }
-      entityTable_div.append(entityToolHeading);
+      entitySetPanel_div.append(
+        $('<div>').addClass('panel-heading')
+          .append(
+            $('<h4>')
+              .addClass('panel-title')
+              .append(
+                entityToolHeading)));
 
+      var entityList_div = $('<div>');
       for (var entityListIndex in comm.entitySetList[entitySetListIndex].entityList) {
         var counter = parseInt(entityListIndex, 10) + 1;
         var entity = comm.entitySetList[entitySetListIndex].entityList[entityListIndex];
@@ -289,9 +300,18 @@ QL.addEntityTable = function(parentElementID, comm) {
           mentionId_ul.append(mentionId_li);
         }
         entity_div.append(mentionId_ul);
-
-        entityTable_div.append(entity_div);
+        entityList_div.append(entity_div);
       }
+      entitySetPanel_div.append(
+        $('<div>')
+          .attr('id', 'collapseEntitySet_' + comm.entitySetList[entitySetListIndex].uuid.uuidString)
+          .addClass('panel-collapse collapse in')
+          .append(
+            $('<div>')
+              .addClass('panel-body')
+              .append(
+                entityList_div)));
+      entityTable_div.append(entitySetPanel_div);
     }
   }
 };
@@ -387,16 +407,25 @@ QL.addSituationMentionTable = function(parentElementID, comm) {
     $('#' + parentElementID).append(situationMentionTable_div);
 
     for (var smsIndex in comm.situationMentionSetList) {
+      var situationMentionPanel_div = $('<div>').addClass('panel panel-default');
       var situationMentionSet = comm.situationMentionSetList[smsIndex];
 
-      var situationMentionToolHeading = $('<h4>');
+      var situationMentionToolHeading = $('<a>')
+        .attr('data-toggle', 'collapse')
+        .attr('href', '#collapseSituationMentionSet_' + situationMentionSet.uuid.uuidString);
       if (situationMentionSet.metadata) {
         situationMentionToolHeading.html(situationMentionSet.metadata.tool);
       }
       else {
         situationMentionToolHeading.html('Unknown Situation Mention Tool #' + smsIndex);
       }
-      situationMentionTable_div.append(situationMentionToolHeading);
+      situationMentionPanel_div.append(
+        $('<div>').addClass('panel-heading')
+          .append(
+            $('<h4>')
+              .addClass('panel-title')
+              .append(
+                situationMentionToolHeading)));
 
       var situationMentionList_ul = $('<ul>').addClass('entity_list');
       for (var situationMentionIndex in situationMentionSet.mentionList) {
@@ -441,7 +470,16 @@ QL.addSituationMentionTable = function(parentElementID, comm) {
         }
         situationMentionList_ul.append(situationMention_li);
       }
-      situationMentionTable_div.append(situationMentionList_ul);
+      situationMentionPanel_div.append(
+        $('<div>')
+          .attr('id', 'collapseSituationMentionSet_' + situationMentionSet.uuid.uuidString)
+          .addClass('panel-collapse collapse in')
+          .append(
+            $('<div>')
+              .addClass('panel-body')
+              .append(
+                situationMentionList_ul)));
+      situationMentionTable_div.append(situationMentionPanel_div);
     }
   }
 };
