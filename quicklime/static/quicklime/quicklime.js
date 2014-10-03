@@ -209,8 +209,9 @@ QL.addCommunication = function(parentElementID, comm) {
         sentence_div.append($('<div>')
           .addClass('dagre_parse')
           .attr('id', 'ace_relations_' + tokenization.uuid.uuidString));
+
+        section_div.append(sentence_div);
       }
-      section_div.append(sentence_div);
     }
     document_div.append(section_div);
   }
