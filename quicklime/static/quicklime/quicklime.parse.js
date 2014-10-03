@@ -156,7 +156,7 @@ QL.addTokenizationParseControls = function(comm) {
                      addOrToggleDependencyParse)
               .css('margin-right', '1em')
               .html("DP" + dependencyParseIndex);
-            QL.addMetadataTooltip(dependency_parse_button, dependencyParseList[dependencyParseIndex].metadata);
+            QL.addMetadataTooltip(dependency_parse_button, tokenization.dependencyParseList[dependencyParseIndex].metadata);
             tokenization_controls_div.append(dependency_parse_button);
           }
         }
