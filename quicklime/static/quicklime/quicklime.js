@@ -405,7 +405,7 @@ QL.addSituationMentionTable = function(parentElementID, comm) {
           .append(
             $('<span>')
               .addClass('situation_mention_' + situationMention.uuid.uuidString)
-              .html(situationMention.situationType));
+              .html(situationMention.situationType + ': ' + situationMention.text));
         for (var argumentListIndex in situationMention.argumentList) {
           var mentionArgument = situationMention.argumentList[argumentListIndex];
           if (mentionArgument.entityMentionId) {
