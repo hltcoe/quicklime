@@ -139,6 +139,7 @@ QL.addTokenizationParseControls = function(comm) {
                      addOrToggleConstituentParse)
               .css('margin-right', '1em')
               .html("CP" + constituentParseIndex);
+            QL.addMetadataTooltip(constituent_parse_button, tokenization.parseList[constituentParseIndex].metadata);
             tokenization_controls_div.append(constituent_parse_button);
           }
         }
@@ -155,6 +156,7 @@ QL.addTokenizationParseControls = function(comm) {
                      addOrToggleDependencyParse)
               .css('margin-right', '1em')
               .html("DP" + dependencyParseIndex);
+            QL.addMetadataTooltip(dependency_parse_button, dependencyParseList[dependencyParseIndex].metadata);
             tokenization_controls_div.append(dependency_parse_button);
           }
         }

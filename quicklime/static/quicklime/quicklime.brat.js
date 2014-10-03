@@ -563,7 +563,8 @@ QL.addTokenizationBRATControls = function(comm) {
 
         var tokenization_controls_div = $('#tokenization_controls_' + tokenization.uuid.uuidString);
 
-	if (tokenization.getTokenTaggingsOfType("NER").length > 0) {
+        var NERtokenTaggings = tokenization.getTokenTaggingsOfType("NER");
+        if (NERtokenTaggings.length > 0) {
           var ner_tag_button = $('<button>')
             .addClass('btn btn-default btn-xs')
             .attr('id', 'tokenization_ner_button_' + tokenization.uuid.uuidString)
@@ -572,10 +573,13 @@ QL.addTokenizationBRATControls = function(comm) {
                    addOrToggleNERTags)
             .css('margin-right', '1em')
             .html("NER");
+          // We currently ignore all but the first NER TokenTagging
+          QL.addMetadataTooltip(ner_tag_button, NERtokenTaggings[0].metadata);
           tokenization_controls_div.append(ner_tag_button);
-	}
+        }
 
-	if (tokenization.getTokenTaggingsOfType("POS").length > 0) {
+        var POStokenTaggings = tokenization.getTokenTaggingsOfType("POS");
+        if (POStokenTaggings.length > 0) {
           var pos_tag_button = $('<button>')
             .addClass('btn btn-default btn-xs')
             .attr('id', 'tokenization_pos_button_' + tokenization.uuid.uuidString)
@@ -584,8 +588,10 @@ QL.addTokenizationBRATControls = function(comm) {
                    addOrTogglePOSTags)
             .css('margin-right', '1em')
             .html("POS");
+          // We currently ignore all but the first POS TokenTagging
+          QL.addMetadataTooltip(pos_tag_button, POStokenTaggings[0].metadata);
           tokenization_controls_div.append(pos_tag_button);
-	}
+        }
 
         if (hasSerifRelationsData) {
           var relation_button = $('<button>')
@@ -596,7 +602,6 @@ QL.addTokenizationBRATControls = function(comm) {
                    addOrToggleSerifACERelations)
             .css('margin-right', '1em')
             .html("Rel");
-
           if (!tokenizationsWithSerifRelations[tokenization.uuid.uuidString]) {
             relation_button.prop('disabled', true);
           }

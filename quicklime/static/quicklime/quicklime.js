@@ -367,6 +367,19 @@ QL.addEntityMouseoverHighlighting = function(comm) {
 };
 
 
+/** Add a tooltip with Concrete Metadata information to a jQuery object
+ * @param {jQuery object} obj - jQuery object for DOM element
+ * @param {Metadata} metadata
+ */
+QL.addMetadataTooltip = function(obj, metadata) {
+  obj
+    .attr('data-placement', 'top')
+    .attr('data-toggle', 'tooltip')
+    .attr('title', metadata.tool)
+    .tooltip();
+};
+
+
 /** Add a "table" listing SituationMentions in a Communication
  * @param {String} parentElementID - DOM ID of element to attach Communication text to
  * @param {Communication} comm
