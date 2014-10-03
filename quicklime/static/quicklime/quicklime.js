@@ -370,7 +370,7 @@ QL.addEntityMouseoverHighlighting = function(comm) {
  */
 QL.addMetadataTooltip = function(obj, metadata) {
   obj
-    .attr('data-placement', 'top')
+    .attr('data-placement', 'auto top')
     .attr('data-toggle', 'tooltip')
     .attr('title', metadata.tool)
     .tooltip();
