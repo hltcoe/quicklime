@@ -22,7 +22,7 @@ QL.addConstituentParse = function(communicationUUID, tokenizationUUID, constitue
     // We add 2 to SVG width to compensate for border
     $('<div>')
       .addClass('parse_label constituent_parse_label')
-      .html("CP")
+      .html("CP" + constituentParseIndex + ": "+ tokenization.parseList[constituentParseIndex].metadata.tool)
       .width(2 + $("#constituent_parse_" + tokenizationUUID.uuidString + "_" + constituentParseIndex + " svg").width())
   );
 
@@ -53,7 +53,7 @@ QL.addDependencyParse = function(communicationUUID, tokenizationUUID, dependency
     // We add 2 to SVG width to compensate for border
     $('<div>')
       .addClass('parse_label dependency_parse_label_' + dependencyParseIndex)
-      .html("DP" + dependencyParseIndex)
+      .html("DP" + dependencyParseIndex + ": "+ tokenization.dependencyParseList[dependencyParseIndex].metadata.tool)
       .width(2 + $("#dependency_parse_" + tokenizationUUID.uuidString + "_" + dependencyParseIndex + " svg").width())
   );
 
