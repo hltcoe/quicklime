@@ -43,8 +43,8 @@ var QL = {
 
 
 /** Get Communication with UUID from set of Communications already in memory
- * @param {UUID} uuid
- * @returns {Communication}
+ * @param {concrete.UUID} uuid
+ * @returns {concrete.Communication}
  */
 QL.getCommunicationWithUUID = function(uuid) {
   return QL._communications[uuid.uuidString];
@@ -86,7 +86,7 @@ QL.getCommunicationWithUUID = function(uuid) {
  * associated with an Entity or EntityMention.
  *
  * @param {String} parentElementID - DOM ID of element to attach Communication text to
- * @param {Communication} comm
+ * @param {concrete.Communication} comm
  */
 QL.addCommunication = function(parentElementID, comm) {
 
@@ -94,7 +94,7 @@ QL.addCommunication = function(parentElementID, comm) {
    *  To specify multiple classes, create a single string with the class
    *  names separated by spaces.
    *
-   * @param {TokenRefSequence} tokenRefSequence
+   * @param {concrete.TokenRefSequence} tokenRefSequence
    * @param {String} className - DOM class(es) to be added to token <span>'s
    */
   function addDOMClassForTokenRefSequence(tokenRefSequence, className) {
@@ -249,7 +249,7 @@ QL.addCommunication = function(parentElementID, comm) {
 
 /** Add a list of entities, with their mentions, to the DOM
  * @param {String} parentElementID - DOM ID of element to attach table to
- * @param {Communication} comm
+ * @param {concrete.Communication} comm
  */
 QL.addEntityTable = function(parentElementID, comm) {
   if (comm.entitySetList) {
@@ -323,7 +323,7 @@ QL.addEntityTable = function(parentElementID, comm) {
  * <span>'s associated with the EntityMentions for that Entity, and
  * add mouseover event handlers to those <span>'s.
  *
- * @param {Communication} comm
+ * @param {concrete.Communication} comm
  */
 QL.addEntityMouseoverHighlighting = function(comm) {
   /**
@@ -386,20 +386,21 @@ QL.addEntityMouseoverHighlighting = function(comm) {
 
 /** Add a tooltip with Concrete Metadata information to a jQuery object
  * @param {jQuery object} obj - jQuery object for DOM element
- * @param {Metadata} metadata
+ * @param {concrete.Metadata} metadata
  */
 QL.addMetadataTooltip = function(obj, metadata) {
   obj
     .attr('data-placement', 'auto top')
     .attr('data-toggle', 'tooltip')
-    .attr('title', metadata.tool)
+//    .attr('title', metadata.tool)
+    .attr('title', 'thequickbrownfoxjumpedoverthelazysleepingdogthequickbrownfoxjumpedoverthelazysleepingdog')
     .tooltip();
 };
 
 
 /** Add a "table" listing SituationMentions in a Communication
  * @param {String} parentElementID - DOM ID of element to attach Communication text to
- * @param {Communication} comm
+ * @param {concrete.Communication} comm
  */
 QL.addSituationMentionTable = function(parentElementID, comm) {
   if (comm.situationMentionSetList) {
@@ -515,8 +516,8 @@ QL.cleanedTokenText = function(tokenText) {
  *  If not all tokens in the TokenRefSequence are adjacent, the HTML entity
  *  for '...' will be inserted where there are gaps.
  *
- * @param {Communication} comm
- * @param {TokenRefSequence] tokenRefSequence
+ * @param {concrete.Communication} comm
+ * @param {concrete.TokenRefSequence] tokenRefSequence
  * @returns {String}
  */
 QL.getTextForTokenRefSequence = function(comm, tokenRefSequence) {

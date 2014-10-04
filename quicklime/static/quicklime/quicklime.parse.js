@@ -79,7 +79,7 @@ QL.parse.addDependencyParse = function(communicationUUID, tokenizationUUID, depe
  *   +   <button id="dependency_parse_button_[TOKENIZATION_UUID]_1>
  *   +   ...
  *
- * @param {Communication} comm
+ * @param {concrete.Communication} comm
  */
 QL.parse.addTokenizationParseControls = function(comm) {
   /** Event handler for toggling constituent parse diagrams
@@ -169,7 +169,7 @@ QL.parse.addTokenizationParseControls = function(comm) {
 
 /** Draw constituent parse diagram
  * @param {String} containerSelectorString
- * @param {Tokenization} tokenization
+ * @param {concrete.Tokenization} tokenization
  */
 QL.parse.drawConstituentParse = function(containerSelectorString, tokenization, constituentParseIndex) {
   var
@@ -204,7 +204,7 @@ QL.parse.drawConstituentParse = function(containerSelectorString, tokenization, 
 
 /** Draw dependency parse diagram
  * @param {String} containerSelectorString
- * @param {Tokenization} tokenization
+ * @param {concrete.Tokenization} tokenization
  * @param {Number} dependencyParseIndex
  */
 QL.parse.drawDependencyParse = function(containerSelectorString, tokenization, dependencyParseIndex) {

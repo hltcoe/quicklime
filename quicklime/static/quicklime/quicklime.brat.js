@@ -455,7 +455,7 @@ QL.brat.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID)
  *   +   <button id="ace_relations_button_[TOKENIZATION_UUID]">
  *   +   ...
  *
- * @param {Communication} comm
+ * @param {concrete.Communication} comm
  */
 QL.brat.addTokenizationBRATControls = function(comm) {
   /** Event handler for toggling an NER token tagging diagram
@@ -500,7 +500,7 @@ QL.brat.addTokenizationBRATControls = function(comm) {
   }
 
   /** Returns a boolean iff a Communication has SituationMention data from the specified tool
-   * @param {Communication} comm
+   * @param {concrete.Communication} comm
    * @param {String} toolname
    * @returns {Boolean}
    */
@@ -514,7 +514,7 @@ QL.brat.addTokenizationBRATControls = function(comm) {
   }
 
   /** Get a flat array of all Tokenization objects in the Communication
-   * @params {Communication} comm
+   * @params {concrete.Communication} comm
    * @returns {Array} The Tokenization objects
    */
   function getAllTokenizations(comm) {
@@ -532,7 +532,7 @@ QL.brat.addTokenizationBRATControls = function(comm) {
   /** Get the Tokenizations that contain EntityMentions that are part of
    *  a SituationMention created by the specified tool
    *
-   * @params {Communication} comm
+   * @params {concrete.Communication} comm
    * @params {String} toolname - Name of tool that created the SituationMentions
    * @returns {Object} Object keys are uuidStrings of matching Tokenizations
    */
@@ -619,7 +619,7 @@ QL.brat.addTokenizationBRATControls = function(comm) {
  *  which EntityMentions are in a SituationMention argumentList created
  *  by the specified toolname
  *
- * @params {Communication} comm
+ * @params {concrete.Communication} comm
  * @params {String} toolname
  * @returns {Object} An object whose keys are the uuidStrings for relevant EntityMentions
  */
