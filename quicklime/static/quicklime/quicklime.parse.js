@@ -1,8 +1,8 @@
 QL.parse = {};
 
 /** Create and display a constituent parse diagram
- * @param {String} communicationUUID
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} communicationUUID
+ * @param {concrete.UUID} tokenizationUUID
  * @param {Number} constituentParseIndex
  */
 QL.parse.addConstituentParse = function(communicationUUID, tokenizationUUID, constituentParseIndex) {
@@ -32,8 +32,8 @@ QL.parse.addConstituentParse = function(communicationUUID, tokenizationUUID, con
 
 
 /** Create and display a dependency parse diagram
- * @param {String} communicationUUID
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} communicationUUID
+ * @param {concrete.UUID} tokenizationUUID
  * @param {Number} dependencyParseIndex
  */
 QL.parse.addDependencyParse = function(communicationUUID, tokenizationUUID, dependencyParseIndex) {
@@ -276,7 +276,7 @@ QL.parse.drawParse = function(containerSelectorString, digraph, nodeSep) {
 
 
 /** Check if constituent parse diagram has already been added to DOM
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} tokenizationUUID
  * @param {Number} constituentParseIndex
  * @returns {Boolean}
  */
@@ -291,7 +291,7 @@ QL.parse.domHasConstituentParse = function(tokenizationUUID, constituentParseInd
 
 
 /** Check if dependency parse diagram has already been added to DOM
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} tokenizationUUID
  * @param {Number} dependencyParseIndex
  * @returns {Boolean}
  */
@@ -306,7 +306,7 @@ QL.parse.domHasDependencyParse = function(tokenizationUUID, dependencyParseIndex
 
 
 /** Toggle display of constituent parse diagram
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} tokenizationUUID
  * @param {Number} constituentParseIndex
  * @returns {Boolean}
  */
@@ -323,7 +323,7 @@ QL.parse.toggleConstituentParse = function(tokenizationUUID, constituentParseInd
 
 
 /** Toggle display of dependency parse diagram
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} tokenizationUUID
  * @param {Number} dependencyParseIndex
  */
 QL.parse.toggleDependencyParse = function(tokenizationUUID, dependencyParseIndex) {

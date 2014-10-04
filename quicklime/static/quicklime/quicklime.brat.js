@@ -34,9 +34,9 @@ QL.brat.SERIF_RELATIONS = "Serif: relations";
  *  Token.text, the Serif ACE relations diagram [currently] uses the
  *  token strings specified by the string offsets in Token.textSpan.
  *
- * @param {String} communicationUUID
- * @param {String} sentenceUUID
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} communicationUUID
+ * @param {concrete.UUID} sentenceUUID
+ * @param {concrete.UUID} tokenizationUUID
  */
 QL.brat.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var comm = QL.getCommunicationWithUUID(communicationUUID);
@@ -223,9 +223,9 @@ QL.brat.addSerifACERelations = function(communicationUUID, sentenceUUID, tokeniz
 
 
 /** Create and display an NER token tagging diagram
- * @param {String} communicationUUID
- * @param {String} sentenceUUID
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} communicationUUID
+ * @param {concrete.UUID} sentenceUUID
+ * @param {concrete.UUID} tokenizationUUID
  */
 QL.brat.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var i;
@@ -323,9 +323,9 @@ QL.brat.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID)
 
 
 /** Create and display a POS token tagging diagram
- * @param {String} communicationUUID
- * @param {String} sentenceUUID
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} communicationUUID
+ * @param {concrete.UUID} sentenceUUID
+ * @param {concrete.UUID} tokenizationUUID
  */
 QL.brat.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var i;
@@ -644,7 +644,7 @@ QL.brat.getRelationEntityMentionSet = function(comm, toolname) {
 
 
 /** Check if Serif ACE relations diagram has already been added to DOM
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} tokenizationUUID
  * @returns {Boolean}
  */
 QL.brat.hasSerifACERelations = function(tokenizationUUID) {
@@ -658,7 +658,7 @@ QL.brat.hasSerifACERelations = function(tokenizationUUID) {
 
 
 /** Check if NER token tagging diagram has already been added to DOM
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} tokenizationUUID
  * @returns {Boolean}
  */
 QL.brat.hasNERTags = function(tokenizationUUID) {
@@ -672,7 +672,7 @@ QL.brat.hasNERTags = function(tokenizationUUID) {
 
 
 /** Check if POS token tagging diagram has already been added to DOM
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} tokenizationUUID
  * @returns {Boolean}
  */
 QL.brat.hasPOSTags = function(tokenizationUUID) {
@@ -766,7 +766,7 @@ QL.brat.showTokenTaggingPopover = function(event, brat_container_id, collData) {
 
 
 /** Toggle display of Serif ACE relations diagram
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} tokenizationUUID
  */
 QL.brat.toggleSerifACERelations = function(tokenizationUUID) {
   if ($("#ace_relations_" + tokenizationUUID.uuidString).css('display') == 'none') {
@@ -781,7 +781,7 @@ QL.brat.toggleSerifACERelations = function(tokenizationUUID) {
 
 
 /** Toggle display of NER token tagging diagram
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} tokenizationUUID
  */
 QL.brat.toggleNERTags = function(tokenizationUUID) {
   if ($("#tokenization_ner_container_" + tokenizationUUID.uuidString).css('display') == 'none') {
@@ -796,7 +796,7 @@ QL.brat.toggleNERTags = function(tokenizationUUID) {
 
 
 /** Toggle display of POS token tagging diagram
- * @param {String} tokenizationUUID
+ * @param {concrete.UUID} tokenizationUUID
  */
 QL.brat.togglePOSTags = function(tokenizationUUID) {
   if ($("#tokenization_pos_container_" + tokenizationUUID.uuidString).css('display') == 'none') {
