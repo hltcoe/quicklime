@@ -1,3 +1,5 @@
+QL.brat = {};
+
 // DANGER: Monkeypatching BRAT
 //
 // Instead of monkeypatching, we could modify the local copy of the
@@ -23,7 +25,7 @@ $.browser = {};
 
 
 
-QL.SERIF_RELATIONS = "Serif: relations";
+QL.brat.SERIF_RELATIONS = "Serif: relations";
 
 
 /** Create and display a Serif ACE relations diagram
@@ -36,7 +38,7 @@ QL.SERIF_RELATIONS = "Serif: relations";
  * @param {String} sentenceUUID
  * @param {String} tokenizationUUID
  */
-QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID) {
+QL.brat.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var comm = QL.getCommunicationWithUUID(communicationUUID);
   var sentence = comm.getSentenceWithUUID(sentenceUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
@@ -46,7 +48,7 @@ QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenization
 
   // "Set" of EntityMention uuidStrings where the EntityMention is part of a SituationMention
   // created by Serif Relations
-  var relationEntityMentionSet = QL.getRelationEntityMentionSet(comm, QL.SERIF_RELATIONS);
+  var relationEntityMentionSet = QL.brat.getRelationEntityMentionSet(comm, QL.brat.SERIF_RELATIONS);
 
   var
     argumentIndex,
@@ -88,7 +90,7 @@ QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenization
   var relationLabels = [];
   for (situationMentionSetIndex in comm.situationMentionSetList) {
     if (comm.situationMentionSetList[situationMentionSetIndex].mentionList) {
-      if (comm.situationMentionSetList[situationMentionSetIndex].metadata.tool === QL.SERIF_RELATIONS) {
+      if (comm.situationMentionSetList[situationMentionSetIndex].metadata.tool === QL.brat.SERIF_RELATIONS) {
         situationMentionList = comm.situationMentionSetList[situationMentionSetIndex].mentionList;
         for (situationMentionIndex in situationMentionList) {
           situationMention = situationMentionList[situationMentionIndex];
@@ -225,7 +227,7 @@ QL.addSerifACERelations = function(communicationUUID, sentenceUUID, tokenization
  * @param {String} sentenceUUID
  * @param {String} tokenizationUUID
  */
-QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
+QL.brat.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var i;
 
   var comm = QL.getCommunicationWithUUID(communicationUUID);
@@ -304,7 +306,7 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var brat_container_id = 'tokenization_ner_' + tokenization.uuid.uuidString;
 
   var showNERPopover = function(event) {
-    QL.showTokenTaggingPopover(event, brat_container_id, collData);
+    QL.brat.showTokenTaggingPopover(event, brat_container_id, collData);
   };
 
   var dispatcher = Util.embed(brat_container_id, collData, docData, webFontURLs);
@@ -315,7 +317,7 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     'click',
     'span.token_label',
     { tokenTagging: nerTokenTagging },
-    QL.updateTokenLabel
+    QL.brat.updateTokenLabel
   );
 };
 
@@ -325,7 +327,7 @@ QL.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
  * @param {String} sentenceUUID
  * @param {String} tokenizationUUID
  */
-QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
+QL.brat.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var i;
 
   var comm = QL.getCommunicationWithUUID(communicationUUID);
@@ -425,7 +427,7 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
   var brat_container_id = 'tokenization_pos_' + tokenization.uuid.uuidString;
 
   var showPOSPopover = function(event) {
-    QL.showTokenTaggingPopover(event, brat_container_id, collData);
+    QL.brat.showTokenTaggingPopover(event, brat_container_id, collData);
   };
 
   var dispatcher = Util.embed(brat_container_id, collData, docData, webFontURLs);
@@ -436,7 +438,7 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
     'click',
     'span.token_label',
     { tokenTagging: posTokenTagging },
-    QL.updateTokenLabel
+    QL.brat.updateTokenLabel
   );
 };
 
@@ -455,16 +457,16 @@ QL.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
  *
  * @param {Communication} comm
  */
-QL.addTokenizationBRATControls = function(comm) {
+QL.brat.addTokenizationBRATControls = function(comm) {
   /** Event handler for toggling an NER token tagging diagram
    * @param {MouseEvent} event
    */
   function addOrToggleNERTags(event) {
-    if (QL.hasNERTags(event.data.tokenization_uuid)) {
-      QL.toggleNERTags(event.data.tokenization_uuid);
+    if (QL.brat.hasNERTags(event.data.tokenization_uuid)) {
+      QL.brat.toggleNERTags(event.data.tokenization_uuid);
     }
     else {
-      QL.addNERTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+      QL.brat.addNERTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
       $('#tokenization_ner_button_' + event.data.tokenization_uuid.uuidString).addClass('active');
       $("#tokenization_ner_container_" + event.data.tokenization_uuid.uuidString).show();
     }
@@ -474,11 +476,11 @@ QL.addTokenizationBRATControls = function(comm) {
    * @param {MouseEvent} event
    */
   function addOrTogglePOSTags(event) {
-    if (QL.hasPOSTags(event.data.tokenization_uuid)) {
-      QL.togglePOSTags(event.data.tokenization_uuid);
+    if (QL.brat.hasPOSTags(event.data.tokenization_uuid)) {
+      QL.brat.togglePOSTags(event.data.tokenization_uuid);
     }
     else {
-      QL.addPOSTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+      QL.brat.addPOSTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
       $('#tokenization_pos_button_' + event.data.tokenization_uuid.uuidString).addClass('active');
       $("#tokenization_pos_container_" + event.data.tokenization_uuid.uuidString).show();
     }
@@ -488,11 +490,11 @@ QL.addTokenizationBRATControls = function(comm) {
    * @param {MouseEvent} event
    */
   function addOrToggleSerifACERelations(event) {
-    if (QL.hasSerifACERelations(event.data.tokenization_uuid)) {
-      QL.toggleSerifACERelations(event.data.tokenization_uuid);
+    if (QL.brat.hasSerifACERelations(event.data.tokenization_uuid)) {
+      QL.brat.toggleSerifACERelations(event.data.tokenization_uuid);
     }
     else {
-      QL.addSerifACERelations(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+      QL.brat.addSerifACERelations(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
       $('#ace_relations_button_' + event.data.tokenization_uuid.uuidString).addClass('active');
     }
   }
@@ -536,7 +538,7 @@ QL.addTokenizationBRATControls = function(comm) {
    */
   function getTokenizationsWithSituationMentions(comm, toolname) {
     var tokenizationsWithSerifRelations = {};
-    var relationEntityMentionSet = QL.getRelationEntityMentionSet(comm, toolname);
+    var relationEntityMentionSet = QL.brat.getRelationEntityMentionSet(comm, toolname);
 
     for (var entityMentionSetIndex in comm.entityMentionSetList) {
       if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
@@ -551,8 +553,8 @@ QL.addTokenizationBRATControls = function(comm) {
     return tokenizationsWithSerifRelations;
   }
 
-  var hasSerifRelationsData = commHasSituationMentionData(comm, QL.SERIF_RELATIONS);
-  var tokenizationsWithSerifRelations = getTokenizationsWithSituationMentions(comm, QL.SERIF_RELATIONS);
+  var hasSerifRelationsData = commHasSituationMentionData(comm, QL.brat.SERIF_RELATIONS);
+  var tokenizationsWithSerifRelations = getTokenizationsWithSituationMentions(comm, QL.brat.SERIF_RELATIONS);
 
   for (var sectionIndex in comm.sectionList) {
     var section = comm.sectionList[sectionIndex];
@@ -621,7 +623,7 @@ QL.addTokenizationBRATControls = function(comm) {
  * @params {String} toolname
  * @returns {Object} An object whose keys are the uuidStrings for relevant EntityMentions
  */
-QL.getRelationEntityMentionSet = function(comm, toolname) {
+QL.brat.getRelationEntityMentionSet = function(comm, toolname) {
   var relationEntityMentionSet = {};
 
   for (var situationMentionSetIndex in comm.situationMentionSetList) {
@@ -645,7 +647,7 @@ QL.getRelationEntityMentionSet = function(comm, toolname) {
  * @param {String} tokenizationUUID
  * @returns {Boolean}
  */
-QL.hasSerifACERelations = function(tokenizationUUID) {
+QL.brat.hasSerifACERelations = function(tokenizationUUID) {
   if ($("#ace_relations_" + tokenizationUUID.uuidString + " svg").length > 0) {
     return true;
   }
@@ -659,7 +661,7 @@ QL.hasSerifACERelations = function(tokenizationUUID) {
  * @param {String} tokenizationUUID
  * @returns {Boolean}
  */
-QL.hasNERTags = function(tokenizationUUID) {
+QL.brat.hasNERTags = function(tokenizationUUID) {
   if ($("#tokenization_ner_" + tokenizationUUID.uuidString + " svg").length > 0) {
     return true;
   }
@@ -673,7 +675,7 @@ QL.hasNERTags = function(tokenizationUUID) {
  * @param {String} tokenizationUUID
  * @returns {Boolean}
  */
-QL.hasPOSTags = function(tokenizationUUID) {
+QL.brat.hasPOSTags = function(tokenizationUUID) {
   if ($("#tokenization_pos_" + tokenizationUUID.uuidString + " svg").length > 0) {
     return true;
   }
@@ -685,13 +687,13 @@ QL.hasPOSTags = function(tokenizationUUID) {
 
 /** Create a popover TokenTagging menu when clicking on labels in BRAT visualization
  *
- * NOTE: QL.showTokenTaggingPopover() and QL.updateTokenLabel() are tightly coupled
+ * NOTE: QL.brat.showTokenTaggingPopover() and QL.brat.updateTokenLabel() are tightly coupled
  *
  * @param {MouseEvent} event
  * @param {String} brat_container_id - DOM ID of element containing the BRAT SVG
  * @param {Object} collData - Collection data in the format used by BRAT's Util.embed()
  */
-QL.showTokenTaggingPopover = function(event, brat_container_id, collData) {
+QL.brat.showTokenTaggingPopover = function(event, brat_container_id, collData) {
   /* The SVG DOM for the BRAT labels looks like:
    *
    *   <g class="span">
@@ -766,7 +768,7 @@ QL.showTokenTaggingPopover = function(event, brat_container_id, collData) {
 /** Toggle display of Serif ACE relations diagram
  * @param {String} tokenizationUUID
  */
-QL.toggleSerifACERelations = function(tokenizationUUID) {
+QL.brat.toggleSerifACERelations = function(tokenizationUUID) {
   if ($("#ace_relations_" + tokenizationUUID.uuidString).css('display') == 'none') {
     $('#ace_relations_button_' + tokenizationUUID.uuidString).addClass('active');
     $("#ace_relations_" + tokenizationUUID.uuidString).show();
@@ -781,7 +783,7 @@ QL.toggleSerifACERelations = function(tokenizationUUID) {
 /** Toggle display of NER token tagging diagram
  * @param {String} tokenizationUUID
  */
-QL.toggleNERTags = function(tokenizationUUID) {
+QL.brat.toggleNERTags = function(tokenizationUUID) {
   if ($("#tokenization_ner_container_" + tokenizationUUID.uuidString).css('display') == 'none') {
     $('#tokenization_ner_button_' + tokenizationUUID.uuidString).addClass('active');
     $("#tokenization_ner_container_" + tokenizationUUID.uuidString).show();
@@ -796,7 +798,7 @@ QL.toggleNERTags = function(tokenizationUUID) {
 /** Toggle display of POS token tagging diagram
  * @param {String} tokenizationUUID
  */
-QL.togglePOSTags = function(tokenizationUUID) {
+QL.brat.togglePOSTags = function(tokenizationUUID) {
   if ($("#tokenization_pos_container_" + tokenizationUUID.uuidString).css('display') == 'none') {
     $('#tokenization_pos_button_' + tokenizationUUID.uuidString).addClass('active');
     $("#tokenization_pos_container_" + tokenizationUUID.uuidString).show();
@@ -808,14 +810,14 @@ QL.togglePOSTags = function(tokenizationUUID) {
 };
 
 
-/** Update a TokenTag in response to clicking on a menu created by QL.showTokenTaggingPopover()
+/** Update a TokenTag in response to clicking on a menu created by QL.brat.showTokenTaggingPopover()
  *
- * NOTE: QL.showTokenTaggingPopover() and QL.updateTokenLabel() are tightly coupled
+ * NOTE: QL.brat.showTokenTaggingPopover() and QL.brat.updateTokenLabel() are tightly coupled
  *
  * @param {MouseEvent} event - This event must have a data.tokenTagging field that
  *                             points to a Concrete TokenTagging instance
  */
-QL.updateTokenLabel = function(event) {
+QL.brat.updateTokenLabel = function(event) {
   var token_label_container = $(event.target).parent('div.token_label_container');
   var data_span_id = token_label_container.attr('data-span-id');
   var token_index = parseInt(token_label_container.attr('data-token-index'), 10);

@@ -1,10 +1,11 @@
+QL.parse = {};
 
 /** Create and display a constituent parse diagram
  * @param {String} communicationUUID
  * @param {String} tokenizationUUID
  * @param {Number} constituentParseIndex
  */
-QL.addConstituentParse = function(communicationUUID, tokenizationUUID, constituentParseIndex) {
+QL.parse.addConstituentParse = function(communicationUUID, tokenizationUUID, constituentParseIndex) {
   var comm = QL.getCommunicationWithUUID(communicationUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
 
@@ -12,7 +13,7 @@ QL.addConstituentParse = function(communicationUUID, tokenizationUUID, constitue
     $('<div>')
       .attr("id", "constituent_parse_" + tokenizationUUID.uuidString + "_" + constituentParseIndex)
   );
-  QL.drawConstituentParse(
+  QL.parse.drawConstituentParse(
     "#constituent_parse_" + tokenizationUUID.uuidString + "_" + constituentParseIndex,
     tokenization,
     constituentParseIndex);
@@ -35,7 +36,7 @@ QL.addConstituentParse = function(communicationUUID, tokenizationUUID, constitue
  * @param {String} tokenizationUUID
  * @param {Number} dependencyParseIndex
  */
-QL.addDependencyParse = function(communicationUUID, tokenizationUUID, dependencyParseIndex) {
+QL.parse.addDependencyParse = function(communicationUUID, tokenizationUUID, dependencyParseIndex) {
   var comm = QL.getCommunicationWithUUID(communicationUUID);
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
 
@@ -43,7 +44,7 @@ QL.addDependencyParse = function(communicationUUID, tokenizationUUID, dependency
     $('<div>')
       .attr("id", "dependency_parse_" + tokenizationUUID.uuidString + "_" + dependencyParseIndex)
   );
-  QL.drawDependencyParse(
+  QL.parse.drawDependencyParse(
     "#dependency_parse_" + tokenizationUUID.uuidString + "_" + dependencyParseIndex,
     tokenization,
     dependencyParseIndex);
@@ -80,19 +81,19 @@ QL.addDependencyParse = function(communicationUUID, tokenizationUUID, dependency
  *
  * @param {Communication} comm
  */
-QL.addTokenizationParseControls = function(comm) {
+QL.parse.addTokenizationParseControls = function(comm) {
   /** Event handler for toggling constituent parse diagrams
    * @param {MouseEvent} event
    */
   function addOrToggleConstituentParse(event) {
-    if (QL.domHasConstituentParse(event.data.tokenization_uuid, event.data.constituentParseIndex)) {
-      QL.toggleConstituentParse(
+    if (QL.parse.domHasConstituentParse(event.data.tokenization_uuid, event.data.constituentParseIndex)) {
+      QL.parse.toggleConstituentParse(
         event.data.tokenization_uuid,
         event.data.constituentParseIndex
       );
     }
     else {
-      QL.addConstituentParse(
+      QL.parse.addConstituentParse(
         event.data.comm_uuid,
         event.data.tokenization_uuid,
         event.data.constituentParseIndex
@@ -104,14 +105,14 @@ QL.addTokenizationParseControls = function(comm) {
    * @param {MouseEvent} event
    */
   function addOrToggleDependencyParse(event) {
-    if (QL.domHasDependencyParse(event.data.tokenization_uuid, event.data.dependencyParseIndex)) {
-      QL.toggleDependencyParse(
+    if (QL.parse.domHasDependencyParse(event.data.tokenization_uuid, event.data.dependencyParseIndex)) {
+      QL.parse.toggleDependencyParse(
         event.data.tokenization_uuid,
         event.data.dependencyParseIndex
       );
     }
     else {
-      QL.addDependencyParse(
+      QL.parse.addDependencyParse(
         event.data.comm_uuid,
         event.data.tokenization_uuid,
         event.data.dependencyParseIndex
@@ -170,7 +171,7 @@ QL.addTokenizationParseControls = function(comm) {
  * @param {String} containerSelectorString
  * @param {Tokenization} tokenization
  */
-QL.drawConstituentParse = function(containerSelectorString, tokenization, constituentParseIndex) {
+QL.parse.drawConstituentParse = function(containerSelectorString, tokenization, constituentParseIndex) {
   var
     constituent,
     constituentIndex,
@@ -197,7 +198,7 @@ QL.drawConstituentParse = function(containerSelectorString, tokenization, consti
     }
   }
 
-  QL.drawParse(containerSelectorString, g, 10);
+  QL.parse.drawParse(containerSelectorString, g, 10);
 };
 
 
@@ -206,7 +207,7 @@ QL.drawConstituentParse = function(containerSelectorString, tokenization, consti
  * @param {Tokenization} tokenization
  * @param {Number} dependencyParseIndex
  */
-QL.drawDependencyParse = function(containerSelectorString, tokenization, dependencyParseIndex) {
+QL.parse.drawDependencyParse = function(containerSelectorString, tokenization, dependencyParseIndex) {
   var g = new dagreD3.Digraph();
   var dependency, i;
 
@@ -238,7 +239,7 @@ QL.drawDependencyParse = function(containerSelectorString, tokenization, depende
     }
   }
 
-  QL.drawParse(containerSelectorString, g);
+  QL.parse.drawParse(containerSelectorString, g);
 };
 
 
@@ -247,7 +248,7 @@ QL.drawDependencyParse = function(containerSelectorString, tokenization, depende
  * @param {dagre3.Digraph} digraph
  * @param {Number} [nodeSep=20] - Distance between nodes, in pixels
  */
-QL.drawParse = function(containerSelectorString, digraph, nodeSep) {
+QL.parse.drawParse = function(containerSelectorString, digraph, nodeSep) {
   // Code adapted from dagre-d3 demo code:
   //   http://cpettitt.github.io/project/dagre-d3/latest/demo/sentence-tokenization.html
 
@@ -279,7 +280,7 @@ QL.drawParse = function(containerSelectorString, digraph, nodeSep) {
  * @param {Number} constituentParseIndex
  * @returns {Boolean}
  */
-QL.domHasConstituentParse = function(tokenizationUUID, constituentParseIndex) {
+QL.parse.domHasConstituentParse = function(tokenizationUUID, constituentParseIndex) {
   if ($("#constituent_parse_" + tokenizationUUID.uuidString + "_" + constituentParseIndex + " svg").length > 0) {
     return true;
   }
@@ -294,7 +295,7 @@ QL.domHasConstituentParse = function(tokenizationUUID, constituentParseIndex) {
  * @param {Number} dependencyParseIndex
  * @returns {Boolean}
  */
-QL.domHasDependencyParse = function(tokenizationUUID, dependencyParseIndex) {
+QL.parse.domHasDependencyParse = function(tokenizationUUID, dependencyParseIndex) {
   if ($("#dependency_parse_" + tokenizationUUID.uuidString + "_" + dependencyParseIndex + " svg").length > 0) {
     return true;
   }
@@ -309,7 +310,7 @@ QL.domHasDependencyParse = function(tokenizationUUID, dependencyParseIndex) {
  * @param {Number} constituentParseIndex
  * @returns {Boolean}
  */
-QL.toggleConstituentParse = function(tokenizationUUID, constituentParseIndex) {
+QL.parse.toggleConstituentParse = function(tokenizationUUID, constituentParseIndex) {
   if ($("#constituent_parse_" + tokenizationUUID.uuidString + "_" + constituentParseIndex).css('display') == 'none') {
     $('#constituent_parse_button_' + tokenizationUUID.uuidString + "_" + constituentParseIndex).addClass('active');
     $("#constituent_parse_" + tokenizationUUID.uuidString + "_" + constituentParseIndex).show();
@@ -325,7 +326,7 @@ QL.toggleConstituentParse = function(tokenizationUUID, constituentParseIndex) {
  * @param {String} tokenizationUUID
  * @param {Number} dependencyParseIndex
  */
-QL.toggleDependencyParse = function(tokenizationUUID, dependencyParseIndex) {
+QL.parse.toggleDependencyParse = function(tokenizationUUID, dependencyParseIndex) {
   if ($("#dependency_parse_" + tokenizationUUID.uuidString + "_" + dependencyParseIndex).css('display') == 'none') {
     $('#dependency_parse_button_' + tokenizationUUID.uuidString + "_" + dependencyParseIndex).addClass('active');
     $("#dependency_parse_" + tokenizationUUID.uuidString + "_" + dependencyParseIndex).show();
