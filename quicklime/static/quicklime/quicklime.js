@@ -392,8 +392,7 @@ QL.addMetadataTooltip = function(obj, metadata) {
   obj
     .attr('data-placement', 'auto top')
     .attr('data-toggle', 'tooltip')
-//    .attr('title', metadata.tool)
-    .attr('title', 'thequickbrownfoxjumpedoverthelazysleepingdogthequickbrownfoxjumpedoverthelazysleepingdog')
+    .attr('title', metadata.tool)
     .tooltip();
 };
 
