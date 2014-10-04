@@ -184,3 +184,16 @@ ul.entity_list {
      */
     float: left;
 }
+
+
+/* ------------------------------------------------------
+   CSS tweaks for Bootstrap
+   */
+
+div.tooltip-inner {
+    /* The width is based on the pixel-width of the longest word in a toolname,
+       which is currently:
+         http://nlp.stanford.edu/nlp/javadoc/javanlp/edu/stanford/nlp/pipeline/POSTaggerAnnotator.html
+     */
+    max-width: 530px;
+}
