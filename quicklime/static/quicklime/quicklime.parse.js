@@ -276,6 +276,7 @@ QL.parse.drawParse = function(containerSelectorString, digraph, nodeSep) {
 
   var renderer = new dagreD3.Renderer();
   var oldDrawNodes = renderer.drawNodes();
+  renderer.zoom(false);
   renderer.drawNodes(function(graph, root) {
     var svgNodes = oldDrawNodes(graph, root);
     svgNodes.each(function(u) {
