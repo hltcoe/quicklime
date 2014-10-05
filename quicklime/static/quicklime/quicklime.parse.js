@@ -45,6 +45,7 @@ QL.parse.addDependencyParse = function(communicationUUID, tokenizationUUID, depe
       .attr("id", "dependency_parse_" + tokenizationUUID.uuidString + "_" + dependencyParseIndex)
   );
   QL.parse.drawDependencyParse(
+    comm,
     "#dependency_parse_" + tokenizationUUID.uuidString + "_" + dependencyParseIndex,
     tokenization,
     dependencyParseIndex);
@@ -203,11 +204,12 @@ QL.parse.drawConstituentParse = function(containerSelectorString, tokenization, 
 
 
 /** Draw dependency parse diagram
+ * @param {concrete.Communication} comm
  * @param {String} containerSelectorString
  * @param {concrete.Tokenization} tokenization
  * @param {Number} dependencyParseIndex
  */
-QL.parse.drawDependencyParse = function(containerSelectorString, tokenization, dependencyParseIndex) {
+QL.parse.drawDependencyParse = function(comm, containerSelectorString, tokenization, dependencyParseIndex) {
   var g = new dagreD3.Digraph();
   var dependency, i;
 
@@ -224,10 +226,15 @@ QL.parse.drawDependencyParse = function(containerSelectorString, tokenization, d
     }
   }
 
+  var classNamesForTokens = QL.parse.getCSSClassesForTokenization(comm, tokenization);
+
   for (i = 0; i < tokenization.tokenList.tokenList.length; i++) {
     token = tokenization.tokenList.tokenList[i];
     if (token.tokenIndex in nodeSet) {
-      g.addNode(token.tokenIndex, { label: token.text, nodeclass: "type-UNKNOWN" });
+      g.addNode(token.tokenIndex, {
+        label: token.text,
+        nodeclass: classNamesForTokens[token.tokenIndex].join(' ')
+      });
     }
   }
 
@@ -302,6 +309,61 @@ QL.parse.domHasDependencyParse = function(tokenizationUUID, dependencyParseIndex
   else {
     return false;
   }
+};
+
+
+/** Get an array of EntityMention & SituationMention CSS classes for each token in a tokenization
+ * @param {concrete.Communication} comm
+ * @param {concrete.Tokenization} tokenization
+ * @returns {Array} - An array with the same length as the number of tokens in the tokenization,
+ *                    where each element is an array of CSS classnames for the corresponding token.
+ */
+QL.parse.getCSSClassesForTokenization = function(comm, tokenization) {
+  var totalTokens = tokenization.tokenList.tokenList.length;
+  var classNames = Array(totalTokens);
+  var i, l;
+
+  for (i = 0; i < totalTokens; i++) {
+    classNames[i] = Array();
+  }
+
+  // Add DOM classes for EntityMentions
+  if (comm.entityMentionSetList) {
+    for (var entityMentionSetIndex in comm.entityMentionSetList) {
+      if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
+        for (var mentionListIndex in comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
+          var entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[mentionListIndex];
+          if (entityMention.tokens.tokenizationId.uuidString === tokenization.uuid.uuidString) {
+            for (i = 0, l = entityMention.tokens.tokenIndexList.length; i < l; i++) {
+              classNames[entityMention.tokens.tokenIndexList[i]].push(
+                'entity_mention_' + entityMention.uuid.uuidString
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Add DOM classes for SituationMentions
+  if (comm.situationMentionSetList) {
+    for (var situationMentionSetIndex in comm.situationMentionSetList) {
+      if (comm.situationMentionSetList[situationMentionSetIndex].mentionList) {
+        for (var mentionListIndex in comm.situationMentionSetList[situationMentionSetIndex].mentionList) {
+          var situationMention = comm.situationMentionSetList[situationMentionSetIndex].mentionList[mentionListIndex];
+          if (situationMention.tokens.tokenizationId.uuidString === tokenization.uuid.uuidString) {
+            for (i = 0, l = situationMention.tokens.tokenIndexList.length; i < l; i++) {
+              classNames[situationMention.tokens.tokenIndexList[i]].push(
+                'situation_mention_' + situationMention.uuid.uuidString
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return classNames;
 };
 
 

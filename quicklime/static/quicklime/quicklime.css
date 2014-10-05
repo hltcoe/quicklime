@@ -38,6 +38,12 @@ div.dagre_parse {
 .dagre_parse .edgeLabel rect {
     fill: #fff;
 }
+.dagre_parse .node.highlighted_entity rect {
+    fill: pink;
+}
+.dagre_parse .node.highlighted_mention rect {
+    fill: yellow;
+}
 
 .dagre_parse .edgePath path {
     stroke: #333;
@@ -130,6 +136,7 @@ span.token_label {
     background-color: yellow;
     border-top: 1px solid #DDDDDD;
 }
+
 .coref_mention {
     border-bottom: 3px solid #DDDDDD;
 }
