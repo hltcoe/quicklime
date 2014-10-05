@@ -393,6 +393,8 @@ QL.brat.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID)
       { type: '?', labels: ['?', '?'], bgColor: colors.white },
       { type: '.', labels: ['.', '.'], bgColor: colors.white },
       { type: ',', labels: [',', ','], bgColor: colors.white },
+      { type: '``', labels: ['``', '``'], bgColor: colors.white },
+      { type: "''", labels: ["''", "''"], bgColor: colors.white },
     ]
   };
 
