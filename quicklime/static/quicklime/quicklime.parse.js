@@ -14,6 +14,7 @@ QL.parse.addConstituentParse = function(communicationUUID, tokenizationUUID, con
       .attr("id", "constituent_parse_" + tokenizationUUID.uuidString + "_" + constituentParseIndex)
   );
   QL.parse.drawConstituentParse(
+    comm,
     "#constituent_parse_" + tokenizationUUID.uuidString + "_" + constituentParseIndex,
     tokenization,
     constituentParseIndex);
@@ -169,10 +170,12 @@ QL.parse.addTokenizationParseControls = function(comm) {
 
 
 /** Draw constituent parse diagram
+ * @parma {concrete.Communication} comm
  * @param {String} containerSelectorString
  * @param {concrete.Tokenization} tokenization
+ * @param {Number} constituentParseIndex
  */
-QL.parse.drawConstituentParse = function(containerSelectorString, tokenization, constituentParseIndex) {
+QL.parse.drawConstituentParse = function(comm, containerSelectorString, tokenization, constituentParseIndex) {
   var
     constituent,
     constituentIndex,
@@ -180,10 +183,19 @@ QL.parse.drawConstituentParse = function(containerSelectorString, tokenization, 
 
   var constituentParse = tokenization.parseList[constituentParseIndex];
 
+  var classNamesForTokens = QL.parse.getCSSClassesForTokenization(comm, tokenization);
+
   for (constituentIndex in constituentParse.constituentList) {
     constituent = constituentParse.constituentList[constituentIndex];
     if (constituent.childList.length === 0) {
-      g.addNode(constituent.id, { label: constituent.tag, nodeclass: "type-TOKEN" });
+      var classNames = "type-TOKEN ";
+      var tokenIndexList = constituent.tokenSequence.tokenIndexList;
+      if (constituent.tokenSequence && tokenIndexList.length > 0) {
+        for (var i = 0, l = tokenIndexList.length; i < l; i++) {
+          classNames += classNamesForTokens[tokenIndexList[i]].join(" ") + " ";
+        }
+      }
+      g.addNode(constituent.id, { label: constituent.tag, nodeclass: classNames });
     }
     else {
       g.addNode(constituent.id, { label: constituent.tag, nodeclass: "type-foo"});
