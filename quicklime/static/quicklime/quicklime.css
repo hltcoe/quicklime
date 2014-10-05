@@ -34,15 +34,15 @@ div.dagre_parse {
     stroke-width: 1px;
     fill: #fff;
 }
-
-.dagre_parse .edgeLabel rect {
-    fill: #fff;
-}
 .dagre_parse .node.highlighted_entity rect {
     fill: pink;
 }
 .dagre_parse .node.highlighted_mention rect {
     fill: yellow;
+}
+
+.dagre_parse .edgeLabel rect {
+    fill: #fff;
 }
 
 .dagre_parse .edgePath path {
@@ -91,7 +91,7 @@ div .brat_tokenization_container {
 }
 
 span.token_label {
-    border: 0.75px solid #333333;
+    border: 1px solid #CCC;
     cursor: pointer;
     padding-left: 2px;
     padding-right: 2px;
