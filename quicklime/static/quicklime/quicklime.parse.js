@@ -360,10 +360,13 @@ QL.parse.getCSSClassesForTokenization = function(comm, tokenization) {
   // Add DOM classes for SituationMentions
   if (comm.situationMentionSetList) {
     for (var situationMentionSetIndex in comm.situationMentionSetList) {
-      if (comm.situationMentionSetList[situationMentionSetIndex].mentionList) {
-        for (var mentionListIndex in comm.situationMentionSetList[situationMentionSetIndex].mentionList) {
-          var situationMention = comm.situationMentionSetList[situationMentionSetIndex].mentionList[mentionListIndex];
-          if (situationMention.tokens.tokenizationId.uuidString === tokenization.uuid.uuidString) {
+      var situationMentionList = comm.situationMentionSetList[situationMentionSetIndex].mentionList;
+      if (situationMentionList) {
+        for (var situationMentionListIndex in situationMentionList) {
+          var situationMention = situationMentionList[situationMentionListIndex];
+          if (situationMention.tokens &&
+              situationMention.tokens.tokenizationId.uuidString === tokenization.uuid.uuidString)
+          {
             for (i = 0, l = situationMention.tokens.tokenIndexList.length; i < l; i++) {
               classNames[situationMention.tokens.tokenIndexList[i]].push(
                 'situation_mention_' + situationMention.uuid.uuidString
