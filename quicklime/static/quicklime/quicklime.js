@@ -204,7 +204,8 @@ QL.addCommunication = function(parentElementID, comm) {
           var entityMentionId = entity.mentionIdList[i];
           $('.entity_mention_' + entityMentionId.uuidString)
             .addClass('coref_mention')
-            .addClass('entity_' + entity.uuid.uuidString);
+            .addClass('entity_' + entity.uuid.uuidString)
+            .addClass('entity_set_' + comm.entitySetList[entitySetListIndex].uuid.uuidString);
         }
       }
     }
@@ -220,7 +221,10 @@ QL.addDOMClassesForEntityMentionSet = function(entityMentionSet) {
   if (entityMentionSet.mentionList) {
     for (var mentionListIndex in entityMentionSet.mentionList) {
       var entityMention = entityMentionSet.mentionList[mentionListIndex];
-      QL.addDOMClassForTokenRefSequence(entityMention.tokens, "entity_mention entity_mention_" + entityMention.uuid.uuidString);
+      QL.addDOMClassForTokenRefSequence(
+        entityMention.tokens,
+        "entity_mention entity_mention_" + entityMention.uuid.uuidString +
+          " entity_mention_set_" + entityMentionSet.uuid.uuidString);
     }
   }
 };

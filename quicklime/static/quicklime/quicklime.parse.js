@@ -351,6 +351,9 @@ QL.parse.getCSSClassesForTokenization = function(comm, tokenization) {
               classNames[entityMention.tokens.tokenIndexList[i]].push(
                 'entity_mention_' + entityMention.uuid.uuidString
               );
+              classNames[entityMention.tokens.tokenIndexList[i]].push(
+                'entity_mention_set_' + comm.entityMentionSetList[entityMentionSetIndex].uuid.uuidString
+              );
             }
           }
         }
