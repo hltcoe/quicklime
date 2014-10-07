@@ -89,35 +89,6 @@ QL.getCommunicationWithUUID = function(uuid) {
  * @param {concrete.Communication} comm
  */
 QL.addCommunication = function(parentElementID, comm) {
-
-  /** Add DOM class(es) to token <span>'s identified by TokenRefSequence
-   *  To specify multiple classes, create a single string with the class
-   *  names separated by spaces.
-   *
-   * @param {concrete.TokenRefSequence} tokenRefSequence
-   * @param {String} className - DOM class(es) to be added to token <span>'s
-   */
-  function addDOMClassForTokenRefSequence(tokenRefSequence, className) {
-    if (tokenRefSequence.tokenIndexList) {
-      // Unlike Array.sort(), Underscore's sortBy() sorts arrays of numbers *numerically*
-      var tokenIndexList = _.sortBy(tokenRefSequence.tokenIndexList);
-      var total_tokens = tokenRefSequence.tokenIndexList.length;
-
-      for (var tokenIndex in tokenIndexList) {
-        $('#tokenization_' + tokenRefSequence.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
-          .addClass(className);
-
-        // For multi-word mentions, the spaces between tokens are treated as part of the mention
-        if (tokenIndex < total_tokens-1 &&
-            tokenIndexList[tokenIndex]+1 === tokenIndexList[parseInt(tokenIndex, 10)+1])
-        {
-          $('#tokenization_padding_' + tokenRefSequence.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
-            .addClass(className);
-        }
-      }
-    }
-  }
-
   // Add Communication to set of communications (a global variable) in QL namespace
   QL._communications[comm.uuid.uuidString] = comm;
 
@@ -221,7 +192,7 @@ QL.addCommunication = function(parentElementID, comm) {
     if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
       for (var mentionListIndex in comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
         var entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[mentionListIndex];
-        addDOMClassForTokenRefSequence(entityMention.tokens, "entity_mention entity_mention_" + entityMention.uuid.uuidString);
+        QL.addDOMClassForTokenRefSequence(entityMention.tokens, "entity_mention entity_mention_" + entityMention.uuid.uuidString);
       }
     }
   }
@@ -244,6 +215,35 @@ QL.addCommunication = function(parentElementID, comm) {
     }
   }
 
+};
+
+
+/** Add DOM class(es) to token <span>'s identified by TokenRefSequence
+ *  To specify multiple classes, create a single string with the class
+ *  names separated by spaces.
+ *
+ * @param {concrete.TokenRefSequence} tokenRefSequence
+ * @param {String} className - DOM class(es) to be added to token <span>'s
+ */
+QL.addDOMClassForTokenRefSequence = function(tokenRefSequence, className) {
+  if (tokenRefSequence.tokenIndexList) {
+    // Unlike Array.sort(), Underscore's sortBy() sorts arrays of numbers *numerically*
+    var tokenIndexList = _.sortBy(tokenRefSequence.tokenIndexList);
+    var total_tokens = tokenRefSequence.tokenIndexList.length;
+
+    for (var tokenIndex in tokenIndexList) {
+      $('#tokenization_' + tokenRefSequence.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
+        .addClass(className);
+
+      // For multi-word mentions, the spaces between tokens are treated as part of the mention
+      if (tokenIndex < total_tokens-1 &&
+          tokenIndexList[tokenIndex]+1 === tokenIndexList[parseInt(tokenIndex, 10)+1])
+      {
+        $('#tokenization_padding_' + tokenRefSequence.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
+          .addClass(className);
+      }
+    }
+  }
 };
 
 
