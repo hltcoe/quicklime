@@ -189,7 +189,7 @@ QL.addCommunication = function(parentElementID, comm) {
 
   // Add DOM classes for mentionId's to token <span>'s
   for (var entityMentionSetIndex in comm.entityMentionSetList) {
-    QL.addDOMClassForEntityMentionSet(comm.entityMentionSetList[entityMentionSetIndex]);
+    QL.addDOMClassesForEntityMentionSet(comm.entityMentionSetList[entityMentionSetIndex]);
   }
 
   // Add DOM class "coref_mention" to any token <span>'s that are part
@@ -216,7 +216,7 @@ QL.addCommunication = function(parentElementID, comm) {
 /** Add DOM classes to token <span>'s for tokens in an EntityMentionSet
  * @param {concrete.EntityMentionSet} entityMentionSet
  */
-QL.addDOMClassForEntityMentionSet = function(entityMentionSet) {
+QL.addDOMClassesForEntityMentionSet = function(entityMentionSet) {
   if (entityMentionSet.mentionList) {
     for (var mentionListIndex in entityMentionSet.mentionList) {
       var entityMention = entityMentionSet.mentionList[mentionListIndex];
