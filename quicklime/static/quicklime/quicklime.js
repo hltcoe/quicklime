@@ -189,12 +189,7 @@ QL.addCommunication = function(parentElementID, comm) {
 
   // Add DOM classes for mentionId's to token <span>'s
   for (var entityMentionSetIndex in comm.entityMentionSetList) {
-    if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
-      for (var mentionListIndex in comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
-        var entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[mentionListIndex];
-        QL.addDOMClassForTokenRefSequence(entityMention.tokens, "entity_mention entity_mention_" + entityMention.uuid.uuidString);
-      }
-    }
+    QL.addDOMClassForEntityMentionSet(comm.entityMentionSetList[entityMentionSetIndex]);
   }
 
   // Add DOM class "coref_mention" to any token <span>'s that are part
@@ -215,6 +210,19 @@ QL.addCommunication = function(parentElementID, comm) {
     }
   }
 
+};
+
+
+/** Add DOM classes to token <span>'s for tokens in an EntityMentionSet
+ * @param {concrete.EntityMentionSet} entityMentionSet
+ */
+QL.addDOMClassForEntityMentionSet = function(entityMentionSet) {
+  if (entityMentionSet.mentionList) {
+    for (var mentionListIndex in entityMentionSet.mentionList) {
+      var entityMention = entityMentionSet.mentionList[mentionListIndex];
+      QL.addDOMClassForTokenRefSequence(entityMention.tokens, "entity_mention entity_mention_" + entityMention.uuid.uuidString);
+    }
+  }
 };
 
 
