@@ -329,15 +329,28 @@ QL.addEntityTable = function(parentElementID, comm) {
 };
 
 
-/** Add mouseover event handlers for EntityMentions
- *
- * For each Entity in the given Communication, find all the token
- * <span>'s associated with the EntityMentions for that Entity, and
- * add mouseover event handlers to those <span>'s.
+/** Add mouseover event handlers for all EntitySets in a Communication
  *
  * @param {concrete.Communication} comm
  */
-QL.addEntityMouseoverHighlighting = function(comm) {
+QL.addMouseoverHighlightingForAllEntitySets = function(comm) {
+  if (comm.entitySetList) {
+    for (var entitySetListIndex in comm.entitySetList) {
+      QL.addMouseoverHighlightingForEntitySet(comm.entitySetList[entitySetListIndex]);
+    }
+  }
+};
+
+
+/** Add mouseover event handlers for an EntitySet
+ *
+ * For each Entity in the given EntityList, find all the token
+ * <span>'s associated with the EntityMentions for that Entity, and
+ * add mouseover event handlers to those <span>'s.
+ *
+ * @param {concrete.EntitySet} entitySet
+ */
+QL.addMouseoverHighlightingForEntitySet = function(entitySet) {
   /**
    * @param {MouseEvent} event
    */
@@ -366,30 +379,31 @@ QL.addEntityMouseoverHighlighting = function(comm) {
     $(event.data.mention_selector).removeClass("highlighted_mention");
   }
 
+  /**
+   * @param {MouseEvent} event
+   */
   function toggleSelectedEntity(event) {
     $(event.data.entity_selector).toggleClass("selected_entity");
   }
 
   // Add mouseover functions for all elements linked to an entity
-  if (comm.entitySetList) {
-    for (var entitySetListIndex in comm.entitySetList) {
-      for (var entityListIndex in comm.entitySetList[entitySetListIndex].entityList) {
-        var entity = comm.entitySetList[entitySetListIndex].entityList[entityListIndex];
-        $('.entity_' + entity.uuid.uuidString)
-          .click({ entity_selector: '.entity_' + entity.uuid.uuidString }, toggleSelectedEntity)
-          .mouseenter({ entity_selector: '.entity_' + entity.uuid.uuidString }, addHighlightToEntity)
-          .mouseleave({ entity_selector: '.entity_' + entity.uuid.uuidString }, removeHighlightFromEntity);
+  if (entitySet.entityList) {
+    for (var entityListIndex in entitySet.entityList) {
+      var entity = entitySet.entityList[entityListIndex];
+      $('.entity_' + entity.uuid.uuidString)
+        .click({ entity_selector: '.entity_' + entity.uuid.uuidString }, toggleSelectedEntity)
+        .mouseenter({ entity_selector: '.entity_' + entity.uuid.uuidString }, addHighlightToEntity)
+        .mouseleave({ entity_selector: '.entity_' + entity.uuid.uuidString }, removeHighlightFromEntity);
 
-        // Add mouseover functions for all elements linked to a mention of an entity in entitySet.
-        // Mouseover functions will not be added to any mentions - such as value mentions - that are
-        // not linked to an entity in entitySet.
-        for (var i = 0; i < entity.mentionIdList.length; i++) {
-          var entityMentionId = entity.mentionIdList[i];
-          $('.entity_mention_' + entityMentionId.uuidString)
-            .click({ entity_selector: '.entity_' + entity.uuid.uuidString }, toggleSelectedEntity)
-            .mouseenter({ mention_selector: '.entity_mention_'+entityMentionId.uuidString }, addHighlightToMention)
-            .mouseleave({ mention_selector: '.entity_mention_'+entityMentionId.uuidString }, removeHighlightFromMention);
-        }
+      // Add mouseover functions for all elements linked to a mention of an entity in entitySet.
+      // Mouseover functions will not be added to any mentions - such as value mentions - that are
+      // not linked to an entity in entitySet.
+      for (var i = 0; i < entity.mentionIdList.length; i++) {
+        var entityMentionId = entity.mentionIdList[i];
+        $('.entity_mention_' + entityMentionId.uuidString)
+          .click({ entity_selector: '.entity_' + entity.uuid.uuidString }, toggleSelectedEntity)
+          .mouseenter({ mention_selector: '.entity_mention_'+entityMentionId.uuidString }, addHighlightToMention)
+          .mouseleave({ mention_selector: '.entity_mention_'+entityMentionId.uuidString }, removeHighlightFromMention);
       }
     }
   }
