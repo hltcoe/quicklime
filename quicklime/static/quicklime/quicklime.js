@@ -264,6 +264,16 @@ QL.addDOMClassForTokenRefSequence = function(tokenRefSequence, className) {
  * @param {concrete.Communication} comm
  */
 QL.addEntityTable = function(parentElementID, comm) {
+
+  function toggleEntitySetHighlighting(event) {
+    if ($(this).is(":checked")) {
+      QL.addMouseoverHighlightingForEntitySet(event.data.entitySet);
+    }
+    else {
+      QL.removeMouseoverHighlightingForEntitySet(event.data.entitySet);
+    }
+  }
+
   if (comm.entitySetList) {
     var entityTable_div = $('<div>');
     $('#' + parentElementID).append(entityTable_div);
@@ -285,6 +295,11 @@ QL.addEntityTable = function(parentElementID, comm) {
           .append(
             $('<h4>')
               .addClass('panel-title')
+              .append(
+                $('<input>')
+                  .attr('type', 'checkbox')
+                  .addClass('entity_set_highlighting_checkbox')
+                  .click({'entitySet': comm.entitySetList[entitySetListIndex]}, toggleEntitySetHighlighting))
               .append(
                 entityToolHeading)));
 
@@ -342,58 +357,27 @@ QL.addMouseoverHighlightingForAllEntitySets = function(comm) {
 };
 
 
-/** Add mouseover event handlers for an EntitySet
+/** Add mouseover event handlers for EntityMentions for an EntitySet
  *
- * For each Entity in the given EntityList, find all the token
- * <span>'s associated with the EntityMentions for that Entity, and
- * add mouseover event handlers to those <span>'s.
+ * For each Entity in the given EntityList, find all DOM elements
+ * associated with the EntityMentions for that Entity, and add
+ * mouseover event handlers to those DOM elements.
+ *
+ * NOTE: Inverse of QL.removeMouseoverHighlightingForEntitySet()
  *
  * @param {concrete.EntitySet} entitySet
  */
 QL.addMouseoverHighlightingForEntitySet = function(entitySet) {
-  /**
-   * @param {MouseEvent} event
-   */
-  function addHighlightToEntity(event) {
-    $(event.data.entity_selector).addClass("highlighted_entity");
-  }
-
-  /**
-   * @param {MouseEvent} event
-   */
-  function addHighlightToMention(event) {
-    $(event.data.mention_selector).addClass("highlighted_mention");
-  }
-
-  /**
-   * @param {MouseEvent} event
-   */
-  function removeHighlightFromEntity(event) {
-    $(event.data.entity_selector).removeClass("highlighted_entity");
-  }
-
-  /**
-   * @param {MouseEvent} event
-   */
-  function removeHighlightFromMention(event) {
-    $(event.data.mention_selector).removeClass("highlighted_mention");
-  }
-
-  /**
-   * @param {MouseEvent} event
-   */
-  function toggleSelectedEntity(event) {
-    $(event.data.entity_selector).toggleClass("selected_entity");
-  }
-
   // Add mouseover functions for all elements linked to an entity
   if (entitySet.entityList) {
+    var callbacks = QL.getEntitySetHighlightCallbacks(entitySet);
+
     for (var entityListIndex in entitySet.entityList) {
       var entity = entitySet.entityList[entityListIndex];
       $('.entity_' + entity.uuid.uuidString)
-        .click({ entity_selector: '.entity_' + entity.uuid.uuidString }, toggleSelectedEntity)
-        .mouseenter({ entity_selector: '.entity_' + entity.uuid.uuidString }, addHighlightToEntity)
-        .mouseleave({ entity_selector: '.entity_' + entity.uuid.uuidString }, removeHighlightFromEntity);
+        .on('click', { entity_selector: '.entity_' + entity.uuid.uuidString }, callbacks.toggleSelectedEntity)
+        .on('mouseenter', { entity_selector: '.entity_' + entity.uuid.uuidString }, callbacks.addHighlightToEntity)
+        .on('mouseleave', { entity_selector: '.entity_' + entity.uuid.uuidString }, callbacks.removeHighlightFromEntity);
 
       // Add mouseover functions for all elements linked to a mention of an entity in entitySet.
       // Mouseover functions will not be added to any mentions - such as value mentions - that are
@@ -401,9 +385,9 @@ QL.addMouseoverHighlightingForEntitySet = function(entitySet) {
       for (var i = 0; i < entity.mentionIdList.length; i++) {
         var entityMentionId = entity.mentionIdList[i];
         $('.entity_mention_' + entityMentionId.uuidString)
-          .click({ entity_selector: '.entity_' + entity.uuid.uuidString }, toggleSelectedEntity)
-          .mouseenter({ mention_selector: '.entity_mention_'+entityMentionId.uuidString }, addHighlightToMention)
-          .mouseleave({ mention_selector: '.entity_mention_'+entityMentionId.uuidString }, removeHighlightFromMention);
+          .on('click', { entity_selector: '.entity_' + entity.uuid.uuidString }, callbacks.toggleSelectedEntity)
+          .on('mouseenter', { mention_selector: '.entity_mention_'+entityMentionId.uuidString }, callbacks.addHighlightToMention)
+          .on('mouseleave', { mention_selector: '.entity_mention_'+entityMentionId.uuidString }, callbacks.removeHighlightFromMention);
       }
     }
   }
@@ -537,6 +521,80 @@ QL.cleanedTokenText = function(tokenText) {
 };
 
 
+/** Get set of callback functions for highlighting EntityMentions for this EntitySet
+ *
+ * This function retrieves (and, when necessary, creates) a set of
+ * named callback functions that are tied to a particular EventSet.
+ *
+ * This may require a bit of explanation...
+ *
+ * We want to be able to add/remove callback functions for all DOM
+ * elements that are associated with a particular EntitySet.  Because
+ * a single DOM element may be associated with multiple EntitySets
+ * (e.g. a token <span> that is part of different EntityMentions from
+ * different EntitySets), we need the ability to remove the
+ * addHighlightToEntity() function associated with EntitySet 'A' from
+ * an element without removing the addHighlightToEntity() function
+ * associated with EntitySet 'B' from that element.
+ *
+ * In order to remove a particular event handler for an event (but not
+ * *all* event handlers for an event), we need to be able to pass
+ * jQuery.off() a named function.
+ *
+ * @param {concrete.EntitySet} entitySet
+ */
+QL.getEntitySetHighlightCallbacks = function(entitySet) {
+  /**
+   * @param {MouseEvent} event
+   */
+  function addHighlightToEntity(event) {
+    $(event.data.entity_selector).addClass("highlighted_entity");
+  }
+
+  /**
+   * @param {MouseEvent} event
+   */
+  function addHighlightToMention(event) {
+    $(event.data.mention_selector).addClass("highlighted_mention");
+  }
+
+  /**
+   * @param {MouseEvent} event
+   */
+  function removeHighlightFromEntity(event) {
+    $(event.data.entity_selector).removeClass("highlighted_entity");
+  }
+
+  /**
+   * @param {MouseEvent} event
+   */
+  function removeHighlightFromMention(event) {
+    $(event.data.mention_selector).removeClass("highlighted_mention");
+  }
+
+  /**
+   * @param {MouseEvent} event
+   */
+  function toggleSelectedEntity(event) {
+    $(event.data.entity_selector).toggleClass("selected_entity");
+  }
+
+  if (!QL._entity_set_callbacks) {
+    QL._entity_set_callbacks = {};
+  }
+  if (!QL._entity_set_callbacks[entitySet.uuid.uuidString]) {
+    QL._entity_set_callbacks[entitySet.uuid.uuidString] = {
+      'addHighlightToEntity': function(event) { addHighlightToEntity(event); },
+      'addHighlightToMention': function(event) { addHighlightToMention(event); },
+      'removeHighlightFromEntity': function(event) { removeHighlightFromEntity(event); },
+      'removeHighlightFromMention': function(event) { removeHighlightFromMention(event); },
+      'toggleSelectedEntity': function(event) { toggleSelectedEntity(event); }
+    };
+  }
+  return QL._entity_set_callbacks[entitySet.uuid.uuidString];
+};
+
+
 /** Returns a single string for the tokens pointed to by the TokenRefSequence.
  *  If not all tokens in the TokenRefSequence are adjacent, the HTML entity
  *  for '...' will be inserted where there are gaps.
@@ -557,4 +615,34 @@ QL.getTextForTokenRefSequence = function(comm, tokenRefSequence) {
   }
 
   return text;
+};
+
+
+/** Remove mouseover event handlers for EntityMentions for an EntitySet
+ *
+ * NOTE: Inverse of QL.addMouseoverHighlightingForEntitySet()
+ *
+ * @param {concrete.EntitySet} entitySet
+ */
+QL.removeMouseoverHighlightingForEntitySet = function(entitySet) {
+  // Remove mouseover functions for all elements linked to an entity
+  if (entitySet.entityList) {
+    var callbacks = QL.getEntitySetHighlightCallbacks(entitySet);
+
+    for (var entityListIndex in entitySet.entityList) {
+      var entity = entitySet.entityList[entityListIndex];
+      $('.entity_' + entity.uuid.uuidString)
+        .off('click', callbacks.toggleSelectedEntity)
+        .off('mouseenter', callbacks.addHighlightToEntity)
+        .off('mouseleave', callbacks.removeHighlightFromEntity);
+
+      for (var i = 0; i < entity.mentionIdList.length; i++) {
+        var entityMentionId = entity.mentionIdList[i];
+        $('.entity_mention_' + entityMentionId.uuidString)
+          .off('click', callbacks.toggleSelectedEntity)
+          .off('mouseenter', callbacks.addHighlightToMention)
+          .off('mouseleave', callbacks.removeHighlightFromMention);
+      }
+    }
+  }
 };

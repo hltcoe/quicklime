@@ -102,6 +102,10 @@ span.token_label {
    CSS rules for Quicklime
  */
 
+input.entity_set_highlighting_checkbox {
+    margin-right: 0.3em;
+}
+
 .parse_label {
     border-top: 1px solid #999;
     border-left: 1px solid #999;
@@ -121,7 +125,6 @@ span.token_label {
 .dependency_parse_label_2 {
     background-color: #adf6a2;
 }
-
 
 .highlighted_entity {
     background-color: pink;
