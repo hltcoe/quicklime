@@ -208,6 +208,9 @@ ul.entity_list {
     float: left;
 }
 
+.toolname_title {
+    word-wrap: break-word;
+}
 
 /* ------------------------------------------------------
    CSS tweaks for Bootstrap

@@ -290,6 +290,7 @@ QL.addEntityTable = function(parentElementID, comm) {
           .append(
             $('<h4>')
               .addClass('panel-title')
+              .addClass('toolname_title')
               .append(
                 $('<input>')
                   .attr('type', 'checkbox')
@@ -433,6 +434,7 @@ QL.addSituationMentionTable = function(parentElementID, comm) {
           .append(
             $('<h4>')
               .addClass('panel-title')
+              .addClass('toolname_title')
               .append(
                 situationMentionToolHeading)));
 
