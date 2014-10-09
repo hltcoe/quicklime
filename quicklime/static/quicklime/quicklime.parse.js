@@ -325,7 +325,7 @@ QL.parse.domHasDependencyParse = function(tokenizationUUID, dependencyParseIndex
 };
 
 
-/** Get an array of EntityMention & SituationMention CSS classes for each token in a tokenization
+/** Get an array of Entity, EntityMention & SituationMention CSS classes for each token in a tokenization
  * @param {concrete.Communication} comm
  * @param {concrete.Tokenization} tokenization
  * @returns {Array} - An array with the same length as the number of tokens in the tokenization,
@@ -353,6 +353,28 @@ QL.parse.getCSSClassesForTokenization = function(comm, tokenization) {
               );
               classNames[entityMention.tokens.tokenIndexList[i]].push(
                 'entity_mention_set_' + comm.entityMentionSetList[entityMentionSetIndex].uuid.uuidString
+              );
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Add DOM classes for Entities
+  if (comm.entitySetList) {
+    for (var entitySetListIndex in comm.entitySetList) {
+      for (var entityListIndex in comm.entitySetList[entitySetListIndex].entityList) {
+        var entity = comm.entitySetList[entitySetListIndex].entityList[entityListIndex];
+        for (var i = 0; i < entity.mentionIdList.length; i++) {
+          var entityMention = comm.getEntityMentionWithUUID(entity.mentionIdList[i]);
+          if (entityMention.tokens.tokenizationId.uuidString === tokenization.uuid.uuidString) {
+            for (i = 0, l = entityMention.tokens.tokenIndexList.length; i < l; i++) {
+              classNames[entityMention.tokens.tokenIndexList[i]].push(
+                'entity_' + entity.uuid.uuidString
+              );
+              classNames[entityMention.tokens.tokenIndexList[i]].push(
+                'entity_set_' + comm.entitySetList[entitySetListIndex].uuid.uuidString
               );
             }
           }
