@@ -192,10 +192,7 @@ QL.addCommunication = function(parentElementID, comm) {
     QL.addDOMClassesForEntityMentionSet(comm.entityMentionSetList[entityMentionSetIndex]);
   }
 
-  // Add DOM class "coref_mention" to any token <span>'s that are part
-  // of an EntityMention for an Entity in comm.entitySetList.  In
-  // Concrete, it is possible to have EntityMentions that are not tied
-  // to any Entity.
+  // Add DOM classes for entity and entity_set UUID's to EntityMentions for the Entities
   if (comm.entitySetList) {
     for (var entitySetListIndex in comm.entitySetList) {
       for (var entityListIndex in comm.entitySetList[entitySetListIndex].entityList) {
@@ -203,14 +200,12 @@ QL.addCommunication = function(parentElementID, comm) {
         for (var i = 0; i < entity.mentionIdList.length; i++) {
           var entityMentionId = entity.mentionIdList[i];
           $('.entity_mention_' + entityMentionId.uuidString)
-            .addClass('coref_mention')
             .addClass('entity_' + entity.uuid.uuidString)
             .addClass('entity_set_' + comm.entitySetList[entitySetListIndex].uuid.uuidString);
         }
       }
     }
   }
-
 };
 
 
@@ -323,7 +318,7 @@ QL.addEntityTable = function(parentElementID, comm) {
         for (var mentionIdListIndex in entity.mentionIdList) {
           var mentionId = entity.mentionIdList[mentionIdListIndex];
           var mentionId_li = $('<li>')
-            .html('<span class="coref_mention entity_mention_' + mentionId.uuidString + '">' + comm.getTokensForEntityMentionID(mentionId).join(" ") + '</span>');
+            .html('<span class="mention_for_active_entity_set entity_mention_' + mentionId.uuidString + '">' + comm.getTokensForEntityMentionID(mentionId).join(" ") + '</span>');
           mentionId_ul.append(mentionId_li);
         }
         entity_div.append(mentionId_ul);
@@ -391,6 +386,10 @@ QL.addMouseoverHighlightingForEntitySet = function(entitySet) {
       }
     }
   }
+
+  $('.entity_set_' + entitySet.uuid.uuidString)
+    .addClass('mention_for_active_entity_set')
+    .increment_counter('active-entity-sets');
 };
 
 
@@ -645,4 +644,49 @@ QL.removeMouseoverHighlightingForEntitySet = function(entitySet) {
       }
     }
   }
+
+  // Remove CSS class when counter reaches 0
+  $('.entity_set_' + entitySet.uuid.uuidString)
+    .decrement_counter('active-entity-sets')
+    .filter(function() {
+      if ($(this).data('active-entity-sets') == 0) {
+        $(this).removeClass('mention_for_active_entity_set');
+      }
+    });
 };
+
+
+/** jQuery function to increment counter attached to DOM element's data attribute
+ * @param {String} prop - Name of data property to be incremented
+ */
+(function($) {
+  $.fn.increment_counter = function(prop) {
+    return this.each(function() {
+      var data = $(this).data();
+      if(!(prop in data)) {
+        data[prop] = 1;
+      }
+      else {
+        data[prop] += 1;
+      }
+    });
+  }
+}(jQuery));
+
+
+/** jQuery function to decrement counter attached to DOM element's data attribute
+ * @param {String} prop - Name of data property to be decremented
+ */
+(function($) {
+  $.fn.decrement_counter = function(prop) {
+    return this.each(function() {
+      var data = $(this).data();
+      if(!(prop in data)) {
+        data[prop] = -1;
+      }
+      else {
+        data[prop] -= 1;
+      }
+    });
+  }
+}(jQuery));

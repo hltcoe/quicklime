@@ -140,7 +140,7 @@ input.entity_set_highlighting_checkbox {
     border-top: 1px solid #DDDDDD;
 }
 
-.coref_mention {
+.mention_for_active_entity_set {
     border-bottom: 3px solid #DDDDDD;
 }
 span.entity_counter {
