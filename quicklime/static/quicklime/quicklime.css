@@ -34,10 +34,23 @@ div.dagre_parse {
     stroke-width: 1px;
     fill: #fff;
 }
+
+/* The fill color rules for text shown in parse tree nodes:
+ *   .dagre_parse .node.MYCLASSNAME rect {
+ *       fill: MYCOLOR;
+ *   }
+ * should match the corresponding 'background-color' rules for non-SVG elements:
+ *   .MYCLASSNAME {
+ *       background-color: MYCOLOR;
+ *   }
+ */
 .dagre_parse .node.highlighted_entity rect {
     fill: pink;
 }
 .dagre_parse .node.highlighted_mention rect {
+    fill: yellow;
+}
+.dagre_parse .node.selected_entity rect {
     fill: yellow;
 }
 
