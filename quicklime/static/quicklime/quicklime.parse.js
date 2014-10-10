@@ -334,6 +334,7 @@ QL.parse.domHasDependencyParse = function(tokenizationUUID, dependencyParseIndex
 QL.parse.getCSSClassesForTokenization = function(comm, tokenization) {
   var totalTokens = tokenization.tokenList.tokenList.length;
   var classNames = Array(totalTokens);
+  var entityMention;
   var i, l;
 
   for (i = 0; i < totalTokens; i++) {
@@ -345,7 +346,7 @@ QL.parse.getCSSClassesForTokenization = function(comm, tokenization) {
     for (var entityMentionSetIndex in comm.entityMentionSetList) {
       if (comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
         for (var mentionListIndex in comm.entityMentionSetList[entityMentionSetIndex].mentionList) {
-          var entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[mentionListIndex];
+          entityMention = comm.entityMentionSetList[entityMentionSetIndex].mentionList[mentionListIndex];
           if (entityMention.tokens.tokenizationId.uuidString === tokenization.uuid.uuidString) {
             for (i = 0, l = entityMention.tokens.tokenIndexList.length; i < l; i++) {
               classNames[entityMention.tokens.tokenIndexList[i]].push(
@@ -366,8 +367,8 @@ QL.parse.getCSSClassesForTokenization = function(comm, tokenization) {
     for (var entitySetListIndex in comm.entitySetList) {
       for (var entityListIndex in comm.entitySetList[entitySetListIndex].entityList) {
         var entity = comm.entitySetList[entitySetListIndex].entityList[entityListIndex];
-        for (var i = 0; i < entity.mentionIdList.length; i++) {
-          var entityMention = comm.getEntityMentionWithUUID(entity.mentionIdList[i]);
+        for (i = 0; i < entity.mentionIdList.length; i++) {
+          entityMention = comm.getEntityMentionWithUUID(entity.mentionIdList[i]);
           if (entityMention.tokens.tokenizationId.uuidString === tokenization.uuid.uuidString) {
             for (i = 0, l = entityMention.tokens.tokenIndexList.length; i < l; i++) {
               classNames[entityMention.tokens.tokenIndexList[i]].push(

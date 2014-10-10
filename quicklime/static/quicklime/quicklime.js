@@ -690,7 +690,7 @@ QL.removeMouseoverHighlightingForEntitySet = function(entitySet) {
   $('.entity_set_' + entitySet.uuid.uuidString)
     .decrement_counter('active-entity-sets')
     .filter(function() {
-      if ($(this).data('active-entity-sets') == 0) {
+      if ($(this).data('active-entity-sets') === 0) {
         $(this).removeClass('mention_for_active_entity_set');
       }
     });
@@ -711,7 +711,7 @@ QL.removeMouseoverHighlightingForEntitySet = function(entitySet) {
         data[prop] += 1;
       }
     });
-  }
+  };
 }(jQuery));
 
 
@@ -729,5 +729,5 @@ QL.removeMouseoverHighlightingForEntitySet = function(entitySet) {
         data[prop] -= 1;
       }
     });
-  }
+  };
 }(jQuery));
