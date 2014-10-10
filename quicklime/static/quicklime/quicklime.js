@@ -596,6 +596,45 @@ QL.getEntitySetHighlightCallbacks = function(entitySet) {
 };
 
 
+/** Returns array of distinct Tokenization UUID's for a SituationMention and its arguments
+ *
+ * The length of the returned array is 1 if all mentions belong to a single tokenization.
+ *
+ * @param {concrete.Communication} comm
+ * @param {concrete.SituationMention} situationMention
+ * @returns {Array} An array of concrete.UUID objects
+ */
+QL.getSituationMentionTokenizationIds = function(comm, situationMention) {
+  var tokenizationIds = [];
+  var tokenizationIdStrings = [];
+  if (situationMention.tokens) {
+    tokenizationIds.push(situationMention.tokens.tokenizationId);
+    tokenizationIdStrings.push(situationMention.tokens.tokenizationId.uuidString);
+  }
+  for (i = 0, l = situationMention.argumentList.length; i < l; i++) {
+    var argument = situationMention.argumentList[i];
+    if (argument.entityMentionId) {
+      var entityMentionArgument = comm.getEntityMentionWithUUID(argument.entityMentionId);
+      if (tokenizationIdStrings.indexOf(entityMentionArgument.tokens.tokenizationId.uuidString) === -1) {
+        tokenizationIds.push(entityMentionArgument.tokens.tokenizationId);
+        tokenizationIdStrings.push(entityMentionArgument.tokens.tokenizationId.uuidString);
+      }
+    }
+    else if (argument.situationMentionId) {
+      var situationMentionArgument = comm.getSituationMentionWithUUID(argument.situationMentionId);
+      if (situationMentionArgument.tokens &&
+          tokenizationIdStrings.indexOf(situationMentionArgument.tokens.tokenizationId.uuidString) === -1)
+      {
+        tokenizationIds.push(situationMentionArgument.tokens.tokenizationId);
+        tokenizationIdStrings.push(situationMentionArgument.tokens.tokenizationId.uuidString);
+      }
+    }
+  }
+
+  return tokenizationIds;
+};
+
+
 /** Returns a single string for the tokens pointed to by the TokenRefSequence.
  *  If not all tokens in the TokenRefSequence are adjacent, the HTML entity
  *  for '...' will be inserted where there are gaps.
