@@ -52,6 +52,7 @@
      var protocol = new Thrift.TJSONProtocol(transport);
      var client = new CommunicationServiceClient(protocol);
      var comm = client.readComm();
+     comm.addInternalReferences();
 
      $('#save_button').click(function() {
        client.writeComm(comm);

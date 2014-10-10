@@ -443,6 +443,21 @@ QL.addSituationMentionTable = function(parentElementID, comm) {
         var situationMention = situationMentionSet.mentionList[situationMentionIndex];
         var situationMention_li = $('<li>')
           .append(
+            $('<button>')
+              .addClass('btn btn-default btn-xs')
+              .attr('id', 'situation_mention_button_' + situationMention.uuid.uuidString)
+              .attr('type', 'button')
+              .click({ container_id: 'situation_mention_container_' + situationMention.uuid.uuidString,
+                       comm: comm,
+                       situationMention: situationMention}, function(event) {
+                         QL.brat.addSituationMention(event.data.container_id, event.data.comm, event.data.situationMention);
+                       })
+              .css('margin-right', '1em')
+              .html("SM"))
+          .append(
+            $('<span>')
+              .attr('id', 'situation_mention_container_' + situationMention.uuid.uuidString))
+          .append(
             $('<span>')
               .addClass('situation_mention_' + situationMention.uuid.uuidString)
               .html(situationMention.situationType + ': ' + situationMention.text));

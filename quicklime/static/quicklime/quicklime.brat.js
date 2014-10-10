@@ -445,6 +445,97 @@ QL.brat.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID)
 };
 
 
+/** Create and display a SituationMention visualization
+ * @param {String} container_id - DOM ID of element the visualization should be added to
+ * @param {concrete.Communication} comm
+ * @param {concrete.situationMention} situationMention
+ */
+QL.brat.addSituationMention = function(container_id, comm, situationMention) {
+  var tokenizationIds = QL.getSituationMentionTokenizationIds(comm, situationMention);
+  if (tokenizationIds.length === 1) {
+    var i;
+    var tokenization = comm.getTokenizationWithUUID(tokenizationIds[0]);
+    var sentence = tokenization.sentence;
+
+    var collData = {
+      entity_types: [
+      ]
+    };
+
+    var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
+    sentence_text = sentence_text.replace(/\n/g, " ");
+
+    var start, ending, label;
+
+    var relationEntityLabels = [];
+    var relationLabels = [];
+
+    // Add entity label for the SituationMention
+    if (situationMention.tokens) {
+      start = situationMention.tokens.textSpan.start - sentence.textSpan.start;
+      ending = situationMention.tokens.textSpan.ending - sentence.textSpan.start;
+    }
+    else {
+      start = 0;
+      ending = 0;
+    }
+    if (situationMention.text) {
+      label = situationMention.situationType + ': ' + situationMention.text;
+    }
+    else {
+      label = situationMention.situationType;
+    }
+    relationEntityLabels.push(
+      [situationMention.uuid.uuidString,
+       label,
+       [[start, ending]]]);
+
+    // Add entity label(s) for the SituationMention's argument(s)
+    for (var argumentIndex in situationMention.argumentList) {
+      var argument = situationMention.argumentList[argumentIndex];
+      if (argument.entityMentionId) {
+        var entityMentionArgument = comm.getEntityMentionWithUUID(argument.entityMentionId);
+        start = entityMentionArgument.tokens.textSpan.start - sentence.textSpan.start;
+        ending = entityMentionArgument.tokens.textSpan.ending - sentence.textSpan.start;
+        relationEntityLabels.push(
+          [entityMentionArgument.uuid.uuidString,
+           entityMentionArgument.entityType,
+           [[start, ending]]]);
+        relationLabels.push(
+          ['argument_' + argumentIndex,
+           argument.role,
+           [['SM', situationMention.uuid.uuidString],
+            ['ARG', entityMentionArgument.uuid.uuidString]]]);
+      }
+      else if (argument.situationMentionId) {
+        var situationMentionArgument = comm.getSituationMentionWithUUID(argument.situationMentionId);
+        start = situationMentionArgument.tokens.textSpan.start - sentence.textSpan.start;
+        ending = situationMentionArgument.tokens.textSpan.ending - sentence.textSpan.start;
+        relationEntityLabels.push(
+          [situationMentionArgument.uuid.uuidString,
+           situationMentionArgument.situationType + ': ' + situationMentionArgument.text,
+           [[start, ending]]]);
+        relationLabels.push(
+          ['argument_' + argumentIndex,
+           argument.role,
+           [['SM', situationMention.uuid.uuidString],
+            ['ARG', situationMentionArgument.uuid.uuidString]]]);
+      }
+    }
+
+    var docData = {
+      text: sentence_text,
+      entities: relationEntityLabels,
+      relations: relationLabels,
+    };
+
+    var webFontURLs = [];
+
+    Util.embed(container_id, collData, docData, webFontURLs);
+  }
+};
+
+
 /** Add buttons for toggling display of BRAT visualizations
  *
  *  The buttons are appended to the 'tokenization_controls' <div> for
