@@ -451,11 +451,57 @@ QL.brat.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID)
  * @param {concrete.situationMention} situationMention
  */
 QL.brat.addSituationMention = function(container_id, comm, situationMention) {
+  function getSpanForTokenRefSequence(tokenRefSequence, characterOffset) {
+    if (tokenRefSequence.textSpan) {
+      return tokenRefSequence.textSpan;
+    }
+    else {
+      // TODO: Don't assume token indices are sorted, handle non-contiguous tokens
+      var tokenization = comm.getTokenizationWithUUID(tokenRefSequence.tokenizationId);
+      var first_token = tokenization.tokenList.tokenList[tokenRefSequence.tokenIndexList[0]];
+      var tokens_in_sequence = tokenRefSequence.tokenIndexList.length;
+      var last_token = tokenization.tokenList.tokenList[tokenRefSequence.tokenIndexList[tokens_in_sequence-1]];
+      if (first_token.textSpan && last_token.textSpan) {
+        return { start: first_token.textSpan.start, ending: last_token.textSpan.ending };
+      }
+      else {
+        return { start: characterOffset, ending: characterOffset };
+      }
+    }
+  }
+
+  function getSpanForSituationMention(situationMention, characterOffset) {
+    if (situationMention.tokens) {
+      if (situationMention.tokens.textSpan) {
+        return situationMention.tokens.textSpan;
+      }
+      else {
+        return getSpanForTokenRefSequence(situationMention.tokens, characterOffset);
+      }
+    }
+    else {
+      return { start: characterOffset, ending: characterOffset };
+    }
+  }
+
+  function getLabelForSituationMention(situationMention) {
+    if (situationMention.text) {
+      return situationMention.situationType + ': ' + situationMention.text;
+    }
+    else if (situationMention.situationType) {
+      return situationMention.situationType;
+    }
+    else {
+      return "NO_LABEL";
+    }
+  }
+
   var tokenizationIds = QL.getSituationMentionTokenizationIds(comm, situationMention);
   if (tokenizationIds.length === 1) {
     var i;
     var tokenization = comm.getTokenizationWithUUID(tokenizationIds[0]);
     var sentence = tokenization.sentence;
+    var characterOffset = sentence.textSpan.start;
 
     var collData = {
       entity_types: [
@@ -465,56 +511,44 @@ QL.brat.addSituationMention = function(container_id, comm, situationMention) {
     var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
     sentence_text = sentence_text.replace(/\n/g, " ");
 
-    var start, ending, label;
-
     var relationEntityLabels = [];
     var relationLabels = [];
 
     // Add entity label for the SituationMention
-    if (situationMention.tokens) {
-      start = situationMention.tokens.textSpan.start - sentence.textSpan.start;
-      ending = situationMention.tokens.textSpan.ending - sentence.textSpan.start;
-    }
-    else {
-      start = 0;
-      ending = 0;
-    }
-    if (situationMention.text) {
-      label = situationMention.situationType + ': ' + situationMention.text;
-    }
-    else {
-      label = situationMention.situationType;
-    }
+    var situationMentionSpan = getSpanForSituationMention(situationMention, characterOffset);
     relationEntityLabels.push(
       [situationMention.uuid.uuidString,
-       label,
-       [[start, ending]]]);
+       getLabelForSituationMention(situationMention),
+       [[situationMentionSpan.start - characterOffset,
+         situationMentionSpan.ending - characterOffset]]]);
 
     // Add entity label(s) for the SituationMention's argument(s)
     for (var argumentIndex in situationMention.argumentList) {
       var argument = situationMention.argumentList[argumentIndex];
       if (argument.entityMentionId) {
         var entityMentionArgument = comm.getEntityMentionWithUUID(argument.entityMentionId);
-        start = entityMentionArgument.tokens.textSpan.start - sentence.textSpan.start;
-        ending = entityMentionArgument.tokens.textSpan.ending - sentence.textSpan.start;
+        var entityMentionArgumentSpan = getSpanForTokenRefSequence(entityMentionArgument.tokens, characterOffset);
+        var entityTypeLabel = entityMentionArgument.entityType ? entityMentionArgument.entityType : "UNKNOWN_TYPE";
         relationEntityLabels.push(
           [entityMentionArgument.uuid.uuidString,
-           entityMentionArgument.entityType,
-           [[start, ending]]]);
+           entityTypeLabel,
+           [[entityMentionArgumentSpan.start - characterOffset,
+             entityMentionArgumentSpan.ending - characterOffset]]]);
+        var argumentRoleLabel = argument.role ? argument.role : "UNKNOWN_ROLE";
         relationLabels.push(
           ['argument_' + argumentIndex,
-           argument.role,
+           argumentRoleLabel,
            [['SM', situationMention.uuid.uuidString],
             ['ARG', entityMentionArgument.uuid.uuidString]]]);
       }
       else if (argument.situationMentionId) {
         var situationMentionArgument = comm.getSituationMentionWithUUID(argument.situationMentionId);
-        start = situationMentionArgument.tokens.textSpan.start - sentence.textSpan.start;
-        ending = situationMentionArgument.tokens.textSpan.ending - sentence.textSpan.start;
+        var situationMentionArgumentSpan = getSpanForSituationMention(situationMentionArgument, characterOffset);
         relationEntityLabels.push(
           [situationMentionArgument.uuid.uuidString,
-           situationMentionArgument.situationType + ': ' + situationMentionArgument.text,
-           [[start, ending]]]);
+           getLabelForSituationMention(situationMentionArgument),
+           [[situationMentionArgumentSpan.start - characterOffset,
+             situationMentionArgumentSpan.ending - characterOffset]]]);
         relationLabels.push(
           ['argument_' + argumentIndex,
            argument.role,

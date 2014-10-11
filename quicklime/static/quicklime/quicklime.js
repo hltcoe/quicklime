@@ -418,6 +418,7 @@ QL.addSituationMentionTable = function(parentElementID, comm) {
 
     for (var smsIndex in comm.situationMentionSetList) {
       var situationMentionPanel_div = $('<div>').addClass('panel panel-default');
+      situationMentionTable_div.append(situationMentionPanel_div);
       var situationMentionSet = comm.situationMentionSetList[smsIndex];
 
       var situationMentionToolHeading = $('<a>')
@@ -438,10 +439,26 @@ QL.addSituationMentionTable = function(parentElementID, comm) {
               .append(
                 situationMentionToolHeading)));
 
-      var situationMentionList_ul = $('<ul>').addClass('entity_list');
+      var situationMentionList_div = $('<div>').addClass('entity_list');
+      situationMentionPanel_div.append(
+        $('<div>')
+          .attr('id', 'collapseSituationMentionSet_' + situationMentionSet.uuid.uuidString)
+          .addClass('panel-collapse collapse in')
+          .append(
+            $('<div>')
+              .addClass('panel-body')
+              .append(
+                situationMentionList_div)));
+
       for (var situationMentionIndex in situationMentionSet.mentionList) {
         var situationMention = situationMentionSet.mentionList[situationMentionIndex];
-        var situationMention_li = $('<li>')
+        var container_id = 'situation_mention_container_' + situationMention.uuid.uuidString;
+        situationMentionList_div.append(
+          $('<div>')
+            .attr('id', container_id)
+            .css('margin-bottom', '5px'));
+        QL.brat.addSituationMention(container_id, comm, situationMention);
+/*
           .append(
             $('<button>')
               .addClass('btn btn-default btn-xs')
@@ -461,6 +478,8 @@ QL.addSituationMentionTable = function(parentElementID, comm) {
             $('<span>')
               .addClass('situation_mention_' + situationMention.uuid.uuidString)
               .html(situationMention.situationType + ': ' + situationMention.text));
+*/
+/*
         for (var argumentListIndex in situationMention.argumentList) {
           var mentionArgument = situationMention.argumentList[argumentListIndex];
           if (mentionArgument.entityMentionId) {
@@ -495,17 +514,8 @@ QL.addSituationMentionTable = function(parentElementID, comm) {
           }
         }
         situationMentionList_ul.append(situationMention_li);
+*/
       }
-      situationMentionPanel_div.append(
-        $('<div>')
-          .attr('id', 'collapseSituationMentionSet_' + situationMentionSet.uuid.uuidString)
-          .addClass('panel-collapse collapse in')
-          .append(
-            $('<div>')
-              .addClass('panel-body')
-              .append(
-                situationMentionList_ul)));
-      situationMentionTable_div.append(situationMentionPanel_div);
     }
   }
 };
@@ -626,7 +636,7 @@ QL.getSituationMentionTokenizationIds = function(comm, situationMention) {
     tokenizationIds.push(situationMention.tokens.tokenizationId);
     tokenizationIdStrings.push(situationMention.tokens.tokenizationId.uuidString);
   }
-  for (i = 0, l = situationMention.argumentList.length; i < l; i++) {
+  for (var i = 0, l = situationMention.argumentList.length; i < l; i++) {
     var argument = situationMention.argumentList[i];
     if (argument.entityMentionId) {
       var entityMentionArgument = comm.getEntityMentionWithUUID(argument.entityMentionId);
