@@ -641,7 +641,7 @@ QL.brat.addTokenizationBRATControls = function(comm) {
   }
 
   /** Get a flat array of all Tokenization objects in the Communication
-   * @params {concrete.Communication} comm
+   * @param {concrete.Communication} comm
    * @returns {Array} The Tokenization objects
    */
   function getAllTokenizations(comm) {
@@ -659,8 +659,8 @@ QL.brat.addTokenizationBRATControls = function(comm) {
   /** Get the Tokenizations that contain EntityMentions that are part of
    *  a SituationMention created by the specified tool
    *
-   * @params {concrete.Communication} comm
-   * @params {String} toolname - Name of tool that created the SituationMentions
+   * @param {concrete.Communication} comm
+   * @param {String} toolname - Name of tool that created the SituationMentions
    * @returns {Object} Object keys are uuidStrings of matching Tokenizations
    */
   function getTokenizationsWithSituationMentions(comm, toolname) {
@@ -746,8 +746,8 @@ QL.brat.addTokenizationBRATControls = function(comm) {
  *  which EntityMentions are in a SituationMention argumentList created
  *  by the specified toolname
  *
- * @params {concrete.Communication} comm
- * @params {String} toolname
+ * @param {concrete.Communication} comm
+ * @param {String} toolname
  * @returns {Object} An object whose keys are the uuidStrings for relevant EntityMentions
  */
 QL.brat.getRelationEntityMentionSet = function(comm, toolname) {
