@@ -742,6 +742,27 @@ QL.brat.addTokenizationBRATControls = function(comm) {
 };
 
 
+/**
+ * Documentation for configuration format:
+ *   http://brat.nlplab.org/embed.html
+ *
+ * @param {String} toolname
+ */
+QL.brat.getAnnotationConfigForToolname = function(toolname) {
+  var annotationConfig = {
+    entity_types: [
+    ]
+  };
+
+  if (toolname === QL.brat.SERIF_RELATIONS) {
+  }
+  else if (toolname === "concrete-semafor using Semafor v2.1") {
+  }
+
+  return annotationConfig;
+};
+
+
 /** Iterate over all SituationMentions in the Communication, record
  *  which EntityMentions are in a SituationMention argumentList created
  *  by the specified toolname
