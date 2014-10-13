@@ -104,109 +104,7 @@ QL.brat.addSerifACERelations = function(communicationUUID, sentenceUUID, tokeniz
     }
   }
 
-  var collData = {
-    entity_types: [
-      // The 'type' field must be a string, and not a number.
-      //
-      // getArcLabels() in 'brat/client/src/util.js' invokes the match()
-      // function on the object passed in as the 'type' field:
-      //   var splitType = arcType.match(/^(.*?)(\d*)$/);
-      // and an error will occur if that object is a number.
-      { type: 'Crime', labels: ['CRI', 'Crime'], bgColor: 'darkgray' },
-      { type: 'FAC', labels: ['FAC', 'Facility'], bgColor: '#aaaaee' },
-      { type: 'GPE', labels: ['GPE', 'Geo-Political Entity'], bgColor: '#7fe2ff' },
-      { type: 'Job-Title', labels: ['JT', 'Job Title'], bgColor: '#F9F247' },
-      { type: 'LOC', labels: ['LOC', 'Location'], bgColor: '#6fffdf' },
-      { type: 'ORG', labels: ['ORG', 'Organization'], bgColor: '#8fb2ff' },
-      { type: 'PER', labels: ['PER', 'Person'], bgColor: '#ffccaa' },
-      { type: 'TIMEX2.TIME', labels: ['TIME', 'Time'], bgColor: '#F9F247' },
-      { type: 'VEH', labels: ['VEH', 'Vehicle'], bgColor: '#ccccee' },
-      { type: 'WEA', labels: ['WEA', 'Weaopn'], bgColor: 'darkgray' },
-    ],
-    relation_types: [
-      // The values of the 'type' strings below come from Serif
-      {
-        type: 'ART.User-Owner-Inventor-Manufacturer',
-        labels: ['Owned by', 'Owner/Inventor/Manufacturer'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-      {
-        type: 'GEN-AFF.Org-Location',
-        labels: ['Located at', 'Organization Location'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-      {
-        type: 'ORG-AFF.Employment',
-        labels: ['Employed by', 'Organization Affiliation - Employment'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-      {
-        type: 'ORG-AFF.Membership',
-        labels: ['Member of', 'Organization Affiliation - Member'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-      {
-        type: 'PART-WHOLE.Geographical',
-        labels: ['Located in', 'Geographical part/whole'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-      {
-        type: 'PART-WHOLE.Subsidiary',
-        labels: ['Part', 'Part of Whole'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-      {
-        type: 'PER-SOC.Business',
-        labels: ['Business with', 'Business Relationship'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-      {
-        type: 'PER-SOC.Family',
-        labels: ['Family of', 'Family Relationship'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-      {
-        type: 'PHYS.Located',
-        labels: ['Loc', 'Located in'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-      {
-        type: 'PHYS.Near',
-        labels: ['Near', 'Near'],
-        color: '#e30834',
-        dashArray: '3-3',
-        args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
-                { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
-      },
-    ],
-  };
+  var collData = QL.brat.getAnnotationConfigForToolname(QL.brat.SERIF_RELATIONS);
 
   var docData = {
     text     : sentence_text,
@@ -236,27 +134,7 @@ QL.brat.addNERTags = function(communicationUUID, sentenceUUID, tokenizationUUID)
 
   var webFontURLs = [];
 
-  var collData = {
-    entity_types: [
-      /*
-      { type: 'DATE', labels: ['Date', 'Date'], bgColor: '#9affe6' },
-      { type: 'DURATION', labels: ['Duration', 'Dur'], bgColor: '#9affe6' },
-      { type: 'LOCATION', labels: ['Location', 'Loc'], bgColor: '#95dfff' },
-      { type: 'MISC', labels: ['Misc', 'Misc'], bgColor: '#f1f447' },
-      { type: 'NUMBER', labels: ['Number', 'Num'], bgColor: '#df99ff' },
-      { type: 'ORGANIZATION', labels: ['Organization', 'Org'], bgColor: '#8fb2ff' },
-      { type: 'PERCENT', labels: ['Percent', 'Perc'], bgColor: '#ffa22b' },
-      { type: 'PERSON', labels: ['Person', 'Pers'], bgColor: '#ffccaa' },
-      { type: 'SET', labels: ['Set', 'Set'], bgColor: '#ff7c95' },
-      { type: 'TIME', labels: ['Time', 'Time'], bgColor: '#9affe6' },
-      */
-      { type: 'GPE', labels: ['GPE', 'GPE'], bgColor: '#ff7c95' },
-      { type: 'ORG', labels: ['ORG', 'ORG'], bgColor: '#8fb2ff' },
-      { type: 'NONE', labels: ['NONE', 'NONE'], bgColor: '#ffffff'},
-      { type: 'PER', labels: ['PER', 'PER'], bgColor: '#ffccaa' },
-      { type: 'VEH', labels: ['VEH', 'VEH'], bgColor: '#df99ff' },
-    ]
-  };
+  var collData = QL.brat.getAnnotationConfigForToolname("NER");
 
   var sentence_text = "";
   var token_offsets = [];
@@ -335,69 +213,7 @@ QL.brat.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID)
   var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
 
   var webFontURLs = [];
-
-  // Tag names and colors are copied from the BRAT configuration file for
-  // Stanford NLP:
-  //   brat-v1.3_Crunchy_Frog/configurations/Stanford-CoreNLP/visual.conf
-  var colors = {
-    blue: '#a4bced',
-    brownish: '#ffe8be',
-    green: '#adf6a2',
-    greyish_blue: '#ccdaf6',
-    light_grey: '#e3e3e3',
-    violet: '#e4cbf6',
-    yellowish: '#fffda8',
-    white: '#ffffff'
-  };
-  var collData = {
-    entity_types: [
-      { type: 'CC', labels: ['CC', 'CC'], bgColor: '#F9F247' },
-      { type: 'CD', labels: ['CD', 'CD'], bgColor: colors.greyish_blue },
-      { type: 'DATE-NNP', labels: ['NNP', 'NNP'], bgColor: colors.blue },
-      { type: 'DT', labels: ['DT', 'DT'], bgColor: colors.greyish_blue },
-      { type: 'EX', labels: ['EX', 'EX'], bgColor: colors.violet },
-      { type: 'FW', labels: ['FW', 'FW'], bgColor: colors.violet },
-      { type: 'IN', labels: ['IN', 'IN'], bgColor: colors.brownish },
-      { type: 'JJ', labels: ['JJ', 'JJ'], bgColor: colors.yellowish },
-      { type: 'JJR', labels: ['JJR', 'JJR'], bgColor: colors.yellowish },
-      { type: 'JJS', labels: ['JJS', 'JJS'], bgColor: colors.yellowish },
-      { type: 'LS', labels: ['LS', 'LS'], bgColor: colors.violet },
-      { type: 'MD', labels: ['MD', 'MD'], bgColor: colors.green },
-      { type: 'NN', labels: ['NN', 'NN'], bgColor: colors.blue },
-      { type: 'NNP', labels: ['NNP', 'NNP'], bgColor: colors.blue },
-      { type: 'NNPS', labels: ['NNPS', 'NNPS'], bgColor: colors.blue },
-      { type: 'NNS', labels: ['NNS', 'NNS'], bgColor: colors.blue },
-      { type: 'PDT', labels: ['PDT', 'PDT'], bgColor: colors.greyish_blue },
-      { type: 'POS', labels: ['POS', 'POS'], bgColor: colors.violet },
-      { type: 'PRP', labels: ['PRP', 'PRP'], bgColor: colors.greyish_blue },
-      { type: 'PRP__DOLLAR__', labels: ['PRP$', 'PRP$'], bgColor: colors.greyish_blue },
-      { type: 'RB', labels: ['RB', 'RB'], bgColor: colors.yellowish },
-      { type: 'RBR', labels: ['RBR', 'RBR'], bgColor: colors.yellowish },
-      { type: 'RBS', labels: ['RBS', 'RBS'], bgColor: colors.yellowish },
-      { type: 'RP', labels: ['RP', 'RP'], bgColor: colors.violet },
-      { type: 'SYM', labels: ['SYM', 'SYM'], bgColor: colors.violet },
-      { type: 'TO', labels: ['TO', 'TO'], bgColor: colors.brownish },
-      { type: 'UH', labels: ['UH', 'UH'], bgColor: colors.violet },
-      { type: 'VB', labels: ['VB', 'VB'], bgColor: colors.green },
-      { type: 'VBD', labels: ['VBD', 'VBD'], bgColor: colors.green },
-      { type: 'VBG', labels: ['VBG', 'VBG'], bgColor: colors.green },
-      { type: 'VBN', labels: ['VBN', 'VBN'], bgColor: colors.green },
-      { type: 'VBP', labels: ['VBP', 'VBP'], bgColor: colors.green },
-      { type: 'VBZ', labels: ['VBZ', 'VBZ'], bgColor: colors.green },
-      { type: 'WDT', labels: ['WDT', 'WDT'], bgColor: colors.greyish_blue },
-      { type: 'WP', labels: ['WP', 'WP'], bgColor: colors.greyish_blue },
-      { type: 'WP__DOLLAR__', labels: ['WP$', 'WP$'], bgColor: colors.greyish_blue },
-      { type: 'WRB', labels: ['WRB', 'WRB'], bgColor: colors.yellowish },
-
-      { type: '__DOLLAR__', labels: ['$', '$'], bgColor: colors.white },
-      { type: '?', labels: ['?', '?'], bgColor: colors.white },
-      { type: '.', labels: ['.', '.'], bgColor: colors.white },
-      { type: ',', labels: [',', ','], bgColor: colors.white },
-      { type: '``', labels: ['``', '``'], bgColor: colors.white },
-      { type: "''", labels: ["''", "''"], bgColor: colors.white },
-    ]
-  };
-
+  var collData = QL.brat.getAnnotationConfigForToolname("POS");
   var sentence_text = "";
   var token_offsets = [];
   for (i = 0, total_tokens = tokenization.tokenList.tokenList.length; i < total_tokens; i++) {
@@ -749,14 +565,209 @@ QL.brat.addTokenizationBRATControls = function(comm) {
  * @param {String} toolname
  */
 QL.brat.getAnnotationConfigForToolname = function(toolname) {
-  var annotationConfig = {
-    entity_types: [
-    ]
+  var annotationConfig;
+
+  var colors = {
+    blue: '#a4bced',
+    brownish: '#ffe8be',
+    green: '#adf6a2',
+    greyish_blue: '#ccdaf6',
+    light_grey: '#e3e3e3',
+    violet: '#e4cbf6',
+    yellowish: '#fffda8',
+    white: '#ffffff'
   };
 
-  if (toolname === QL.brat.SERIF_RELATIONS) {
+  if (toolname === "concrete-semafor using Semafor v2.1") {
   }
-  else if (toolname === "concrete-semafor using Semafor v2.1") {
+  else if (toolname === "NER") {
+    annotationConfig = {
+      entity_types: [
+        /*
+        { type: 'DATE', labels: ['Date', 'Date'], bgColor: '#9affe6' },
+        { type: 'DURATION', labels: ['Duration', 'Dur'], bgColor: '#9affe6' },
+        { type: 'LOCATION', labels: ['Location', 'Loc'], bgColor: '#95dfff' },
+        { type: 'MISC', labels: ['Misc', 'Misc'], bgColor: '#f1f447' },
+        { type: 'NUMBER', labels: ['Number', 'Num'], bgColor: '#df99ff' },
+        { type: 'ORGANIZATION', labels: ['Organization', 'Org'], bgColor: '#8fb2ff' },
+        { type: 'PERCENT', labels: ['Percent', 'Perc'], bgColor: '#ffa22b' },
+        { type: 'PERSON', labels: ['Person', 'Pers'], bgColor: '#ffccaa' },
+        { type: 'SET', labels: ['Set', 'Set'], bgColor: '#ff7c95' },
+        { type: 'TIME', labels: ['Time', 'Time'], bgColor: '#9affe6' },
+        */
+        { type: 'GPE', labels: ['GPE', 'GPE'], bgColor: '#ff7c95' },
+        { type: 'ORG', labels: ['ORG', 'ORG'], bgColor: '#8fb2ff' },
+        { type: 'NONE', labels: ['NONE', 'NONE'], bgColor: '#ffffff'},
+        { type: 'PER', labels: ['PER', 'PER'], bgColor: '#ffccaa' },
+        { type: 'VEH', labels: ['VEH', 'VEH'], bgColor: '#df99ff' },
+      ]
+    };
+  }
+  else if (toolname === "POS") {
+    // Tag names and colors are copied from the BRAT configuration file for
+    // Stanford NLP:
+    //   https://github.com/nlplab/brat/releases/tag/v1.3_Crunchy_Frog
+    //   configurations/Stanford-CoreNLP/visual.conf
+    annotationConfig = {
+      entity_types: [
+        { type: 'CC', labels: ['CC', 'CC'], bgColor: '#F9F247' },
+        { type: 'CD', labels: ['CD', 'CD'], bgColor: colors.greyish_blue },
+        { type: 'DATE-NNP', labels: ['NNP', 'NNP'], bgColor: colors.blue },
+        { type: 'DT', labels: ['DT', 'DT'], bgColor: colors.greyish_blue },
+        { type: 'EX', labels: ['EX', 'EX'], bgColor: colors.violet },
+        { type: 'FW', labels: ['FW', 'FW'], bgColor: colors.violet },
+        { type: 'IN', labels: ['IN', 'IN'], bgColor: colors.brownish },
+        { type: 'JJ', labels: ['JJ', 'JJ'], bgColor: colors.yellowish },
+        { type: 'JJR', labels: ['JJR', 'JJR'], bgColor: colors.yellowish },
+        { type: 'JJS', labels: ['JJS', 'JJS'], bgColor: colors.yellowish },
+        { type: 'LS', labels: ['LS', 'LS'], bgColor: colors.violet },
+        { type: 'MD', labels: ['MD', 'MD'], bgColor: colors.green },
+        { type: 'NN', labels: ['NN', 'NN'], bgColor: colors.blue },
+        { type: 'NNP', labels: ['NNP', 'NNP'], bgColor: colors.blue },
+        { type: 'NNPS', labels: ['NNPS', 'NNPS'], bgColor: colors.blue },
+        { type: 'NNS', labels: ['NNS', 'NNS'], bgColor: colors.blue },
+        { type: 'PDT', labels: ['PDT', 'PDT'], bgColor: colors.greyish_blue },
+        { type: 'POS', labels: ['POS', 'POS'], bgColor: colors.violet },
+        { type: 'PRP', labels: ['PRP', 'PRP'], bgColor: colors.greyish_blue },
+        { type: 'PRP__DOLLAR__', labels: ['PRP$', 'PRP$'], bgColor: colors.greyish_blue },
+        { type: 'RB', labels: ['RB', 'RB'], bgColor: colors.yellowish },
+        { type: 'RBR', labels: ['RBR', 'RBR'], bgColor: colors.yellowish },
+        { type: 'RBS', labels: ['RBS', 'RBS'], bgColor: colors.yellowish },
+        { type: 'RP', labels: ['RP', 'RP'], bgColor: colors.violet },
+        { type: 'SYM', labels: ['SYM', 'SYM'], bgColor: colors.violet },
+        { type: 'TO', labels: ['TO', 'TO'], bgColor: colors.brownish },
+        { type: 'UH', labels: ['UH', 'UH'], bgColor: colors.violet },
+        { type: 'VB', labels: ['VB', 'VB'], bgColor: colors.green },
+        { type: 'VBD', labels: ['VBD', 'VBD'], bgColor: colors.green },
+        { type: 'VBG', labels: ['VBG', 'VBG'], bgColor: colors.green },
+        { type: 'VBN', labels: ['VBN', 'VBN'], bgColor: colors.green },
+        { type: 'VBP', labels: ['VBP', 'VBP'], bgColor: colors.green },
+        { type: 'VBZ', labels: ['VBZ', 'VBZ'], bgColor: colors.green },
+        { type: 'WDT', labels: ['WDT', 'WDT'], bgColor: colors.greyish_blue },
+        { type: 'WP', labels: ['WP', 'WP'], bgColor: colors.greyish_blue },
+        { type: 'WP__DOLLAR__', labels: ['WP$', 'WP$'], bgColor: colors.greyish_blue },
+        { type: 'WRB', labels: ['WRB', 'WRB'], bgColor: colors.yellowish },
+
+        { type: '__DOLLAR__', labels: ['$', '$'], bgColor: colors.white },
+        { type: '?', labels: ['?', '?'], bgColor: colors.white },
+        { type: '.', labels: ['.', '.'], bgColor: colors.white },
+        { type: ',', labels: [',', ','], bgColor: colors.white },
+        { type: '``', labels: ['``', '``'], bgColor: colors.white },
+        { type: "''", labels: ["''", "''"], bgColor: colors.white },
+      ]
+    };
+  }
+  else if (toolname === QL.brat.SERIF_RELATIONS) {
+    annotationConfig = {
+      entity_types: [
+        // The 'type' field must be a string, and not a number.
+        //
+        // getArcLabels() in 'brat/client/src/util.js' invokes the match()
+        // function on the object passed in as the 'type' field:
+        //   var splitType = arcType.match(/^(.*?)(\d*)$/);
+        // and an error will occur if that object is a number.
+        { type: 'Crime', labels: ['CRI', 'Crime'], bgColor: 'darkgray' },
+        { type: 'FAC', labels: ['FAC', 'Facility'], bgColor: '#aaaaee' },
+        { type: 'GPE', labels: ['GPE', 'Geo-Political Entity'], bgColor: '#7fe2ff' },
+        { type: 'Job-Title', labels: ['JT', 'Job Title'], bgColor: '#F9F247' },
+        { type: 'LOC', labels: ['LOC', 'Location'], bgColor: '#6fffdf' },
+        { type: 'ORG', labels: ['ORG', 'Organization'], bgColor: '#8fb2ff' },
+        { type: 'PER', labels: ['PER', 'Person'], bgColor: '#ffccaa' },
+        { type: 'TIMEX2.TIME', labels: ['TIME', 'Time'], bgColor: '#F9F247' },
+        { type: 'VEH', labels: ['VEH', 'Vehicle'], bgColor: '#ccccee' },
+        { type: 'WEA', labels: ['WEA', 'Weaopn'], bgColor: 'darkgray' },
+      ],
+      relation_types: [
+        // The values of the 'type' strings below come from Serif
+        {
+          type: 'ART.User-Owner-Inventor-Manufacturer',
+          labels: ['Owned by', 'Owner/Inventor/Manufacturer'],
+          color: '#e30834',
+          dashArray: '3-3',
+          args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                  { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+        },
+        {
+          type: 'GEN-AFF.Org-Location',
+          labels: ['Located at', 'Organization Location'],
+          color: '#e30834',
+          dashArray: '3-3',
+          args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                  { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+        },
+        {
+          type: 'ORG-AFF.Employment',
+          labels: ['Employed by', 'Organization Affiliation - Employment'],
+          color: '#e30834',
+          dashArray: '3-3',
+          args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                  { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+        },
+        {
+          type: 'ORG-AFF.Membership',
+          labels: ['Member of', 'Organization Affiliation - Member'],
+          color: '#e30834',
+          dashArray: '3-3',
+          args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                  { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+        },
+        {
+          type: 'PART-WHOLE.Geographical',
+          labels: ['Located in', 'Geographical part/whole'],
+          color: '#e30834',
+          dashArray: '3-3',
+          args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                  { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+        },
+        {
+          type: 'PART-WHOLE.Subsidiary',
+          labels: ['Part', 'Part of Whole'],
+          color: '#e30834',
+          dashArray: '3-3',
+          args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                  { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+        },
+        {
+          type: 'PER-SOC.Business',
+          labels: ['Business with', 'Business Relationship'],
+          color: '#e30834',
+          dashArray: '3-3',
+          args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                  { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+        },
+        {
+          type: 'PER-SOC.Family',
+          labels: ['Family of', 'Family Relationship'],
+          color: '#e30834',
+          dashArray: '3-3',
+          args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                  { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+        },
+        {
+          type: 'PHYS.Located',
+          labels: ['Loc', 'Located in'],
+          color: '#e30834',
+          dashArray: '3-3',
+          args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                  { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+        },
+        {
+          type: 'PHYS.Near',
+          labels: ['Near', 'Near'],
+          color: '#e30834',
+          dashArray: '3-3',
+          args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
+                  { role: 'Right', targets: ['1','2','3','4','6','7','8','9','10','12'] } ],
+        },
+      ],
+    };
+  }
+  else {
+    // Default configuration
+    annotationConfig = {
+      entity_types: [
+      ]
+    };
   }
 
   return annotationConfig;
