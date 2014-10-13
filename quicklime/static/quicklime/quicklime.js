@@ -420,6 +420,7 @@ QL.addSituationMentionTable = function(parentElementID, comm) {
       var situationMentionPanel_div = $('<div>').addClass('panel panel-default');
       situationMentionTable_div.append(situationMentionPanel_div);
       var situationMentionSet = comm.situationMentionSetList[smsIndex];
+      var toolname = situationMentionSet.metadata.tool;
 
       var situationMentionToolHeading = $('<a>')
         .attr('data-toggle', 'collapse')
@@ -457,7 +458,7 @@ QL.addSituationMentionTable = function(parentElementID, comm) {
           $('<div>')
             .attr('id', container_id)
             .css('margin-bottom', '5px'));
-        QL.brat.addSituationMention(container_id, comm, situationMention);
+        QL.brat.addSituationMention(container_id, comm, situationMention, toolname);
 /*
           .append(
             $('<button>')

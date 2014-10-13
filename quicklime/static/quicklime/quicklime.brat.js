@@ -265,8 +265,9 @@ QL.brat.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID)
  * @param {String} container_id - DOM ID of element the visualization should be added to
  * @param {concrete.Communication} comm
  * @param {concrete.situationMention} situationMention
+ * @param {String} toolname
  */
-QL.brat.addSituationMention = function(container_id, comm, situationMention) {
+QL.brat.addSituationMention = function(container_id, comm, situationMention, toolname) {
   function getSpanForTokenRefSequence(tokenRefSequence, characterOffset) {
     if (tokenRefSequence.textSpan) {
       return tokenRefSequence.textSpan;
@@ -319,11 +320,7 @@ QL.brat.addSituationMention = function(container_id, comm, situationMention) {
     var sentence = tokenization.sentence;
     var characterOffset = sentence.textSpan.start;
 
-    var collData = {
-      entity_types: [
-      ]
-    };
-
+    var collData = QL.brat.getAnnotationConfigForToolname(toolname);
     var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
     sentence_text = sentence_text.replace(/\n/g, " ");
 
