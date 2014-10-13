@@ -261,6 +261,47 @@ QL.brat.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID)
 };
 
 
+QL.brat.addSituationMentionSet = function(communicationUUID, sentenceUUID, tokenizationUUID, situationMentionSetUUID) {
+  var comm = QL.getCommunicationWithUUID(communicationUUID);
+  var id = situationMentionSetUUID.uuidString + '_' + tokenizationUUID.uuidString;
+
+  var situationMentionSetDiv = $('<div>')
+    .addClass('situation_mention_set')
+    .attr('id', 'situation_mention_set_' + id);
+
+  $("#situation_mention_sets_container_" + tokenizationUUID.uuidString)
+    .append(
+      $('<div>')
+        .addClass('situation_mention_set_container')
+        .attr('id', 'situation_mention_set_container_' + id)
+        .append(situationMentionSetDiv));
+
+  var i, l;
+  if (comm.situationMentionSetList) {
+    for (i = 0, l = comm.situationMentionSetList.length; i < l; i++) {
+      var situationMentionSet = comm.situationMentionSetList[i];
+      if (situationMentionSet.uuid.uuidString === situationMentionSetUUID.uuidString) {
+        for (var situationMentionIndex in situationMentionSet.mentionList) {
+          var situationMention = situationMentionSet.mentionList[situationMentionIndex];
+          var tokenizationIds = QL.getSituationMentionTokenizationIds(comm, situationMention);
+          if (tokenizationIds.length === 1 && tokenizationIds[0].uuidString === tokenizationUUID.uuidString) {
+            situationMentionSetDiv.append(
+              $('<div>')
+                .addClass('situation_mention')
+                .attr('id', id + '_' + situationMention.uuid.uuidString));
+            QL.brat.addSituationMention(
+              id + '_' + situationMention.uuid.uuidString,
+              comm,
+              situationMention,
+              situationMentionSet.metadata.tool);
+          }
+        }
+      }
+    }
+  }
+};
+
+
 /** Create and display a SituationMention visualization
  * @param {String} container_id - DOM ID of element the visualization should be added to
  * @param {concrete.Communication} comm
@@ -439,6 +480,21 @@ QL.brat.addTokenizationBRATControls = function(comm) {
     }
   }
 
+  /** Event handler for toggling a SituationMention diagram
+   * @param {MouseEvent} event
+   */
+  function addOrToggleSituationMentionSet(event) {
+    if (QL.brat.hasSituationMentionSet(event.data.situation_mention_set_uuid, event.data.tokenization_uuid)) {
+      QL.brat.toggleSituationMentionSet(event.data.situation_mention_set_uuid, event.data.tokenization_uuid);
+    }
+    else {
+      QL.brat.addSituationMentionSet(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid,
+                                     event.data.situation_mention_set_uuid);
+      $('#situation_mention_set_button_' + event.data.situation_mention_set_uuid.uuidString +
+        '_' + event.data.tokenization_uuid.uuidString).addClass('active');
+    }
+  }
+
   /** Returns a boolean iff a Communication has SituationMention data from the specified tool
    * @param {concrete.Communication} comm
    * @param {String} toolname
@@ -493,6 +549,14 @@ QL.brat.addTokenizationBRATControls = function(comm) {
     return tokenizationsWithSerifRelations;
   }
 
+  var i, l, toolname;
+  var tokenizationsWithSituationMentions = [];
+
+  for (i = 0, l = comm.situationMentionSetList.length; i < l; i++) {
+    toolname = comm.situationMentionSetList[i].metadata.tool;
+    tokenizationsWithSituationMentions[toolname] = getTokenizationsWithSituationMentions(comm, toolname);
+  }
+
   var hasSerifRelationsData = commHasSituationMentionData(comm, QL.brat.SERIF_RELATIONS);
   var tokenizationsWithSerifRelations = getTokenizationsWithSituationMentions(comm, QL.brat.SERIF_RELATIONS);
 
@@ -533,6 +597,25 @@ QL.brat.addTokenizationBRATControls = function(comm) {
           // We currently ignore all but the first POS TokenTagging
           QL.addMetadataTooltip(pos_tag_button, POStokenTaggings[0].metadata);
           tokenization_controls_div.append(pos_tag_button);
+        }
+
+        for (i = 0, l = comm.situationMentionSetList.length; i < l; i++) {
+          toolname = comm.situationMentionSetList[i].metadata.tool;
+          var situation_mention_set_button = $('<button>')
+            .addClass('btn btn-default btn-xs')
+            .attr('id', 'situation_mention_set_button_' + comm.situationMentionSetList[i].uuid.uuidString +
+                  '_' + tokenization.uuid.uuidString)
+            .attr('type', 'button')
+            .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid,
+                     situation_mention_set_uuid: comm.situationMentionSetList[i].uuid},
+                   addOrToggleSituationMentionSet)
+            .css('margin-right', '1em')
+            .html("SM" + i);
+          if (!tokenizationsWithSituationMentions[toolname][tokenization.uuid.uuidString]) {
+            situation_mention_set_button.prop('disabled', true);
+          }
+          QL.addMetadataTooltip(situation_mention_set_button, comm.situationMentionSetList[i].metadata);
+          tokenization_controls_div.append(situation_mention_set_button);
         }
 
         if (hasSerifRelationsData) {
@@ -924,6 +1007,23 @@ QL.brat.hasPOSTags = function(tokenizationUUID) {
 };
 
 
+/** Check if SituationMention  diagram has already been added to DOM
+ * @param {concrete.UUID} situationMentionSetUUID
+ * @param {concrete.UUID} tokenizationUUID
+ * @returns {Boolean}
+ */
+QL.brat.hasSituationMentionSet = function(situationMentionSetUUID, tokenizationUUID) {
+  if ($("#situation_mention_set_" + situationMentionSetUUID.uuidString +
+        "_" + tokenizationUUID.uuidString + " svg").length > 0)
+  {
+    return true;
+  }
+  else {
+    return false;
+  }
+};
+
+
 /** Create a popover TokenTagging menu when clicking on labels in BRAT visualization
  *
  * NOTE: QL.brat.showTokenTaggingPopover() and QL.brat.updateTokenLabel() are tightly coupled
@@ -1045,6 +1145,22 @@ QL.brat.togglePOSTags = function(tokenizationUUID) {
   else {
     $('#tokenization_pos_button_' + tokenizationUUID.uuidString).removeClass('active');
     $("#tokenization_pos_container_" + tokenizationUUID.uuidString).hide();
+  }
+};
+
+
+/** Toggle display of POS token tagging diagram
+ * @param {concrete.UUID} tokenizationUUID
+ */
+QL.brat.toggleSituationMentionSet = function(situationMentionSetUUID, tokenizationUUID) {
+  var id = situationMentionSetUUID.uuidString + "_" + tokenizationUUID.uuidString;
+  if ($("#situation_mention_set_container_" + id).css('display') == 'none') {
+    $('#situation_mention_set_button_' + id).addClass('active');
+    $("#situation_mention_set_container_" + id).show();
+  }
+  else {
+    $('#situation_mention_set_button_' + id).removeClass('active');
+    $("#situation_mention_set_container_" + id).hide();
   }
 };
 

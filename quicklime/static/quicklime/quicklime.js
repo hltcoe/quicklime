@@ -171,6 +171,10 @@ QL.addCommunication = function(parentElementID, comm) {
               $('<div>')
                 .addClass('brat_tokenization')
                 .attr('id', 'tokenization_pos_' + tokenization.uuid.uuidString)));
+        sentence_div.append(
+          $('<div>')
+            .addClass('situation_mention_sets_container')
+            .attr('id', 'situation_mention_sets_container_' + tokenization.uuid.uuidString));
         sentence_div.append($('<div>')
           .addClass('dagre_parse')
           .attr('id', 'constituent_parse_' + tokenization.uuid.uuidString));
