@@ -261,40 +261,52 @@ QL.brat.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID)
 };
 
 
-QL.brat.addSituationMentionSet = function(communicationUUID, sentenceUUID, tokenizationUUID, situationMentionSetUUID) {
-  var comm = QL.getCommunicationWithUUID(communicationUUID);
-  var id = situationMentionSetUUID.uuidString + '_' + tokenizationUUID.uuidString;
-
-  var situationMentionSetDiv = $('<div>')
-    .addClass('situation_mention_set')
-    .attr('id', 'situation_mention_set_' + id);
-
-  $("#situation_mention_sets_container_" + tokenizationUUID.uuidString)
-    .append(
-      $('<div>')
-        .addClass('situation_mention_set_container')
-        .attr('id', 'situation_mention_set_container_' + id)
-        .append(situationMentionSetDiv));
-
-  var i, l;
-  if (comm.situationMentionSetList) {
-    for (i = 0, l = comm.situationMentionSetList.length; i < l; i++) {
+QL.brat.addSituationMentionSet = function(communicationUUID, tokenizationUUID, situationMentionSetUUID) {
+  function getSituationMentionSetWithUUID(comm, situationMentionSetUUID) {
+    for (var i = 0, l = comm.situationMentionSetList.length; i < l; i++) {
       var situationMentionSet = comm.situationMentionSetList[i];
       if (situationMentionSet.uuid.uuidString === situationMentionSetUUID.uuidString) {
-        for (var situationMentionIndex in situationMentionSet.mentionList) {
-          var situationMention = situationMentionSet.mentionList[situationMentionIndex];
-          var tokenizationIds = QL.getSituationMentionTokenizationIds(comm, situationMention);
-          if (tokenizationIds.length === 1 && tokenizationIds[0].uuidString === tokenizationUUID.uuidString) {
-            situationMentionSetDiv.append(
+        return situationMentionSet;
+      }
+    }
+    return null;
+  }
+
+  var comm = QL.getCommunicationWithUUID(communicationUUID);
+
+  if (comm.situationMentionSetList) {
+    var situationMentionSet = getSituationMentionSetWithUUID(comm, situationMentionSetUUID);
+    if (situationMentionSet) {
+      var id = situationMentionSetUUID.uuidString + '_' + tokenizationUUID.uuidString;
+
+      var situationMentionSetDiv = $('<div>')
+        .addClass('situation_mention_set')
+        .attr('id', 'situation_mention_set_' + id);
+
+      $("#situation_mention_sets_container_" + tokenizationUUID.uuidString)
+        .append(
+          $('<div>')
+            .addClass('situation_mention_set_container')
+            .attr('id', 'situation_mention_set_container_' + id)
+            .append(
               $('<div>')
-                .addClass('situation_mention')
-                .attr('id', id + '_' + situationMention.uuid.uuidString));
-            QL.brat.addSituationMention(
-              id + '_' + situationMention.uuid.uuidString,
-              comm,
-              situationMention,
-              situationMentionSet.metadata.tool);
-          }
+                .addClass('brat_tokenization_label')
+                .html(situationMentionSet.metadata.tool))
+            .append(situationMentionSetDiv));
+
+      for (var situationMentionIndex in situationMentionSet.mentionList) {
+        var situationMention = situationMentionSet.mentionList[situationMentionIndex];
+        var tokenizationIds = QL.getSituationMentionTokenizationIds(comm, situationMention);
+        if (tokenizationIds.length === 1 && tokenizationIds[0].uuidString === tokenizationUUID.uuidString) {
+          situationMentionSetDiv.append(
+            $('<div>')
+              .addClass('situation_mention')
+              .attr('id', id + '_' + situationMention.uuid.uuidString));
+          QL.brat.addSituationMention(
+            id + '_' + situationMention.uuid.uuidString,
+            comm,
+            situationMention,
+            situationMentionSet.metadata.tool);
         }
       }
     }
@@ -488,7 +500,7 @@ QL.brat.addTokenizationBRATControls = function(comm) {
       QL.brat.toggleSituationMentionSet(event.data.situation_mention_set_uuid, event.data.tokenization_uuid);
     }
     else {
-      QL.brat.addSituationMentionSet(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid,
+      QL.brat.addSituationMentionSet(event.data.comm_uuid, event.data.tokenization_uuid,
                                      event.data.situation_mention_set_uuid);
       $('#situation_mention_set_button_' + event.data.situation_mention_set_uuid.uuidString +
         '_' + event.data.tokenization_uuid.uuidString).addClass('active');
@@ -606,7 +618,7 @@ QL.brat.addTokenizationBRATControls = function(comm) {
             .attr('id', 'situation_mention_set_button_' + comm.situationMentionSetList[i].uuid.uuidString +
                   '_' + tokenization.uuid.uuidString)
             .attr('type', 'button')
-            .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid,
+            .click({ comm_uuid: comm.uuid, tokenization_uuid: tokenization.uuid,
                      situation_mention_set_uuid: comm.situationMentionSetList[i].uuid},
                    addOrToggleSituationMentionSet)
             .css('margin-right', '1em')
