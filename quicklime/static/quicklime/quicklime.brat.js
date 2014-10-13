@@ -666,22 +666,22 @@ QL.brat.getAnnotationConfigForToolname = function(toolname) {
         // function on the object passed in as the 'type' field:
         //   var splitType = arcType.match(/^(.*?)(\d*)$/);
         // and an error will occur if that object is a number.
-        { type: 'Crime', labels: ['CRI', 'Crime'], bgColor: 'darkgray' },
-        { type: 'FAC', labels: ['FAC', 'Facility'], bgColor: '#aaaaee' },
-        { type: 'GPE', labels: ['GPE', 'Geo-Political Entity'], bgColor: '#7fe2ff' },
-        { type: 'Job-Title', labels: ['JT', 'Job Title'], bgColor: '#F9F247' },
-        { type: 'LOC', labels: ['LOC', 'Location'], bgColor: '#6fffdf' },
-        { type: 'ORG', labels: ['ORG', 'Organization'], bgColor: '#8fb2ff' },
-        { type: 'PER', labels: ['PER', 'Person'], bgColor: '#ffccaa' },
-        { type: 'TIMEX2.TIME', labels: ['TIME', 'Time'], bgColor: '#F9F247' },
-        { type: 'VEH', labels: ['VEH', 'Vehicle'], bgColor: '#ccccee' },
-        { type: 'WEA', labels: ['WEA', 'Weaopn'], bgColor: 'darkgray' },
+        { type: 'Crime', labels: ['Crime', 'CRI'], bgColor: 'darkgray' },
+        { type: 'FAC', labels: ['Facility', 'FAC'], bgColor: '#aaaaee' },
+        { type: 'GPE', labels: ['Geo-Political Entity', 'GPE'], bgColor: '#7fe2ff' },
+        { type: 'Job-Title', labels: ['Job Title', 'JT'], bgColor: '#F9F247' },
+        { type: 'LOC', labels: ['Location', 'LOC'], bgColor: '#6fffdf' },
+        { type: 'ORG', labels: ['Organization', 'ORG'], bgColor: '#8fb2ff' },
+        { type: 'PER', labels: ['Person', 'PER'], bgColor: '#ffccaa' },
+        { type: 'TIMEX2.TIME', labels: ['Time', 'TIME'], bgColor: '#F9F247' },
+        { type: 'VEH', labels: ['Vehicle', 'VEH'], bgColor: '#ccccee' },
+        { type: 'WEA', labels: ['Weapon', 'WEA'], bgColor: 'darkgray' },
       ],
       relation_types: [
         // The values of the 'type' strings below come from Serif
         {
           type: 'ART.User-Owner-Inventor-Manufacturer',
-          labels: ['Owned by', 'Owner/Inventor/Manufacturer'],
+          labels: ['Owner/Inventor/Manufacturer', 'Owned by'],
           color: '#e30834',
           dashArray: '3-3',
           args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
@@ -689,7 +689,7 @@ QL.brat.getAnnotationConfigForToolname = function(toolname) {
         },
         {
           type: 'GEN-AFF.Org-Location',
-          labels: ['Located at', 'Organization Location'],
+          labels: ['Organization Location', 'Located at'],
           color: '#e30834',
           dashArray: '3-3',
           args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
@@ -697,7 +697,7 @@ QL.brat.getAnnotationConfigForToolname = function(toolname) {
         },
         {
           type: 'ORG-AFF.Employment',
-          labels: ['Employed by', 'Organization Affiliation - Employment'],
+          labels: ['Organization Affiliation - Employment', 'Employed by'],
           color: '#e30834',
           dashArray: '3-3',
           args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
@@ -705,7 +705,7 @@ QL.brat.getAnnotationConfigForToolname = function(toolname) {
         },
         {
           type: 'ORG-AFF.Membership',
-          labels: ['Member of', 'Organization Affiliation - Member'],
+          labels: ['Organization Affiliation - Member', 'Member of'],
           color: '#e30834',
           dashArray: '3-3',
           args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
@@ -713,7 +713,7 @@ QL.brat.getAnnotationConfigForToolname = function(toolname) {
         },
         {
           type: 'PART-WHOLE.Geographical',
-          labels: ['Located in', 'Geographical part/whole'],
+          labels: ['Geographical part/whole', 'Located in'],
           color: '#e30834',
           dashArray: '3-3',
           args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
@@ -721,7 +721,7 @@ QL.brat.getAnnotationConfigForToolname = function(toolname) {
         },
         {
           type: 'PART-WHOLE.Subsidiary',
-          labels: ['Part', 'Part of Whole'],
+          labels: ['Part of Whole', 'Part'],
           color: '#e30834',
           dashArray: '3-3',
           args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
@@ -729,7 +729,7 @@ QL.brat.getAnnotationConfigForToolname = function(toolname) {
         },
         {
           type: 'PER-SOC.Business',
-          labels: ['Business with', 'Business Relationship'],
+          labels: ['Business Relationship', 'Business with'],
           color: '#e30834',
           dashArray: '3-3',
           args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
@@ -737,7 +737,7 @@ QL.brat.getAnnotationConfigForToolname = function(toolname) {
         },
         {
           type: 'PER-SOC.Family',
-          labels: ['Family of', 'Family Relationship'],
+          labels: ['Family Relationship', 'Family of'],
           color: '#e30834',
           dashArray: '3-3',
           args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
@@ -745,7 +745,7 @@ QL.brat.getAnnotationConfigForToolname = function(toolname) {
         },
         {
           type: 'PHYS.Located',
-          labels: ['Loc', 'Located in'],
+          labels: ['Located in', 'Loc'],
           color: '#e30834',
           dashArray: '3-3',
           args: [ { role: 'Left', targets: ['1','2','3','4','6','7','8','9','10','12'] },
