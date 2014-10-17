@@ -387,7 +387,6 @@ Communication = function(args) {
   this.entitySetList = null;
   this.situationMentionSetList = null;
   this.situationSetList = null;
-  this.originalText = null;
   this.sound = null;
   this.tweetInfo = null;
   this.emailInfo = null;
@@ -434,9 +433,6 @@ Communication = function(args) {
     }
     if (args.situationSetList !== undefined) {
       this.situationSetList = args.situationSetList;
-    }
-    if (args.originalText !== undefined) {
-      this.originalText = args.originalText;
     }
     if (args.sound !== undefined) {
       this.sound = args.sound;
@@ -672,13 +668,6 @@ Communication.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 16:
-      if (ftype == Thrift.Type.STRING) {
-        this.originalText = input.readString().value;
-      } else {
-        input.skip(ftype);
-      }
-      break;
       case 20:
       if (ftype == Thrift.Type.STRUCT) {
         this.sound = new Sound();
@@ -854,11 +843,6 @@ Communication.prototype.write = function(output) {
       }
     }
     output.writeListEnd();
-    output.writeFieldEnd();
-  }
-  if (this.originalText !== null && this.originalText !== undefined) {
-    output.writeFieldBegin('originalText', Thrift.Type.STRING, 16);
-    output.writeString(this.originalText);
     output.writeFieldEnd();
   }
   if (this.sound !== null && this.sound !== undefined) {
@@ -5504,8 +5488,10 @@ SituationMention = function(args) {
   this.uuid = null;
   this.text = null;
   this.situationType = null;
-  this.situationKind = null;
   this.argumentList = null;
+  this.eventType = null;
+  this.stateType = null;
+  this.situationKindLemma = null;
   this.intensity = null;
   this.polarity = null;
   this.tokens = null;
@@ -5520,11 +5506,17 @@ SituationMention = function(args) {
     if (args.situationType !== undefined) {
       this.situationType = args.situationType;
     }
-    if (args.situationKind !== undefined) {
-      this.situationKind = args.situationKind;
-    }
     if (args.argumentList !== undefined) {
       this.argumentList = args.argumentList;
+    }
+    if (args.eventType !== undefined) {
+      this.eventType = args.eventType;
+    }
+    if (args.stateType !== undefined) {
+      this.stateType = args.stateType;
+    }
+    if (args.situationKindLemma !== undefined) {
+      this.situationKindLemma = args.situationKindLemma;
     }
     if (args.intensity !== undefined) {
       this.intensity = args.intensity;
@@ -5576,13 +5568,6 @@ SituationMention.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 50:
-      if (ftype == Thrift.Type.STRING) {
-        this.situationKind = input.readString().value;
-      } else {
-        input.skip(ftype);
-      }
-      break;
       case 4:
       if (ftype == Thrift.Type.LIST) {
         var _size48 = 0;
@@ -5600,6 +5585,27 @@ SituationMention.prototype.read = function(input) {
           this.argumentList.push(elem54);
         }
         input.readListEnd();
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 50:
+      if (ftype == Thrift.Type.STRING) {
+        this.eventType = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 51:
+      if (ftype == Thrift.Type.STRING) {
+        this.stateType = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 53:
+      if (ftype == Thrift.Type.STRING) {
+        this.situationKindLemma = input.readString().value;
       } else {
         input.skip(ftype);
       }
@@ -5659,11 +5665,6 @@ SituationMention.prototype.write = function(output) {
     output.writeString(this.situationType);
     output.writeFieldEnd();
   }
-  if (this.situationKind !== null && this.situationKind !== undefined) {
-    output.writeFieldBegin('situationKind', Thrift.Type.STRING, 50);
-    output.writeString(this.situationKind);
-    output.writeFieldEnd();
-  }
   if (this.argumentList !== null && this.argumentList !== undefined) {
     output.writeFieldBegin('argumentList', Thrift.Type.LIST, 4);
     output.writeListBegin(Thrift.Type.STRUCT, this.argumentList.length);
@@ -5676,6 +5677,21 @@ SituationMention.prototype.write = function(output) {
       }
     }
     output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.eventType !== null && this.eventType !== undefined) {
+    output.writeFieldBegin('eventType', Thrift.Type.STRING, 50);
+    output.writeString(this.eventType);
+    output.writeFieldEnd();
+  }
+  if (this.stateType !== null && this.stateType !== undefined) {
+    output.writeFieldBegin('stateType', Thrift.Type.STRING, 51);
+    output.writeString(this.stateType);
+    output.writeFieldEnd();
+  }
+  if (this.situationKindLemma !== null && this.situationKindLemma !== undefined) {
+    output.writeFieldBegin('situationKindLemma', Thrift.Type.STRING, 53);
+    output.writeString(this.situationKindLemma);
     output.writeFieldEnd();
   }
   if (this.intensity !== null && this.intensity !== undefined) {
@@ -5964,7 +5980,6 @@ Token = function(args) {
   this.tokenIndex = null;
   this.text = null;
   this.textSpan = null;
-  this.rawTextSpan = null;
   this.audioSpan = null;
   if (args) {
     if (args.tokenIndex !== undefined) {
@@ -5975,9 +5990,6 @@ Token = function(args) {
     }
     if (args.textSpan !== undefined) {
       this.textSpan = args.textSpan;
-    }
-    if (args.rawTextSpan !== undefined) {
-      this.rawTextSpan = args.rawTextSpan;
     }
     if (args.audioSpan !== undefined) {
       this.audioSpan = args.audioSpan;
@@ -6020,14 +6032,6 @@ Token.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 4:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.rawTextSpan = new TextSpan();
-        this.rawTextSpan.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
       case 5:
       if (ftype == Thrift.Type.STRUCT) {
         this.audioSpan = new AudioSpan();
@@ -6062,11 +6066,6 @@ Token.prototype.write = function(output) {
     this.textSpan.write(output);
     output.writeFieldEnd();
   }
-  if (this.rawTextSpan !== null && this.rawTextSpan !== undefined) {
-    output.writeFieldBegin('rawTextSpan', Thrift.Type.STRUCT, 4);
-    this.rawTextSpan.write(output);
-    output.writeFieldEnd();
-  }
   if (this.audioSpan !== null && this.audioSpan !== undefined) {
     output.writeFieldBegin('audioSpan', Thrift.Type.STRUCT, 5);
     this.audioSpan.write(output);
@@ -6082,7 +6081,6 @@ TokenRefSequence = function(args) {
   this.anchorTokenIndex = -1;
   this.tokenizationId = null;
   this.textSpan = null;
-  this.rawTextSpan = null;
   this.audioSpan = null;
   if (args) {
     if (args.tokenIndexList !== undefined) {
@@ -6096,9 +6094,6 @@ TokenRefSequence = function(args) {
     }
     if (args.textSpan !== undefined) {
       this.textSpan = args.textSpan;
-    }
-    if (args.rawTextSpan !== undefined) {
-      this.rawTextSpan = args.rawTextSpan;
     }
     if (args.audioSpan !== undefined) {
       this.audioSpan = args.audioSpan;
@@ -6164,14 +6159,6 @@ TokenRefSequence.prototype.read = function(input) {
       break;
       case 5:
       if (ftype == Thrift.Type.STRUCT) {
-        this.rawTextSpan = new TextSpan();
-        this.rawTextSpan.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 6:
-      if (ftype == Thrift.Type.STRUCT) {
         this.audioSpan = new AudioSpan();
         this.audioSpan.read(input);
       } else {
@@ -6218,13 +6205,8 @@ TokenRefSequence.prototype.write = function(output) {
     this.textSpan.write(output);
     output.writeFieldEnd();
   }
-  if (this.rawTextSpan !== null && this.rawTextSpan !== undefined) {
-    output.writeFieldBegin('rawTextSpan', Thrift.Type.STRUCT, 5);
-    this.rawTextSpan.write(output);
-    output.writeFieldEnd();
-  }
   if (this.audioSpan !== null && this.audioSpan !== undefined) {
-    output.writeFieldBegin('audioSpan', Thrift.Type.STRUCT, 6);
+    output.writeFieldBegin('audioSpan', Thrift.Type.STRUCT, 5);
     this.audioSpan.write(output);
     output.writeFieldEnd();
   }
@@ -7183,9 +7165,13 @@ TokenLattice.prototype.write = function(output) {
 
 TokenList = function(args) {
   this.tokenList = null;
+  this.reconstructedText = null;
   if (args) {
     if (args.tokenList !== undefined) {
       this.tokenList = args.tokenList;
+    }
+    if (args.reconstructedText !== undefined) {
+      this.reconstructedText = args.reconstructedText;
     }
   }
 };
@@ -7224,9 +7210,13 @@ TokenList.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 0:
+      case 2:
+      if (ftype == Thrift.Type.STRING) {
+        this.reconstructedText = input.readString().value;
+      } else {
         input.skip(ftype);
-        break;
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -7250,6 +7240,11 @@ TokenList.prototype.write = function(output) {
       }
     }
     output.writeListEnd();
+    output.writeFieldEnd();
+  }
+  if (this.reconstructedText !== null && this.reconstructedText !== undefined) {
+    output.writeFieldBegin('reconstructedText', Thrift.Type.STRING, 2);
+    output.writeString(this.reconstructedText);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
@@ -7496,7 +7491,6 @@ Sentence = function(args) {
   this.uuid = null;
   this.tokenization = null;
   this.textSpan = null;
-  this.rawTextSpan = null;
   this.audioSpan = null;
   if (args) {
     if (args.uuid !== undefined) {
@@ -7507,9 +7501,6 @@ Sentence = function(args) {
     }
     if (args.textSpan !== undefined) {
       this.textSpan = args.textSpan;
-    }
-    if (args.rawTextSpan !== undefined) {
-      this.rawTextSpan = args.rawTextSpan;
     }
     if (args.audioSpan !== undefined) {
       this.audioSpan = args.audioSpan;
@@ -7556,14 +7547,6 @@ Sentence.prototype.read = function(input) {
       break;
       case 4:
       if (ftype == Thrift.Type.STRUCT) {
-        this.rawTextSpan = new TextSpan();
-        this.rawTextSpan.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
-      case 5:
-      if (ftype == Thrift.Type.STRUCT) {
         this.audioSpan = new AudioSpan();
         this.audioSpan.read(input);
       } else {
@@ -7596,13 +7579,8 @@ Sentence.prototype.write = function(output) {
     this.textSpan.write(output);
     output.writeFieldEnd();
   }
-  if (this.rawTextSpan !== null && this.rawTextSpan !== undefined) {
-    output.writeFieldBegin('rawTextSpan', Thrift.Type.STRUCT, 4);
-    this.rawTextSpan.write(output);
-    output.writeFieldEnd();
-  }
   if (this.audioSpan !== null && this.audioSpan !== undefined) {
-    output.writeFieldBegin('audioSpan', Thrift.Type.STRUCT, 5);
+    output.writeFieldBegin('audioSpan', Thrift.Type.STRUCT, 4);
     this.audioSpan.write(output);
     output.writeFieldEnd();
   }
@@ -7615,7 +7593,6 @@ Section = function(args) {
   this.uuid = null;
   this.sentenceList = null;
   this.textSpan = null;
-  this.rawTextSpan = null;
   this.audioSpan = null;
   this.kind = null;
   this.label = null;
@@ -7629,9 +7606,6 @@ Section = function(args) {
     }
     if (args.textSpan !== undefined) {
       this.textSpan = args.textSpan;
-    }
-    if (args.rawTextSpan !== undefined) {
-      this.rawTextSpan = args.rawTextSpan;
     }
     if (args.audioSpan !== undefined) {
       this.audioSpan = args.audioSpan;
@@ -7698,14 +7672,6 @@ Section.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 4:
-      if (ftype == Thrift.Type.STRUCT) {
-        this.rawTextSpan = new TextSpan();
-        this.rawTextSpan.read(input);
-      } else {
-        input.skip(ftype);
-      }
-      break;
       case 9:
       if (ftype == Thrift.Type.STRUCT) {
         this.audioSpan = new AudioSpan();
@@ -7714,21 +7680,21 @@ Section.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
-      case 5:
+      case 4:
       if (ftype == Thrift.Type.STRING) {
         this.kind = input.readString().value;
       } else {
         input.skip(ftype);
       }
       break;
-      case 6:
+      case 5:
       if (ftype == Thrift.Type.STRING) {
         this.label = input.readString().value;
       } else {
         input.skip(ftype);
       }
       break;
-      case 7:
+      case 6:
       if (ftype == Thrift.Type.LIST) {
         var _size95 = 0;
         var _rtmp399;
@@ -7783,28 +7749,23 @@ Section.prototype.write = function(output) {
     this.textSpan.write(output);
     output.writeFieldEnd();
   }
-  if (this.rawTextSpan !== null && this.rawTextSpan !== undefined) {
-    output.writeFieldBegin('rawTextSpan', Thrift.Type.STRUCT, 4);
-    this.rawTextSpan.write(output);
-    output.writeFieldEnd();
-  }
   if (this.audioSpan !== null && this.audioSpan !== undefined) {
     output.writeFieldBegin('audioSpan', Thrift.Type.STRUCT, 9);
     this.audioSpan.write(output);
     output.writeFieldEnd();
   }
   if (this.kind !== null && this.kind !== undefined) {
-    output.writeFieldBegin('kind', Thrift.Type.STRING, 5);
+    output.writeFieldBegin('kind', Thrift.Type.STRING, 4);
     output.writeString(this.kind);
     output.writeFieldEnd();
   }
   if (this.label !== null && this.label !== undefined) {
-    output.writeFieldBegin('label', Thrift.Type.STRING, 6);
+    output.writeFieldBegin('label', Thrift.Type.STRING, 5);
     output.writeString(this.label);
     output.writeFieldEnd();
   }
   if (this.numberList !== null && this.numberList !== undefined) {
-    output.writeFieldBegin('numberList', Thrift.Type.LIST, 7);
+    output.writeFieldBegin('numberList', Thrift.Type.LIST, 6);
     output.writeListBegin(Thrift.Type.I32, this.numberList.length);
     for (var iter103 in this.numberList)
     {
