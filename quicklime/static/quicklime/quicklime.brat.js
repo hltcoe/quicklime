@@ -564,9 +564,11 @@ QL.brat.addTokenizationBRATControls = function(comm) {
   var i, l, toolname;
   var tokenizationsWithSituationMentions = [];
 
-  for (i = 0, l = comm.situationMentionSetList.length; i < l; i++) {
-    toolname = comm.situationMentionSetList[i].metadata.tool;
-    tokenizationsWithSituationMentions[toolname] = getTokenizationsWithSituationMentions(comm, toolname);
+  if (comm.situationMentionSetList) {
+    for (i = 0, l = comm.situationMentionSetList.length; i < l; i++) {
+      toolname = comm.situationMentionSetList[i].metadata.tool;
+      tokenizationsWithSituationMentions[toolname] = getTokenizationsWithSituationMentions(comm, toolname);
+    }
   }
 
   var hasSerifRelationsData = commHasSituationMentionData(comm, QL.brat.SERIF_RELATIONS);
@@ -611,23 +613,25 @@ QL.brat.addTokenizationBRATControls = function(comm) {
           tokenization_controls_div.append(pos_tag_button);
         }
 
-        for (i = 0, l = comm.situationMentionSetList.length; i < l; i++) {
-          toolname = comm.situationMentionSetList[i].metadata.tool;
-          var situation_mention_set_button = $('<button>')
-            .addClass('btn btn-default btn-xs')
-            .attr('id', 'situation_mention_set_button_' + comm.situationMentionSetList[i].uuid.uuidString +
-                  '_' + tokenization.uuid.uuidString)
-            .attr('type', 'button')
-            .click({ comm_uuid: comm.uuid, tokenization_uuid: tokenization.uuid,
-                     situation_mention_set_uuid: comm.situationMentionSetList[i].uuid},
-                   addOrToggleSituationMentionSet)
-            .css('margin-right', '1em')
-            .html("SM" + i);
-          if (!tokenizationsWithSituationMentions[toolname][tokenization.uuid.uuidString]) {
-            situation_mention_set_button.prop('disabled', true);
+        if (comm.situationMentionSetList) {
+          for (i = 0, l = comm.situationMentionSetList.length; i < l; i++) {
+            toolname = comm.situationMentionSetList[i].metadata.tool;
+            var situation_mention_set_button = $('<button>')
+              .addClass('btn btn-default btn-xs')
+              .attr('id', 'situation_mention_set_button_' + comm.situationMentionSetList[i].uuid.uuidString +
+                    '_' + tokenization.uuid.uuidString)
+              .attr('type', 'button')
+              .click({ comm_uuid: comm.uuid, tokenization_uuid: tokenization.uuid,
+                       situation_mention_set_uuid: comm.situationMentionSetList[i].uuid},
+                     addOrToggleSituationMentionSet)
+              .css('margin-right', '1em')
+              .html("SM" + i);
+            if (!tokenizationsWithSituationMentions[toolname][tokenization.uuid.uuidString]) {
+              situation_mention_set_button.prop('disabled', true);
+            }
+            QL.addMetadataTooltip(situation_mention_set_button, comm.situationMentionSetList[i].metadata);
+            tokenization_controls_div.append(situation_mention_set_button);
           }
-          QL.addMetadataTooltip(situation_mention_set_button, comm.situationMentionSetList[i].metadata);
-          tokenization_controls_div.append(situation_mention_set_button);
         }
 
         if (hasSerifRelationsData) {
