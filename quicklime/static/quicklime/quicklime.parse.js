@@ -253,7 +253,7 @@ QL.parse.drawDependencyParse = function(comm, containerSelectorString, tokenizat
   for (i = 0; i < dependencyParse.dependencyList.length; i++) {
     dependency = dependencyParse.dependencyList[i];
     // The root edge will not have a 'gov'
-    if (typeof(dependency.gov) != 'undefined' && dependency.gov !== null) {
+    if (typeof(dependency.gov) != 'undefined' && dependency.gov !== null && dependency.gov !== -1) {
       g.addEdge(null, dependency.gov, dependency.dep, { label: dependency.edgeType });
     }
   }
