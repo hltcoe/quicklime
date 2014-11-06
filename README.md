@@ -20,7 +20,7 @@ concrete-js vs. Quicklime
 -------------------------
 
 The Quicklime project is a visualization and annotation tool that uses
-the [concrete-js](https://gitlab.hltcoe.jhu.edu/concrete/concrete-js).
+[concrete-js](https://gitlab.hltcoe.jhu.edu/concrete/concrete-js).
 **concrete-js** is a low-level library for manipulating Concrete
 data-structures that does not touch the DOM.  The Quicklime repository
 includes a copy of the **concrete-js** library - you do not need to
