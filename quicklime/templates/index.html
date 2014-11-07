@@ -14,6 +14,7 @@
   <script src="static/quicklime/bootstrap-3.2.0/js/bootstrap.js"></script>
   <script src="static/quicklime/d3/3.4.4/d3.js"></script>
   <script src="static/quicklime/dagre-d3/0.2.9/dagre-d3.js"></script>
+  <script src="static/quicklime/jquery.splitter.js"></script>
 
   <!-- === BRAT SCRIPTS === -->
   <!-- SVG for jQuery: http://keith-wood.name/svg.html
@@ -64,51 +65,86 @@
      QL.addEntityTable('entityTable', comm);
      QL.addSituationMentionTable('situationMentionTable', comm);
 //     QL.addMouseoverHighlightingForAllEntitySets(comm);
+
+     $('#splitter').splitter({
+       resizeTo: window,
+       sizeTop: true,
+       splitHorizontal: true
+     });
    });
   </script>
+  <style>
+   html, body {
+     margin: 0px;
+     padding: 0px;
+     overflow: hidden;
+   }
+   body {
+     padding-top: 50px;
+   }
+   .splitter-pane {
+     overflow: auto;
+   }
+   div.splitter-bar-horizontal {
+     height: 3px;
+     background: #444444;
+   }
+   #splitter {
+     height: 300px;
+   }
+  </style>
 </head>
 <body>
-  <div class="container-fluid">
-    <button id="save_button" type="button" class="btn btn-default">Save</button>
 
-    <p>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <button id="save_button" type="button" class="btn btn-default navbar-btn">Save</button>
+    </div>
+  </nav>
 
-    <h2>Sentences</h2>
-    <div id="communication_one"></div>
-
-    <p>
-
-    <div class="panel-group">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" href="#collapseEntities">
-              Entities
-            </a>
-          </h4>
-        </div>
-        <div id="collapseEntities" class="panel-collapse collapse in">
-          <div class="panel-body">
-            <div id="entityTable"></div>
-          </div>
-        </div>
+  <div id="splitter">
+    <div style="height: 400px; min-height: 150px;">
+      <div class="container-fluid">
+        <h2>Text</h2>
+        <div id="communication_one"></div>
       </div>
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" href="#collapseSituationMentions">
-              Situation Mentions
-            </a>
-          </h4>
-        </div>
-        <div id="collapseSituationMentions" class="panel-collapse collapse in">
-          <div class="panel-body">
-            <div id="situationMentionTable"></div>
+    </div>
+    <div style="margin-top: 0.5em;">
+      <div class="container-fluid">
+
+        <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapseEntities">
+                  Entities
+                </a>
+              </h4>
+            </div>
+            <div id="collapseEntities" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <div id="entityTable"></div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" href="#collapseSituationMentions">
+                  Situation Mentions
+                </a>
+              </h4>
+            </div>
+            <div id="collapseSituationMentions" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <div id="situationMentionTable"></div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+  </div><!-- #splitter -->
 
-  </div><!-- /.container-fluid -->
 </body>
 </html>
