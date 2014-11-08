@@ -66,6 +66,16 @@
 //     QL.addSituationMentionTable('situationMentionTable', comm);
 //     QL.addMouseoverHighlightingForAllEntitySets(comm);
 
+     $("#toggle_controls").click(function(event) {
+       var id = $(event.target).find('input').attr('id');
+       if (id === "show_controls") {
+         $('.tokenization_controls').show();
+       }
+       else if (id === "hide_controls") {
+         $('.tokenization_controls').hide();
+       }
+     });
+
      $('#splitter').splitter({
        resizeTo: window,
        sizeTop: true,
@@ -99,6 +109,14 @@
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
       <button id="save_button" type="button" class="btn btn-default navbar-btn">Save</button>
+      <div class="btn-group" data-toggle="buttons" id="toggle_controls">
+        <label class="btn btn-default active">
+          <input type="radio" name="toggle_controls" id="show_controls" checked> Show Controls
+        </label>
+        <label class="btn btn-default">
+          <input type="radio" name="toggle_controls" id="hide_controls"> Hide Controls
+        </label>
+      </div>
     </div>
   </nav>
 
