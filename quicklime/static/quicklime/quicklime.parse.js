@@ -335,7 +335,7 @@ QL.parse.getCSSClassesForTokenization = function(comm, tokenization) {
   var totalTokens = tokenization.tokenList.tokenList.length;
   var classNames = Array(totalTokens);
   var entityMention;
-  var i, l;
+  var i, j, l;
 
   for (i = 0; i < totalTokens; i++) {
     classNames[i] = Array();
@@ -370,11 +370,11 @@ QL.parse.getCSSClassesForTokenization = function(comm, tokenization) {
         for (i = 0; i < entity.mentionIdList.length; i++) {
           entityMention = comm.getEntityMentionWithUUID(entity.mentionIdList[i]);
           if (entityMention.tokens.tokenizationId.uuidString === tokenization.uuid.uuidString) {
-            for (i = 0, l = entityMention.tokens.tokenIndexList.length; i < l; i++) {
-              classNames[entityMention.tokens.tokenIndexList[i]].push(
+            for (j = 0, l = entityMention.tokens.tokenIndexList.length; j < l; j++) {
+              classNames[entityMention.tokens.tokenIndexList[j]].push(
                 'entity_' + entity.uuid.uuidString
               );
-              classNames[entityMention.tokens.tokenIndexList[i]].push(
+              classNames[entityMention.tokens.tokenIndexList[j]].push(
                 'entity_set_' + comm.entitySetList[entitySetListIndex].uuid.uuidString
               );
             }
