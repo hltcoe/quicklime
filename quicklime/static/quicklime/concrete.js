@@ -5420,6 +5420,8 @@ MentionArgument = function(args) {
   this.role = null;
   this.entityMentionId = null;
   this.situationMentionId = null;
+  this.tokens = null;
+  this.confidence = null;
   if (args) {
     if (args.role !== undefined) {
       this.role = args.role;
@@ -5429,6 +5431,12 @@ MentionArgument = function(args) {
     }
     if (args.situationMentionId !== undefined) {
       this.situationMentionId = args.situationMentionId;
+    }
+    if (args.tokens !== undefined) {
+      this.tokens = args.tokens;
+    }
+    if (args.confidence !== undefined) {
+      this.confidence = args.confidence;
     }
   }
 };
@@ -5469,6 +5477,21 @@ MentionArgument.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
+      case 4:
+      if (ftype == Thrift.Type.STRUCT) {
+        this.tokens = new TokenRefSequence();
+        this.tokens.read(input);
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 5:
+      if (ftype == Thrift.Type.DOUBLE) {
+        this.confidence = input.readDouble().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -5493,6 +5516,16 @@ MentionArgument.prototype.write = function(output) {
   if (this.situationMentionId !== null && this.situationMentionId !== undefined) {
     output.writeFieldBegin('situationMentionId', Thrift.Type.STRUCT, 3);
     this.situationMentionId.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.tokens !== null && this.tokens !== undefined) {
+    output.writeFieldBegin('tokens', Thrift.Type.STRUCT, 4);
+    this.tokens.write(output);
+    output.writeFieldEnd();
+  }
+  if (this.confidence !== null && this.confidence !== undefined) {
+    output.writeFieldBegin('confidence', Thrift.Type.DOUBLE, 5);
+    output.writeDouble(this.confidence);
     output.writeFieldEnd();
   }
   output.writeFieldStop();
