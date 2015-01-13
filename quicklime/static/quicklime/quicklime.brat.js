@@ -261,6 +261,67 @@ QL.brat.addPOSTags = function(communicationUUID, sentenceUUID, tokenizationUUID)
 };
 
 
+/** Create and display a ANS token tagging diagram
+ * @param {concrete.UUID} communicationUUID
+ * @param {concrete.UUID} sentenceUUID
+ * @param {concrete.UUID} tokenizationUUID
+ */
+QL.brat.addANSTags = function(communicationUUID, sentenceUUID, tokenizationUUID) {
+  var i;
+
+  var comm = QL.getCommunicationWithUUID(communicationUUID);
+  var sentence = comm.getSentenceWithUUID(sentenceUUID);
+  var tokenization = comm.getTokenizationWithUUID(tokenizationUUID);
+
+  var webFontURLs = [];
+  var collData = QL.brat.getAnnotationConfigForToolname("ANS");
+  var sentence_text = "";
+  var token_offsets = [];
+  for (i = 0, total_tokens = tokenization.tokenList.tokenList.length; i < total_tokens; i++) {
+    token_offsets.push({
+      'start': sentence_text.length,
+      'ending': sentence_text.length + tokenization.tokenList.tokenList[i].text.length
+    });
+    sentence_text += tokenization.tokenList.tokenList[i].text + " ";
+  }
+
+  // For now, we assume that there is only a single ANS tagging
+  var ansTokenTagging = tokenization.getTokenTaggingsOfType("ANS")[0];
+
+  var ans_tag_labels = [];
+  for (i = 0; i < ansTokenTagging.taggedTokenList.length; i++) {
+    var ansTag = ansTokenTagging.taggedTokenList[i];
+    var token = tokenization.tokenList.tokenList[ansTag.tokenIndex];
+    var entityID = "T" + ansTag.tokenIndex;
+    var start = token_offsets[ansTag.tokenIndex].start;
+    var ending = token_offsets[ansTag.tokenIndex].ending;
+    ans_tag_labels.push([entityID, ansTag.tag, [[start, ending]]]);
+  }
+
+  var docData = {
+    text     : sentence_text,
+    entities : ans_tag_labels,
+  };
+
+  var brat_container_id = 'tokenization_ans_' + tokenization.uuid.uuidString;
+
+  var showANSPopover = function(event) {
+    QL.brat.showTokenTaggingPopover(event, brat_container_id, collData);
+  };
+
+  var dispatcher = Util.embed(brat_container_id, collData, docData, webFontURLs);
+
+  dispatcher.on('click', showANSPopover);
+
+  $('#' + brat_container_id).on(
+    'click',
+    'span.token_label',
+    { tokenTagging: ansTokenTagging },
+    QL.brat.updateTokenLabel
+  );
+};
+
+
 QL.brat.addSituationMentionSet = function(communicationUUID, tokenizationUUID, situationMentionSetUUID) {
   function getSituationMentionSetWithUUID(comm, situationMentionSetUUID) {
     for (var i = 0, l = comm.situationMentionSetList.length; i < l; i++) {
@@ -445,6 +506,7 @@ QL.brat.addSituationMention = function(container_id, comm, situationMention, too
  *     <div class="tokenization_controls" id="tokenization_controls_[TOKENIZATION_UUID]">
  *   +   <button id="tokenization_ner_button_[TOKENIZATION_UUID]">
  *   +   <button id="tokenization_pos_button_[TOKENIZATION_UUID]">
+ *   +   <button id="tokenization_ans_button_[TOKENIZATION_UUID]">
  *   +   <button id="ace_relations_button_[TOKENIZATION_UUID]">
  *   +   ...
  *
@@ -476,6 +538,20 @@ QL.brat.addTokenizationBRATControls = function(comm) {
       QL.brat.addPOSTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
       $('#tokenization_pos_button_' + event.data.tokenization_uuid.uuidString).addClass('active');
       $("#tokenization_pos_container_" + event.data.tokenization_uuid.uuidString).show();
+    }
+  }
+
+  /** Event handler for toggling a ANS token tagging diagram
+   * @param {MouseEvent} event
+   */
+  function addOrToggleANSTags(event) {
+    if (QL.brat.hasANSTags(event.data.tokenization_uuid)) {
+      QL.brat.toggleANSTags(event.data.tokenization_uuid);
+    }
+    else {
+      QL.brat.addANSTags(event.data.comm_uuid, event.data.sentence_uuid, event.data.tokenization_uuid);
+      $('#tokenization_ans_button_' + event.data.tokenization_uuid.uuidString).addClass('active');
+      $("#tokenization_ans_container_" + event.data.tokenization_uuid.uuidString).show();
     }
   }
 
@@ -611,6 +687,21 @@ QL.brat.addTokenizationBRATControls = function(comm) {
           // We currently ignore all but the first POS TokenTagging
           QL.addMetadataTooltip(pos_tag_button, POStokenTaggings[0].metadata);
           tokenization_controls_div.append(pos_tag_button);
+        }
+
+        var ANStokenTaggings = tokenization.getTokenTaggingsOfType("ANS");
+        if (ANStokenTaggings.length > 0) {
+          var ans_tag_button = $('<button>')
+            .addClass('btn btn-default btn-xs')
+            .attr('id', 'tokenization_ans_button_' + tokenization.uuid.uuidString)
+            .attr('type', 'button')
+            .click({ comm_uuid: comm.uuid, sentence_uuid: sentence.uuid, tokenization_uuid: tokenization.uuid},
+                   addOrToggleANSTags)
+            .css('margin-right', '1em')
+            .html("ANS");
+          // We currently ignore all but the first ANS TokenTagging
+          QL.addMetadataTooltip(ans_tag_button, ANStokenTaggings[0].metadata);
+          tokenization_controls_div.append(ans_tag_button);
         }
 
         if (comm.situationMentionSetList) {
@@ -834,6 +925,14 @@ QL.brat.getAnnotationConfigForToolname = function(toolname) {
       ]
     };
   }
+  else if (toolname === "ANS") {
+    annotationConfig = {
+      entity_types: [
+        { type: 'O', labels: ['O', 'O'], bgColor: 'white' },
+        { type: 'ANS-B', labels: ['ANS-B', 'ANS-B'], bgColor: '#8fb2ff' },
+      ]
+    };
+  }
   else if (toolname === QL.brat.SERIF_RELATIONS) {
     annotationConfig = {
       entity_types: [
@@ -1023,6 +1122,20 @@ QL.brat.hasPOSTags = function(tokenizationUUID) {
 };
 
 
+/** Check if ANS token tagging diagram has already been added to DOM
+ * @param {concrete.UUID} tokenizationUUID
+ * @returns {Boolean}
+ */
+QL.brat.hasANSTags = function(tokenizationUUID) {
+  if ($("#tokenization_ans_" + tokenizationUUID.uuidString + " svg").length > 0) {
+    return true;
+  }
+  else {
+    return false;
+  }
+};
+
+
 /** Check if SituationMention  diagram has already been added to DOM
  * @param {concrete.UUID} situationMentionSetUUID
  * @param {concrete.UUID} tokenizationUUID
@@ -1161,6 +1274,21 @@ QL.brat.togglePOSTags = function(tokenizationUUID) {
   else {
     $('#tokenization_pos_button_' + tokenizationUUID.uuidString).removeClass('active');
     $("#tokenization_pos_container_" + tokenizationUUID.uuidString).hide();
+  }
+};
+
+
+/** Toggle display of ANS token tagging diagram
+ * @param {concrete.UUID} tokenizationUUID
+ */
+QL.brat.toggleANSTags = function(tokenizationUUID) {
+  if ($("#tokenization_ans_container_" + tokenizationUUID.uuidString).css('display') == 'none') {
+    $('#tokenization_ans_button_' + tokenizationUUID.uuidString).addClass('active');
+    $("#tokenization_ans_container_" + tokenizationUUID.uuidString).show();
+  }
+  else {
+    $('#tokenization_ans_button_' + tokenizationUUID.uuidString).removeClass('active');
+    $("#tokenization_ans_container_" + tokenizationUUID.uuidString).hide();
   }
 };
 
