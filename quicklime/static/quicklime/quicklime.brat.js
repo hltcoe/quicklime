@@ -1096,7 +1096,9 @@ QL.brat.getRelationEntityMentionSet = function(comm, toolname) {
         for (var situationMentionIndex in situationMentionList) {
           situationMention = situationMentionList[situationMentionIndex];
           for (var argumentIndex in situationMention.argumentList) {
-            relationEntityMentionSet[situationMention.argumentList[argumentIndex].entityMentionId.uuidString] = true;
+            if (situationMention.argumentList[argumentIndex].entityMentionId) {
+              relationEntityMentionSet[situationMention.argumentList[argumentIndex].entityMentionId.uuidString] = true;
+            }
           }
         }
       }
