@@ -427,15 +427,32 @@ QL.brat.addSituationMention = function(container_id, comm, situationMention, too
     }
   }
 
+  function getCharacterOffsetsForSentence(sentence) {
+    if (sentence.textSpan) {
+      return [sentence.textSpan.start, sentence.textSpan.ending];
+    }
+    else if (sentence.tokenization && sentence.tokenization.tokenList) {
+      var totalTokens = sentence.tokenization.tokenList.tokenList.length;
+      var firstToken = sentence.tokenization.tokenList.tokenList[0];
+      var lastToken = sentence.tokenization.tokenList.tokenList[totalTokens - 1];
+      return [firstToken.textSpan.start, lastToken.textSpan.ending];
+    }
+    else {
+      console.log("ERROR: Unable to determine character offsets for sentence with UUID '" + sentence.uuid.uuidString + "'");
+    }
+  }
+
   var tokenizationIds = QL.getSituationMentionTokenizationIds(comm, situationMention);
   if (tokenizationIds.length === 1) {
     var i;
     var tokenization = comm.getTokenizationWithUUID(tokenizationIds[0]);
     var sentence = tokenization.sentence;
-    var characterOffset = sentence.textSpan.start;
+    var firstCharacter, lastCharacter;
+    [firstCharacter, lastCharacter] = getCharacterOffsetsForSentence(sentence);
+    var characterOffset = firstCharacter;
 
     var collData = QL.brat.getAnnotationConfigForToolname(toolname);
-    var sentence_text = comm.text.substring(sentence.textSpan.start, sentence.textSpan.ending);
+    var sentence_text = comm.text.substring(firstCharacter, lastCharacter);
     sentence_text = sentence_text.replace(/\n/g, " ");
 
     var relationEntityLabels = [];
