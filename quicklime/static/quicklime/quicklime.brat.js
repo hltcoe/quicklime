@@ -1057,6 +1057,15 @@ QL.brat.getAnnotationConfigForToolname = function(toolname) {
       ],
     };
   }
+  else if (toolname === "Pacaya ACE 2005 Relation Extractor") {
+    annotationConfig = {
+      entity_types: [
+        { type: 'STATE', labels: ['STATE', 'STATE'], bgColor: colors.blue },
+        { type: 'PER:Group', labels: ['PER:Group', 'PER:Group'], bgColor: colors.brownish },
+        { type: 'FAC:Building-Grounds', labels: ['FAC:Building-Grounds', 'FAC:Building-Grounds'], bgColor: colors.green },
+      ]
+    };
+  }
   else {
     // Default configuration
     annotationConfig = {
