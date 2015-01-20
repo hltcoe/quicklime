@@ -189,10 +189,9 @@ QL.parse.drawConstituentParse = function(comm, containerSelectorString, tokeniza
     constituent = constituentParse.constituentList[constituentIndex];
     if (constituent.childList.length === 0) {
       var classNames = "type-TOKEN ";
-      var tokenIndexList = constituent.tokenSequence.tokenIndexList;
-      if (constituent.tokenSequence && tokenIndexList.length > 0) {
-        for (var i = 0, l = tokenIndexList.length; i < l; i++) {
-          classNames += classNamesForTokens[tokenIndexList[i]].join(" ") + " ";
+      if (constituent.start !== null && constituent.ending !== null) {
+        for (var i = constituent.start; i < constituent.ending; i++) {
+          classNames += classNamesForTokens[i].join(" ") + " ";
         }
       }
       g.addNode(constituent.id, { label: constituent.tag, nodeclass: classNames });
