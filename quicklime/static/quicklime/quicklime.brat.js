@@ -447,37 +447,34 @@ QL.brat.addSituationMention = function(container_id, comm, situationMention, too
     var i;
     var tokenization = comm.getTokenizationWithUUID(tokenizationIds[0]);
     var sentence = tokenization.sentence;
-    var firstCharacter, lastCharacter;
-    [firstCharacter, lastCharacter] = getCharacterOffsetsForSentence(sentence);
-    var characterOffset = firstCharacter;
-
+    var characterOffsets = getCharacterOffsetsForSentence(sentence);
     var collData = QL.brat.getAnnotationConfigForToolname(toolname);
-    var sentence_text = comm.text.substring(firstCharacter, lastCharacter);
+    var sentence_text = comm.text.substring(characterOffsets[0], characterOffsets[1]);
     sentence_text = sentence_text.replace(/\n/g, " ");
 
     var relationEntityLabels = [];
     var relationLabels = [];
 
     // Add entity label for the SituationMention
-    var situationMentionSpan = getSpanForSituationMention(situationMention, characterOffset);
+    var situationMentionSpan = getSpanForSituationMention(situationMention, characterOffsets[0]);
     relationEntityLabels.push(
       [situationMention.uuid.uuidString,
        getLabelForSituationMention(situationMention),
-       [[situationMentionSpan.start - characterOffset,
-         situationMentionSpan.ending - characterOffset]]]);
+       [[situationMentionSpan.start - characterOffsets[0],
+         situationMentionSpan.ending - characterOffsets[0]]]]);
 
     // Add entity label(s) for the SituationMention's argument(s)
     for (var argumentIndex in situationMention.argumentList) {
       var argument = situationMention.argumentList[argumentIndex];
       if (argument.entityMentionId) {
         var entityMentionArgument = comm.getEntityMentionWithUUID(argument.entityMentionId);
-        var entityMentionArgumentSpan = getSpanForTokenRefSequence(entityMentionArgument.tokens, characterOffset);
+        var entityMentionArgumentSpan = getSpanForTokenRefSequence(entityMentionArgument.tokens, characterOffsets[0]);
         var entityTypeLabel = entityMentionArgument.entityType ? entityMentionArgument.entityType : "UNKNOWN_TYPE";
         relationEntityLabels.push(
           [entityMentionArgument.uuid.uuidString,
            entityTypeLabel,
-           [[entityMentionArgumentSpan.start - characterOffset,
-             entityMentionArgumentSpan.ending - characterOffset]]]);
+           [[entityMentionArgumentSpan.start - characterOffsets[0],
+             entityMentionArgumentSpan.ending - characterOffsets[0]]]]);
         var argumentRoleLabel = argument.role ? argument.role : "UNKNOWN_ROLE";
         relationLabels.push(
           ['argument_' + argumentIndex,
@@ -487,12 +484,12 @@ QL.brat.addSituationMention = function(container_id, comm, situationMention, too
       }
       else if (argument.situationMentionId) {
         var situationMentionArgument = comm.getSituationMentionWithUUID(argument.situationMentionId);
-        var situationMentionArgumentSpan = getSpanForSituationMention(situationMentionArgument, characterOffset);
+        var situationMentionArgumentSpan = getSpanForSituationMention(situationMentionArgument, characterOffsets[0]);
         relationEntityLabels.push(
           [situationMentionArgument.uuid.uuidString,
            getLabelForSituationMention(situationMentionArgument),
-           [[situationMentionArgumentSpan.start - characterOffset,
-             situationMentionArgumentSpan.ending - characterOffset]]]);
+           [[situationMentionArgumentSpan.start - characterOffsets[0],
+             situationMentionArgumentSpan.ending - characterOffsets[0]]]]);
         relationLabels.push(
           ['argument_' + argumentIndex,
            argument.role,
