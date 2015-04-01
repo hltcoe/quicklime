@@ -2,8 +2,7 @@ Quicklime
 =========
 
 Quicklime is a web-based visualization and annotation tool for working
-with [Concrete](https://gitlab.hltcoe.jhu.edu/concrete/concrete)
-objects.
+with [Concrete](https://github.com/hltcoe/concrete) objects.
 
 Quicklime includes:
 
@@ -20,7 +19,7 @@ concrete-js vs. Quicklime
 -------------------------
 
 The Quicklime project is a visualization and annotation tool that uses
-[concrete-js](https://gitlab.hltcoe.jhu.edu/concrete/concrete-js).
+[concrete-js](https://github.com/hltcoe/concrete-js).
 **concrete-js** is a low-level library for manipulating Concrete
 data-structures that does not touch the DOM.  The Quicklime repository
 includes a copy of the **concrete-js** library - you do not need to
@@ -33,7 +32,7 @@ Install the Python webserver dependencies using
 [pip](http://www.pip-installer.org):
 
     pip install bottle
-    pip install git+https://github.com/charman/concrete-python.git#egg=concrete
+    pip install concrete
 
 Viewing a Communication
 -----------------------
