@@ -46,12 +46,13 @@
 
   <script src="static/quicklime/thrift.js"></script>
   <script src="static/quicklime/concrete.js"></script>
+  <script src="static/quicklime/QuicklimeServer.js"></script>
 
   <script>
    $(document).ready(function() {
      var transport = new Thrift.Transport("/quicklime/thrift_endpoint/");
      var protocol = new Thrift.TJSONProtocol(transport);
-     var client = new CommunicationServiceClient(protocol);
+     var client = new QuicklimeServerClient(protocol);
      var comm = client.readComm();
      comm.addInternalReferences();
 

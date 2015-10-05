@@ -14,13 +14,15 @@ from thrift.protocol import TJSONProtocol
 from thrift.server import TServer
 from thrift.transport import TTransport
 
-from concrete.communication_service import CommunicationService
+#from concrete.communication_service import CommunicationService
 from concrete.util import read_communication_from_file, write_communication_to_file
 from concrete.validate import validate_communication
 
+from quicklime_server import QuicklimeServer
+
 
 class CommunicationHandler:
-    """Implements Thrift RPC interface for CommunicationService
+    """Implements Thrift RPC interface for QuicklimeServer
     """
     def readComm(self):
         # 'comm' is a HACKY global variable
@@ -41,7 +43,7 @@ def as_json():
 
 @post('/quicklime/thrift_endpoint/')
 def thrift_endpoint():
-    """Thrift RPC endpoint for CommunicationService API
+    """Thrift RPC endpoint for QuicklimeServer API
     """
     itrans = TTransport.TFileObjectTransport(request.body)
     itrans = TTransport.TBufferedTransport(
@@ -52,7 +54,7 @@ def thrift_endpoint():
 
     # tserver is a HACKY global variable that references a
     # TServer.TServer instance that implements the Thrift API for a
-    # CommunicationService using a TJSONProtocolFactory
+    # QuicklimeServer using a TJSONProtocolFactory
     tserver.processor.process(iprot, oprot)
     bytestring = otrans.getvalue()
 
@@ -102,7 +104,7 @@ comm_simplejson_string = TSerialization.serialize(comm, TJSONProtocol.TSimpleJSO
 communication_as_simplejson = json.loads(comm_simplejson_string)
 
 handler = CommunicationHandler()
-processor = CommunicationService.Processor(handler)
+processor = QuicklimeServer.Processor(handler)
 
 # TJSONProtocolFactory generates JSON where the Thrift fieldnames are
 # specified using the field numbers from the Thrift schema.  It also

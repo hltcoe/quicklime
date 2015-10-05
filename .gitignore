@@ -6,3 +6,5 @@
 venv/*
 .DS_Store
 node_modules/
+gen-py/
+gen-js/
