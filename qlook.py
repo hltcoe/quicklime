@@ -14,7 +14,6 @@ from thrift.protocol import TJSONProtocol
 from thrift.server import TServer
 from thrift.transport import TTransport
 
-#from concrete.communication_service import CommunicationService
 from concrete.util import read_communication_from_file, write_communication_to_file
 from concrete.validate import validate_communication
 
