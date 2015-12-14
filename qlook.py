@@ -15,6 +15,7 @@ from thrift.server import TServer
 from thrift.transport import TTransport
 
 from concrete.util import read_communication_from_file, write_communication_to_file
+from concrete.util import RedisCommunicationReader
 from concrete.validate import validate_communication
 
 from quicklime_server import QuicklimeServer
@@ -69,15 +70,50 @@ def server_static(filepath):
 
 parser = argparse.ArgumentParser(description="")
 parser.add_argument("communication_file")
-parser.add_argument("-p", "--port", default=8080)
+parser.add_argument("-p", "--port", type = int, default=8080)
+parser.add_argument("--redis-host", type = str, default=None)
+parser.add_argument("--redis-port", type = int, default=None)
+parser.add_argument("--redis-comm", type = str, default=None)
 args = parser.parse_args()
 communication_filename = args.communication_file
 
-if not os.path.isfile(communication_filename):
-    print "ERROR: Could not find Communication file '%s'" % communication_filename
-    sys.exit()
+use_redis = False
+if args.redis_port:
+    use_redis = True
+    if not args.redis_host:
+        args.redis_host = "localhost"
 
-comm = read_communication_from_file(communication_filename)
+if not os.path.isfile(communication_filename) and not use_redis:
+    print "ERROR: Could not find Communication file '%s'" % communication_filename
+    sys.exit(1)
+
+comm = None
+input_db = None
+if use_redis:
+    from redis import Redis
+    input_db = Redis(args.redis_host, args.redis_port)
+    reader = RedisCommunicationReader(input_db, communication_filename, add_references=True)
+    if args.redis_comm:
+        for co in reader:
+            if co.id == args.redis_comm:
+                comm = co
+                break
+        if comm == None:
+            sys.stderr.write("Unable to find communication with id %s at %s:%s under key %s\n"
+                             % ( args.redis_comm, args.redis_host, args.redis_port, communication_filename) )
+            exit(1)
+    else:
+        ## take the first one
+        for co in reader:
+            comm = co
+            break
+        if comm == None:
+            sys.stderr.write("Unable to find any communications at %s:%s under key %s\n"
+                             % ( args.redis_host, args.redis_port, communication_filename) )
+            exit(1)
+
+else:
+    comm = read_communication_from_file(communication_filename)
 
 # Log validation errors to console, but ignore return value
 validate_communication(comm)
