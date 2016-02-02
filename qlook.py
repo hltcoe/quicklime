@@ -14,7 +14,9 @@ from thrift.protocol import TJSONProtocol
 from thrift.server import TServer
 from thrift.transport import TTransport
 
-from concrete.util import read_communication_from_file, write_communication_to_file
+from concrete.util import (read_communication_from_buffer,
+                           read_communication_from_file,
+                           write_communication_to_file)
 from concrete.util import RedisCommunicationReader
 from concrete.validate import validate_communication
 
@@ -74,6 +76,7 @@ parser.add_argument("-p", "--port", type = int, default=8080)
 parser.add_argument("--redis-host", type = str, default=None)
 parser.add_argument("--redis-port", type = int, default=None)
 parser.add_argument("--redis-comm", type = str, default=None)
+parser.add_argument("--redis-comm-index", type = int, default=None)
 args = parser.parse_args()
 communication_filename = args.communication_file
 
@@ -102,6 +105,15 @@ if use_redis:
             sys.stderr.write("Unable to find communication with id %s at %s:%s under key %s\n"
                              % ( args.redis_comm, args.redis_host, args.redis_port, communication_filename) )
             exit(1)
+    elif args.redis_comm_index:
+        comm = input_db.lrange(communication_filename, args.redis_comm_index, args.redis_comm_index)
+        if len(comm) == 0:
+            sys.stderr.write("Unable to find communication with id %s at %s:%s under key %s\n"
+                             % ( args.redis_comm, args.redis_host, args.redis_port, communication_filename) )
+            exit(1)
+        else:
+            comm = read_communication_from_buffer(comm[0])
+            print "%dth Communication has id %s" % ( args.redis_comm_index + 1, comm.id)
     else:
         ## take the first one
         for co in reader:
