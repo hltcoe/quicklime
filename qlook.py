@@ -71,21 +71,22 @@ def server_static(filepath):
 
 
 parser = argparse.ArgumentParser(description="")
-parser.add_argument("communication_file")
+parser.add_argument("communication_file",
+                    help = 'The location where to find a Concrete Communication. This can be either the path to a Communication file on disk, or the key of a Redis database. In the former, the file must represent a *single* Communication. In the latter, a Redis address must be specified (with --redis-port and, optionally, --redis-host. For Redis interfaces, `communication_file` can be a primitive key, list, set or hash. For a lists, sets or hashes, please see the flags --redis-comm, --comm-lookup-by, --redis-comm-map and --redis-comm-index.')
 parser.add_argument("-p", "--port", type = int, default=8080)
 parser.add_argument("--redis-host", type = str, default=None,
                     help = "location of (optional) redis server")
 parser.add_argument("--redis-port", type = int, default=None,
                     help = "port of redis server")
 parser.add_argument("--redis-comm", type = str, default=None,
-                    help = "identifier of Communication to select. When in stream mode and none is given, pick the first Communication. This is incompatible with --redis-comm-index")
+                    help = "The value of the identifier of Communication to select (change the identifier with --comm-lookup-by). When in stream mode and none is given, pick the first Communication. This is incompatible with --redis-comm-index")
 parser.add_argument("--comm-lookup-by", choices = ["id", "uuid"],
                     default = "id",
                     help = "Communication identifier to use in stream mode (default: id)")
 parser.add_argument("--redis-comm-map", type = str, default = None,
-                    help = "Optional auxiliary key to use find the communication with the given --redis-comm when communication_file is a list. If None, a (slow!) linear search is done")
+                    help = "Optional Redis key to use find the communication with the given --redis-comm when communication_file is a list. If None, a (slow!) linear search is done.")
 parser.add_argument("--redis-comm-index", type = int, default=None,
-                    help = "Optional index of the communication to grab. This only applies when communication_file is a list, and is incompatible with --redis-comm.")
+                    help = "Optional index of the Communication to grab. This only applies when communication_file is a list. This option is incompatible with --redis-comm.")
 parser.add_argument('--redis-direction', choices=['right-to-left','left-to-right'])
 args = parser.parse_args()
 communication_filename = args.communication_file
