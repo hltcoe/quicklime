@@ -121,8 +121,15 @@ parser.add_argument('--redis-comm-index', type=int,
                          ' option is incompatible with --redis-comm.')
 parser.add_argument('--redis-direction',
                     choices=['right-to-left', 'left-to-right'])
+parser.add_argument('--log-level', default='INFO',
+                    choices=('DEBUG', 'INFO', 'WARNING', 'ERROR'))
 args = parser.parse_args()
 communication_loc = args.communication_loc
+
+logging.basicConfig(
+    format='%(asctime)-15s %(levelname)s: %(message)s',
+    level=args.log_level,
+)
 
 use_redis = False
 if args.redis_port:
