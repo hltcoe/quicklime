@@ -86,43 +86,32 @@ parser = argparse.ArgumentParser(
                 ' webserver to visualize it.'
 )
 parser.add_argument('communication_loc',
-                    help='The location where to find a Concrete Communication.'
-                         ' This can be either the path to a Communication file'
-                         ' on disk, or the key of a Redis database. In the'
-                         ' former, the file must represent a *single*'
-                         ' Communication. In the latter, a Redis address must'
-                         ' be specified (with --redis-port and, optionally,'
-                         ' --redis-host. For Redis interfaces,'
-                         ' `communication_loc` can be a primitive key, list,'
-                         ' set or hash. For a lists, sets or hashes, please'
-                         ' see the flags --redis-comm, --comm-lookup-by,'
-                         ' --redis-comm-map and --redis-comm-index.')
+                    help='path to communication on disk or key of'
+                         ' communication(s) in redis')
 parser.add_argument('-p', '--port', type=int, default=8080)
 parser.add_argument('--redis-host', type=str,
-                    help='location of (optional) redis server')
+                    help='(if using redis) hostname of redis server')
 parser.add_argument('--redis-port', type=int,
-                    help='port of redis server')
-parser.add_argument('--redis-comm', type=str,
-                    help='The value of the identifier of Communication to'
-                         ' select (change the identifier with'
-                         ' --comm-lookup-by). When in stream mode and none is'
-                         ' given, pick the first Communication. This is'
-                         ' incompatible with --redis-comm-index')
+                    help='(if using redis) port of redis server')
+parser.add_argument('--redis-comm', type=lambda s: unicode(s, 'utf-8'),
+                    help='(if using redis) value of communication id/uuid to'
+                         ' show (use --comm-lookup-by to control id vs. uuid)')
 parser.add_argument('--comm-lookup-by', choices=['id', 'uuid'], default='id',
-                    help='Communication identifier to use in stream mode')
+                    help='(if using redis) lookup communication by id or uuid')
 parser.add_argument('--redis-comm-map', type=str,
-                    help='Optional Redis key to use find the communication'
-                         ' with the given --redis-comm when communication_loc'
-                         ' is a list. If None, a (slow!) linear search is'
-                         ' done.')
+                    help='(if using redis) key of hash from id/uuid to index'
+                         ' of communication in list (optional; will reduce'
+                         ' lookup time)')
 parser.add_argument('--redis-comm-index', type=int,
-                    help='Optional index of the Communication to grab. This'
-                         ' only applies when communication_loc is a list. This'
-                         ' option is incompatible with --redis-comm.')
-parser.add_argument('--redis-direction',
-                    choices=['right-to-left', 'left-to-right'])
+                    help='(if using redis) list index of communication to show'
+                         ' (incompatible with --redis-comm)')
+parser.add_argument('--redis-direction', default='left-to-right',
+                    choices=['right-to-left', 'left-to-right'],
+                    help='(if using redis) direction to read communication'
+                         ' list)')
 parser.add_argument('--log-level', default='INFO',
-                    choices=('DEBUG', 'INFO', 'WARNING', 'ERROR'))
+                    choices=('DEBUG', 'INFO', 'WARNING', 'ERROR'),
+                    help='severity level at which to show log messages')
 args = parser.parse_args()
 communication_loc = args.communication_loc
 
@@ -140,30 +129,55 @@ if args.redis_port:
 if not os.path.isfile(communication_loc) and not use_redis:
     error("Could not find Communication file '%s'" % communication_loc)
 
+
+def comm_lookup(comm):
+    if args.comm_lookup_by == 'id':
+        return comm.id
+    elif args.comm_lookup_by == 'uuid':
+        return comm.uuid.uuidString
+    else:
+        error('unsupported comm_lookup_by %s' % args.comm_lookup_by)
+
+
+if args.redis_comm_index is not None:
+    if args.redis_direction == 'right-to-left':
+        redis_comm_index = -(args.redis_comm_index + 1)
+    else:
+        redis_comm_index = args.redis_comm_index
+else:
+    redis_comm_index = None
+
+
+if args.redis_direction == 'right-to-left' and args.redis_comm_map is not None:
+    error('right-to-left indexing is not supported with redis-comm-map')
+
+
 comm = None
 input_db = None
 if use_redis:
-    if args.redis_comm and args.redis_comm_index:
+    if args.redis_comm is not None and redis_comm_index is not None:
         error("Cannot include both --redis-comm and --redis-comm-index")
 
     from redis import Redis
     input_db = Redis(args.redis_host, args.redis_port)
     reader = RedisCommunicationReader(input_db, communication_loc,
-                                      add_references=True)
+                                      add_references=True,
+                                      right_to_left=(args.redis_direction ==
+                                                     'right-to-left'))
 
     if args.redis_comm:
         # look up comm in collection by comm field (comm_lookup_by)
         key_type = input_db.type(communication_loc)
 
-        if ((key_type == 'list' and not args.redis_comm_map) or
+        if ((key_type == 'list' and args.redis_comm_map is None) or
                 (key_type == 'set')):
             # do linear scan
             for co in reader:
-                if getattr(co, args.comm_lookup_by) == args.redis_comm:
+                if comm_lookup(co) == args.redis_comm:
                     comm = co
                     break
 
-        elif key_type == 'list' and args.redis_comm_map:
+        elif key_type == 'list' and args.redis_comm_map is not None:
             # look up list index using field->index map
             def no_comm(comm_idx):
                 error(('Unable to find a communication with identifier "%s"'
@@ -181,36 +195,17 @@ if use_redis:
                 no_comm(comm_idx)
             comm_idx = int(comm_idx)
 
-            if not args.redis_direction:
-                # first try left-to-right
-                buf = input_db.lrange(communication_loc, comm_idx, comm_idx)[0]
+            if args.redis_direction == 'left-to-right':
+                buf = input_db.lindex(communication_loc, comm_idx)
                 comm = read_communication_from_buffer(buf)
-                if getattr(comm, args.comm_lookup_by) != args.redis_comm:
-                    # now try right-to-left
-                    attempted_idx = -(comm_idx + 1)
-                    buf = input_db.lrange(communication_loc, attempted_idx,
-                                          attempted_idx)[0]
-                    comm = read_communication_from_buffer(buf)
-
             else:
-                if args.redis_direction == 'left-to-right':
-                    buf = input_db.lrange(communication_loc, comm_idx,
-                                          comm_idx)[0]
-                    comm = read_communication_from_buffer(buf)
-                else:
-                    comm_idx = - (comm_idx + 1)
-                    buf = input_db.lrange(communication_loc, comm_idx,
-                                          comm_idx)[0]
-                    comm = read_communication_from_buffer(buf)
+                comm_idx = - (comm_idx + 1)
+                buf = input_db.lindex(communication_loc, comm_idx)
+                comm = read_communication_from_buffer(buf)
 
-            if getattr(comm, args.comm_lookup_by) != args.redis_comm:
-                if not args.redis_direction:
-                    error('Cannot find the appropriate document with either'
-                          ' left-to-right (pivot starting from left) or'
-                          ' right-to-left (pivot starting from end)')
-                else:
-                    error(('Cannot find the appropriate document with %s'
-                           ' indexing') % args.redis_direction)
+            if comm_lookup(comm) != args.redis_comm:
+                error(('Cannot find the appropriate document with %s'
+                       ' indexing') % args.redis_direction)
 
         elif key_type == 'hash':
             # do O(1) hash lookup
@@ -226,19 +221,18 @@ if use_redis:
                   (args.redis_comm, args.redis_host, args.redis_port,
                    communication_loc))
 
-    elif args.redis_comm_index:
+    elif redis_comm_index is not None:
         # lookup comm by index in list
-        bufs = input_db.lrange(communication_loc, args.redis_comm_index,
-                               args.redis_comm_index)
-        if len(bufs) == 0:
+        buf = input_db.lindex(communication_loc, redis_comm_index)
+        if buf is None:
             error(('Unable to find communication with id %s at %s:%s under'
                    ' key %s') %
                   (args.redis_comm, args.redis_host, args.redis_port,
                    communication_loc))
         else:
-            comm = read_communication_from_buffer(bufs[0])
+            comm = read_communication_from_buffer(buf)
             logging.info('%dth Communication has id %s' %
-                         (args.redis_comm_index + 1, comm.id))
+                         (redis_comm_index + 1, comm.id))
 
     else:
         # take first comm in collection
