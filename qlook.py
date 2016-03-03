@@ -148,10 +148,6 @@ else:
     redis_comm_index = None
 
 
-if args.redis_direction == 'right-to-left' and args.redis_comm_map is not None:
-    error('right-to-left indexing is not supported with redis-comm-map')
-
-
 comm = None
 input_db = None
 if use_redis:
@@ -194,14 +190,11 @@ if use_redis:
             if comm_idx is None:
                 no_comm(comm_idx)
             comm_idx = int(comm_idx)
-
-            if args.redis_direction == 'left-to-right':
-                buf = input_db.lindex(communication_loc, comm_idx)
-                comm = read_communication_from_buffer(buf)
-            else:
+            if args.redis_direction == 'right-to-left':
                 comm_idx = - (comm_idx + 1)
-                buf = input_db.lindex(communication_loc, comm_idx)
-                comm = read_communication_from_buffer(buf)
+
+            buf = input_db.lindex(communication_loc, comm_idx)
+            comm = read_communication_from_buffer(buf)
 
             if comm_lookup(comm) != args.redis_comm:
                 error(('Cannot find the appropriate document with %s'
