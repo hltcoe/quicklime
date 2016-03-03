@@ -80,6 +80,10 @@ def error(message, status=1):
     sys.exit(status)
 
 
+RIGHT_TO_LEFT = 'right-to-left'
+LEFT_TO_RIGHT = 'left-to-right'
+
+
 parser = argparse.ArgumentParser(
     formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     description='Read a communication from disk or redis and run a small'
@@ -105,8 +109,8 @@ parser.add_argument('--redis-comm-map', type=str,
 parser.add_argument('--redis-comm-index', type=int,
                     help='(if using redis) list index of communication to show'
                          ' (incompatible with --redis-comm)')
-parser.add_argument('--redis-direction', default='left-to-right',
-                    choices=['right-to-left', 'left-to-right'],
+parser.add_argument('--redis-direction', default=RIGHT_TO_LEFT,
+                    choices=(RIGHT_TO_LEFT, LEFT_TO_RIGHT),
                     help='(if using redis) direction to read communication'
                          ' list)')
 parser.add_argument('--log-level', default='INFO',
@@ -140,7 +144,7 @@ def comm_lookup(comm):
 
 
 if args.redis_comm_index is not None:
-    if args.redis_direction == 'right-to-left':
+    if args.redis_direction == RIGHT_TO_LEFT:
         redis_comm_index = -(args.redis_comm_index + 1)
     else:
         redis_comm_index = args.redis_comm_index
@@ -159,7 +163,7 @@ if use_redis:
     reader = RedisCommunicationReader(input_db, communication_loc,
                                       add_references=True,
                                       right_to_left=(args.redis_direction ==
-                                                     'right-to-left'))
+                                                     RIGHT_TO_LEFT))
 
     if args.redis_comm:
         # look up comm in collection by comm field (comm_lookup_by)
@@ -190,7 +194,7 @@ if use_redis:
             if comm_idx is None:
                 no_comm(comm_idx)
             comm_idx = int(comm_idx)
-            if args.redis_direction == 'right-to-left':
+            if args.redis_direction == RIGHT_TO_LEFT:
                 comm_idx = - (comm_idx + 1)
 
             buf = input_db.lindex(communication_loc, comm_idx)
