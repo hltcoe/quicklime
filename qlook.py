@@ -86,13 +86,26 @@ LEFT_TO_RIGHT = 'left-to-right'
 
 parser = argparse.ArgumentParser(
     formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-    description='Read a communication from disk or redis and run a small'
-                ' webserver to visualize it.'
+    description='Read a communication from disk, redis or a REST server '
+                'and run a small webserver to visualize it.'
 )
-parser.add_argument('communication_loc',
-                    help='path to communication on disk or key of'
-                         ' communication(s) in redis')
+parser.add_argument('communication_locator',
+                    help='general locator of communication, either'
+                    'a path on disk; the key of communication(s) in redis;'
+                    'or a Communication.id to use with a RESTful server')
 parser.add_argument('-p', '--port', type=int, default=8080)
+parser.add_argument('--restful-host', type=str,
+                    help='(if using a RESTful service) hostname '
+                    'of RESTful server')
+parser.add_argument('--restful-port', type=int,
+                    help='(if using a RESTful service) port '
+                    'of RESTful server')
+parser.add_argument('--restful-pattern', type=str,
+                    default='communication/%s/tcompact',
+                    help='(if using a RESTful service) the univariate '
+                    'endpoint pattern to query, as a %%-based format string.'
+                    'The default is communication/%%s/tcompact, where %%s'
+                    'is replaced by communication_locator')
 parser.add_argument('--redis-host', type=str,
                     help='(if using redis) hostname of redis server')
 parser.add_argument('--redis-port', type=int,
@@ -117,7 +130,7 @@ parser.add_argument('--log-level', default='INFO',
                     choices=('DEBUG', 'INFO', 'WARNING', 'ERROR'),
                     help='severity level at which to show log messages')
 args = parser.parse_args()
-communication_loc = args.communication_loc
+communication_loc = args.communication_locator
 
 logging.basicConfig(
     format='%(asctime)-15s %(levelname)s: %(message)s',
@@ -130,9 +143,20 @@ if args.redis_port:
     if not args.redis_host:
         args.redis_host = "localhost"
 
-if not os.path.isfile(communication_loc) and not use_redis:
+use_restful = False
+if args.restful_port is not None:
+    use_restful = True
+    if args.comm_lookup_by != 'id':
+        error("We can only lookup communications by id (not UUID)"
+              "with a RESTful service")
+    if args.restful_host is None:
+        args.restful_host = 'localhost'
+
+if not os.path.isfile(communication_loc) and not (use_redis or use_restful):
     error("Could not find Communication file '%s'" % communication_loc)
 
+if use_redis and use_restful:
+    error("Cannot read from both redis and RESTful")
 
 def comm_lookup(comm):
     if args.comm_lookup_by == 'id':
@@ -241,7 +265,26 @@ if use_redis:
         if comm is None:
             error('Unable to find any communications at %s:%s under key %s' %
                   (args.redis_host, args.redis_port, communication_loc))
-
+elif use_restful:
+    import urllib2, urlparse
+    url = urlparse.urlparse('%s:%s' % (args.restful_host, args.restful_port))
+    if url.netloc is None or len(url.netloc) == 0:
+        h = 'http://%s' % (args.restful_host)
+    else:
+        h = '%s://%s' % (url.scheme, url.netloc)
+    loc_pattern = args.restful_pattern % (communication_loc)
+    logging.info('using location pattern %s' % loc_pattern)
+    full = '%s:%s/%s' % (h, args.restful_port, loc_pattern)
+    logging.info("querying %s" % full)
+    resp = urllib2.urlopen(full)
+    if resp is None:
+        error("Got back a None from querying %s" % (full))
+    if resp.code != 200:
+        error("received code %d and message %s from %s" % (
+            resp.code, resp.msg, full))
+    comm = resp.read()
+    resp.close()
+    comm = read_communication_from_buffer(comm)
 else:
     comm = read_communication_from_file(communication_loc)
 
