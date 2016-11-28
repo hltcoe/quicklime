@@ -11120,6 +11120,9 @@ TweetInfo = function(args) {
   this.inReplyToScreenName = null;
   this.inReplyToStatusId = null;
   this.inReplyToUserId = null;
+  this.retweetedScreenName = null;
+  this.retweetedStatusId = null;
+  this.retweetedUserId = null;
   if (args) {
     if (args.id !== undefined && args.id !== null) {
       this.id = args.id;
@@ -11165,6 +11168,15 @@ TweetInfo = function(args) {
     }
     if (args.inReplyToUserId !== undefined && args.inReplyToUserId !== null) {
       this.inReplyToUserId = args.inReplyToUserId;
+    }
+    if (args.retweetedScreenName !== undefined && args.retweetedScreenName !== null) {
+      this.retweetedScreenName = args.retweetedScreenName;
+    }
+    if (args.retweetedStatusId !== undefined && args.retweetedStatusId !== null) {
+      this.retweetedStatusId = args.retweetedStatusId;
+    }
+    if (args.retweetedUserId !== undefined && args.retweetedUserId !== null) {
+      this.retweetedUserId = args.retweetedUserId;
     }
   }
 };
@@ -11291,6 +11303,27 @@ TweetInfo.prototype.read = function(input) {
         input.skip(ftype);
       }
       break;
+      case 19:
+      if (ftype == Thrift.Type.STRING) {
+        this.retweetedScreenName = input.readString().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 20:
+      if (ftype == Thrift.Type.I64) {
+        this.retweetedStatusId = input.readI64().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
+      case 21:
+      if (ftype == Thrift.Type.I64) {
+        this.retweetedUserId = input.readI64().value;
+      } else {
+        input.skip(ftype);
+      }
+      break;
       default:
         input.skip(ftype);
     }
@@ -11377,6 +11410,21 @@ TweetInfo.prototype.write = function(output) {
     output.writeI64(this.inReplyToUserId);
     output.writeFieldEnd();
   }
+  if (this.retweetedScreenName !== null && this.retweetedScreenName !== undefined) {
+    output.writeFieldBegin('retweetedScreenName', Thrift.Type.STRING, 19);
+    output.writeString(this.retweetedScreenName);
+    output.writeFieldEnd();
+  }
+  if (this.retweetedStatusId !== null && this.retweetedStatusId !== undefined) {
+    output.writeFieldBegin('retweetedStatusId', Thrift.Type.I64, 20);
+    output.writeI64(this.retweetedStatusId);
+    output.writeFieldEnd();
+  }
+  if (this.retweetedUserId !== null && this.retweetedUserId !== undefined) {
+    output.writeFieldBegin('retweetedUserId', Thrift.Type.I64, 21);
+    output.writeI64(this.retweetedUserId);
+    output.writeFieldEnd();
+  }
   output.writeFieldStop();
   output.writeStructEnd();
   return;
@@ -11444,12 +11492,14 @@ UUID.prototype.write = function(output) {
   return;
 };
 
-;/*
-  COMMUNICATION_FU
-*/
+;/**
+ * @class Communication
+ * @classdesc concrete.js extensions to the Communication class
+ */
 
 
-/** Adds internal references between data structures contained in Communication
+/**
+ * Adds internal references between data structures contained in Communication
  *
  * Specifically, adds:
  *   - to each concrete.Section, a section.communication reference to the enclosing Communication
@@ -11480,7 +11530,8 @@ Communication.prototype.addInternalReferences = function() {
 };
 
 
-/** Return the Entity (or null) that has an EntityMention with the specified UUID
+/**
+ * Return the Entity (or null) that has an EntityMention with the specified UUID
  * @param {UUID} uuid
  * @returns {Entity|null}
  */
@@ -11509,7 +11560,25 @@ Communication.prototype.getEntityForEntityMentionUUID = function(uuid) {
 };
 
 
-/** Return the EntityMention (or null) with the specified UUID
+/**
+ * Return the EntityMentionSet in the Communication with the specified toolname
+ * @param {String} toolname
+ * @returns {EntityMentionSet|null}
+ */
+Communication.prototype.getEntityMentionSetWithToolname = function(toolname) {
+  if (this.entityMentionSetList && this.entityMentionSetList.length > 0) {
+    for (var i = 0; i < this.entityMentionSetList.length; i++) {
+      if (this.entityMentionSetList[i].metadata.tool === toolname) {
+        return this.entityMentionSetList[i];
+      }
+    }
+  }
+  return null;
+};
+
+
+/**
+ * Return the EntityMention (or null) with the specified UUID
  * @param {UUID} uuid
  * @returns {EntityMention|null}
  */
@@ -11537,9 +11606,42 @@ Communication.prototype.getEntityMentionWithUUID = function(uuid) {
 };
 
 
-/** Return the Sentence (or null) with the specified UUID
+/**
+ * Return the first Sentence in a Communication if it exists, or null
+ * @returns {Sentence|null}
+ */
+Communication.prototype.getFirstSentence = function() {
+  // The first few Sections may be empty, so we need to iterate over Sections
+  if (this.sectionList && this.sectionList.length) {
+    for (var i = 0; i < this.sectionList.length; i++) {
+      if (this.sectionList[i].sentenceList && this.sectionList[i].sentenceList.length) {
+        return this.sectionList[i].sentenceList[0];
+      }
+    }
+  }
+  return null;
+};
+
+
+/**
+ * Return the first Tokenization in a Communication if it exists, or null
+ * @returns {Tokenization|null}
+ */
+Communication.prototype.getFirstTokenization = function() {
+  var firstSentence = this.getFirstSentence();
+  if (firstSentence) {
+    return firstSentence.tokenization;
+  }
+  else {
+    return null;
+  }
+};
+
+
+/**
+ * Return the Sentence (or null) with the specified UUID
  * @param {UUID} uuid
- @ @returns {Sentence|null}
+ * @returns {Sentence|null}
  */
 Communication.prototype.getSentenceWithUUID = function(uuid) {
   if (!uuid || !uuid.uuidString) {
@@ -11566,7 +11668,8 @@ Communication.prototype.getSentenceWithUUID = function(uuid) {
 };
 
 
-/** Return the SituationMention (or null) with the specified UUID
+/**
+ * Return the SituationMention (or null) with the specified UUID
  * @param {UUID} uuid
  * @returns {SituationMention|null}
  */
@@ -11593,8 +11696,30 @@ Communication.prototype.getSituationMentionWithUUID = function(uuid) {
 };
 
 
+/**
+ * Return all Tokenizations in a Communication as a (flat) list
+ * @returns {List}
+ */
+Communication.prototype.getTokenizationsAsList = function() {
+  var tokenizations = [];
 
-/** Return the Tokenization (or null) with the specified UUID
+  if (this.sectionList && this.sectionList.length) {
+    for (var i = 0; i < this.sectionList.length; i++) {
+      if (this.sectionList[i].sentenceList && this.sectionList[i].sentenceList.length) {
+        for (var j = 0; j < this.sectionList[i].sentenceList.length; j++) {
+          if (this.sectionList[i].sentenceList[j].tokenization) {
+            tokenizations.push(this.sectionList[i].sentenceList[j].tokenization);
+          }
+        }
+      }
+    }
+  }
+
+  return tokenizations;
+};
+
+/**
+ * Return the Tokenization (or null) with the specified UUID
  * @param {UUID} uuid
  * @returns {Tokenization|null}
  */
@@ -11623,7 +11748,8 @@ Communication.prototype.getTokenizationWithUUID = function(uuid) {
 };
 
 
-/** Get list of token text strings for the EntityMention specified by the UUID
+/**
+ * Get list of token text strings for the EntityMention specified by the UUID
  * @param {UUID} mentionId
  * @returns {Array} An array of token text strings
  */
@@ -11640,7 +11766,8 @@ Communication.prototype.getTokensForEntityMentionID = function(mentionId) {
 };
 
 
-/** Initialize Communication from a TJSONProtocol object created from a Communication
+/**
+ * Initialize Communication from a TJSONProtocol object created from a Communication.
  *
  * Thrift's TJSONProtocol is used to serialize objects to JSON.  The objects look
  * something like this:
@@ -11664,7 +11791,8 @@ Communication.prototype.initFromTJSONProtocolObject = function(commJSONObject) {
 };
 
 
-/** Initialize Communication from a TJSONProtocol string created from a Communication
+/**
+ * Initialize Communication from a TJSONProtocol string created from a Communication
  * @param {String} commJSONString - A JSON string created from a Communication using TJSONProtocol
  * @returns {Communication} - This Communication
  */
@@ -11688,7 +11816,8 @@ Communication.prototype.initFromTJSONProtocolString = function(commJSONString) {
 };
 
 
-/** Returns JSON object for Communication serialized using TJSONProtocol
+/**
+ * Returns JSON object for Communication serialized using TJSONProtocol
  * @returns {Object}
  */
 Communication.prototype.toTJSONProtocolObject = function() {
@@ -11696,7 +11825,8 @@ Communication.prototype.toTJSONProtocolObject = function() {
 };
 
 
-/** Returns JSON string for Communication serialized using TJSONProtocol
+/**
+ * Returns JSON string for Communication serialized using TJSONProtocol
  * @returns {String}
  */
 Communication.prototype.toTJSONProtocolString = function() {
@@ -11708,40 +11838,482 @@ Communication.prototype.toTJSONProtocolString = function() {
 
   return protocol.tstack[0];
 };
-
-
-/** Get all TokenTaggings with the specified taggingType
- * @param {String} taggingType - A string specifying a TokenTagging.taggingType
- * @returns {Array} A (possibly empty) array of TokenTagging objects
+;/**
+ * @namespace concrete.widget
  */
-Tokenization.prototype.getTokenTaggingsOfType = function(taggingType) {
-  var tokenTaggings = [];
 
-  for (var tokenTaggingIndex in this.tokenTaggingList) {
-    if (this.tokenTaggingList[tokenTaggingIndex].taggingType === taggingType) {
-      tokenTaggings.push(this.tokenTaggingList[tokenTaggingIndex]);
+var concrete = concrete || {};
+
+concrete.widget = (function() {
+    var widget = {};
+
+    /**
+     * Returns a jQuery object containing the DOM structure:
+     * <pre>
+     *     &lt;div class="communication communication_[COMMUNICATION_UUID]"&gt;
+     *         &lt;div class="section section_[SECTION_UUID]"&gt;
+     *             [...]
+     *         &lt;div class="section section_[SECTION_UUID]"&gt;
+     *             [...]
+     * </pre>
+     * createCommunicationDiv() calls createSectionDiv() to create the
+     * DOM structure for the Sections.
+     *
+     * @memberof concrete.widget
+     * @param {Communication} communication
+     * @param {Object} options
+     * @returns {jQuery_Object}
+     */
+    widget.createCommunicationDiv = function(communication, options) {
+        if (!communication) {
+            throw 'ERROR: CreateWidgets.createCommunicationDiv() must be passed a communication';
+        }
+
+        var communicationDiv = $('<div>')
+            .addClass('communication communication_' + communication.uuid.uuidString);
+
+        if (communication.sectionList && communication.sectionList.length) {
+            for (var i = 0; i < communication.sectionList.length; i++) {
+                communicationDiv.append(
+                    widget.createSectionDiv(communication.sectionList[i], options));
+            }
+        }
+        else {
+            console.log('WARNING: CreateWidgets.createCommunicationsDiv() was passed a Communication ' +
+                        'without any Sections');
+        }
+
+        return communicationDiv;
+    };
+
+    /**
+     * Returns a jQuery object containing the DOM structure:
+     * <pre>
+     *     &lt;div class="section section_[SECTION_UUID]"&gt;
+     *         &lt;div class="sentence sentence_[SENTENCE_UUID]"&gt;
+     *             [...]
+     *         &lt;span class="sentence_padding"&gt; &lt;/span&gt;
+     *         &lt;div class="sentence sentence_[SENTENCE_UUID]"&gt;
+     *             [...]
+     * </pre>
+     * createSectionDiv() calls createSentenceDiv() to create the
+     * DOM structure for the Sentence.
+     *
+     * @memberof concrete.widget
+     * @param {Section} section
+     * @param {Object} options
+     * @returns {jQuery_Object}
+     */
+    widget.createSectionDiv = function(section, options) {
+        if (!section) {
+            throw 'CreateWidgets.createSectionDiv() must be passed a section';
+        }
+
+        var opts = $.extend({}, widget.createSectionDiv.defaultOptions, options);
+
+        var textSpansUsed = false;
+        if (section.sentenceList.length > 0) {
+            textSpansUsed = concreteObjectUsesTextSpans(section.sentenceList[0]);
+        }
+
+        var sectionDiv = $('<div>')
+            .addClass('section section_' + section.uuid.uuidString);
+
+        for (var i = 0; i < section.sentenceList.length; i++) {
+            sectionDiv.append(
+                widget.createSentenceDiv(section.sentenceList[i], options));
+
+            if (i+1 < section.sentenceList.length) {
+                if (textSpansUsed && !opts.whitespaceTokenization) {
+                    // Add whitespace IFF there is a character-offset gap between sentences
+                    if ((section.sentenceList[i+1].textSpan.start - section.sentenceList[i].textSpan.ending) > 0) {
+                        sectionDiv.append(
+                            $('<span>')
+                                .addClass('sentence_padding')
+                                .text(' '));
+                    }
+                }
+            }
+        }
+
+        return sectionDiv;
+    };
+
+    widget.createSectionDiv.defaultOptions = {
+        'whitespaceTokenization': false,
+    };
+
+    /**
+     * Returns a jQuery object containing the DOM structure:
+     * <pre>
+     *     &lt;div class="sentence sentence_[SENTENCE_UUID]"&gt;
+     *         &lt;div class="tokenization tokenization_[TOKENIZATION_UUID]"&gt;
+     *             [...]
+     * </pre>
+     * createSentenceDiv() calls createTokenizationDiv() to create the
+     * DOM structure for the Sentence's Tokenization.
+     *
+     * @memberof concrete.widget
+     * @param {Sentence} sentence
+     * @param {Object} options
+     * @returns {jQuery_Object}
+     */
+    widget.createSentenceDiv = function(sentence, options) {
+        if (!sentence) {
+            throw 'CreateWidgets.createSentenceDiv() must be passed a sentence';
+        }
+
+        var sentenceDiv = $('<div>')
+            .addClass('sentence sentence_' + sentence.uuid.uuidString)
+            .append(widget.createTokenizationDiv(sentence.tokenization, options));
+        return sentenceDiv;
+    };
+
+    /**
+     * Returns a jQuery object containing the DOM structure:
+     * <pre>
+     *     &lt;div class="tokenization tokenization_[TOKENIZATION_UUID]"&gt;
+     *         &lt;span class="token tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]"&gt;
+     *         &lt;span class="token_padding"&gt;
+     *         &lt;span class="token tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]"&gt;
+     *         &lt;span class="token_padding"&gt;
+     *         [...]
+     * </pre>
+     *
+     * @memberof concrete.widget
+     * @param {Tokenization} tokenization
+     * @param {Object} options
+     * @returns {jQuery_Object}
+     */
+    widget.createTokenizationDiv = function(tokenization, options) {
+        if (!tokenization) {
+            throw 'CreateWidgets.createTokenizationDiv() must be passed a tokenization';
+        }
+
+        var opts = $.extend({}, widget.createTokenizationDiv.defaultOptions, options);
+        var textSpansUsed = tokenizationUsesTextSpans(tokenization);
+        var tokenList = tokenization.tokenList.tokenList;
+
+        var tokenizationDiv = $('<div>')
+            .addClass('tokenization tokenization_' + tokenization.uuid.uuidString)
+            .data('tokenization', tokenization);
+
+        for (var i = 0; i < tokenList.length; i++) {
+            var tokenText;
+            if (opts.convertTreebankBrackets) {
+                tokenText = convertTreebankBrackets(tokenList[i].text);
+            }
+            else {
+                tokenText = tokenList[i].text;
+            }
+
+            var tokenSpan = $('<span>')
+                .addClass('token tokenization_' + tokenization.uuid.uuidString + '_' + i)
+                .data('tokenization', tokenization)
+                .data('tokenIndex', i)
+                .text(tokenText);
+            tokenizationDiv.append(tokenSpan);
+
+            if (i+1 < tokenList.length) {
+                var tokenPaddingSpan = $('<span>')
+                    .addClass('token_padding');
+
+                if (textSpansUsed && !opts.whitespaceTokenization) {
+                    // Add whitespace IFF there is a character-offset gap between tokens
+                    if ((tokenList[i+1].textSpan.start - tokenList[i].textSpan.ending) > 0) {
+                        tokenPaddingSpan.text(' ');
+                    }
+                }
+                else {
+                    // Without TextSpans, we can't determine character offsets between
+                    // tokens, so we default to using whitespace tokenization
+                    tokenPaddingSpan.text(' ');
+                }
+                tokenizationDiv.append(tokenPaddingSpan);
+            }
+        }
+        return tokenizationDiv;
+    };
+
+    widget.createTokenizationDiv.defaultOptions = {
+        'convertTreebankBrackets': true,
+        'whitespaceTokenization': false,
+    };
+
+    /**
+     * Returns a boolean indicating if a Concrete Object (e.g. Section, Sentence, Token)
+     * uses an (optional) TextSpan field.
+     *
+     * @param {Concrete_Object} concreteObject
+     * @returns {Boolean}
+     */
+    function concreteObjectUsesTextSpans(concreteObject) {
+        if (concreteObject &&
+            concreteObject.textSpan &&
+            concreteObject.textSpan.start &&
+            concreteObject.textSpan.ending) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
-  }
 
-  return tokenTaggings;
-};
+    /**
+     * Function takes a token string, returns a "cleaned" version of that string
+     *  with Penn Treebank-style bracket symbols replaced with actual bracket symbols.
+     *
+     * @param {String} tokenText
+     * @returns {String}
+     */
+    function convertTreebankBrackets(tokenText) {
+        // Convert Penn Treebank-style symbols for brackets to bracket characters
+        //   http://www.cis.upenn.edu/~treebank/tokenization.html
+        switch(tokenText) {
+        case '-LRB-':
+            return '(';
+        case '-RRB-':
+            return ')';
+        case '-LSB-':
+            return '[';
+        case '-RSB-':
+            return ']';
+        case '-LCB-':
+            return '{';
+        case '-RCB-':
+            return '}';
+        default:
+            return tokenText;
+        }
+    }
+
+    /**
+     * Returns a boolean indicating if a Tokenization's Tokens use (optional) TextSpans
+     * @param {Tokenization} tokenization
+     * @returns {Boolean}
+     */
+    function tokenizationUsesTextSpans(tokenization) {
+        // We currently assume that if the first Token has a TextSpan, all Tokens have TextSpans
+        return concreteObjectUsesTextSpans(tokenization.tokenList.tokenList[0]);
+    }
+
+    return widget;
+})();
 
 
-/** Return the TaggedToken (or null) with the specified tokenIndex
- * @param {Number} tokenIndex
- * @returns {Entity|null}
+/**
+ * See (http://jquery.com/).
+ * @name jQuery
+ * @class
+ * See the jQuery Library  (http://jquery.com/) for full details.  This just
+ * documents the function and classes that are added to jQuery by this plug-in.
  */
-TokenTagging.prototype.getTaggedTokenWithTokenIndex = function(tokenIndex) {
-  for (var i = 0; i < this.taggedTokenList.length; i++) {
-    if (this.taggedTokenList[i].tokenIndex === tokenIndex) {
-      return this.taggedTokenList[i];
-    }
-  }
-  return null;
-};
 
+/**
+ * See (http://jquery.com/)
+ * @name fn
+ * @class
+ * See the jQuery Library  (http://jquery.com/) for full details.  This just
+ * documents the function and classes that are added to jQuery by this plug-in.
+ * @memberOf jQuery
+ */
 
-/** Generate a Concrete UUID
+(function($) {
+    /**
+     * @memberOf jQuery.fn
+     * @param {Communication} communication
+     * @returns {jQuery_Object}
+     */
+    $.fn.addAllEntityMentionsInCommunication = function(communication) {
+        if (communication && communication.entityMentionSetList && communication.entityMentionSetList.length > 0) {
+            for (var i = 0; i < communication.entityMentionSetList.length; i++) {
+                $.fn.addEntityMentionSet(communication.entityMentionSetList[i]);
+            }
+        }
+        return this;
+    };
+
+    /**
+     * @memberOf jQuery.fn
+     * @param {EntityMention} entityMention
+     * @returns {jQuery_Object}
+     */
+    $.fn.addEntityMention = function(entityMention) {
+        $.fn.getEntityMentionElements(entityMention)
+            .addClass('entity_mention entity_mention_' + entityMention.uuid.uuidString);
+        return this;
+    };
+
+    /**
+     * @memberOf jQuery.fn
+     * @param {EntityMentionSet} entityMentionSet
+     * @returns {jQuery_Object}
+     */
+    $.fn.addEntityMentionSet = function(entityMentionSet) {
+        if (entityMentionSet && entityMentionSet.mentionList && entityMentionSet.mentionList.length > 0) {
+            for (var i = 0; i < entityMentionSet.mentionList.length; i++) {
+                $.fn.addEntityMention(entityMentionSet.mentionList[i]);
+            }
+        }
+        return this;
+    };
+
+    /**
+     * @memberOf jQuery.fn
+     * @param {Communication} communication
+     * @param {Object} options
+     * @returns {jQuery_Object}
+     */
+    $.fn.communicationWidget = function(communication, options) {
+        this.append(concrete.widget.createCommunicationDiv(communication, options));
+        return this;
+    };
+
+    /**
+     * @memberOf jQuery.fn
+     * @param {EntityMention} entityMention
+     * @returns {jQuery_Object}
+     */
+    $.fn.getEntityMentionElements = function(entityMention) {
+        return $.fn.getTokenRefSequenceElements(entityMention.tokens);
+    };
+
+    /**
+     * @memberOf jQuery.fn
+     * @param {Sentence} sentence
+     * @returns {jQuery_Object}
+     */
+    $.fn.getSentenceElements = function(sentence) {
+        return this.find('.sentence.sentence_' + sentence.uuid.uuidString);
+    };
+
+    /**
+     * Returns a jQuery object for DOM element(s) specified by tokenization+tokenIndex
+     *
+     * @memberOf jQuery.fn
+     * @param {Tokenization} tokenization
+     * @param {int} tokenIndex
+     * @returns {jQuery_Object} - jQuery Object for DOM element(s) for tokenization+tokenIndex
+     */
+    $.fn.getTokenElementsWithIndex = function(tokenization, tokenIndex) {
+        if (!tokenization) {
+            return $();
+        }
+
+        return this.find('.tokenization_' + tokenization.uuid.uuidString + '_' + tokenIndex);
+    };
+
+    /**
+     * Returns a jQuery object for the DOM elements for the Tokens in a Tokenization,
+     * selecting only those Tokens whose TokenTagging tags satisfy the specified
+     * matchFunction.
+     *
+     * @memberOf jQuery.fn
+     * @param {Tokenization} tokenization
+     * @param {TokenTagging} tokenTagging - The TokenTagging must be for the Tokenization
+     *                                      specified as the first parameter.
+     * @param {Function} matchFunction - Function that takes as input a TaggedToken.tag string,
+     *                                   and returns true or false based on whether or not the
+     *                                   string "matches".
+     * @returns {jQuery_Object} - jQuery Object for DOM elements for "matching" Tokens
+     */
+    $.fn.getTokenElementsWithMatchingTag = function(tokenization, tokenTagging, matchFunction) {
+        if (!tokenization || !tokenTagging || !tokenTagging.taggedTokenList || !matchFunction) {
+            return $();
+        }
+
+        var tokenSelectorStrings = [];
+        for (var i = 0; i < tokenTagging.taggedTokenList.length; i++) {
+            if (matchFunction(tokenTagging.taggedTokenList[i].tag)) {
+                tokenSelectorStrings.push(
+                    '.tokenization_' + tokenization.uuid.uuidString +
+                        '_' + tokenTagging.taggedTokenList[i].tokenIndex);
+            }
+        }
+
+        var tokenizationObject = this.find('.tokenization_' + tokenization.uuid.uuidString);
+        var tokenObjects = tokenizationObject.find(tokenSelectorStrings.join(', '));
+
+        return tokenObjects;
+    };
+
+    /**
+     * @memberOf jQuery.fn
+     * @param {Tokenization} tokenization
+     * @returns {jQuery_Object}
+     */
+    $.fn.getTokenizationElements = function(tokenization) {
+        return this.find('.tokenization.tokenization_' + tokenization.uuid.uuidString);
+    };
+
+    /**
+     * @memberOf jQuery.fn
+     * @param {Tokenization} tokenization
+     * @returns {jQuery_Object}
+     */
+    $.fn.getTokenElements = function(tokenization) {
+        return this.getTokenizationElements(tokenization).find('.token');
+    };
+
+    /**
+     * @memberOf jQuery.fn
+     * @param {TokenRefSequence} tokenRefSequence
+     * @returns {jQuery_Object}
+     */
+    $.fn.getTokenRefSequenceElements = function(tokenRefSequence) {
+        if (!tokenRefSequence && !tokenRefSequence.tokenizationId) {
+            return $();
+        }
+
+        var tokenSelectorStrings = [];
+        for (var i = 0; i < tokenRefSequence.tokenIndexList.length; i++) {
+            tokenSelectorStrings.push(
+                '.tokenization_' + tokenRefSequence.tokenizationId.uuidString +
+                    '_' + tokenRefSequence.tokenIndexList[i]);
+        }
+
+        var tokenizationObject = this.find('.tokenization_' + tokenRefSequence.tokenizationId.uuidString);
+        var tokenObjects = tokenizationObject.find(tokenSelectorStrings.join(', '));
+
+        return tokenObjects;
+    };
+
+    /**
+     * @memberOf jQuery.fn
+     * @param {Section} section
+     * @param {Object} options
+     * @returns {jQuery_Object}
+     */
+    $.fn.sectionWidget = function(section, options) {
+        this.append(concrete.widget.createSectionDiv(section, options));
+        return this;
+    };
+
+    /**
+     * @memberOf jQuery.fn
+     * @param {Sentence} sentence
+     * @param {Object} options
+     * @returns {jQuery_Object}
+     */
+    $.fn.sentenceWidget = function(sentence, options) {
+        this.append(concrete.widget.createSentenceDiv(sentence, options));
+        return this;
+    };
+
+    /**
+     * @memberOf jQuery.fn
+     * @param {Tokenization} tokenization
+     * @param {Object} options
+     * @returns {jQuery_Object}
+     */
+    $.fn.tokenizationWidget = function(tokenization, options) {
+        this.append(concrete.widget.createTokenizationDiv(tokenization, options));
+        return this;
+    };
+
+})(jQuery);
+;/**
+ * Generate a Concrete UUID
  * @returns {UUID}
  */
 var generateUUID = function() {
@@ -11750,7 +12322,8 @@ var generateUUID = function() {
   return uuid;
 };
 
-/** Generate a UUID string
+/**
+ * Generate a UUID string
  *  Code based on the uuid.core.js script from MIT licensed project 'UUID.js':
  *    https://github.com/LiosK/UUID.js
  * @returns {String}
@@ -11790,4 +12363,59 @@ var generateUUIDString = function() {
     hex(0x8000 | rand(14), 4) + // clock_seq_hi_and_reserved clock_seq_low
     "-" +
     hex(rand(48), 12);        // node
+};
+;/**
+ * @class Tokenization
+ * @classdesc concrete.js extensions to the Tokenization class
+ */
+
+/**
+ * Get all TokenTaggings with the specified taggingType
+ * @param {String} taggingType - A string specifying a TokenTagging.taggingType
+ * @returns {Array} A (possibly empty) array of TokenTagging objects
+ */
+Tokenization.prototype.getTokenTaggingsOfType = function(taggingType) {
+  var tokenTaggings = [];
+
+  for (var tokenTaggingIndex in this.tokenTaggingList) {
+    if (this.tokenTaggingList[tokenTaggingIndex].taggingType === taggingType) {
+      tokenTaggings.push(this.tokenTaggingList[tokenTaggingIndex]);
+    }
+  }
+
+  return tokenTaggings;
+};
+;/**
+ * @class TokenTagging
+ * @classdesc concrete.js extensions to the TokenTagging class
+ */
+
+/** Return the TaggedToken (or null) with the specified tokenIndex
+ * @param {Number} tokenIndex
+ * @returns {TaggedToken|null}
+ */
+TokenTagging.prototype.getTaggedTokenWithTokenIndex = function(tokenIndex) {
+  for (var i = 0; i < this.taggedTokenList.length; i++) {
+    if (this.taggedTokenList[i].tokenIndex === tokenIndex) {
+      return this.taggedTokenList[i];
+    }
+  }
+  return null;
+};
+
+
+/** Sets the tag of the TaggedToken with the specified tokenIndex.
+ *  If a TaggedToken with the specified tokenIndex does not exist,
+ *  than it will be created.
+ * @param {String} tagText
+ * @param {Number} tokenIndex
+ */
+TokenTagging.prototype.setTaggedTokenTag = function(tagText, tokenIndex) {
+  var taggedToken = this.getTaggedTokenWithTokenIndex(tokenIndex);
+  if (!taggedToken) {
+    taggedToken = new TaggedToken();
+    taggedToken.tokenIndex = tokenIndex;
+    this.taggedTokenList.push(taggedToken);
+  }
+  taggedToken.tag = tagText;
 };
