@@ -18,25 +18,72 @@ from thrift.transport import TTransport
 
 from concrete.access import FetchCommunicationService
 from concrete.access.ttypes import FetchResult
+from concrete.services.ttypes import ServiceInfo
 from concrete.util import (read_communication_from_buffer,
                            read_communication_from_file,
                            write_communication_to_file)
 from concrete.util import RedisCommunicationReader
+from concrete.util.thrift_factory import factory as thrift_factory
 from concrete.validate import validate_communication
+
+
+class FetchRelay:
+    """
+    """
+    def __init__(self, host, port):
+        socket = thrift_factory.createSocket(host, int(port))
+        transport = thrift_factory.createTransport(socket)
+        protocol = thrift_factory.createProtocol(transport)
+        self.fetch_client = FetchCommunicationService.Client(protocol)
+        transport.open()
+
+    def about(self):
+        logging.info('FetchRelay received about() call')
+        return self.fetch_client.about()
+
+    def alive(self):
+        logging.info('FetchRelay received alive() call')
+        return self.fetch_client.alive()
+
+    def fetch(self, request):
+        logging.info('FetchRelay received fetch() call')
+        return self.fetch_client.fetch(request)
+
+    def getCommunicationCount(self):
+        logging.info('FetchRelay received getCommunicationCount() call')
+        return self.fetch_client.getCommunicationCount()
+
+    def getCommunicationIDs(self, offset, count):
+        logging.info('FetchRelay received getCommunicationIDs() call')
+        return self.fetch_client.getCommunicationIDs(offset, count)
 
 
 class FetchStub:
     """Implements Thrift RPC interface for FetchCommunicationService
     """
+    def about(self):
+        logging.info('FetchStub received about() call')
+        service_info = ServiceInfo()
+        service_info.name = 'fetch_server.py'
+        service_info.version = '0.0.2'
+        return service_info
+
+    def alive(self):
+        logging.info('FetchStub received alive() call')
+        return True
+
     def fetch(self, request):
+        logging.info('FetchStub received fetch() call')
         # For the stub, we ignore the request object and always return the same Communication
         return FetchResult(communications=[comm])
 
-    def getCommunicationIDs(self, offset, count):
-        return [comm.id]
-
     def getCommunicationCount(self):
+        logging.info('FetchStub received getCommunicationCount() call')
         return 1
+
+    def getCommunicationIDs(self, offset, count):
+        logging.info('FetchStub received getCommunicationIDs() call')
+        return [comm.id]
 
 
 @route('/')
@@ -89,7 +136,8 @@ LEFT_TO_RIGHT = 'left-to-right'
 
 parser = argparse.ArgumentParser(
     formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-    description='Read a communication from disk, redis or a REST server '
+    description='Read a communication from disk, redis, a REST server, '
+                'or a FetchCommunicationService server '
                 'and run a small webserver to visualize it.'
 )
 parser.add_argument('communication_locator',
@@ -97,6 +145,10 @@ parser.add_argument('communication_locator',
                     'a path on disk; the key of communication(s) in redis;'
                     'or a Communication.id to use with a RESTful server')
 parser.add_argument('-p', '--port', type=int, default=8080)
+parser.add_argument('--fetch-host', type=str, default='localhost',
+                    help='Host of FetchCommunicationService server')
+parser.add_argument('--fetch-port', type=int,
+                    help='Port of FetchCommunicationService server')
 parser.add_argument('--restful-host', type=str,
                     help='(if using a RESTful service) hostname '
                     'of RESTful server')
@@ -317,7 +369,10 @@ comm_simplejson_string = TSerialization.serialize(
 # "application/json"
 communication_as_simplejson = json.loads(comm_simplejson_string)
 
-handler = FetchStub()
+if args.fetch_port:
+    handler = FetchRelay(args.fetch_host, args.fetch_port)
+else:
+    handler = FetchStub()
 processor = FetchCommunicationService.Processor(handler)
 
 # TJSONProtocolFactory generates JSON where the Thrift fieldnames are
