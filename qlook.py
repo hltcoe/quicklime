@@ -16,24 +16,27 @@ from thrift.protocol import TJSONProtocol
 from thrift.server import TServer
 from thrift.transport import TTransport
 
+from concrete.access import FetchCommunicationService
+from concrete.access.ttypes import FetchResult
 from concrete.util import (read_communication_from_buffer,
                            read_communication_from_file,
                            write_communication_to_file)
 from concrete.util import RedisCommunicationReader
 from concrete.validate import validate_communication
 
-from quicklime_server import QuicklimeServer
 
-
-class CommunicationHandler:
-    """Implements Thrift RPC interface for QuicklimeServer
+class FetchStub:
+    """Implements Thrift RPC interface for FetchCommunicationService
     """
-    def readComm(self):
-        # 'comm' is a HACKY global variable
-        return comm
+    def fetch(self, request):
+        # For the stub, we ignore the request object and always return the same Communication
+        return FetchResult(communications=[comm])
 
-    def writeComm(self, c):
-        write_communication_to_file(c, "annotated.concrete")
+    def getCommunicationIDs(self, offset, count):
+        return [comm.id]
+
+    def getCommunicationCount(self):
+        return 1
 
 
 @route('/')
@@ -314,8 +317,8 @@ comm_simplejson_string = TSerialization.serialize(
 # "application/json"
 communication_as_simplejson = json.loads(comm_simplejson_string)
 
-handler = CommunicationHandler()
-processor = QuicklimeServer.Processor(handler)
+handler = FetchStub()
+processor = FetchCommunicationService.Processor(handler)
 
 # TJSONProtocolFactory generates JSON where the Thrift fieldnames are
 # specified using the field numbers from the Thrift schema.  It also
