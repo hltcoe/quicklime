@@ -5,10 +5,9 @@
 
 import argparse
 import json
+import logging
 import os.path
 import sys
-
-import logging
 
 from bottle import HTTPResponse, post, request, route, run, static_file
 from thrift import TSerialization
@@ -21,14 +20,23 @@ from concrete.access.ttypes import FetchResult
 from concrete.services.ttypes import ServiceInfo
 from concrete.util import (read_communication_from_buffer,
                            read_communication_from_file,
+                           RedisCommunicationReader,
                            write_communication_to_file)
-from concrete.util import RedisCommunicationReader
 from concrete.util.thrift_factory import factory as thrift_factory
 from concrete.validate import validate_communication
 
 
 class FetchRelay:
-    """
+    """Implements a 'relay' to a FetchCommunicationService server.
+
+    This service receives FetchCommunicationService Thrift RPC calls
+    using HTTP/TJSONProtocol, and makes Thrift RPC calls using
+    sockets/TCompactProtocol to another FetchCommunicationService
+    server.
+
+    The JavaScript implementation of Thrift only supports
+    HTTP/TJSONProtocol (as of Thrift 0.10.0), but most implementations
+    of the FetchCommunicationService use sockets/TCompactProtocol.
     """
     def __init__(self, host, port):
         socket = thrift_factory.createSocket(host, int(port))
