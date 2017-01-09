@@ -58,10 +58,6 @@
      var comm = fetchResult.communications[0];
      comm.addInternalReferences();
 
-     $('#save_button').click(function() {
-       client.writeComm(comm);
-     });
-
      QL.addCommunication('communication_one', comm);
      QL.parse.addTokenizationParseControls(comm);
      QL.brat.addTokenizationBRATControls(comm);
@@ -111,7 +107,6 @@
 
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
-      <button id="save_button" type="button" class="btn btn-default navbar-btn">Save</button>
       <div class="btn-group" data-toggle="buttons" id="toggle_controls">
         <label class="btn btn-default active">
           <input type="radio" name="toggle_controls" id="show_controls" checked> Show Controls
