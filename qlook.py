@@ -105,9 +105,9 @@ def as_json():
     return communication_as_simplejson
 
 
-@post('/quicklime/thrift_endpoint/')
-def thrift_endpoint():
-    """Thrift RPC endpoint for QuicklimeServer API
+@post('/quicklime/fetch_http_endpoint/')
+def fetch_http_endpoint():
+    """Thrift RPC endpoint for Concrete FetchCommunicationService
     """
     itrans = TTransport.TFileObjectTransport(request.body)
     itrans = TTransport.TBufferedTransport(
@@ -117,8 +117,8 @@ def thrift_endpoint():
     oprot = tserver.outputProtocolFactory.getProtocol(otrans)
 
     # tserver is a HACKY global variable that references a
-    # TServer.TServer instance that implements the Thrift API for a
-    # QuicklimeServer using a TJSONProtocolFactory
+    # TServer.TServer instance that implements the Thrift API for
+    # FetchCommunicationService using a TJSONProtocolFactory
     tserver.processor.process(iprot, oprot)
     bytestring = otrans.getvalue()
 

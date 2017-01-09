@@ -49,9 +49,11 @@
 
   <script>
    $(document).ready(function() {
-     var transport = new Thrift.Transport("/quicklime/thrift_endpoint/");
+     var transport = new Thrift.Transport("/quicklime/fetch_http_endpoint/");
      var protocol = new Thrift.TJSONProtocol(transport);
      var fetchClient = new FetchCommunicationServiceClient(protocol);
+
+     var totalCommunications = fetchClient.getCommunicationCount();
      var communicationIDs = fetchClient.getCommunicationIDs(0,1);
      var fetchRequest = new FetchRequest({communicationIds: communicationIDs});
      var fetchResult = fetchClient.fetch(fetchRequest);
