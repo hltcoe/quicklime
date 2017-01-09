@@ -157,7 +157,7 @@ parser.add_argument('--fetch-host', type=str, default='localhost',
                     help='Host of FetchCommunicationService server')
 parser.add_argument('--fetch-port', type=int,
                     help='Port of FetchCommunicationService server')
-parser.add_argument('--restful-host', type=str,
+parser.add_argument('--restful-host', type=str, default='localhost',
                     help='(if using a RESTful service) hostname '
                     'of RESTful server')
 parser.add_argument('--restful-port', type=int,
@@ -169,7 +169,7 @@ parser.add_argument('--restful-pattern', type=str,
                     'endpoint pattern to query, as a %%-based format string.'
                     'The default is communication/%%s/tcompact, where %%s'
                     'is replaced by communication_locator')
-parser.add_argument('--redis-host', type=str,
+parser.add_argument('--redis-host', type=str, default='localhost',
                     help='(if using redis) hostname of redis server')
 parser.add_argument('--redis-port', type=int,
                     help='(if using redis) port of redis server')
@@ -203,8 +203,6 @@ logging.basicConfig(
 use_redis = False
 if args.redis_port:
     use_redis = True
-    if not args.redis_host:
-        args.redis_host = "localhost"
 
 use_restful = False
 if args.restful_port is not None:
@@ -212,8 +210,6 @@ if args.restful_port is not None:
     if args.comm_lookup_by != 'id':
         error("We can only lookup communications by id (not UUID)"
               "with a RESTful service")
-    if args.restful_host is None:
-        args.restful_host = 'localhost'
 
 if not os.path.isfile(communication_loc) and not (use_redis or use_restful):
     error("Could not find Communication file '%s'" % communication_loc)
