@@ -11,27 +11,12 @@
   <script src="/static/quicklime/jquery-1.11.1.min.js"></script>
   <script src="/static/quicklime/bootstrap-3.2.0/js/bootstrap.js"></script>
 
+  <script src="/static/quicklime/quicklime.js"></script>
+
   <script src="/static/quicklime/thrift.js"></script>
   <script src="/static/quicklime/concrete.js"></script>
 
   <script>
-    // Copied from:
-    //   http://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
-    function getUrlParameter(sParam) {
-      var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-          sURLVariables = sPageURL.split('&'),
-          sParameterName,
-          i;
-
-      for (i = 0; i < sURLVariables.length; i++) {
-        sParameterName = sURLVariables[i].split('=');
-
-        if (sParameterName[0] === sParam) {
-          return sParameterName[1] === undefined ? true : sParameterName[1];
-        }
-      }
-    };
-
     $(document).ready(function() {
       function appendCommunicationIDs(communicationIDs) {
         for (var i = 0; i < communicationIDs.length; i++) {
@@ -67,8 +52,8 @@
 
       var totalCommunications = fetchClient.getCommunicationCount();
 
-      var commCount = getUrlParameter('commCount');
-      var commOffset = getUrlParameter('commOffset');
+      var commCount = QL.getUrlParameter('commCount');
+      var commOffset = QL.getUrlParameter('commOffset');
       if (!commCount) {
         commCount = 50;
       }
