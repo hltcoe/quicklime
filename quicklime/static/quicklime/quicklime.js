@@ -88,7 +88,7 @@ QL.getCommunicationWithUUID = function(uuid) {
  * @param {String} parentElementID - DOM ID of element to attach Communication text to
  * @param {concrete.Communication} comm
  */
-QL.addCommunication = function(parentElementID, comm, showTokenizationControls=true) {
+QL.addCommunication = function(parentElementID, comm, showTokenizationControls) {
   // Add Communication to set of communications (a global variable) in QL namespace
   QL._communications[comm.uuid.uuidString] = comm;
 
