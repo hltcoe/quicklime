@@ -288,8 +288,8 @@ def main():
                 if args.redis_direction == RIGHT_TO_LEFT:
                     comm_idx = - (comm_idx + 1)
 
-                buf = input_db.lindex(communication_loc, comm_idx)
-                comm = read_communication_from_buffer(buf)
+                comm_buf = input_db.lindex(communication_loc, comm_idx)
+                comm = read_communication_from_buffer(comm_buf)
 
                 if comm_lookup(comm) != args.redis_comm:
                     error(('Cannot find the appropriate document with %s'
@@ -297,8 +297,8 @@ def main():
 
             elif key_type == 'hash':
                 # do O(1) hash lookup
-                comm = input_db.hget(communication_loc, args.redis_comm)
-                comm = read_communication_from_buffer(comm)
+                comm_buf = input_db.hget(communication_loc, args.redis_comm)
+                comm = read_communication_from_buffer(comm_buf)
 
             else:
                 error('Unknown key type %s' % (key_type))
@@ -311,14 +311,14 @@ def main():
 
         elif redis_comm_index is not None:
             # lookup comm by index in list
-            buf = input_db.lindex(communication_loc, redis_comm_index)
-            if buf is None:
+            comm_buf = input_db.lindex(communication_loc, redis_comm_index)
+            if comm_buf is None:
                 error(('Unable to find communication with id %s at %s:%s under'
                        ' key %s') %
                       (args.redis_comm, args.redis_host, args.redis_port,
                        communication_loc))
             else:
-                comm = read_communication_from_buffer(buf)
+                comm = read_communication_from_buffer(comm_buf)
                 logging.info('%dth Communication has id %s' %
                              (redis_comm_index + 1, comm.id))
 
@@ -348,9 +348,9 @@ def main():
         if resp.code != 200:
             error("received code %d and message %s from %s" % (
                 resp.code, resp.msg, full))
-        comm = resp.read()
+        comm_buf = resp.read()
         resp.close()
-        comm = read_communication_from_buffer(comm)
+        comm = read_communication_from_buffer(comm_buf)
     else:
         comm = read_communication_from_file(communication_loc)
 
