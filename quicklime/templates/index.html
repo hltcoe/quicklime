@@ -113,21 +113,18 @@
         $('#list_button_container').show();
       }
 
+      var commID;
       var getID = getUrlParameter('id');
+
       if (getID) {
-        var comm = fetchCommunication(getID);
-        renderCommunication(comm);
+        commID = getID;
       }
       else {
-        if (totalCommunications === 0) {
-          // TODO: Display error message to user
-        }
-        else {
-          var communicationIDs = fetchClient.getCommunicationIDs(0,1);
-          var comm = fetchCommunication(communicationIDs[0]);
-          renderCommunication(comm);
-        }
+        var communicationIDs = fetchClient.getCommunicationIDs(0,1);
+        commID = communicationIDs[0];
       }
+      comm = fetchCommunication(commID);
+      renderCommunication(comm);
     });
   </script>
   <style>
@@ -174,7 +171,6 @@
   <div id="splitter">
     <div style="height: 400px; min-height: 150px;">
       <div class="container-fluid">
-        <div id="communication_id_list"></div>
         <div id="communication_one"></div>
       </div>
     </div>
