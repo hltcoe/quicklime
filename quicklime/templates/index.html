@@ -82,21 +82,6 @@
         splitHorizontal: true
       });
 
-      function renderCommunication(comm) {
-        comm.addInternalReferences();
-
-        $('#communication_one').empty();
-        $('#entityTable').empty();
-
-        QL.addCommunication('communication_one', comm,
-                            showTokenizationControls=$('#show_controls').prop('checked'));
-        QL.parse.addTokenizationParseControls(comm);
-        QL.brat.addTokenizationBRATControls(comm);
-        QL.addEntityTable('entityTable', comm);
-        // QL.addSituationMentionTable('situationMentionTable', comm);
-        // QL.addMouseoverHighlightingForAllEntitySets(comm);
-      }
-
       function fetchCommunication(commID) {
         var fetchRequest = new FetchRequest({communicationIds: [commID]});
         var fetchResult = fetchClient.fetch(fetchRequest);
@@ -104,69 +89,43 @@
         return comm;
       }
 
+      function renderCommunication(comm) {
+        comm.addInternalReferences();
+
+        $('#communication_one').empty();
+        $('#entityTable').empty();
+
+        QL.addCommunication('communication_one', comm, $('#show_controls').prop('checked'));
+        QL.parse.addTokenizationParseControls(comm);
+        QL.brat.addTokenizationBRATControls(comm);
+        QL.addEntityTable('entityTable', comm);
+        // QL.addSituationMentionTable('situationMentionTable', comm);
+        // QL.addMouseoverHighlightingForAllEntitySets(comm);
+      }
+
       var transport = new Thrift.Transport("/quicklime/fetch_http_endpoint/");
       var protocol = new Thrift.TJSONProtocol(transport);
       var fetchClient = new FetchCommunicationServiceClient(protocol);
 
-      var getID = getUrlParameter('id');
+      var totalCommunications = fetchClient.getCommunicationCount();
 
+      if (totalCommunications > 1) {
+        $('#list_button_container').show();
+      }
+
+      var getID = getUrlParameter('id');
       if (getID) {
         var comm = fetchCommunication(getID);
         renderCommunication(comm);
       }
       else {
-        var totalCommunications = fetchClient.getCommunicationCount();
         if (totalCommunications === 0) {
           // TODO: Display error message to user
         }
-        else if (totalCommunications === 1) {
+        else {
           var communicationIDs = fetchClient.getCommunicationIDs(0,1);
           var comm = fetchCommunication(communicationIDs[0]);
           renderCommunication(comm);
-        }
-        else {
-          // Display a list of Communication IDs, instead of displaying the actual Communication
-
-          function appendCommunicationIDs(communicationIDs) {
-            for (var i = 0; i < communicationIDs.length; i++) {
-              $('#communication_id_list').append(
-                $('<span>').css('display', 'inline-block')
-                           .css('padding', '0.5em')
-                           .append(
-                             $('<a>').attr('href', '?id='+communicationIDs[i])
-                                     .text(communicationIDs[i])));
-            }
-          }
-
-          function conditionallyAppendLoadButton(commOffset, commCount, totalCommunications) {
-            if (commOffset+commCount < totalCommunications) {
-              $('#communication_id_list').append(
-                $('<button>').addClass('btn btn-default btn-xs')
-                             .text('LOAD MORE')
-                             .click(
-                               { commOffset: commCount+commOffset, commCount: commCount},
-                               function(event) {
-                                 var communicationIDs = fetchClient.getCommunicationIDs(
-                                   event.data.commOffset, event.data.commCount);
-                                 appendCommunicationIDs(communicationIDs);
-                                 conditionallyAppendLoadButton(commOffset+commCount, commCount, totalCommunications);
-                                 $(this).remove();
-                               }));
-            }
-          }
-
-          var commCount = getUrlParameter('commCount');
-          var commOffset = getUrlParameter('commOffset');
-          if (!commCount) {
-            commCount = 50;
-          }
-          if (!commOffset) {
-            commOffset = 0;
-          }
-
-          var communicationIDs = fetchClient.getCommunicationIDs(commOffset, commCount);
-          appendCommunicationIDs(communicationIDs);
-          conditionallyAppendLoadButton(commOffset, commCount, totalCommunications);
         }
       }
     });
@@ -196,13 +155,18 @@
 
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
-      <div class="btn-group" data-toggle="buttons" id="toggle_controls">
-        <label class="btn btn-default active">
-          <input type="radio" name="toggle_controls" id="show_controls" checked> Show Controls
-        </label>
-        <label class="btn btn-default">
-          <input type="radio" name="toggle_controls" id="hide_controls"> Hide Controls
-        </label>
+      <div class="btn-toolbar">
+        <div class="btn-group" data-toggle="buttons" id="toggle_controls">
+          <label class="btn btn-default active navbar-btn">
+            <input type="radio" name="toggle_controls" id="show_controls" checked> Show Controls
+          </label>
+          <label class="btn btn-default navbar-btn">
+            <input type="radio" name="toggle_controls" id="hide_controls"> Hide Controls
+          </label>
+        </div>
+        <div class="btn-group" id="list_button_container" style="display: none;">
+          <a class="btn btn-default navbar-btn" href="/list/" role="button">Communication List</a>
+        </div>
       </div>
     </div>
   </nav>

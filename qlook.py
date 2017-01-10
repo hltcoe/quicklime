@@ -11,7 +11,7 @@ import sys
 import urllib2
 import urlparse
 
-from bottle import HTTPResponse, post, request, route, run, static_file
+from bottle import get, HTTPResponse, post, redirect, request, route, run, static_file
 from redis import Redis
 from thrift import TSerialization
 from thrift.protocol import TJSONProtocol
@@ -103,9 +103,19 @@ class FetchStub:
         return [self.comm.id]
 
 
-@route('/')
+@get('/')
 def index():
-    return static_file("index.html", root="quicklime/templates")
+    global PRELOADED_COMM_FLAG
+
+    if not PRELOADED_COMM_FLAG and not request.GET.get('id'):
+        redirect('/list/')
+    else:
+        return static_file('index.html', root='quicklime/templates')
+
+
+@get('/list/')
+def list():
+    return static_file('list.html', root='quicklime/templates')
 
 
 @post('/quicklime/fetch_http_endpoint/')
@@ -145,10 +155,12 @@ def error(message, status=1):
 
 
 # GLOBAL VARIABLES
+PRELOADED_COMM_FLAG = True
 TSERVER = None
 
 
 def main():
+    global PRELOADED_COMM_FLAG
     global TSERVER
 
     RIGHT_TO_LEFT = 'right-to-left'
@@ -242,7 +254,7 @@ def main():
         error("Can only use one Communication provider (Fetch, Redis, RESTful) at a time")
 
     if use_fetch_relay:
-        pass
+        PRELOADED_COMM_FLAG = False
     elif use_redis:
         def comm_lookup(comm):
             if args.comm_lookup_by == 'id':

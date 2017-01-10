@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Quicklime</title>
+  <meta charset='UTF-8'>
+
+  <link rel="stylesheet" href="/static/quicklime/bootstrap-3.2.0/css/bootstrap.css"/>
+  <link rel="stylesheet" href="/static/quicklime/bootstrap-3.2.0/css/bootstrap-theme.css"/>
+  <link rel="stylesheet" href="/static/quicklime/quicklime.css"/>
+
+  <script src="/static/quicklime/jquery-1.11.1.min.js"></script>
+  <script src="/static/quicklime/bootstrap-3.2.0/js/bootstrap.js"></script>
+
+  <script src="/static/quicklime/thrift.js"></script>
+  <script src="/static/quicklime/concrete.js"></script>
+
+  <script>
+    // Copied from:
+    //   http://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
+    function getUrlParameter(sParam) {
+      var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+          sURLVariables = sPageURL.split('&'),
+          sParameterName,
+          i;
+
+      for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+          return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+      }
+    };
+
+    $(document).ready(function() {
+      function appendCommunicationIDs(communicationIDs) {
+        for (var i = 0; i < communicationIDs.length; i++) {
+          $('#communication_id_list').append(
+            $('<span>').css('display', 'inline-block')
+                       .css('padding', '0.5em')
+                       .append(
+                         $('<a>').attr('href', '/?id='+communicationIDs[i])
+                                 .text(communicationIDs[i])));
+        }
+      }
+
+      function conditionallyAppendLoadButton(commOffset, commCount, totalCommunications) {
+        if (commOffset+commCount < totalCommunications) {
+          $('#communication_id_list').append(
+            $('<button>').addClass('btn btn-default btn-xs')
+                         .text('LOAD MORE')
+                         .click(
+                           { commOffset: commCount+commOffset, commCount: commCount},
+                           function(event) {
+                             var communicationIDs = fetchClient.getCommunicationIDs(
+                               event.data.commOffset, event.data.commCount);
+                             appendCommunicationIDs(communicationIDs);
+                             conditionallyAppendLoadButton(commOffset+commCount, commCount, totalCommunications);
+                             $(this).remove();
+                           }));
+        }
+      }
+
+      var transport = new Thrift.Transport("/quicklime/fetch_http_endpoint/");
+      var protocol = new Thrift.TJSONProtocol(transport);
+      var fetchClient = new FetchCommunicationServiceClient(protocol);
+
+      var totalCommunications = fetchClient.getCommunicationCount();
+
+      var commCount = getUrlParameter('commCount');
+      var commOffset = getUrlParameter('commOffset');
+      if (!commCount) {
+        commCount = 50;
+      }
+      if (!commOffset) {
+        commOffset = 0;
+      }
+
+      var communicationIDs = fetchClient.getCommunicationIDs(commOffset, commCount);
+      appendCommunicationIDs(communicationIDs);
+      conditionallyAppendLoadButton(commOffset, commCount, totalCommunications);
+    });
+  </script>
+  <style>
+    body {
+      padding-bottom: 3em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container-fluid">
+    <div id="communication_id_list"></div>
+  </div>
+
+</body>
+</html>
