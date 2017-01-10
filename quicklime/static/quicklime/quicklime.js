@@ -88,7 +88,7 @@ QL.getCommunicationWithUUID = function(uuid) {
  * @param {String} parentElementID - DOM ID of element to attach Communication text to
  * @param {concrete.Communication} comm
  */
-QL.addCommunication = function(parentElementID, comm) {
+QL.addCommunication = function(parentElementID, comm, showTokenizationControls=true) {
   // Add Communication to set of communications (a global variable) in QL namespace
   QL._communications[comm.uuid.uuidString] = comm;
 
@@ -122,6 +122,9 @@ QL.addCommunication = function(parentElementID, comm) {
         var tokenization_controls_div = $('<div>')
           .addClass('tokenization_controls')
           .attr('id', 'tokenization_controls_' + tokenization.uuid.uuidString);
+        if (!showTokenizationControls) {
+          tokenization_controls_div.css('display', 'none');
+        }
 
         controls_and_tokenization_container_div.append(tokenization_controls_div);
 

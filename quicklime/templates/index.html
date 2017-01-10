@@ -71,7 +71,8 @@
         $('#communication_one').empty();
         $('#entityTable').empty();
 
-        QL.addCommunication('communication_one', comm);
+        QL.addCommunication('communication_one', comm,
+                            showTokenizationControls=$('#show_controls').prop('checked'));
         QL.parse.addTokenizationParseControls(comm);
         QL.brat.addTokenizationBRATControls(comm);
         QL.addEntityTable('entityTable', comm);
