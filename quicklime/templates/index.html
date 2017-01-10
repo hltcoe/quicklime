@@ -48,61 +48,61 @@
   <script src="static/quicklime/concrete.js"></script>
 
   <script>
-   $(document).ready(function() {
-     var transport = new Thrift.Transport("/quicklime/fetch_http_endpoint/");
-     var protocol = new Thrift.TJSONProtocol(transport);
-     var fetchClient = new FetchCommunicationServiceClient(protocol);
+    $(document).ready(function() {
+      var transport = new Thrift.Transport("/quicklime/fetch_http_endpoint/");
+      var protocol = new Thrift.TJSONProtocol(transport);
+      var fetchClient = new FetchCommunicationServiceClient(protocol);
 
-     var totalCommunications = fetchClient.getCommunicationCount();
-     var communicationIDs = fetchClient.getCommunicationIDs(0,1);
-     var fetchRequest = new FetchRequest({communicationIds: communicationIDs});
-     var fetchResult = fetchClient.fetch(fetchRequest);
-     var comm = fetchResult.communications[0];
-     comm.addInternalReferences();
+      var totalCommunications = fetchClient.getCommunicationCount();
+      var communicationIDs = fetchClient.getCommunicationIDs(0,1);
+      var fetchRequest = new FetchRequest({communicationIds: communicationIDs});
+      var fetchResult = fetchClient.fetch(fetchRequest);
+      var comm = fetchResult.communications[0];
+      comm.addInternalReferences();
 
-     QL.addCommunication('communication_one', comm);
-     QL.parse.addTokenizationParseControls(comm);
-     QL.brat.addTokenizationBRATControls(comm);
-     QL.addEntityTable('entityTable', comm);
-//     QL.addSituationMentionTable('situationMentionTable', comm);
-//     QL.addMouseoverHighlightingForAllEntitySets(comm);
+      QL.addCommunication('communication_one', comm);
+      QL.parse.addTokenizationParseControls(comm);
+      QL.brat.addTokenizationBRATControls(comm);
+      QL.addEntityTable('entityTable', comm);
+      // QL.addSituationMentionTable('situationMentionTable', comm);
+      // QL.addMouseoverHighlightingForAllEntitySets(comm);
 
-     $("#toggle_controls").click(function(event) {
-       var id = $(event.target).find('input').attr('id');
-       if (id === "show_controls") {
-         $('.tokenization_controls').show();
-       }
-       else if (id === "hide_controls") {
-         $('.tokenization_controls').hide();
-       }
-     });
+      $("#toggle_controls").click(function(event) {
+        var id = $(event.target).find('input').attr('id');
+        if (id === "show_controls") {
+          $('.tokenization_controls').show();
+        }
+        else if (id === "hide_controls") {
+          $('.tokenization_controls').hide();
+        }
+      });
 
-     $('#splitter').splitter({
-       resizeTo: window,
-       sizeTop: true,
-       splitHorizontal: true
-     });
-   });
+      $('#splitter').splitter({
+        resizeTo: window,
+        sizeTop: true,
+        splitHorizontal: true
+      });
+    });
   </script>
   <style>
-   html, body {
-     margin: 0px;
-     padding: 0px;
-     overflow: hidden;
-   }
-   body {
-     padding-top: 50px;
-   }
-   .splitter-pane {
-     overflow: auto;
-   }
-   div.splitter-bar-horizontal {
-     height: 3px;
-     background: #444444;
-   }
-   #splitter {
-     height: 300px;
-   }
+    html, body {
+      margin: 0px;
+      padding: 0px;
+      overflow: hidden;
+    }
+    body {
+      padding-top: 50px;
+    }
+    .splitter-pane {
+      overflow: auto;
+    }
+    div.splitter-bar-horizontal {
+      height: 3px;
+      background: #444444;
+    }
+    #splitter {
+      height: 300px;
+    }
   </style>
 </head>
 <body>
