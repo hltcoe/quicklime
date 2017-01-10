@@ -161,6 +161,7 @@ def main():
                     'and run a small webserver to visualize it.'
     )
     parser.add_argument('communication_locator',
+                        nargs='?',
                         help='general locator of communication, either'
                         'a path on disk; the key of communication(s) in redis;'
                         'or a Communication.id to use with a RESTful server')
@@ -231,8 +232,11 @@ def main():
             error("We can only lookup communications by id (not UUID) "
                   "with a RESTful service")
 
-    if not os.path.isfile(communication_loc) and not (use_fetch_relay or use_redis or use_restful):
-        error("Could not find Communication file '%s'" % communication_loc)
+    if not (use_fetch_relay or use_redis or use_restful):
+        if not communication_loc:
+            error("You must specify a Communication file")
+        elif not os.path.isfile(communication_loc):
+            error("Could not find Communication file '%s'" % communication_loc)
 
     if [use_fetch_relay, use_redis, use_restful].count(True) > 1:
         error("Can only use one Communication provider (Fetch, Redis, RESTful) at a time")
