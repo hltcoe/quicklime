@@ -8,8 +8,11 @@ import json
 import logging
 import os.path
 import sys
+import urllib2
+import urlparse
 
 from bottle import HTTPResponse, post, request, route, run, static_file
+from redis import Redis
 from thrift import TSerialization
 from thrift.protocol import TJSONProtocol
 from thrift.server import TServer
@@ -244,7 +247,6 @@ def main():
         if args.redis_comm is not None and redis_comm_index is not None:
             error("Cannot include both --redis-comm and --redis-comm-index")
 
-        from redis import Redis
         input_db = Redis(args.redis_host, args.redis_port)
         reader = RedisCommunicationReader(input_db, communication_loc,
                                           add_references=True,
@@ -328,7 +330,6 @@ def main():
                 error('Unable to find any communications at %s:%s under key %s' %
                       (args.redis_host, args.redis_port, communication_loc))
     elif use_restful:
-        import urllib2, urlparse
         url = urlparse.urlparse('%s:%s' % (args.restful_host, args.restful_port))
         if url.netloc is None or len(url.netloc) == 0:
             h = 'http://%s' % (args.restful_host)
