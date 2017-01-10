@@ -48,6 +48,23 @@
   <script src="static/quicklime/concrete.js"></script>
 
   <script>
+    // Copied from:
+    //   http://stackoverflow.com/questions/19491336/get-url-parameter-jquery-or-how-to-get-query-string-values-in-js
+    function getUrlParameter(sParam) {
+      var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+          sURLVariables = sPageURL.split('&'),
+          sParameterName,
+          i;
+
+      for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+          return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+      }
+    };
+
     $(document).ready(function() {
       $("#toggle_controls").click(function(event) {
         var id = $(event.target).find('input').attr('id');
@@ -91,28 +108,65 @@
       var protocol = new Thrift.TJSONProtocol(transport);
       var fetchClient = new FetchCommunicationServiceClient(protocol);
 
-      var totalCommunications = fetchClient.getCommunicationCount();
-      if (totalCommunications === 0) {
-        // TODO: Display error message to user
-      }
-      else if (totalCommunications === 1) {
-        var communicationIDs = fetchClient.getCommunicationIDs(0,1);
-        var comm = fetchCommunication(communicationIDs[0]);
+      var getID = getUrlParameter('id');
+
+      if (getID) {
+        var comm = fetchCommunication(getID);
         renderCommunication(comm);
       }
       else {
-        var communicationIDs = fetchClient.getCommunicationIDs(0,10);
-        for (var i = 0; i < communicationIDs.length; i++) {
-          $('#communication_id_table').append(
-            $('<span>').css('display', 'inline-block')
-                       .css('padding', '0.5em')
-                       .append(
-                         $('<a>').attr('href', '#')
-                                 .click({commID: communicationIDs[i]},
-                                        function(event) {
-                                          renderCommunication(fetchCommunication(event.data.commID))
-                                        })
-                                 .text(communicationIDs[i])));
+        var totalCommunications = fetchClient.getCommunicationCount();
+        if (totalCommunications === 0) {
+          // TODO: Display error message to user
+        }
+        else if (totalCommunications === 1) {
+          var communicationIDs = fetchClient.getCommunicationIDs(0,1);
+          var comm = fetchCommunication(communicationIDs[0]);
+          renderCommunication(comm);
+        }
+        else {
+          // Display a list of Communication IDs, instead of displaying the actual Communication
+
+          function appendCommunicationIDs(communicationIDs) {
+            for (var i = 0; i < communicationIDs.length; i++) {
+              $('#communication_id_list').append(
+                $('<span>').css('display', 'inline-block')
+                           .css('padding', '0.5em')
+                           .append(
+                             $('<a>').attr('href', '?id='+communicationIDs[i])
+                                     .text(communicationIDs[i])));
+            }
+          }
+
+          function conditionallyAppendLoadButton(commOffset, commCount, totalCommunications) {
+            if (commOffset+commCount < totalCommunications) {
+              $('#communication_id_list').append(
+                $('<button>').addClass('btn btn-default btn-xs')
+                             .text('LOAD MORE')
+                             .click(
+                               { commOffset: commCount+commOffset, commCount: commCount},
+                               function(event) {
+                                 var communicationIDs = fetchClient.getCommunicationIDs(
+                                   event.data.commOffset, event.data.commCount);
+                                 appendCommunicationIDs(communicationIDs);
+                                 conditionallyAppendLoadButton(commOffset+commCount, commCount, totalCommunications);
+                                 $(this).remove();
+                               }));
+            }
+          }
+
+          var commCount = getUrlParameter('commCount');
+          var commOffset = getUrlParameter('commOffset');
+          if (!commCount) {
+            commCount = 50;
+          }
+          if (!commOffset) {
+            commOffset = 0;
+          }
+
+          var communicationIDs = fetchClient.getCommunicationIDs(commOffset, commCount);
+          appendCommunicationIDs(communicationIDs);
+          conditionallyAppendLoadButton(commOffset, commCount, totalCommunications);
         }
       }
     });
@@ -156,7 +210,7 @@
   <div id="splitter">
     <div style="height: 400px; min-height: 150px;">
       <div class="container-fluid">
-        <div id="communication_id_table"></div>
+        <div id="communication_id_list"></div>
         <div id="communication_one"></div>
       </div>
     </div>
