@@ -358,23 +358,6 @@ def main():
     # Log validation errors to console, but ignore return value
     validate_communication(comm)
 
-    # Thrift provides two JSON serializers: TJSONProtocolFactory and
-    # TSimpleJSONProtocolFactory.  The Simple version generates "human
-    # readable" JSON, where the Thrift fieldnames are specified using
-    # strings:
-    #
-    #    {"text": "Barber tells me - his son is colorblind / my hair is
-    #    auburn / and auburn is a shade of green", "metadata":
-    #    {"timestamp": 1409941905, "tool": "Annotation Example script",
-    #    "kBest": 1}, "type": "Tweet", "id": "Annotation_Test_1", "uuid":
-    #    {"uuidString": "24a00e5e-fc64-4ae3-bde7-73ed3c4c623a"}}
-    #
-    # Thrift can serialize objects to the SimpleJSON format, but does not
-    # (currently) provide API's for deserializing from the SimpleJSON
-    # format.
-    comm_simplejson_string = TSerialization.serialize(
-            comm, TJSONProtocol.TSimpleJSONProtocolFactory())
-
     if args.fetch_port:
         handler = FetchRelay(args.fetch_host, args.fetch_port)
     else:
