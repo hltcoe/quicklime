@@ -156,15 +156,15 @@ def main():
 
     parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
-        description='Read a communication from disk, redis, a REST server, '
-                    'or a FetchCommunicationService server '
-                    'and run a small webserver to visualize it.'
+        description='Read a communication from disk, redis, a REST server,'
+                    ' or a FetchCommunicationService server'
+                    ' and run a small webserver to visualize it.'
     )
     parser.add_argument('communication_locator',
                         nargs='?',
                         help='general locator of communication, either'
-                        'a path on disk; the key of communication(s) in redis;'
-                        'or a Communication.id to use with a RESTful server')
+                        ' a path on disk; the key of communication(s) in redis;'
+                        ' or a Communication.id to use with a RESTful server')
     parser.add_argument('-p', '--port', type=int, default=8080)
     parser.add_argument('--log-level', default='INFO',
                         choices=('DEBUG', 'INFO', 'WARNING', 'ERROR'),
@@ -197,17 +197,17 @@ def main():
                              ' list)')
 
     parser.add_argument('--restful-host', type=str, default='localhost',
-                        help='(if using a RESTful service) hostname '
-                        'of RESTful server')
+                        help='(if using a RESTful service) hostname'
+                        ' of RESTful server')
     parser.add_argument('--restful-port', type=int,
-                        help='(if using a RESTful service) port '
-                        'of RESTful server')
+                        help='(if using a RESTful service) port'
+                        ' of RESTful server')
     parser.add_argument('--restful-pattern', type=str,
                         default='communication/%s/tcompact',
                         help='(if using a RESTful service) the univariate '
-                        'endpoint pattern to query, as a %%-based format string.'
-                        'The default is communication/%%s/tcompact, where %%s'
-                        'is replaced by communication_locator')
+                        ' endpoint pattern to query, as a %%-based format string.'
+                        ' The default is communication/%%s/tcompact, where %%s'
+                        ' is replaced by communication_locator')
 
     args = parser.parse_args()
     communication_loc = args.communication_locator
