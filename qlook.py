@@ -165,22 +165,15 @@ def main():
                         'a path on disk; the key of communication(s) in redis;'
                         'or a Communication.id to use with a RESTful server')
     parser.add_argument('-p', '--port', type=int, default=8080)
+    parser.add_argument('--log-level', default='INFO',
+                        choices=('DEBUG', 'INFO', 'WARNING', 'ERROR'),
+                        help='severity level at which to show log messages')
+
     parser.add_argument('--fetch-host', type=str, default='localhost',
                         help='Host of FetchCommunicationService server')
     parser.add_argument('--fetch-port', type=int,
                         help='Port of FetchCommunicationService server')
-    parser.add_argument('--restful-host', type=str, default='localhost',
-                        help='(if using a RESTful service) hostname '
-                        'of RESTful server')
-    parser.add_argument('--restful-port', type=int,
-                        help='(if using a RESTful service) port '
-                        'of RESTful server')
-    parser.add_argument('--restful-pattern', type=str,
-                        default='communication/%s/tcompact',
-                        help='(if using a RESTful service) the univariate '
-                        'endpoint pattern to query, as a %%-based format string.'
-                        'The default is communication/%%s/tcompact, where %%s'
-                        'is replaced by communication_locator')
+
     parser.add_argument('--redis-host', type=str, default='localhost',
                         help='(if using redis) hostname of redis server')
     parser.add_argument('--redis-port', type=int,
@@ -201,9 +194,20 @@ def main():
                         choices=(RIGHT_TO_LEFT, LEFT_TO_RIGHT),
                         help='(if using redis) direction to read communication'
                              ' list)')
-    parser.add_argument('--log-level', default='INFO',
-                        choices=('DEBUG', 'INFO', 'WARNING', 'ERROR'),
-                        help='severity level at which to show log messages')
+
+    parser.add_argument('--restful-host', type=str, default='localhost',
+                        help='(if using a RESTful service) hostname '
+                        'of RESTful server')
+    parser.add_argument('--restful-port', type=int,
+                        help='(if using a RESTful service) port '
+                        'of RESTful server')
+    parser.add_argument('--restful-pattern', type=str,
+                        default='communication/%s/tcompact',
+                        help='(if using a RESTful service) the univariate '
+                        'endpoint pattern to query, as a %%-based format string.'
+                        'The default is communication/%%s/tcompact, where %%s'
+                        'is replaced by communication_locator')
+
     args = parser.parse_args()
     communication_loc = args.communication_locator
 
@@ -211,6 +215,10 @@ def main():
         format='%(asctime)-15s %(levelname)s: %(message)s',
         level=args.log_level,
     )
+
+    use_fetch_relay = False
+    if args.fetch_port:
+        use_fetch_relay = True
 
     use_redis = False
     if args.redis_port:
@@ -220,33 +228,36 @@ def main():
     if args.restful_port is not None:
         use_restful = True
         if args.comm_lookup_by != 'id':
-            error("We can only lookup communications by id (not UUID)"
+            error("We can only lookup communications by id (not UUID) "
                   "with a RESTful service")
 
-    if not os.path.isfile(communication_loc) and not (use_redis or use_restful):
+    if not os.path.isfile(communication_loc) and not (use_fetch_relay or use_redis or use_restful):
         error("Could not find Communication file '%s'" % communication_loc)
 
-    if use_redis and use_restful:
-        error("Cannot read from both redis and RESTful")
+    if [use_fetch_relay, use_redis, use_restful].count(True) > 1:
+        error("Can only use one Communication provider (Fetch, Redis, RESTful) at a time")
 
-    def comm_lookup(comm):
-        if args.comm_lookup_by == 'id':
-            return comm.id
-        elif args.comm_lookup_by == 'uuid':
-            return comm.uuid.uuidString
+    if use_fetch_relay:
+        pass
+    elif use_redis:
+        def comm_lookup(comm):
+            if args.comm_lookup_by == 'id':
+                return comm.id
+            elif args.comm_lookup_by == 'uuid':
+                return comm.uuid.uuidString
+            else:
+                error('unsupported comm_lookup_by %s' % args.comm_lookup_by)
+
+        input_db = None
+
+        if args.redis_comm_index is not None:
+            if args.redis_direction == RIGHT_TO_LEFT:
+                redis_comm_index = -(args.redis_comm_index + 1)
+            else:
+                redis_comm_index = args.redis_comm_index
         else:
-            error('unsupported comm_lookup_by %s' % args.comm_lookup_by)
+            redis_comm_index = None
 
-    if args.redis_comm_index is not None:
-        if args.redis_direction == RIGHT_TO_LEFT:
-            redis_comm_index = -(args.redis_comm_index + 1)
-        else:
-            redis_comm_index = args.redis_comm_index
-    else:
-        redis_comm_index = None
-
-    input_db = None
-    if use_redis:
         if args.redis_comm is not None and redis_comm_index is not None:
             error("Cannot include both --redis-comm and --redis-comm-index")
 
@@ -354,13 +365,12 @@ def main():
     else:
         comm = read_communication_from_file(communication_loc)
 
-
-    # Log validation errors to console, but ignore return value
-    validate_communication(comm)
-
     if args.fetch_port:
         handler = FetchRelay(args.fetch_host, args.fetch_port)
     else:
+        # Log validation errors to console, but ignore return value
+        validate_communication(comm)
+
         handler = FetchStub(comm)
     processor = FetchCommunicationService.Processor(handler)
 
