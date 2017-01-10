@@ -31,8 +31,7 @@ Installation
 Install the Python webserver dependencies using
 [pip](http://www.pip-installer.org):
 
-    pip install bottle
-    pip install concrete
+    pip install -r requirements.txt
 
 Viewing a Communication
 -----------------------
