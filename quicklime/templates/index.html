@@ -65,6 +65,11 @@
         splitHorizontal: true
       });
 
+      function displayErrorMessage(message) {
+        $('#error_message_text').text(message);
+        $('#error_message_div').show();
+      }
+
       function fetchCommunication(commID) {
         var fetchRequest = new FetchRequest({communicationIds: [commID]});
         var fetchResult = fetchClient.fetch(fetchRequest);
@@ -106,8 +111,14 @@
         var communicationIDs = fetchClient.getCommunicationIDs(0,1);
         commID = communicationIDs[0];
       }
+
       comm = fetchCommunication(commID);
-      renderCommunication(comm);
+      if (comm) {
+        renderCommunication(comm);
+      }
+      else {
+        displayErrorMessage('Unable to Fetch Communication with ID "' + commID + '"');
+      }
     });
   </script>
   <style>
@@ -154,6 +165,10 @@
   <div id="splitter">
     <div style="height: 400px; min-height: 150px;">
       <div class="container-fluid">
+        <div id="error_message_div" class="alert alert-danger" style="display: none; margin-top: 1em;">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span id="error_message_text"></span>
+        </div>
         <div id="communication_one"></div>
       </div>
     </div>
