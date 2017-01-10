@@ -102,12 +102,6 @@ def index():
     return static_file("index.html", root="quicklime/templates")
 
 
-@route('/quicklime/as_json')
-def as_json():
-    # communication_as_simplejson is a HACKY global variable
-    return communication_as_simplejson
-
-
 @post('/quicklime/fetch_http_endpoint/')
 def fetch_http_endpoint():
     """Thrift RPC endpoint for Concrete FetchCommunicationService
@@ -376,11 +370,6 @@ def main():
     # format.
     comm_simplejson_string = TSerialization.serialize(
             comm, TJSONProtocol.TSimpleJSONProtocolFactory())
-
-    # Convert JSON string to Python dictionary, so that Bottle will auto-magically
-    # convert the dictionary *back* to JSON, and serve page with Content-Type
-    # "application/json"
-    communication_as_simplejson = json.loads(comm_simplejson_string)
 
     if args.fetch_port:
         handler = FetchRelay(args.fetch_host, args.fetch_port)
