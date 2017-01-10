@@ -49,24 +49,6 @@
 
   <script>
     $(document).ready(function() {
-      var transport = new Thrift.Transport("/quicklime/fetch_http_endpoint/");
-      var protocol = new Thrift.TJSONProtocol(transport);
-      var fetchClient = new FetchCommunicationServiceClient(protocol);
-
-      var totalCommunications = fetchClient.getCommunicationCount();
-      var communicationIDs = fetchClient.getCommunicationIDs(0,1);
-      var fetchRequest = new FetchRequest({communicationIds: communicationIDs});
-      var fetchResult = fetchClient.fetch(fetchRequest);
-      var comm = fetchResult.communications[0];
-      comm.addInternalReferences();
-
-      QL.addCommunication('communication_one', comm);
-      QL.parse.addTokenizationParseControls(comm);
-      QL.brat.addTokenizationBRATControls(comm);
-      QL.addEntityTable('entityTable', comm);
-      // QL.addSituationMentionTable('situationMentionTable', comm);
-      // QL.addMouseoverHighlightingForAllEntitySets(comm);
-
       $("#toggle_controls").click(function(event) {
         var id = $(event.target).find('input').attr('id');
         if (id === "show_controls") {
@@ -82,6 +64,55 @@
         sizeTop: true,
         splitHorizontal: true
       });
+
+      function renderCommunication(comm) {
+        comm.addInternalReferences();
+
+        $('#communication_one').empty();
+
+        QL.addCommunication('communication_one', comm);
+        QL.parse.addTokenizationParseControls(comm);
+        QL.brat.addTokenizationBRATControls(comm);
+        QL.addEntityTable('entityTable', comm);
+        // QL.addSituationMentionTable('situationMentionTable', comm);
+        // QL.addMouseoverHighlightingForAllEntitySets(comm);
+      }
+
+      function fetchCommunication(commID) {
+        var fetchRequest = new FetchRequest({communicationIds: [commID]});
+        var fetchResult = fetchClient.fetch(fetchRequest);
+        var comm = fetchResult.communications[0];
+        return comm;
+      }
+
+      var transport = new Thrift.Transport("/quicklime/fetch_http_endpoint/");
+      var protocol = new Thrift.TJSONProtocol(transport);
+      var fetchClient = new FetchCommunicationServiceClient(protocol);
+
+      var totalCommunications = fetchClient.getCommunicationCount();
+      if (totalCommunications === 0) {
+        // TODO: Display error message to user
+      }
+      else if (totalCommunications === 1) {
+        var communicationIDs = fetchClient.getCommunicationIDs(0,1);
+        var comm = fetchCommunication(communicationIDs[0]);
+        renderCommunication(comm);
+      }
+      else {
+        var communicationIDs = fetchClient.getCommunicationIDs(0,10);
+        for (var i = 0; i < communicationIDs.length; i++) {
+          $('#communication_id_table').append(
+            $('<span>').css('display', 'inline-block')
+                       .css('padding', '0.5em')
+                       .append(
+                         $('<a>').attr('href', '#')
+                                 .click({commID: communicationIDs[i]},
+                                        function(event) {
+                                          renderCommunication(fetchCommunication(event.data.commID))
+                                        })
+                                 .text(communicationIDs[i])));
+        }
+      }
     });
   </script>
   <style>
@@ -123,7 +154,7 @@
   <div id="splitter">
     <div style="height: 400px; min-height: 150px;">
       <div class="container-fluid">
-        <h2>Text</h2>
+        <div id="communication_id_table"></div>
         <div id="communication_one"></div>
       </div>
     </div>
