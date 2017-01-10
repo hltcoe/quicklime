@@ -29,21 +29,65 @@
         }
       }
 
-      function conditionallyAppendLoadButton(commOffset, commCount, totalCommunications) {
-        if (commOffset+commCount < totalCommunications) {
-          $('#communication_id_list').append(
-            $('<button>').addClass('btn btn-default btn-xs')
-                         .text('LOAD MORE')
-                         .click(
-                           { commOffset: commCount+commOffset, commCount: commCount},
-                           function(event) {
-                             var communicationIDs = fetchClient.getCommunicationIDs(
-                               event.data.commOffset, event.data.commCount);
-                             appendCommunicationIDs(communicationIDs);
-                             conditionallyAppendLoadButton(commOffset+commCount, commCount, totalCommunications);
-                             $(this).remove();
-                           }));
+      function updatePaginationControl(commOffset, commCount, totalCommunications) {
+        var currentPageIndex = Math.floor(commOffset / commCount);
+        var endPageIndex;
+        var startPageIndex;
+        var totalPages = Math.ceil(totalCommunications / commCount);
+
+        if (totalPages > 10) {
+          if (currentPageIndex < 6) {
+            startPageIndex = 0;
+            endPageIndex = 10;
+          }
+          else {
+            if (totalPages - currentPageIndex > 4) {
+              startPageIndex = currentPageIndex - 6;
+              endPageIndex = currentPageIndex + 4;
+            }
+            else {
+              startPageIndex = totalPages - 10;
+              endPageIndex = totalPages;
+            }
+          }
         }
+        else {
+          startPageIndex = 0;
+          endPageIndex = totalPages;
+        }
+
+        var li;
+
+        li = $('<li>').append(
+          $('<a>').attr('href', '/list/?commCount='+commCount+'&commOffset=0')
+                  .html('&laquo;')
+        );
+        if (currentPageIndex == 0) {
+          li.addClass('disabled');
+        }
+        $('#pagination_list').append(li);
+
+        for (var i = startPageIndex; i < endPageIndex; i++) {
+          li = $('<li>').append(
+            $('<a>').attr('href', '/list/?commCount='+commCount+'&commOffset='+(i*commCount))
+                    .text(i+1)
+          );
+
+          if (currentPageIndex == i) {
+            li.addClass('active');
+          }
+
+          $('#pagination_list').append(li);
+        }
+
+        li = $('<li>').append(
+          $('<a>').attr('href', '/list/?commCount='+commCount+'&commOffset='+((totalPages-1)*commCount))
+                  .html('&raquo;')
+        );
+        if (currentPageIndex == totalPages-1) {
+          li.addClass('disabled');
+        }
+        $('#pagination_list').append(li);
       }
 
       var transport = new Thrift.Transport("/quicklime/fetch_http_endpoint/");
@@ -63,7 +107,7 @@
 
       var communicationIDs = fetchClient.getCommunicationIDs(commOffset, commCount);
       appendCommunicationIDs(communicationIDs);
-      conditionallyAppendLoadButton(commOffset, commCount, totalCommunications);
+      updatePaginationControl(commOffset, commCount, totalCommunications);
     });
   </script>
   <style>
@@ -76,6 +120,11 @@
 
   <div class="container-fluid">
     <div id="communication_id_list"></div>
+
+    <nav>
+      <ul id="pagination_list" class="pagination">
+      </ul>
+    </nav>
   </div>
 
 </body>
