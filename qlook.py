@@ -49,28 +49,31 @@ class FetchRelay:
         transport.open()
 
     def about(self):
-        logging.info('FetchRelay received about() call')
+        logging.info('FetchRelay.about()')
         return self.fetch_client.about()
 
     def alive(self):
-        logging.info('FetchRelay received alive() call')
+        logging.info('FetchRelay.alive()')
         return self.fetch_client.alive()
 
     def fetch(self, request):
-        logging.info('FetchRelay received fetch() call')
+        logging.info('FetchRelay.fetch()')
         return self.fetch_client.fetch(request)
 
     def getCommunicationCount(self):
-        logging.info('FetchRelay received getCommunicationCount() call')
+        logging.info('FetchRelay.getCommunicationCount()')
         return self.fetch_client.getCommunicationCount()
 
     def getCommunicationIDs(self, offset, count):
-        logging.info('FetchRelay received getCommunicationIDs() call')
+        logging.info('FetchRelay.getCommunicationIDs(offset=%d, count=%d)' % (offset, count))
         return self.fetch_client.getCommunicationIDs(offset, count)
 
 
 class FetchStub:
-    """Implements Thrift RPC interface for FetchCommunicationService
+    """Minimal implementation of FetchCommunicationService.
+
+    Serves only a single Communication, which is passed as a parameter
+    to __init__().
     """
     def __init__(self, comm):
         self.comm = comm
@@ -78,25 +81,25 @@ class FetchStub:
     def about(self):
         logging.info('FetchStub received about() call')
         service_info = ServiceInfo()
-        service_info.name = 'fetch_server.py'
-        service_info.version = '0.0.2'
+        service_info.name = 'FetchStub'
+        service_info.version = '0.0.1'
         return service_info
 
     def alive(self):
-        logging.info('FetchStub received alive() call')
+        logging.info('FetchStub.alive()')
         return True
 
     def fetch(self, request):
-        logging.info('FetchStub received fetch() call')
+        logging.info('FetchStub.fetch()')
         # For the stub, we ignore the request object and always return the same Communication
         return FetchResult(communications=[self.comm])
 
     def getCommunicationCount(self):
-        logging.info('FetchStub received getCommunicationCount() call')
+        logging.info('FetchStub.getCommunicationCount()')
         return 1
 
     def getCommunicationIDs(self, offset, count):
-        logging.info('FetchStub received getCommunicationIDs() call')
+        logging.info('FetchStub.getCommunicationIDs()')
         return [self.comm.id]
 
 
