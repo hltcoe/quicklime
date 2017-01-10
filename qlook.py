@@ -69,6 +69,9 @@ class FetchRelay:
 class FetchStub:
     """Implements Thrift RPC interface for FetchCommunicationService
     """
+    def __init__(self, comm):
+        self.comm = comm
+
     def about(self):
         logging.info('FetchStub received about() call')
         service_info = ServiceInfo()
@@ -82,9 +85,8 @@ class FetchStub:
 
     def fetch(self, request):
         logging.info('FetchStub received fetch() call')
-        global COMM
         # For the stub, we ignore the request object and always return the same Communication
-        return FetchResult(communications=[COMM])
+        return FetchResult(communications=[self.comm])
 
     def getCommunicationCount(self):
         logging.info('FetchStub received getCommunicationCount() call')
@@ -92,8 +94,7 @@ class FetchStub:
 
     def getCommunicationIDs(self, offset, count):
         logging.info('FetchStub received getCommunicationIDs() call')
-        global COMM
-        return [COMM.id]
+        return [self.comm.id]
 
 
 @route('/')
@@ -144,12 +145,10 @@ def error(message, status=1):
 
 
 # GLOBAL VARIABLES
-COMM = 'foo'
 TSERVER = None
 
 
 def main():
-    global COMM
     global TSERVER
 
     RIGHT_TO_LEFT = 'right-to-left'
@@ -267,7 +266,7 @@ def main():
                 # do linear scan
                 for co in reader:
                     if comm_lookup(co) == args.redis_comm:
-                        COMM = co
+                        comm = co
                         break
 
             elif key_type == 'list' and args.redis_comm_map is not None:
@@ -291,21 +290,21 @@ def main():
                     comm_idx = - (comm_idx + 1)
 
                 buf = input_db.lindex(communication_loc, comm_idx)
-                COMM = read_communication_from_buffer(buf)
+                comm = read_communication_from_buffer(buf)
 
-                if comm_lookup(COMM) != args.redis_comm:
+                if comm_lookup(comm) != args.redis_comm:
                     error(('Cannot find the appropriate document with %s'
                            ' indexing') % args.redis_direction)
 
             elif key_type == 'hash':
                 # do O(1) hash lookup
-                COMM = input_db.hget(communication_loc, args.redis_comm)
-                COMM = read_communication_from_buffer(COMM)
+                comm = input_db.hget(communication_loc, args.redis_comm)
+                comm = read_communication_from_buffer(comm)
 
             else:
                 error('Unknown key type %s' % (key_type))
 
-            if COMM is None:
+            if comm is None:
                 error(('Unable to find communication with id %s at %s:%s under'
                        ' key %s') %
                       (args.redis_comm, args.redis_host, args.redis_port,
@@ -320,18 +319,18 @@ def main():
                       (args.redis_comm, args.redis_host, args.redis_port,
                        communication_loc))
             else:
-                COMM = read_communication_from_buffer(buf)
+                comm = read_communication_from_buffer(buf)
                 logging.info('%dth Communication has id %s' %
-                             (redis_comm_index + 1, COMM.id))
+                             (redis_comm_index + 1, comm.id))
 
         else:
             # take first comm in collection
             # (or return single comm stored in simple key)
             for co in reader:
-                COMM = co
+                comm = co
                 break
 
-            if COMM is None:
+            if comm is None:
                 error('Unable to find any communications at %s:%s under key %s' %
                       (args.redis_host, args.redis_port, communication_loc))
     elif use_restful:
@@ -351,15 +350,15 @@ def main():
         if resp.code != 200:
             error("received code %d and message %s from %s" % (
                 resp.code, resp.msg, full))
-        COMM = resp.read()
+        comm = resp.read()
         resp.close()
-        COMM = read_communication_from_buffer(COMM)
+        comm = read_communication_from_buffer(comm)
     else:
-        COMM = read_communication_from_file(communication_loc)
+        comm = read_communication_from_file(communication_loc)
 
 
     # Log validation errors to console, but ignore return value
-    validate_communication(COMM)
+    validate_communication(comm)
 
     # Thrift provides two JSON serializers: TJSONProtocolFactory and
     # TSimpleJSONProtocolFactory.  The Simple version generates "human
@@ -376,7 +375,7 @@ def main():
     # (currently) provide API's for deserializing from the SimpleJSON
     # format.
     comm_simplejson_string = TSerialization.serialize(
-            COMM, TJSONProtocol.TSimpleJSONProtocolFactory())
+            comm, TJSONProtocol.TSimpleJSONProtocolFactory())
 
     # Convert JSON string to Python dictionary, so that Bottle will auto-magically
     # convert the dictionary *back* to JSON, and serve page with Content-Type
@@ -386,7 +385,7 @@ def main():
     if args.fetch_port:
         handler = FetchRelay(args.fetch_host, args.fetch_port)
     else:
-        handler = FetchStub()
+        handler = FetchStub(comm)
     processor = FetchCommunicationService.Processor(handler)
 
     # TJSONProtocolFactory generates JSON where the Thrift fieldnames are
