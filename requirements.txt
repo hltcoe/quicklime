@@ -1,5 +1,7 @@
-bottle
-concrete>=4.8.3
+bottle>=0.12.13
+concrete>=4.11.10
+redis>=2.10.5
+thrift>=0.9.3
 
 #Django>=1.6.1
 #django-extensions
