@@ -17,79 +17,79 @@
   <script src="/static/quicklime/concrete.js"></script>
 
   <script>
-    $(document).ready(function() {
-      function appendCommunicationIDs(communicationIDs) {
-        for (var i = 0; i < communicationIDs.length; i++) {
-          $('#communication_id_list').append(
-            $('<span>').css('display', 'inline-block')
-                       .css('padding', '0.5em')
-                       .append(
-                         $('<a>').attr('href', '/?id='+communicationIDs[i])
-                                 .text(communicationIDs[i])));
-        }
+    function appendCommunicationIDs(communicationIDs) {
+      for (var i = 0; i < communicationIDs.length; i++) {
+        $('#communication_id_list').append(
+          $('<span>').css('display', 'inline-block')
+                     .css('padding', '0.5em')
+                     .append(
+                       $('<a>').attr('href', '/?id='+communicationIDs[i])
+                               .text(communicationIDs[i])));
       }
+    }
 
-      function updatePaginationControl(commOffset, commCount, totalCommunications) {
-        var currentPageIndex = Math.floor(commOffset / commCount);
-        var endPageIndex;
-        var startPageIndex;
-        var totalPages = Math.ceil(totalCommunications / commCount);
+    function updatePaginationControl(commOffset, commCount, totalCommunications) {
+      var currentPageIndex = Math.floor(commOffset / commCount);
+      var endPageIndex;
+      var startPageIndex;
+      var totalPages = Math.ceil(totalCommunications / commCount);
 
-        if (totalPages > 10) {
-          if (currentPageIndex < 6) {
-            startPageIndex = 0;
-            endPageIndex = 10;
-          }
-          else {
-            if (totalPages - currentPageIndex > 4) {
-              startPageIndex = currentPageIndex - 6;
-              endPageIndex = currentPageIndex + 4;
-            }
-            else {
-              startPageIndex = totalPages - 10;
-              endPageIndex = totalPages;
-            }
-          }
+      if (totalPages > 10) {
+        if (currentPageIndex < 6) {
+          startPageIndex = 0;
+          endPageIndex = 10;
         }
         else {
-          startPageIndex = 0;
-          endPageIndex = totalPages;
-        }
-
-        var li;
-
-        li = $('<li>').append(
-          $('<a>').attr('href', '/list/?commCount='+commCount+'&commOffset=0')
-                  .html('&laquo;')
-        );
-        if (currentPageIndex == 0) {
-          li.addClass('disabled');
-        }
-        $('#pagination_list').append(li);
-
-        for (var i = startPageIndex; i < endPageIndex; i++) {
-          li = $('<li>').append(
-            $('<a>').attr('href', '/list/?commCount='+commCount+'&commOffset='+(i*commCount))
-                    .text(i+1)
-          );
-
-          if (currentPageIndex == i) {
-            li.addClass('active');
+          if (totalPages - currentPageIndex > 4) {
+            startPageIndex = currentPageIndex - 6;
+            endPageIndex = currentPageIndex + 4;
           }
-
-          $('#pagination_list').append(li);
+          else {
+            startPageIndex = totalPages - 10;
+            endPageIndex = totalPages;
+          }
         }
+      }
+      else {
+        startPageIndex = 0;
+        endPageIndex = totalPages;
+      }
 
+      var li;
+
+      li = $('<li>').append(
+        $('<a>').attr('href', '/list/?commCount='+commCount+'&commOffset=0')
+                .html('&laquo;')
+      );
+      if (currentPageIndex == 0) {
+        li.addClass('disabled');
+      }
+      $('#pagination_list').append(li);
+
+      for (var i = startPageIndex; i < endPageIndex; i++) {
         li = $('<li>').append(
-          $('<a>').attr('href', '/list/?commCount='+commCount+'&commOffset='+((totalPages-1)*commCount))
-                  .html('&raquo;')
+          $('<a>').attr('href', '/list/?commCount='+commCount+'&commOffset='+(i*commCount))
+                  .text(i+1)
         );
-        if (currentPageIndex == totalPages-1) {
-          li.addClass('disabled');
+
+        if (currentPageIndex == i) {
+          li.addClass('active');
         }
+
         $('#pagination_list').append(li);
       }
 
+      li = $('<li>').append(
+        $('<a>').attr('href', '/list/?commCount='+commCount+'&commOffset='+((totalPages-1)*commCount))
+                .html('&raquo;')
+      );
+      if (currentPageIndex == totalPages-1) {
+        li.addClass('disabled');
+      }
+      $('#pagination_list').append(li);
+    }
+
+    $(document).ready(function() {
       var transport = new Thrift.Transport("/quicklime/fetch_http_endpoint/");
       var protocol = new Thrift.TJSONProtocol(transport);
       var fetchClient = new FetchCommunicationServiceClient(protocol);
