@@ -28,6 +28,11 @@
       }
     }
 
+    function displayErrorMessage(message) {
+      $('#error_message_text').text(message);
+      $('#error_message_div').show();
+    }
+
     function updatePaginationControl(commOffset, commCount, totalCommunications) {
       var currentPageIndex = Math.floor(commOffset / commCount);
       var endPageIndex;
@@ -94,8 +99,6 @@
       var protocol = new Thrift.TJSONProtocol(transport);
       var fetchClient = new FetchCommunicationServiceClient(protocol);
 
-      var totalCommunications = fetchClient.getCommunicationCount();
-
       var commCount = QL.getUrlParameter('commCount');
       var commOffset = QL.getUrlParameter('commOffset');
       if (!commCount) {
@@ -105,9 +108,24 @@
         commOffset = 0;
       }
 
-      var communicationIDs = fetchClient.getCommunicationIDs(commOffset, commCount);
-      appendCommunicationIDs(communicationIDs);
-      updatePaginationControl(commOffset, commCount, totalCommunications);
+      try {
+        var totalCommunications = fetchClient.getCommunicationCount();
+        var communicationIDs = fetchClient.getCommunicationIDs(commOffset, commCount);
+
+        appendCommunicationIDs(communicationIDs);
+        updatePaginationControl(commOffset, commCount, totalCommunications);
+      }
+      catch (e) {
+        if (e instanceof Error) {
+          displayErrorMessage('Error communicating with Fetch service: "' + e.message + '"');
+        }
+        else if (typeof(e) === 'string') {
+          displayErrorMessage('Error communicating with Fetch service: "' + e + '"');
+        }
+        else {
+          throw e;
+        }
+      }
     });
   </script>
   <style>
@@ -119,6 +137,11 @@
 <body>
 
   <div class="container-fluid">
+    <div id="error_message_div" class="alert alert-danger" style="display: none; margin-top: 1em;">
+      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+      <span id="error_message_text"></span>
+    </div>
+
     <div id="communication_id_list"></div>
 
     <nav>

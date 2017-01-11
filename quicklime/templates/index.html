@@ -95,29 +95,42 @@
       var protocol = new Thrift.TJSONProtocol(transport);
       var fetchClient = new FetchCommunicationServiceClient(protocol);
 
-      var totalCommunications = fetchClient.getCommunicationCount();
+      try {
+        var totalCommunications = fetchClient.getCommunicationCount();
 
-      if (totalCommunications > 1) {
-        $('#list_button_container').show();
-      }
+        if (totalCommunications > 1) {
+          $('#list_button_container').show();
+        }
 
-      var commID;
-      var getID = QL.getUrlParameter('id');
+        var commID;
+        var getID = QL.getUrlParameter('id');
 
-      if (getID) {
-        commID = getID;
-      }
-      else {
-        var communicationIDs = fetchClient.getCommunicationIDs(0,1);
-        commID = communicationIDs[0];
-      }
+        if (getID) {
+          commID = getID;
+        }
+        else {
+          var communicationIDs = fetchClient.getCommunicationIDs(0,1);
+          commID = communicationIDs[0];
+        }
 
-      comm = fetchCommunication(commID);
-      if (comm) {
-        renderCommunication(comm);
+        comm = fetchCommunication(commID);
+        if (comm) {
+          renderCommunication(comm);
+        }
+        else {
+          displayErrorMessage('Unable to Fetch Communication with ID "' + commID + '"');
+        }
       }
-      else {
-        displayErrorMessage('Unable to Fetch Communication with ID "' + commID + '"');
+      catch (e) {
+        if (e instanceof Error) {
+          displayErrorMessage('Error communicating with Fetch service: "' + e.message + '"');
+        }
+        else if (typeof(e) === 'string') {
+          displayErrorMessage('Error communicating with Fetch service: "' + e + '"');
+        }
+        else {
+          throw e;
+        }
       }
     });
   </script>
