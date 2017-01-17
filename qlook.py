@@ -29,6 +29,28 @@ from concrete.util.thrift_factory import factory as thrift_factory
 from concrete.validate import validate_communication
 
 
+# TODO: FetchClient should be moved into concrete-python (probably
+#       as FetchClientWrapper, to be consistent with existing
+#       naming conventions
+class FetchClient:
+    def __init__(self, host, port):
+        self.host = host
+        self.port = port
+
+    def __enter__(self):
+        socket = thrift_factory.createSocket(self.host, int(self.port))
+        self.transport = thrift_factory.createTransport(socket)
+        protocol = thrift_factory.createProtocol(self.transport)
+
+        cli = FetchCommunicationService.Client(protocol)
+        self.transport.open()
+
+        return cli
+
+    def __exit__(self, type, value, traceback):
+        self.transport.close()
+
+
 class FetchRelay:
     """Implements a 'relay' to a FetchCommunicationService server.
 
@@ -42,31 +64,33 @@ class FetchRelay:
     of the FetchCommunicationService use sockets/TCompactProtocol.
     """
     def __init__(self, host, port):
-        socket = thrift_factory.createSocket(host, int(port))
-        transport = thrift_factory.createTransport(socket)
-        protocol = thrift_factory.createProtocol(transport)
-        self.fetch_client = FetchCommunicationService.Client(protocol)
-        transport.open()
+        self.host = host
+        self.port = int(port)
 
     def about(self):
         logging.info('FetchRelay.about()')
-        return self.fetch_client.about()
+        with FetchClient(self.host, self.port) as fetch_client:
+            return fetch_client.about()
 
     def alive(self):
         logging.info('FetchRelay.alive()')
-        return self.fetch_client.alive()
+        with FetchClient(self.host, self.port) as fetch_client:
+            return fetch_client.alive()
 
     def fetch(self, request):
         logging.info('FetchRelay.fetch()')
-        return self.fetch_client.fetch(request)
+        with FetchClient(self.host, self.port) as fetch_client:
+            return fetch_client.fetch(request)
 
     def getCommunicationCount(self):
         logging.info('FetchRelay.getCommunicationCount()')
-        return self.fetch_client.getCommunicationCount()
+        with FetchClient(self.host, self.port) as fetch_client:
+            return fetch_client.getCommunicationCount()
 
     def getCommunicationIDs(self, offset, count):
         logging.info('FetchRelay.getCommunicationIDs(offset=%d, count=%d)' % (offset, count))
-        return self.fetch_client.getCommunicationIDs(offset, count)
+        with FetchClient(self.host, self.port) as fetch_client:
+            return fetch_client.getCommunicationIDs(offset, count)
 
 
 class FetchStub:
