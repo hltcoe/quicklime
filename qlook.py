@@ -201,6 +201,8 @@ def main():
                         help='general locator of communication, either'
                         ' a path on disk; the key of communication(s) in redis;'
                         ' or a Communication.id to use with a RESTful server')
+    parser.add_argument('--host', default='localhost',
+                        help='Host interface to listen on')
     parser.add_argument('-p', '--port', type=int, default=8080)
     parser.add_argument('--log-level', default='INFO',
                         choices=('DEBUG', 'INFO', 'WARNING', 'ERROR'),
@@ -431,7 +433,7 @@ def main():
     # Another HACKY global variable
     TSERVER = TServer.TServer(processor, None, None, None, pfactory, pfactory)
 
-    run(host='localhost', port=args.port)
+    run(host=args.host, port=args.port)
 
 
 if __name__ == '__main__':
