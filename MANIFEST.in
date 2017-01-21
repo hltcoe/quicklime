@@ -1,0 +1,2 @@
+recursive-include quicklime/static *
+recursive-include quicklime/templates *

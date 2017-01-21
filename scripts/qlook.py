@@ -11,166 +11,17 @@ import sys
 import urllib2
 import urlparse
 
-from bottle import get, HTTPResponse, post, redirect, request, route, run, static_file
+import bottle
 from redis import Redis
-from thrift import TSerialization
 from thrift.protocol import TJSONProtocol
 from thrift.server import TServer
-from thrift.transport import TTransport
 
 from concrete.access import FetchCommunicationService
-from concrete.access.ttypes import FetchResult
-from concrete.services.ttypes import ServiceInfo
 from concrete.util import (read_communication_from_buffer,
                            read_communication_from_file,
-                           RedisCommunicationReader,
-                           write_communication_to_file)
-from concrete.util.thrift_factory import factory as thrift_factory
+                           RedisCommunicationReader)
 from concrete.validate import validate_communication
-
-
-# TODO: FetchClient should be moved into concrete-python (probably
-#       as FetchClientWrapper, to be consistent with existing
-#       naming conventions
-class FetchClient:
-    def __init__(self, host, port):
-        self.host = host
-        self.port = port
-
-    def __enter__(self):
-        socket = thrift_factory.createSocket(self.host, int(self.port))
-        self.transport = thrift_factory.createTransport(socket)
-        protocol = thrift_factory.createProtocol(self.transport)
-
-        cli = FetchCommunicationService.Client(protocol)
-        self.transport.open()
-
-        return cli
-
-    def __exit__(self, type, value, traceback):
-        self.transport.close()
-
-
-class FetchRelay:
-    """Implements a 'relay' to a FetchCommunicationService server.
-
-    This service receives FetchCommunicationService Thrift RPC calls
-    using HTTP/TJSONProtocol, and makes Thrift RPC calls using
-    sockets/TCompactProtocol to another FetchCommunicationService
-    server.
-
-    The JavaScript implementation of Thrift only supports
-    HTTP/TJSONProtocol (as of Thrift 0.10.0), but most implementations
-    of the FetchCommunicationService use sockets/TCompactProtocol.
-    """
-    def __init__(self, host, port):
-        self.host = host
-        self.port = int(port)
-
-    def about(self):
-        logging.info('FetchRelay.about()')
-        with FetchClient(self.host, self.port) as fetch_client:
-            return fetch_client.about()
-
-    def alive(self):
-        logging.info('FetchRelay.alive()')
-        with FetchClient(self.host, self.port) as fetch_client:
-            return fetch_client.alive()
-
-    def fetch(self, request):
-        logging.info('FetchRelay.fetch()')
-        with FetchClient(self.host, self.port) as fetch_client:
-            return fetch_client.fetch(request)
-
-    def getCommunicationCount(self):
-        logging.info('FetchRelay.getCommunicationCount()')
-        with FetchClient(self.host, self.port) as fetch_client:
-            return fetch_client.getCommunicationCount()
-
-    def getCommunicationIDs(self, offset, count):
-        logging.info('FetchRelay.getCommunicationIDs(offset=%d, count=%d)' % (offset, count))
-        with FetchClient(self.host, self.port) as fetch_client:
-            return fetch_client.getCommunicationIDs(offset, count)
-
-
-class FetchStub:
-    """Minimal implementation of FetchCommunicationService.
-
-    Serves only a single Communication, which is passed as a parameter
-    to __init__().
-    """
-    def __init__(self, comm):
-        self.comm = comm
-
-    def about(self):
-        logging.info('FetchStub received about() call')
-        service_info = ServiceInfo()
-        service_info.name = 'FetchStub'
-        service_info.version = '0.0.1'
-        return service_info
-
-    def alive(self):
-        logging.info('FetchStub.alive()')
-        return True
-
-    def fetch(self, request):
-        logging.info('FetchStub.fetch()')
-        # For the stub, we ignore the request object and always return the same Communication
-        return FetchResult(communications=[self.comm])
-
-    def getCommunicationCount(self):
-        logging.info('FetchStub.getCommunicationCount()')
-        return 1
-
-    def getCommunicationIDs(self, offset, count):
-        logging.info('FetchStub.getCommunicationIDs()')
-        return [self.comm.id]
-
-
-@get('/')
-def index():
-    global PRELOADED_COMM_FLAG
-
-    if not PRELOADED_COMM_FLAG and not request.GET.get('id'):
-        redirect('/list/')
-    else:
-        return static_file('index.html', root='quicklime/templates')
-
-
-@get('/list/')
-def list():
-    return static_file('list.html', root='quicklime/templates')
-
-
-@post('/quicklime/fetch_http_endpoint/')
-def fetch_http_endpoint():
-    """Thrift RPC endpoint for Concrete FetchCommunicationService
-    """
-    global TSERVER
-
-    itrans = TTransport.TFileObjectTransport(request.body)
-    itrans = TTransport.TBufferedTransport(
-        itrans, int(request.headers['Content-Length']))
-    otrans = TTransport.TMemoryBuffer()
-
-    iprot = TSERVER.inputProtocolFactory.getProtocol(itrans)
-    oprot = TSERVER.outputProtocolFactory.getProtocol(otrans)
-
-    # TSERVER is a HACKY global variable that references a
-    # TServer.TServer instance that implements the Thrift API for
-    # FetchCommunicationService using a TJSONProtocolFactory
-    TSERVER.processor.process(iprot, oprot)
-    bytestring = otrans.getvalue()
-
-    headers = dict()
-    headers['Content-Length'] = len(bytestring)
-    headers['Content-Type'] = "application/x-thrift"
-    return HTTPResponse(bytestring, **headers)
-
-
-@route('/static/quicklime/<filepath:path>')
-def server_static(filepath):
-    return static_file(filepath, root='quicklime/static/quicklime')
+import quicklime
 
 
 def error(message, status=1):
@@ -178,15 +29,7 @@ def error(message, status=1):
     sys.exit(status)
 
 
-# GLOBAL VARIABLES
-PRELOADED_COMM_FLAG = True
-TSERVER = None
-
-
 def main():
-    global PRELOADED_COMM_FLAG
-    global TSERVER
-
     RIGHT_TO_LEFT = 'right-to-left'
     LEFT_TO_RIGHT = 'left-to-right'
 
@@ -280,7 +123,7 @@ def main():
         error("Can only use one Communication provider (Fetch, Redis, RESTful) at a time")
 
     if use_fetch_relay:
-        PRELOADED_COMM_FLAG = False
+        quicklime.set_preloaded_comm_flag(False)
     elif use_redis:
         def comm_lookup(comm):
             if args.comm_lookup_by == 'id':
@@ -408,12 +251,12 @@ def main():
         comm = read_communication_from_file(communication_loc)
 
     if args.fetch_port:
-        handler = FetchRelay(args.fetch_host, args.fetch_port)
+        handler = quicklime.FetchRelay(args.fetch_host, args.fetch_port)
     else:
         # Log validation errors to console, but ignore return value
         validate_communication(comm)
 
-        handler = FetchStub(comm)
+        handler = quicklime.FetchStub(comm)
     processor = FetchCommunicationService.Processor(handler)
 
     # TJSONProtocolFactory generates JSON where the Thrift fieldnames are
@@ -430,10 +273,9 @@ def main():
     # Thrift RPC endpoints encode objects using this JSON format.
     pfactory = TJSONProtocol.TJSONProtocolFactory()
 
-    # Another HACKY global variable
-    TSERVER = TServer.TServer(processor, None, None, None, pfactory, pfactory)
+    quicklime.set_tserver(TServer.TServer(processor, None, None, None, pfactory, pfactory))
 
-    run(host=args.host, port=args.port)
+    bottle.run(host=args.host, port=args.port)
 
 
 if __name__ == '__main__':
