@@ -9,14 +9,18 @@ import os.path
 import sys
 import urllib2
 import urlparse
+import zipfile
 
+import humanfriendly
 from redis import Redis
 
 from concrete.util.access import CommunicationContainerFetchHandler, RelayFetchHandler
-from concrete.util.file_io import read_communication_from_file
+from concrete.util.comm_container import (
+    DirectoryBackedCommunicationContainer,
+    MemoryBackedCommunicationContainer,
+    ZipFileBackedCommunicationContainer)
 from concrete.util.mem_io import read_communication_from_buffer
 from concrete.util.redis_io import RedisCommunicationReader
-from concrete.validate import validate_communication
 import quicklime
 
 
@@ -162,7 +166,6 @@ LEFT_TO_RIGHT = 'left-to-right'
 
 
 def main():
-
     parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
         description='Read a communication from disk, redis, a REST server,'
@@ -180,6 +183,10 @@ def main():
     parser.add_argument('--log-level', default='INFO',
                         choices=('DEBUG', 'INFO', 'WARNING', 'ERROR'),
                         help='severity level at which to show log messages')
+
+    parser.add_argument("--max-file-size", type=str, default="1GiB",
+                        help="Maximum size of (non-ZIP) files that can be read into memory "
+                        "(e.g. '2G', '300MB')")
 
     parser.add_argument('--fetch-host', type=str, default='localhost',
                         help='Host of FetchCommunicationService server')
@@ -252,23 +259,31 @@ def main():
     if [use_fetch_relay, use_redis, use_restful].count(True) > 1:
         error("Can only use one Communication provider (Fetch, Redis, RESTful) at a time")
 
-    if use_redis:
-        comm = get_redis_comm(args.redis_host, args.redis_port, args.redis_comm,
-                              args.comm_lookup_by, args.redis_comm_map, args.redis_comm_index,
-                              args.redis_direction, communication_loc)
-    elif use_restful:
-        comm = get_restful_comm(args.restful_host, args.restful_port,
-                                args.restful_pattern, communication_loc)
-    else:
-        comm = read_communication_from_file(communication_loc)
-
     if use_fetch_relay:
         handler = RelayFetchHandler(args.fetch_host, args.fetch_port)
     else:
-        # Log validation errors to console, but ignore return value
-        validate_communication(comm)
+        comm_container = {}
 
-        comm_container = {comm.id: comm}
+        if use_redis:
+            comm = get_redis_comm(args.redis_host, args.redis_port, args.redis_comm,
+                                  args.comm_lookup_by, args.redis_comm_map, args.redis_comm_index,
+                                  args.redis_direction, communication_loc)
+            comm_container[comm.id] = comm
+        elif use_restful:
+            comm = get_restful_comm(args.restful_host, args.restful_port,
+                                    args.restful_pattern, communication_loc)
+            comm_container[comm.id] = comm
+        else:
+            if os.path.isdir(communication_loc):
+                comm_container = DirectoryBackedCommunicationContainer(communication_loc)
+            elif zipfile.is_zipfile(communication_loc):
+                comm_container = ZipFileBackedCommunicationContainer(communication_loc)
+            else:
+                max_file_size = humanfriendly.parse_size(args.max_file_size, binary=True)
+                comm_container = MemoryBackedCommunicationContainer(communication_loc,
+                                                                    max_file_size=max_file_size)
+            logging.info('Using Communication Container of type %s' % type(comm_container))
+
         handler = CommunicationContainerFetchHandler(comm_container)
 
     qs = quicklime.QuicklimeServer(args.host, args.port, handler)

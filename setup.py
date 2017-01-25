@@ -17,6 +17,7 @@ if __name__ == '__main__':
         tests_require=[],
         install_requires=[
             'concrete>=4.12.4',
+            'humanfriendly',
         ],
 
         url="https://github.com/hltcoe/quicklime",
