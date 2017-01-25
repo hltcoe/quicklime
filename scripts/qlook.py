@@ -260,7 +260,7 @@ def main():
         error("Can only use one Communication provider (Fetch, Redis, RESTful) at a time")
 
     if use_fetch_relay:
-        handler = RelayFetchHandler(args.fetch_host, args.fetch_port)
+        fetch_handler = RelayFetchHandler(args.fetch_host, args.fetch_port)
     else:
         comm_container = {}
 
@@ -284,9 +284,9 @@ def main():
                                                                     max_file_size=max_file_size)
             logging.info('Using Communication Container of type %s' % type(comm_container))
 
-        handler = CommunicationContainerFetchHandler(comm_container)
+        fetch_handler = CommunicationContainerFetchHandler(comm_container)
 
-    qs = quicklime.QuicklimeServer(args.host, args.port, handler)
+    qs = quicklime.QuicklimeServer(args.host, args.port, fetch_handler)
     qs.serve()
 
 
