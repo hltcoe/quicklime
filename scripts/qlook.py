@@ -20,6 +20,9 @@ from concrete.access import FetchCommunicationService
 from concrete.util import (read_communication_from_buffer,
                            read_communication_from_file,
                            RedisCommunicationReader)
+from concrete.util.access import (
+    CommunicationContainerFetchHandler,
+    RelayFetchHandler)
 from concrete.validate import validate_communication
 import quicklime
 
@@ -251,12 +254,13 @@ def main():
         comm = read_communication_from_file(communication_loc)
 
     if args.fetch_port:
-        handler = quicklime.FetchRelay(args.fetch_host, args.fetch_port)
+        handler = RelayFetchHandler(args.fetch_host, args.fetch_port)
     else:
         # Log validation errors to console, but ignore return value
         validate_communication(comm)
 
-        handler = quicklime.FetchStub(comm)
+        comm_container = { comm.id: comm }
+        handler = CommunicationContainerFetchHandler(comm_container)
     processor = FetchCommunicationService.Processor(handler)
 
     # TJSONProtocolFactory generates JSON where the Thrift fieldnames are
