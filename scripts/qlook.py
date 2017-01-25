@@ -252,9 +252,9 @@ def main():
 
     if not (use_fetch_relay or use_redis or use_restful):
         if not communication_loc:
-            error("You must specify a Communication file")
-        elif not os.path.isfile(communication_loc):
-            error("Could not find Communication file '%s'" % communication_loc)
+            error("You must specify a Communication path")
+        elif not os.path.exists(communication_loc):
+            error("Could not find Communication path '%s'" % communication_loc)
 
     if [use_fetch_relay, use_redis, use_restful].count(True) > 1:
         error("Can only use one Communication provider (Fetch, Redis, RESTful) at a time")
