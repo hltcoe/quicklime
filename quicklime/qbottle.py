@@ -1,58 +1,67 @@
 import os.path
 
 import bottle
+from thrift.protocol import TJSONProtocol
+from thrift.server import TServer
 from thrift.transport import TTransport
 
-
-# GLOBAL VARIABLES
-PRELOADED_COMM_FLAG = True
-TSERVER = None
+from concrete.access import FetchCommunicationService
 
 
-# TODO: Replace this with something less hacky
-def set_preloaded_comm_flag(flag):
-    global PRELOADED_COMM_FLAG
-    PRELOADED_COMM_FLAG = flag
+class QuicklimeServer(object):
+    # DANGER WILL ROBINSON!  We are using class variables
+    # to store values accessed by the Bottle route functions
+    # below.
+    FETCH_HANDLER = None
+    TSERVER = None
 
+    def __init__(self, host, port, fetch_handler):
+        """
+        Args:
+        - `host`:
+        - `port`:
+        - `fetch_handler`:
+        """
+        self.host = host
+        self.port = port
+        QuicklimeServer.FETCH_HANDLER = fetch_handler
+        processor = FetchCommunicationService.Processor(fetch_handler)
+        pfactory = TJSONProtocol.TJSONProtocolFactory()
+        QuicklimeServer.TSERVER = TServer.TServer(processor, None, None, None, pfactory, pfactory)
 
-def set_tserver(tserver):
-    global TSERVER
-    TSERVER = tserver
+    def serve(self):
+        bottle.run(self.host, self.port)
 
 
 @bottle.get('/')
 def index():
-    global PRELOADED_COMM_FLAG
-
-    if not PRELOADED_COMM_FLAG and not bottle.request.GET.get('id'):
+    if not bottle.request.GET.get('id') and \
+       QuicklimeServer.FETCH_HANDLER.getCommunicationCount() > 1:
         bottle.redirect('/list/')
     else:
-        return bottle.static_file('index.html', root=os.path.join(os.path.dirname(__file__), 'templates'))
+        templates_path = os.path.join(os.path.dirname(__file__), 'templates')
+        return bottle.static_file('index.html', root=templates_path)
 
 
 @bottle.get('/list/')
 def list():
-    return bottle.static_file('list.html', root=os.path.join(os.path.dirname(__file__), 'templates'))
+    templates_path = os.path.join(os.path.dirname(__file__), 'templates')
+    return bottle.static_file('list.html', root=templates_path)
 
 
 @bottle.post('/quicklime/fetch_http_endpoint/')
 def fetch_http_endpoint():
     """Thrift RPC endpoint for Concrete FetchCommunicationService
     """
-    global TSERVER
-
     itrans = TTransport.TFileObjectTransport(bottle.request.body)
     itrans = TTransport.TBufferedTransport(
         itrans, int(bottle.request.headers['Content-Length']))
     otrans = TTransport.TMemoryBuffer()
 
-    iprot = TSERVER.inputProtocolFactory.getProtocol(itrans)
-    oprot = TSERVER.outputProtocolFactory.getProtocol(otrans)
+    iprot = QuicklimeServer.TSERVER.inputProtocolFactory.getProtocol(itrans)
+    oprot = QuicklimeServer.TSERVER.outputProtocolFactory.getProtocol(otrans)
 
-    # TSERVER is a HACKY global variable that references a
-    # TServer.TServer instance that implements the Thrift API for
-    # FetchCommunicationService using a TJSONProtocolFactory
-    TSERVER.processor.process(iprot, oprot)
+    QuicklimeServer.TSERVER.processor.process(iprot, oprot)
     bytestring = otrans.getvalue()
 
     headers = dict()
@@ -63,4 +72,5 @@ def fetch_http_endpoint():
 
 @bottle.route('/static/quicklime/<filepath:path>')
 def server_static(filepath):
-    return bottle.static_file(filepath, root=os.path.join(os.path.dirname(__file__), 'static/quicklime'))
+    static_path = os.path.join(os.path.dirname(__file__), 'static/quicklime')
+    return bottle.static_file(filepath, root=static_path)

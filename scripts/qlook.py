@@ -4,19 +4,14 @@
 """
 
 import argparse
-import json
 import logging
 import os.path
 import sys
 import urllib2
 import urlparse
 
-import bottle
 from redis import Redis
-from thrift.protocol import TJSONProtocol
-from thrift.server import TServer
 
-from concrete.access import FetchCommunicationService
 from concrete.util import (read_communication_from_buffer,
                            read_communication_from_file,
                            RedisCommunicationReader)
@@ -125,9 +120,7 @@ def main():
     if [use_fetch_relay, use_redis, use_restful].count(True) > 1:
         error("Can only use one Communication provider (Fetch, Redis, RESTful) at a time")
 
-    if use_fetch_relay:
-        quicklime.set_preloaded_comm_flag(False)
-    elif use_redis:
+    if use_redis:
         def comm_lookup(comm):
             if args.comm_lookup_by == 'id':
                 return comm.id
@@ -259,27 +252,11 @@ def main():
         # Log validation errors to console, but ignore return value
         validate_communication(comm)
 
-        comm_container = { comm.id: comm }
+        comm_container = {comm.id: comm}
         handler = CommunicationContainerFetchHandler(comm_container)
-    processor = FetchCommunicationService.Processor(handler)
 
-    # TJSONProtocolFactory generates JSON where the Thrift fieldnames are
-    # specified using the field numbers from the Thrift schema.  It also
-    # specifies types for each Thrift field (e.g. "str", "i32", "i64"):
-    #
-    #    [1,"readComm",2,0,{"0":{"rec":{"1":{"str":"Annotation_Test_1"},
-    #    "2":{"rec":{"1":{"str":"24a00e5e-fc64-4ae3-bde7-73ed3c4c623a"}}},
-    #    "3":{"str":"Tweet"},"4":{"str":"Barber tells me - his son is
-    #    colorblind / my hair is auburn / and auburn is a shade of
-    #    green"},"8":{"rec":{"1":{"str":"Annotation Example
-    #    script"},"2":{"i64":1409941905},"6":{"i32":1}}}}}}]
-    #
-    # Thrift RPC endpoints encode objects using this JSON format.
-    pfactory = TJSONProtocol.TJSONProtocolFactory()
-
-    quicklime.set_tserver(TServer.TServer(processor, None, None, None, pfactory, pfactory))
-
-    bottle.run(host=args.host, port=args.port)
+    qs = quicklime.QuicklimeServer(args.host, args.port, handler)
+    qs.serve()
 
 
 if __name__ == '__main__':
