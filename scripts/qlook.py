@@ -12,12 +12,10 @@ import urlparse
 
 from redis import Redis
 
-from concrete.util import (read_communication_from_buffer,
-                           read_communication_from_file,
-                           RedisCommunicationReader)
-from concrete.util.access import (
-    CommunicationContainerFetchHandler,
-    RelayFetchHandler)
+from concrete.util.access import CommunicationContainerFetchHandler, RelayFetchHandler
+from concrete.util.file_io import read_communication_from_file
+from concrete.util.mem_io import read_communication_from_buffer
+from concrete.util.redis_io import RedisCommunicationReader
 from concrete.validate import validate_communication
 import quicklime
 
