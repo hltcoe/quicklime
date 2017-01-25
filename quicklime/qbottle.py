@@ -30,7 +30,7 @@ class QuicklimeServer(object):
         QuicklimeServer.TSERVER = TServer.TServer(processor, None, None, None, pfactory, pfactory)
 
     def serve(self):
-        bottle.run(self.host, self.port)
+        bottle.run(host=self.host, port=self.port)
 
 
 @bottle.get('/')
