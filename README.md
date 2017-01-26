@@ -19,26 +19,30 @@ concrete-js vs. Quicklime
 -------------------------
 
 The Quicklime project is a visualization and annotation tool that uses
-[concrete-js](https://github.com/hltcoe/concrete-js).
-**concrete-js** is a low-level library for manipulating Concrete
-data-structures that does not touch the DOM.  The Quicklime repository
-includes a copy of the **concrete-js** library - you do not need to
-checkout the **concrete-js** repository in order to use Quicklime.
+[concrete-js](https://github.com/hltcoe/concrete-js).  **concrete-js**
+is a lower-level library for manipulating Concrete data-structures.
+The Quicklime repository includes a copy of the **concrete-js**
+library - you do not need to checkout the **concrete-js** repository
+in order to use Quicklime.
 
 Installation
 ------------
 
-Install the Python webserver dependencies using
+You can install Quicklime from this repo using:
+
+    python setup.py install
+
+You can also install Quicklime using
 [pip](http://www.pip-installer.org):
 
-    pip install -r requirements.txt
+    pip install quicklime
 
 Viewing a Communication
 -----------------------
 
 To view a Concrete Communication, run the **qlook.py** script:
 
-    python qlook.py CONCRETE_FILENAME
+    qlook.py COMMUNICATION_FILENAME
 
 then point your browser at [http://localhost:8080](http://localhost:8080)
 
