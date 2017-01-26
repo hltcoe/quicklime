@@ -22,4 +22,6 @@ if __name__ == '__main__':
 
         url="https://github.com/hltcoe/quicklime",
         license="BSD",
+        maintainer="Craig Harman",
+        maintainer_email="craig@craigharman.net",
     )
