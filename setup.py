@@ -4,7 +4,7 @@ from setuptools import setup
 if __name__ == '__main__':
     setup(
         name="quicklime",
-        version="0.1.1",
+        version="0.1.2",
         description="",
 
         packages=[
@@ -16,6 +16,7 @@ if __name__ == '__main__':
         setup_requires=[],
         tests_require=[],
         install_requires=[
+            'bottle',
             'concrete>=4.12.5',
             'humanfriendly',
         ],
