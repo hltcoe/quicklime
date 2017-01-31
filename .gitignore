@@ -1,10 +1,10 @@
 *.pyc
-*.sqlite3
 *.csv
 *.tsv
 *~
-venv/*
 .DS_Store
-node_modules/
-gen-py/
-gen-js/
+build/*
+dist/*
+node_modules/*
+quicklime.egg-info/*
+venv/*
