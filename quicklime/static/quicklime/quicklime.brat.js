@@ -671,7 +671,7 @@ QL.brat.addTokenizationBRATControls = function(comm) {
         var sentence = section.sentenceList[sentenceIndex];
         var tokenization = sentence.tokenization;
 
-        var tokenization_controls_div = $('#tokenization_controls_' + tokenization.uuid.uuidString);
+        var tokenization_controls_div = $('.tokenization_controls_' + tokenization.uuid.uuidString);
 
         var NERtokenTaggings = tokenization.getTokenTaggingsOfType("NER");
         if (NERtokenTaggings.length > 0) {
