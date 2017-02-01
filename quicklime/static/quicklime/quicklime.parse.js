@@ -128,7 +128,7 @@ QL.parse.addTokenizationParseControls = function(comm) {
         var sentence = comm.sectionList[sectionIndex].sentenceList[sentenceIndex];
         var tokenization = sentence.tokenization;
 
-        var tokenization_controls_div = $('#tokenization_controls_' + tokenization.uuid.uuidString);
+        var tokenization_controls_div = $('.tokenization_controls_' + tokenization.uuid.uuidString);
 
         if (tokenization.parseList) {
           for (var constituentParseIndex in tokenization.parseList) {

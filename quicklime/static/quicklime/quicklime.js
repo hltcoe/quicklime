@@ -1,38 +1,46 @@
 /*
-Quicklime creates a DOM structure for a Communication:
 
-<div class="communication" id="communication_UUID">>
-  <div class="section" id="section_UUID">
-    <div class="sentence" id="sentence_UUID">>
-      <div class="controls_and_tokenization_container clearfix">
-        <div class="tokenization_controls" id="tokenization_controls_[TOKENIZATION_UUID]">
-          <button>
-          <button>
+The Quicklime QL.addCommunication() function uses
+concrete.widget.createCommunicationDiv() function to crate the DOM
+structure for a Communication, and then adds additional elements to
+the DOM structure.
+
+The DOM structure is outlined below, with elements added by
+QL.addCommunication() highlighted with a plus sign:
+
+  <div class="communication communication_UUID">
+    <div class="section section_UUID">
+      <div class="sentence sentence_UUID">
+        <div class="tokenization_container">
++        <div class="tokenization_controls" id="tokenization_controls_[TOKENIZATION_UUID]">
++          <button>
++          <button>
++          ...
+          <div class="tokenization tokenization_UUID">
+            <span class="token token_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
+            <span class="token_padding token_padding_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
+            <span class="token token_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
+            <span class="token_padding token_padding_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
           ...
-        <div class="tokenization" id="tokenization_UUID">
-          <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
-          <span class="token_padding "id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_0]">
-          <span class="token" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
-          <span class="token_padding" id="tokenization_[TOKENIZATION_UUID]_[TOKEN_INDEX_1]">
-        ...
-      <div class="brat_tokenization_container" id="tokenization_ner_container_[TOKENIZATION_UUID]">
-        <div class="brat_tokenization_label brat_ner_tokenization_label">
-        <div class="brat_tokenization" id="tokenization_ner_[TOKENIZATION_UUID]">
-      <div class="brat_tokenization_container" id="tokenization_pos_container_[TOKENIZATION_UUID]">
-        <div class="brat_tokenization_label brat_pos_tokenization_label">
-        <div class="brat_tokenization" id="tokenization_pos_[TOKENIZATION_UUID]">
-      <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]">
-        <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]_0">
-          <div class="parse_label constituent_parse_label_0">
-        <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]_1">
-          <div class="parse_label constituent_parse_label_1">
-        ...
-      <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]">
-        <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]_0">
-          <div class="parse_label dependency_parse_label_0">
-        <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]_1">
-          <div class="parse_label dependency_parse_label_1">
-        ...
++       <div class="brat_tokenization_container" id="tokenization_ner_container_[TOKENIZATION_UUID]">
++         <div class="brat_tokenization_label brat_ner_tokenization_label">
++         <div class="brat_tokenization" id="tokenization_ner_[TOKENIZATION_UUID]">
++       <div class="brat_tokenization_container" id="tokenization_pos_container_[TOKENIZATION_UUID]">
++         <div class="brat_tokenization_label brat_pos_tokenization_label">
++         <div class="brat_tokenization" id="tokenization_pos_[TOKENIZATION_UUID]">
++       <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]">
++         <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]_0">
++           <div class="parse_label constituent_parse_label_0">
++         <div class="dagre_parse" id="constituent_parse_[TOKENIZATION_UUID]_1">
++           <div class="parse_label constituent_parse_label_1">
++         ...
++       <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]">
++         <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]_0">
++           <div class="parse_label dependency_parse_label_0">
++         <div class="dagre_parse" id="dependency_parse_[TOKENIZATION_UUID]_1">
++           <div class="parse_label dependency_parse_label_1">
++         ...
+
 */
 
 
@@ -87,191 +95,94 @@ QL.getCommunicationWithUUID = function(uuid) {
  *
  * @param {String} parentElementID - DOM ID of element to attach Communication text to
  * @param {concrete.Communication} comm
+ * @param {boolean} showTokenizationControls
  */
 QL.addCommunication = function(parentElementID, comm, showTokenizationControls) {
   // Add Communication to set of communications (a global variable) in QL namespace
   QL._communications[comm.uuid.uuidString] = comm;
 
-  var parent_element = $('#' + parentElementID);
-  var document_div = $('<div>').addClass('communication').attr('id', 'communication_' + comm.uuid.uuidString);
-  parent_element.append(document_div);
+  var parentElement = $('#' + parentElementID);
 
-  for (var sectionListIndex in comm.sectionList) {
-    var section = comm.sectionList[sectionListIndex];
-    var section_div = $('<div>').addClass('section')
-      .attr('id', 'section_' + section.uuid.uuidString);
-    var sentence_div;
-
-    if (section.sentenceList) {
-      for (var sentenceIndex in section.sentenceList) {
-        var sentence = section.sentenceList[sentenceIndex];
-        var tokenization = sentence.tokenization;
-
-        sentence_div = $('<div>')
-          .addClass('sentence')
-          .attr('id', 'sentence_' + sentence.uuid.uuidString);
-
-        // Add the Bootstrap CSS class 'clearfix' to the
-        // 'controls_and_tokenization_container' <div>, so that the
-        // (floating) 'tokenization_controls' and 'tokenization' <div>'s
-        // in the container don't affect other <div>'s
-        var controls_and_tokenization_container_div = $('<div>')
-          .addClass('controls_and_tokenization_container')
-          .addClass('clearfix');
-
-        var tokenization_controls_div = $('<div>')
-          .addClass('tokenization_controls')
-          .attr('id', 'tokenization_controls_' + tokenization.uuid.uuidString);
-        if (!showTokenizationControls) {
-          tokenization_controls_div.css('display', 'none');
-        }
-
-        controls_and_tokenization_container_div.append(tokenization_controls_div);
-
-        var tokenization_div = $('<div>').addClass('tokenization').attr('id', 'tokenization_' + tokenization.uuid.uuidString);
-        for (var tokenIndex in tokenization.tokenList.tokenList) {
-          var token = tokenization.tokenList.tokenList[tokenIndex];
-          var token_span = $('<span>')
-            .addClass('token')
-            .attr('id', 'tokenization_' + tokenization.uuid.uuidString + "_" + token.tokenIndex)
-              .html(QL.cleanedTokenText(token.text));
-          var token_padding_span = $('<span>')
-            .addClass('token_padding')
-            .attr('id', 'tokenization_padding_' + tokenization.uuid.uuidString + "_" + token.tokenIndex)
-            .html(" ");
-          tokenization_div.append(token_span);
-          tokenization_div.append(token_padding_span);
-        }
-        controls_and_tokenization_container_div.append(tokenization_div);
-
-        sentence_div.append(controls_and_tokenization_container_div);
-
-        sentence_div.append(
-          $('<div>')
-            .addClass('brat_tokenization_container')
-            .attr('id', 'tokenization_ner_container_' + tokenization.uuid.uuidString)
-            .css("display", "none")
-            .append(
-              $('<div>')
-                .addClass('brat_tokenization_label brat_ner_tokenization_label')
-                .html("NER")
-            )
-            .append(
-              $('<div>')
-                .addClass('brat_tokenization')
-                .attr('id', 'tokenization_ner_' + tokenization.uuid.uuidString)));
-        sentence_div.append(
-          $('<div>')
-            .addClass('brat_tokenization_container')
-            .attr('id', 'tokenization_pos_container_' + tokenization.uuid.uuidString)
-            .css("display", "none")
-            .append(
-              $('<div>')
-                .addClass('brat_tokenization_label brat_pos_tokenization_label')
-                .html("POS")
-            )
-            .append(
-              $('<div>')
-                .addClass('brat_tokenization')
-                .attr('id', 'tokenization_pos_' + tokenization.uuid.uuidString)));
-        sentence_div.append(
-          $('<div>')
-            .addClass('brat_tokenization_container')
-            .attr('id', 'tokenization_ans_container_' + tokenization.uuid.uuidString)
-            .css("display", "none")
-            .append(
-              $('<div>')
-                .addClass('brat_tokenization_label brat_ans_tokenization_label')
-                .html("ANS")
-            )
-            .append(
-              $('<div>')
-                .addClass('brat_tokenization')
-                .attr('id', 'tokenization_ans_' + tokenization.uuid.uuidString)));
-        sentence_div.append(
-          $('<div>')
-            .addClass('situation_mention_sets_container')
-            .attr('id', 'situation_mention_sets_container_' + tokenization.uuid.uuidString));
-        sentence_div.append($('<div>')
-          .addClass('dagre_parse')
-          .attr('id', 'constituent_parse_' + tokenization.uuid.uuidString));
-        sentence_div.append($('<div>')
-          .addClass('dagre_parse')
-          .attr('id', 'dependency_parse_' + tokenization.uuid.uuidString));
-        sentence_div.append($('<div>')
-          .addClass('dagre_parse')
-          .attr('id', 'ace_relations_' + tokenization.uuid.uuidString));
-
-        section_div.append(sentence_div);
-      }
+  commDiv = concrete.widget.createCommunicationDiv(
+    comm,
+    {
+      // Add the Bootstrap CSS class 'clearfix' to the
+      // 'tokenization_container' <div>'s, so that the (floating)
+      // 'tokenization_controls' and 'tokenization' <div>'s in the
+      // container don't affect other <div>'s
+      tokenizationContainerClass: 'clearfix',
     }
-    document_div.append(section_div);
-  }
+  );
 
-  // Add DOM classes for mentionId's to token <span>'s
-  for (var entityMentionSetIndex in comm.entityMentionSetList) {
-    QL.addDOMClassesForEntityMentionSet(comm.entityMentionSetList[entityMentionSetIndex]);
-  }
+  // Add sentence/tokenization-level controls
+  if (comm.sectionList) {
+    for (var sectionListIndex in comm.sectionList) {
+      var section = comm.sectionList[sectionListIndex];
+      if (section.sentenceList) {
+        for (var sentenceIndex in section.sentenceList) {
+          var sentence = section.sentenceList[sentenceIndex];
+          var tokenization = sentence.tokenization;
 
-  // Add DOM classes for entity and entity_set UUID's to EntityMentions for the Entities
-  if (comm.entitySetList) {
-    for (var entitySetListIndex in comm.entitySetList) {
-      for (var entityListIndex in comm.entitySetList[entitySetListIndex].entityList) {
-        var entity = comm.entitySetList[entitySetListIndex].entityList[entityListIndex];
-        for (var i = 0; i < entity.mentionIdList.length; i++) {
-          var entityMentionId = entity.mentionIdList[i];
-          $('.entity_mention_' + entityMentionId.uuidString)
-            .addClass('entity_' + entity.uuid.uuidString)
-            .addClass('entity_set_' + comm.entitySetList[entitySetListIndex].uuid.uuidString);
+          var sentenceDiv = commDiv.getSentenceElements(sentence);
+          var tokenizationDiv = commDiv.getTokenizationElements(tokenization);
+
+          var tokenizationControlsDiv = $('<div>')
+              .addClass('tokenization_controls tokenization_controls_' + tokenization.uuid.uuidString);
+          if (!showTokenizationControls) {
+            tokenizationControlsDiv.css('display', 'none');
+          }
+          tokenizationDiv.before(tokenizationControlsDiv);
+
+          sentenceDiv.append(
+            $('<div>')
+              .addClass('brat_tokenization_container')
+              .attr('id', 'tokenization_ner_container_' + tokenization.uuid.uuidString)
+              .css('display', 'none')
+              .append(
+                $('<div>')
+                  .addClass('brat_tokenization_label brat_ner_tokenization_label')
+                  .html('NER')
+              )
+              .append(
+                $('<div>')
+                  .addClass('brat_tokenization')
+                  .attr('id', 'tokenization_ner_' + tokenization.uuid.uuidString)));
+          sentenceDiv.append(
+            $('<div>')
+              .addClass('brat_tokenization_container')
+              .attr('id', 'tokenization_pos_container_' + tokenization.uuid.uuidString)
+              .css('display', 'none')
+              .append(
+                $('<div>')
+                  .addClass('brat_tokenization_label brat_pos_tokenization_label')
+                  .html('POS')
+              )
+              .append(
+                $('<div>')
+                  .addClass('brat_tokenization')
+                  .attr('id', 'tokenization_pos_' + tokenization.uuid.uuidString)));
+          sentenceDiv.append(
+            $('<div>')
+              .addClass('situation_mention_sets_container')
+              .attr('id', 'situation_mention_sets_container_' + tokenization.uuid.uuidString));
+          sentenceDiv.append($('<div>')
+            .addClass('dagre_parse')
+            .attr('id', 'constituent_parse_' + tokenization.uuid.uuidString));
+          sentenceDiv.append($('<div>')
+            .addClass('dagre_parse')
+            .attr('id', 'dependency_parse_' + tokenization.uuid.uuidString));
+          sentenceDiv.append($('<div>')
+            .addClass('dagre_parse')
+            .attr('id', 'ace_relations_' + tokenization.uuid.uuidString));
         }
       }
     }
   }
-};
 
+  commDiv.addAllEntityMentionsInCommunication(comm);
+  commDiv.addAllEntitiesInCommunication(comm);
 
-/** Add DOM classes to token <span>'s for tokens in an EntityMentionSet
- * @param {concrete.EntityMentionSet} entityMentionSet
- */
-QL.addDOMClassesForEntityMentionSet = function(entityMentionSet) {
-  if (entityMentionSet.mentionList) {
-    for (var mentionListIndex in entityMentionSet.mentionList) {
-      var entityMention = entityMentionSet.mentionList[mentionListIndex];
-      QL.addDOMClassForTokenRefSequence(
-        entityMention.tokens,
-        "entity_mention entity_mention_" + entityMention.uuid.uuidString +
-          " entity_mention_set_" + entityMentionSet.uuid.uuidString);
-    }
-  }
-};
-
-
-/** Add DOM class(es) to token <span>'s identified by TokenRefSequence
- *  To specify multiple classes, create a single string with the class
- *  names separated by spaces.
- *
- * @param {concrete.TokenRefSequence} tokenRefSequence
- * @param {String} className - DOM class(es) to be added to token <span>'s
- */
-QL.addDOMClassForTokenRefSequence = function(tokenRefSequence, className) {
-  if (tokenRefSequence.tokenIndexList) {
-    // Unlike Array.sort(), Underscore's sortBy() sorts arrays of numbers *numerically*
-    var tokenIndexList = _.sortBy(tokenRefSequence.tokenIndexList);
-    var total_tokens = tokenRefSequence.tokenIndexList.length;
-
-    for (var tokenIndex in tokenIndexList) {
-      $('#tokenization_' + tokenRefSequence.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
-        .addClass(className);
-
-      // For multi-word mentions, the spaces between tokens are treated as part of the mention
-      if (tokenIndex < total_tokens-1 &&
-          tokenIndexList[tokenIndex]+1 === tokenIndexList[parseInt(tokenIndex, 10)+1])
-      {
-        $('#tokenization_padding_' + tokenRefSequence.tokenizationId.uuidString + '_' + tokenIndexList[tokenIndex])
-          .addClass(className);
-      }
-    }
-  }
+  parentElement.append(commDiv);
 };
 
 
@@ -539,36 +450,6 @@ QL.addSituationMentionTable = function(parentElementID, comm) {
 */
       }
     }
-  }
-};
-
-
-/** Function takes a token string, returns a "cleaned" version of that string
- * @param {String} tokenText
- * @returns {String}
- */
-QL.cleanedTokenText = function(tokenText) {
-  // Convert Penn Treebank-style symbols for brackets to bracket characters
-  //   http://www.cis.upenn.edu/~treebank/tokenization.html
-  switch(tokenText) {
-    case '-LRB-':
-      return '(';
-    case '-RRB-':
-      return ')';
-    case '-LSB-':
-      return '[';
-    case '-RSB-':
-      return ']';
-    case '-LCB-':
-      return '{';
-    case '-RCB-':
-      return '}';
-    default:
-      return tokenText.replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#039;");
   }
 };
 
