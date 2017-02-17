@@ -99,8 +99,8 @@
       var protocol = new Thrift.TJSONProtocol(transport);
       var fetchClient = new FetchCommunicationServiceClient(protocol);
 
-      var commCount = QL.getUrlParameter('commCount');
-      var commOffset = QL.getUrlParameter('commOffset');
+      var commCount = concrete.util.getURLParameter('commCount');
+      var commOffset = concrete.util.getURLParameter('commOffset');
       if (!commCount) {
         commCount = 50;
       }
