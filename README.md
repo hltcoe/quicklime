@@ -37,7 +37,7 @@ You can also install Quicklime using
 
     pip install quicklime
 
-Viewing a Communication
+Viewing Communications
 -----------------------
 
 To view a Concrete Communication, run the **qlook.py** script:
@@ -48,6 +48,11 @@ then point your browser at [http://localhost:8080](http://localhost:8080)
 
 To change the port ```qlook.py``` uses, use the long form ```--port PORT``` or
 short form ```-p PORT``` flag.
+
+Quicklime also supports viewing collections of Communications. ``COMMUNICATION_FILENAME`` can also be the path to a ``tar.gz`` archive, a ``zip`` archive,
+or a directory of Communication files (with extension ``.comm`` or
+``.concrete``.) In these cases, all Communications are loaded and you may then
+select which Communication (by ``id``) to view within the browser.
 
 This script reads in a Concrete Communication and starts a small
 [Bottle.py](http://bottlepy.org/) webserver that shows an HTML
