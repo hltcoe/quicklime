@@ -4,7 +4,7 @@ stages:
   - build
 
 variables:
-  TIMEOUT_WRAPPER: /builds/research/ci_timeout_wrapper.sh
+  TIMEOUT_WRAPPER: /builds/research/quicklime/ci_timeout_wrapper.sh
   QLOOK: /home/concrete/.local/bin/qlook.py
   COMM_PATH: /builds/research/quicklime/agiga_dog-bites-man.concrete
 
