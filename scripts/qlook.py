@@ -7,7 +7,12 @@ import argparse
 import logging
 import os.path
 import sys
-import urllib2
+try:
+    # python 2
+    from urllib2 import urlopen
+except ImportError:
+    # python 3
+    from urllib.request import urlopen
 import urlparse
 import zipfile
 
@@ -148,7 +153,7 @@ def get_restful_comm(restful_host, restful_port, restful_pattern, communication_
     logging.info('using location pattern %s' % loc_pattern)
     full = '%s:%s/%s' % (h, restful_port, loc_pattern)
     logging.info("querying %s" % full)
-    resp = urllib2.urlopen(full)
+    resp = urlopen(full)
     if resp is None:
         error("Got back a None from querying %s" % (full))
     if resp.code != 200:
