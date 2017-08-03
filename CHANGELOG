@@ -1,0 +1,5 @@
+0.2.0 (unreleased)
+------------------
+
+- qlook.py now works with Python 3
+- Updated to concrete-js 4.13.0
