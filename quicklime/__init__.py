@@ -1,1 +1,1 @@
-from qbottle import QuicklimeServer  # noqa
+from .qbottle import QuicklimeServer  # noqa

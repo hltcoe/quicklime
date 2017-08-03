@@ -7,8 +7,14 @@ import argparse
 import logging
 import os.path
 import sys
-import urllib2
-import urlparse
+try:
+    # python 2
+    from urllib2 import urlopen
+    from urlparse import urlparse
+except ImportError:
+    # python 3
+    from urllib.parse import urlparse
+    from urllib.request import urlopen
 import zipfile
 
 import humanfriendly
@@ -139,7 +145,7 @@ def get_redis_comm(redis_host, redis_port, redis_comm, comm_lookup_by,
 
 
 def get_restful_comm(restful_host, restful_port, restful_pattern, communication_loc):
-    url = urlparse.urlparse('%s:%s' % (restful_host, restful_port))
+    url = urlparse('%s:%s' % (restful_host, restful_port))
     if url.netloc is None or len(url.netloc) == 0:
         h = 'http://%s' % (restful_host)
     else:
@@ -148,7 +154,7 @@ def get_restful_comm(restful_host, restful_port, restful_pattern, communication_
     logging.info('using location pattern %s' % loc_pattern)
     full = '%s:%s/%s' % (h, restful_port, loc_pattern)
     logging.info("querying %s" % full)
-    resp = urllib2.urlopen(full)
+    resp = urlopen(full)
     if resp is None:
         error("Got back a None from querying %s" % (full))
     if resp.code != 200:
