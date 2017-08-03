@@ -1,0 +1,27 @@
+image: hltcoe/concrete-python:4.13.3
+
+stages:
+  - build
+
+variables:
+  TIMEOUT_WRAPPER: /builds/research/quicklime/ci_timeout_wrapper.sh
+  QLOOK: /home/concrete/.local/bin/qlook.py
+  COMM_PATH: /builds/research/quicklime/agiga_dog-bites-man.concrete
+
+test_python_2:
+  stage: build
+  script:
+  - python setup.py install --user
+  - $QLOOK --help
+  - $TIMEOUT_WRAPPER 10s $QLOOK $COMM_PATH
+  tags:
+  - docker
+
+test_python_3:
+  stage: build
+  script:
+  - python3.5 setup.py install --user
+  - $QLOOK --help
+  - $TIMEOUT_WRAPPER 10s $QLOOK $COMM_PATH
+  tags:
+  - docker
