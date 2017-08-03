@@ -2,7 +2,7 @@
   "name": "quicklime",
   "version": "0.1.0-beta",
   "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.3"
+    "grunt": "~1.0.1",
+    "grunt-contrib-jshint": "~1.1.0"
   }
 }
