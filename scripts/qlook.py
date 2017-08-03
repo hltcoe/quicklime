@@ -10,10 +10,11 @@ import sys
 try:
     # python 2
     from urllib2 import urlopen
+    from urlparse import urlparse
 except ImportError:
     # python 3
+    from urllib.parse import urlparse
     from urllib.request import urlopen
-import urlparse
 import zipfile
 
 import humanfriendly
@@ -144,7 +145,7 @@ def get_redis_comm(redis_host, redis_port, redis_comm, comm_lookup_by,
 
 
 def get_restful_comm(restful_host, restful_port, restful_pattern, communication_loc):
-    url = urlparse.urlparse('%s:%s' % (restful_host, restful_port))
+    url = urlparse('%s:%s' % (restful_host, restful_port))
     if url.netloc is None or len(url.netloc) == 0:
         h = 'http://%s' % (restful_host)
     else:
