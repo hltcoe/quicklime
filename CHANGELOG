@@ -1,7 +1,8 @@
-0.2.1 (unreleased)
+0.2.1 (2017-11-07)
 ------------------
 
-- Nothing changed yet.
+- fetch() now called asynchronously, preventing timeout errors
+  when retrieving large Communications
 
 
 0.2.0 (2017-08-03)
