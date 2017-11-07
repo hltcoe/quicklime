@@ -113,13 +113,16 @@
           commID = communicationIDs[0];
         }
 
-        comm = fetchCommunication(commID);
-        if (comm) {
-          renderCommunication(comm);
-        }
-        else {
-          displayErrorMessage('Unable to Fetch Communication with ID "' + commID + '"');
-        }
+        var fetchRequest = new FetchRequest({communicationIds: [commID]});
+        fetchClient.fetch(fetchRequest, true).done(function (fetchResult) {
+          var comm = fetchResult.communications[0];
+          if (comm) {
+            renderCommunication(comm);
+          }
+          else {
+            displayErrorMessage('Unable to Fetch Communication with ID "' + commID + '"');
+          }
+        });
       }
       catch (e) {
         if (e instanceof Error) {
